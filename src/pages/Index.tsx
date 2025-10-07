@@ -38,25 +38,37 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="container max-w-7xl mx-auto px-4 py-12 md:py-20">
-        <div className="grid lg:grid-cols-[350px_1fr] gap-8 lg:gap-12">
-          {/* Profile Section */}
-          <div className="lg:sticky lg:top-20 h-fit">
-            <div className="bg-card rounded-2xl p-8 shadow-sm border border-border">
-              <div className="flex flex-col items-center text-center space-y-6">
+        <div className="space-y-8">
+          {/* Header */}
+          <div className="max-w-3xl">
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+              jeremylasne.com as my portfolio
+            </h1>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Get your name domain—it might be the next big thing in the future. 
+              Get ownership of your virtual identity.
+            </p>
+          </div>
+
+          {/* Grid with Profile and Projects */}
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Profile Tile */}
+            <Card className="p-6 hover:shadow-lg transition-all duration-300 border-border bg-gradient-to-br from-slate-50 to-gray-50 flex flex-col h-full">
+              <div className="flex flex-col items-center text-center space-y-4 flex-1">
                 <img
                   src={profileImage}
                   alt="Jeremy LASNE"
-                  className="w-32 h-32 rounded-full object-cover ring-4 ring-accent/20"
+                  className="w-24 h-24 rounded-full object-cover ring-4 ring-accent/20"
                 />
                 
-                <div className="space-y-2">
-                  <h1 className="text-3xl font-bold text-foreground">Jeremy LASNE</h1>
+                <div className="space-y-1">
+                  <h2 className="text-2xl font-bold text-foreground">Jeremy LASNE</h2>
                   <p className="text-muted-foreground">Investor & Entrepreneur</p>
                 </div>
 
                 <Button
                   variant="outline"
-                  className="w-full group"
+                  className="w-full group mt-auto"
                   asChild
                 >
                   <a
@@ -71,88 +83,77 @@ const Index = () => {
                   </a>
                 </Button>
               </div>
-            </div>
-          </div>
+            </Card>
 
-          {/* Projects Grid */}
-          <div className="space-y-6">
-            <div>
-              <h2 className="text-2xl font-semibold text-foreground mb-2">Projects</h2>
-              <p className="text-muted-foreground">
-                Exploring opportunities across wealth management, SaaS, and business services
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              {projects.map((project) => {
-                const Icon = project.icon;
-                return (
-                  <Card
-                    key={project.name}
-                    className={`p-6 hover:shadow-lg transition-all duration-300 border-border bg-gradient-to-br ${project.gradient} flex flex-col h-full`}
-                  >
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex-shrink-0">
-                        {project.logo ? (
-                          <div className="w-14 h-14 rounded-xl bg-white flex items-center justify-center shadow-sm overflow-hidden">
-                            <img src={project.logo} alt={`${project.name} logo`} className="w-10 h-10 object-contain" />
-                          </div>
-                        ) : (
-                          <div className="w-14 h-14 rounded-xl bg-white/80 backdrop-blur-sm flex items-center justify-center shadow-sm">
-                            <Icon className="w-7 h-7 text-primary" />
-                          </div>
-                        )}
-                      </div>
-
-                      {project.url && (
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="flex-shrink-0"
-                          asChild
-                        >
-                          <a
-                            href={project.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-1"
-                          >
-                            Visit
-                            <ExternalLink className="w-3 h-3" />
-                          </a>
-                        </Button>
+            {/* Project Tiles */}
+            {projects.map((project) => {
+              const Icon = project.icon;
+              return (
+                <Card
+                  key={project.name}
+                  className={`p-6 hover:shadow-lg transition-all duration-300 border-border bg-gradient-to-br ${project.gradient} flex flex-col h-full`}
+                >
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex-shrink-0">
+                      {project.logo ? (
+                        <div className="w-14 h-14 rounded-xl bg-white flex items-center justify-center shadow-sm overflow-hidden">
+                          <img src={project.logo} alt={`${project.name} logo`} className="w-10 h-10 object-contain" />
+                        </div>
+                      ) : (
+                        <div className="w-14 h-14 rounded-xl bg-white/80 backdrop-blur-sm flex items-center justify-center shadow-sm">
+                          <Icon className="w-7 h-7 text-primary" />
+                        </div>
                       )}
                     </div>
 
-                    <div className="flex-1 flex flex-col">
-                      <h3 className="text-xl font-semibold text-foreground mb-1">
-                        {project.name}
-                      </h3>
-                      <p className="text-sm text-muted-foreground mb-3">
-                        {project.status || project.type}
-                      </p>
+                    {project.url && (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="flex-shrink-0"
+                        asChild
+                      >
+                        <a
+                          href={project.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-1"
+                        >
+                          Visit
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
+                      </Button>
+                    )}
+                  </div>
 
-                      <p className="text-foreground/80 leading-relaxed mb-4">
-                        {project.description}
-                      </p>
+                  <div className="flex-1 flex flex-col">
+                    <h3 className="text-xl font-semibold text-foreground mb-1">
+                      {project.name}
+                    </h3>
+                    <p className="text-sm text-muted-foreground mb-3">
+                      {project.status || project.type}
+                    </p>
 
-                      <div className="mt-auto space-y-2">
-                        {project.expertise && (
-                          <p className="text-sm text-muted-foreground italic">
-                            {project.expertise}
-                          </p>
-                        )}
-                        {project.coFounders && (
-                          <p className="text-sm text-muted-foreground">
-                            <span className="font-medium">Co-founders:</span> {project.coFounders}
-                          </p>
-                        )}
-                      </div>
+                    <p className="text-foreground/80 leading-relaxed mb-4">
+                      {project.description}
+                    </p>
+
+                    <div className="mt-auto space-y-2">
+                      {project.expertise && (
+                        <p className="text-sm text-muted-foreground italic">
+                          {project.expertise}
+                        </p>
+                      )}
+                      {project.coFounders && (
+                        <p className="text-sm text-muted-foreground">
+                          <span className="font-medium">Co-founders:</span> {project.coFounders}
+                        </p>
+                      )}
                     </div>
-                  </Card>
-                );
-              })}
-            </div>
+                  </div>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </div>
