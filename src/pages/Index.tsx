@@ -13,7 +13,7 @@ const Index = () => {
       icon: Lock,
       status: "Private • Closed",
       expertise: "8+ years investing • Ex-financial advisor",
-      gradient: "from-amber-50 to-orange-50",
+      gradient: "from-slate-50 to-blue-50",
     },
     {
       name: "Tasu",
@@ -31,27 +31,21 @@ const Index = () => {
       url: "https://citadelis.pro",
       type: "Service to Business Owners",
       coFounders: "Maxime Houel and Emilio Fernandez",
-      gradient: "from-emerald-50 to-teal-50",
+      gradient: "from-indigo-50 to-purple-50",
     },
   ];
 
   return (
     <div className="min-h-screen bg-background">
       <div className="container max-w-7xl mx-auto px-4 py-12 md:py-20">
-        <div className="space-y-8">
-          {/* Header */}
-          <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-              jeremylasne.com as my portfolio
-            </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Get your name domain—it might be the next big thing in the future. 
-              Get ownership of your virtual identity.
-            </p>
-          </div>
+        <div className="space-y-6">
+          {/* Subtle subtitle */}
+          <p className="text-xs text-muted-foreground/60 max-w-2xl">
+            Get your name domain—it might be the next big thing in the future. Get ownership of your virtual identity.
+          </p>
 
           {/* Grid with Profile and Projects */}
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-5">
             {/* Profile Tile */}
             <Card className="p-6 hover:shadow-lg transition-all duration-300 border-border bg-gradient-to-br from-slate-50 to-gray-50 flex flex-col h-full">
               <div className="flex flex-col items-center text-center space-y-4 flex-1">
