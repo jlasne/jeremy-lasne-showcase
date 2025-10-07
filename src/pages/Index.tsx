@@ -56,13 +56,13 @@ const Index = () => {
                 />
                 
                 <div className="space-y-1">
-                  <h2 className="text-2xl font-bold text-foreground">Jeremy LASNE</h2>
-                  <p className="text-muted-foreground">Investor & Entrepreneur</p>
+                  <h2 className="text-2xl font-bold text-[#0d2000]">Jeremy LASNE</h2>
+                  <p className="text-[#0d2000]">Investor & Entrepreneur</p>
                 </div>
 
                 <Button
                   variant="outline"
-                  className="w-full group mt-auto"
+                  className="w-full group mt-auto border-[#0d2000] text-[#0d2000] hover:bg-[#0d2000] hover:text-white"
                   asChild
                 >
                   <a
@@ -95,7 +95,7 @@ const Index = () => {
                         </div>
                       ) : (
                         <div className="w-14 h-14 rounded-xl bg-white/80 backdrop-blur-sm flex items-center justify-center shadow-sm">
-                          <Icon className="w-7 h-7 text-primary" />
+                          <Icon className="w-7 h-7 text-[#0d2000]" />
                         </div>
                       )}
                     </div>
@@ -104,7 +104,7 @@ const Index = () => {
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="flex-shrink-0"
+                        className="flex-shrink-0 text-[#0d2000] hover:bg-[#0d2000]/10"
                         asChild
                       >
                         <a
@@ -121,25 +121,25 @@ const Index = () => {
                   </div>
 
                   <div className="flex-1 flex flex-col">
-                    <h3 className="text-xl font-semibold text-foreground mb-1">
+                    <h3 className="text-xl font-semibold text-[#0d2000] mb-1">
                       {project.name}
                     </h3>
-                    <p className="text-sm text-muted-foreground mb-3">
+                    <p className="text-sm text-[#0d2000] mb-3">
                       {project.status || project.type}
                     </p>
 
-                    <p className="text-foreground/80 leading-relaxed mb-4">
+                    <p className="text-[#0d2000] leading-relaxed mb-4">
                       {project.description}
                     </p>
 
                     <div className="mt-auto space-y-2">
                       {project.expertise && (
-                        <p className="text-sm text-muted-foreground italic">
+                        <p className="text-sm text-[#0d2000] italic">
                           {project.expertise}
                         </p>
                       )}
                       {project.coFounders && (
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-[#0d2000]">
                           <span className="font-medium">Co-founders:</span> {project.coFounders}
                         </p>
                       )}
