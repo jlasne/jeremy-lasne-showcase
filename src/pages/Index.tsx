@@ -8,10 +8,10 @@ import citadelisLogo from "@/assets/citadelis-logo.png";
 const Index = () => {
   const projects = [
     {
-      name: "Wealth Manager",
-      description: "Private wealth management through traditional finance, crypto, and private equity",
+      name: "Private Wealth Manager",
+      description: "Investment & Wealth Strategies accross assets. Optimizing for performance and objectives",
       icon: Lock,
-      status: "Private • Closed",
+      status: "Recommendation",
       expertise: "8+ years investing • Ex-financial advisor",
       gradient: "from-slate-50 to-blue-50",
     },
@@ -21,7 +21,7 @@ const Index = () => {
       logo: tasuLogo,
       url: "https://tasu.ai",
       type: "SaaS Platform",
-      coFounders: "Ben Boarer and Dimitri Gilbert",
+      coFounders: "Ben Boarer & Dimitri Gilbert",
       gradient: "from-blue-50 to-indigo-50",
     },
     {
@@ -30,7 +30,7 @@ const Index = () => {
       logo: citadelisLogo,
       url: "https://citadelis.pro",
       type: "Service to Business Owners",
-      coFounders: "Maxime Houel and Emilio Fernandez",
+      coFounders: "Maxime Houel & Emilio Fernandez",
       gradient: "from-indigo-50 to-purple-50",
     },
   ];
@@ -41,7 +41,8 @@ const Index = () => {
         <div className="space-y-6">
           {/* Subtle subtitle */}
           <p className="text-xs text-muted-foreground/60 max-w-2xl">
-            Get your name domain—it might be the next big thing in the future. Get ownership of your virtual identity.
+            Get your name, domain—it might be the next big thing in the future. Get ownership of your virtual identity
+            and showcase your porfolio.
           </p>
 
           {/* Grid with Profile and Projects */}
@@ -54,7 +55,7 @@ const Index = () => {
                   alt="Jeremy LASNE"
                   className="w-24 h-24 rounded-full object-cover ring-4 ring-accent/20"
                 />
-                
+
                 <div className="space-y-1">
                   <h2 className="text-2xl font-bold text-[#0d2000]">Jeremy LASNE</h2>
                   <p className="text-[#0d2000]">Investor & Entrepreneur</p>
@@ -121,23 +122,13 @@ const Index = () => {
                   </div>
 
                   <div className="flex-1 flex flex-col">
-                    <h3 className="text-xl font-semibold text-[#0d2000] mb-1">
-                      {project.name}
-                    </h3>
-                    <p className="text-sm text-[#0d2000] mb-3">
-                      {project.status || project.type}
-                    </p>
+                    <h3 className="text-xl font-semibold text-[#0d2000] mb-1">{project.name}</h3>
+                    <p className="text-sm text-[#0d2000] mb-3">{project.status || project.type}</p>
 
-                    <p className="text-[#0d2000] leading-relaxed mb-4">
-                      {project.description}
-                    </p>
+                    <p className="text-[#0d2000] leading-relaxed mb-4">{project.description}</p>
 
                     <div className="mt-auto space-y-2">
-                      {project.expertise && (
-                        <p className="text-sm text-[#0d2000] italic">
-                          {project.expertise}
-                        </p>
-                      )}
+                      {project.expertise && <p className="text-sm text-[#0d2000] italic">{project.expertise}</p>}
                       {project.coFounders && (
                         <p className="text-sm text-[#0d2000]">
                           <span className="font-medium">Co-founders:</span> {project.coFounders}
