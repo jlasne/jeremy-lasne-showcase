@@ -74,7 +74,7 @@ const Index = () => {
                   >
                     <Twitter className="w-4 h-4" />
                     <span>Follow on X</span>
-                    <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <ExternalLink className="w-3 h-3 opacity-100 group-hover:opacity-100 transition-opacity" />
                   </a>
                 </Button>
               </div>
