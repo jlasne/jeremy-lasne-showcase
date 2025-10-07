@@ -21,6 +21,7 @@ const Index = () => {
       logo: tasuLogo,
       url: "https://tasu.ai",
       type: "SaaS Platform",
+      coFounders: "Ben Boarer and Dimitri Gilbert",
       gradient: "from-blue-50 to-indigo-50",
     },
     {
@@ -29,6 +30,7 @@ const Index = () => {
       logo: citadelisLogo,
       url: "https://citadelis.pro",
       type: "Service to Business Owners",
+      coFounders: "Maxime Houel and Emilio Fernandez",
       gradient: "from-emerald-50 to-teal-50",
     },
   ];
@@ -81,65 +83,68 @@ const Index = () => {
               </p>
             </div>
 
-            <div className="grid gap-6">
+            <div className="grid md:grid-cols-2 gap-6">
               {projects.map((project) => {
                 const Icon = project.icon;
                 return (
                   <Card
                     key={project.name}
-                    className={`p-6 hover:shadow-md transition-all duration-300 border-border bg-gradient-to-br ${project.gradient}`}
+                    className={`p-6 hover:shadow-lg transition-all duration-300 border-border bg-gradient-to-br ${project.gradient} flex flex-col h-full`}
                   >
-                    <div className="flex items-start gap-4">
+                    <div className="flex items-start justify-between mb-4">
                       <div className="flex-shrink-0">
                         {project.logo ? (
-                          <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-sm overflow-hidden">
-                            <img src={project.logo} alt={`${project.name} logo`} className="w-8 h-8 object-contain" />
+                          <div className="w-14 h-14 rounded-xl bg-white flex items-center justify-center shadow-sm overflow-hidden">
+                            <img src={project.logo} alt={`${project.name} logo`} className="w-10 h-10 object-contain" />
                           </div>
                         ) : (
-                          <div className="w-12 h-12 rounded-xl bg-white/80 backdrop-blur-sm flex items-center justify-center shadow-sm">
-                            <Icon className="w-6 h-6 text-primary" />
+                          <div className="w-14 h-14 rounded-xl bg-white/80 backdrop-blur-sm flex items-center justify-center shadow-sm">
+                            <Icon className="w-7 h-7 text-primary" />
                           </div>
                         )}
                       </div>
 
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-start justify-between gap-4 mb-3">
-                          <div>
-                            <h3 className="text-xl font-semibold text-foreground mb-1">
-                              {project.name}
-                            </h3>
-                            <p className="text-sm text-muted-foreground">
-                              {project.status || project.type}
-                            </p>
-                          </div>
+                      {project.url && (
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="flex-shrink-0"
+                          asChild
+                        >
+                          <a
+                            href={project.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-1"
+                          >
+                            Visit
+                            <ExternalLink className="w-3 h-3" />
+                          </a>
+                        </Button>
+                      )}
+                    </div>
 
-                          {project.url && (
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              className="flex-shrink-0"
-                              asChild
-                            >
-                              <a
-                                href={project.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center gap-1"
-                              >
-                                Visit
-                                <ExternalLink className="w-3 h-3" />
-                              </a>
-                            </Button>
-                          )}
-                        </div>
+                    <div className="flex-1 flex flex-col">
+                      <h3 className="text-xl font-semibold text-foreground mb-1">
+                        {project.name}
+                      </h3>
+                      <p className="text-sm text-muted-foreground mb-3">
+                        {project.status || project.type}
+                      </p>
 
-                        <p className="text-foreground/80 leading-relaxed mb-3">
-                          {project.description}
-                        </p>
+                      <p className="text-foreground/80 leading-relaxed mb-4">
+                        {project.description}
+                      </p>
 
+                      <div className="mt-auto space-y-2">
                         {project.expertise && (
                           <p className="text-sm text-muted-foreground italic">
                             {project.expertise}
+                          </p>
+                        )}
+                        {project.coFounders && (
+                          <p className="text-sm text-muted-foreground">
+                            <span className="font-medium">Co-founders:</span> {project.coFounders}
                           </p>
                         )}
                       </div>
