@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Twitter, ExternalLink, Lock, TrendingUp, Building2 } from "lucide-react";
-import profileImage from "@/assets/profile-placeholder.jpg";
+import { Twitter, ExternalLink, Lock } from "lucide-react";
+import profileImage from "@/assets/profile-picture.jpg";
+import tasuLogo from "@/assets/tasu-logo.png";
+import citadelisLogo from "@/assets/citadelis-logo.png";
 
 const Index = () => {
   const projects = [
@@ -16,7 +18,7 @@ const Index = () => {
     {
       name: "Tasu",
       description: "Power insight with feedback analytics",
-      icon: TrendingUp,
+      logo: tasuLogo,
       url: "https://tasu.ai",
       type: "SaaS Platform",
       gradient: "from-blue-50 to-indigo-50",
@@ -24,7 +26,7 @@ const Index = () => {
     {
       name: "Citadelis",
       description: "Sell their business at best price & terms",
-      icon: Building2,
+      logo: citadelisLogo,
       url: "https://citadelis.pro",
       type: "Service to Business Owners",
       gradient: "from-emerald-50 to-teal-50",
@@ -49,11 +51,6 @@ const Index = () => {
                   <h1 className="text-3xl font-bold text-foreground">Jeremy LASNE</h1>
                   <p className="text-muted-foreground">Investor & Entrepreneur</p>
                 </div>
-
-                <p className="text-foreground/80 leading-relaxed">
-                  Building wealth strategies and digital products. Navigating private equity, 
-                  crypto, and traditional finance to create coherent, optimized solutions.
-                </p>
 
                 <Button
                   variant="outline"
@@ -94,9 +91,15 @@ const Index = () => {
                   >
                     <div className="flex items-start gap-4">
                       <div className="flex-shrink-0">
-                        <div className="w-12 h-12 rounded-xl bg-white/80 backdrop-blur-sm flex items-center justify-center shadow-sm">
-                          <Icon className="w-6 h-6 text-primary" />
-                        </div>
+                        {project.logo ? (
+                          <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-sm overflow-hidden">
+                            <img src={project.logo} alt={`${project.name} logo`} className="w-8 h-8 object-contain" />
+                          </div>
+                        ) : (
+                          <div className="w-12 h-12 rounded-xl bg-white/80 backdrop-blur-sm flex items-center justify-center shadow-sm">
+                            <Icon className="w-6 h-6 text-primary" />
+                          </div>
+                        )}
                       </div>
 
                       <div className="flex-1 min-w-0">
