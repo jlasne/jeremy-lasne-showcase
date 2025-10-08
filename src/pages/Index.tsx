@@ -48,22 +48,21 @@ const Index = () => {
           {/* Grid with Profile and Projects */}
           <div className="grid md:grid-cols-2 gap-5">
             {/* Profile Tile */}
-            <Card className="p-6 hover:shadow-lg transition-all duration-300 border-border bg-gradient-to-br from-slate-50 to-gray-50 flex flex-col h-full">
-              <div className="flex flex-col items-center text-center space-y-4 flex-1">
+            <Card className="p-8 hover:shadow-2xl transition-all duration-300 border-2 border-[#0d2000]/10 bg-white flex flex-col h-full">
+              <div className="flex flex-col items-center text-center space-y-6 flex-1">
                 <img
                   src={profileImage}
                   alt="Jeremy LASNE"
-                  className="w-24 h-24 rounded-full object-cover ring-4 ring-accent/20"
+                  className="w-28 h-28 rounded-full object-cover ring-2 ring-[#0d2000]/20"
                 />
 
-                <div className="space-y-1">
-                  <h2 className="text-2xl font-bold text-[#0d2000]">Jeremy LASNE</h2>
-                  <p className="text-[#0d2000]">Investor & Entrepreneur</p>
+                <div className="space-y-2">
+                  <h2 className="text-3xl font-bold text-[#0d2000] tracking-tight">Jeremy LASNE</h2>
+                  <p className="text-[#0d2000] text-lg">Investor & Entrepreneur</p>
                 </div>
 
                 <Button
-                  variant="outline"
-                  className="w-full group mt-auto border-[#0d2000] text-[#0d2000] hover:bg-[#0d2000] hover:text-white"
+                  className="w-full group mt-auto bg-[#0d2000] text-white hover:bg-[#0d2000]/90 border-0"
                   asChild
                 >
                   <a
@@ -74,7 +73,7 @@ const Index = () => {
                   >
                     <Twitter className="w-4 h-4" />
                     <span>Follow on X</span>
-                    <ExternalLink className="w-3 h-3 opacity-100 group-hover:opacity-100 transition-opacity" />
+                    <ExternalLink className="w-3 h-3" />
                   </a>
                 </Button>
               </div>
@@ -86,7 +85,7 @@ const Index = () => {
               return (
                 <Card
                   key={project.name}
-                  className={`p-6 hover:shadow-lg transition-all duration-300 border-border bg-gradient-to-br ${project.gradient} flex flex-col h-full`}
+                  className="p-8 hover:shadow-2xl transition-all duration-300 border-2 border-[#0d2000]/10 bg-white flex flex-col h-full"
                 >
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex-shrink-0">
