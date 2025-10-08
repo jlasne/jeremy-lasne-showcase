@@ -90,12 +90,12 @@ const Index = () => {
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex-shrink-0">
                       {project.logo ? (
-                        <div className="w-14 h-14 rounded-xl bg-white flex items-center justify-center shadow-sm overflow-hidden">
-                          <img src={project.logo} alt={`${project.name} logo`} className="w-10 h-10 object-contain" />
+                        <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center shadow-md overflow-hidden p-3">
+                          <img src={project.logo} alt={`${project.name} logo`} className="w-full h-full object-contain" />
                         </div>
                       ) : (
-                        <div className="w-14 h-14 rounded-xl bg-white/80 backdrop-blur-sm flex items-center justify-center shadow-sm">
-                          <Icon className="w-7 h-7 text-[#0d2000]" />
+                        <div className="w-16 h-16 rounded-2xl bg-white/80 backdrop-blur-sm flex items-center justify-center shadow-md">
+                          <Icon className="w-8 h-8 text-[#0d2000]" />
                         </div>
                       )}
                     </div>
