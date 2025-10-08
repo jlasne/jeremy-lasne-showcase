@@ -82,11 +82,8 @@ const Index = () => {
             {/* Project Tiles */}
             {projects.map((project) => {
               const Icon = project.icon;
-              return (
-                <Card
-                  key={project.name}
-                  className="p-8 hover:shadow-2xl transition-all duration-300 border-2 border-[#0d2000]/10 bg-white flex flex-col h-full"
-                >
+              const CardContent = (
+                <>
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex-shrink-0">
                       {project.logo ? (
@@ -104,18 +101,12 @@ const Index = () => {
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="flex-shrink-0 text-[#0d2000] hover:bg-[#0d2000]/10"
-                        asChild
+                        className="flex-shrink-0 text-[#0d2000] hover:bg-[#0d2000]/10 pointer-events-none"
                       >
-                        <a
-                          href={project.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-1"
-                        >
+                        <span className="flex items-center gap-1">
                           Visit
                           <ExternalLink className="w-3 h-3" />
-                        </a>
+                        </span>
                       </Button>
                     )}
                   </div>
@@ -135,6 +126,27 @@ const Index = () => {
                       )}
                     </div>
                   </div>
+                </>
+              );
+
+              return project.url ? (
+                <a
+                  key={project.name}
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <Card className="p-8 hover:shadow-2xl transition-all duration-300 border-2 border-[#0d2000]/10 bg-white flex flex-col h-full cursor-pointer">
+                    {CardContent}
+                  </Card>
+                </a>
+              ) : (
+                <Card
+                  key={project.name}
+                  className="p-8 hover:shadow-2xl transition-all duration-300 border-2 border-[#0d2000]/10 bg-white flex flex-col h-full"
+                >
+                  {CardContent}
                 </Card>
               );
             })}
