@@ -151,28 +151,6 @@ const Index = () => {
               );
             })}
           </div>
-
-          {/* Newsletter Section */}
-          <div className="mt-12 flex flex-col items-center">
-            <Card className="p-8 border-2 border-[#0d2000]/10 bg-white w-full max-w-2xl">
-              <div className="flex flex-col items-center space-y-6">
-                <div className="text-center space-y-2">
-                  <h3 className="text-2xl font-bold text-[#0d2000]">Newsletter</h3>
-                  <p className="text-[#0d2000]/80">Stay updated with my latest insights</p>
-                </div>
-                <div className="w-full flex justify-center">
-                  <iframe 
-                    src="https://jeremylasne.substack.com/embed" 
-                    width="480" 
-                    height="320" 
-                    style={{ border: '1px solid #EEE', background: 'white', maxWidth: '100%' }}
-                    frameBorder="0" 
-                    scrolling="no"
-                  />
-                </div>
-              </div>
-            </Card>
-          </div>
         </div>
       </div>
     </div>
