@@ -3,7 +3,6 @@ import { Card } from "@/components/ui/card";
 import { Twitter, ExternalLink, Lock } from "lucide-react";
 import profileImage from "@/assets/profile-picture.jpg";
 import tasuLogo from "@/assets/tasu-logo.png";
-import citadelisLogo from "@/assets/citadelis-logo.png";
 
 const Index = () => {
   const projects = [
@@ -23,15 +22,6 @@ const Index = () => {
       type: "SaaS Platform",
       coFounders: "Ben Boarer & Dimitri Gilbert",
       gradient: "from-blue-50 to-indigo-50",
-    },
-    {
-      name: "Citadelis",
-      description: "Sell their business at best price & terms",
-      logo: citadelisLogo,
-      url: "https://citadelis.pro",
-      type: "Service to Business Owners",
-      coFounders: "Maxime Houel & Emilio Fernandez",
-      gradient: "from-indigo-50 to-purple-50",
     },
   ];
 
@@ -61,10 +51,7 @@ const Index = () => {
                   <p className="text-[#0d2000] text-lg">Investor & Entrepreneur</p>
                 </div>
 
-                <Button
-                  className="w-full group mt-auto bg-[#0d2000] text-white hover:bg-[#0d2000]/90 border-0"
-                  asChild
-                >
+                <Button className="w-full group mt-auto bg-[#0d2000] text-white hover:bg-[#0d2000]/90 border-0" asChild>
                   <a
                     href="https://x.com/jeremylasne"
                     target="_blank"
@@ -130,13 +117,7 @@ const Index = () => {
               );
 
               return project.url ? (
-                <a
-                  key={project.name}
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block"
-                >
+                <a key={project.name} href={project.url} target="_blank" rel="noopener noreferrer" className="block">
                   <Card className="p-8 hover:shadow-2xl transition-all duration-300 border-2 border-[#0d2000]/10 bg-white flex flex-col h-full cursor-pointer">
                     {CardContent}
                   </Card>
