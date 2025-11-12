@@ -21,12 +21,6 @@ const Index = () => {
     <div className="min-h-screen bg-[#2a2a2a]">
       <div className="container max-w-7xl mx-auto px-4 py-12 md:py-20">
         <div className="space-y-6">
-          {/* Subtle subtitle */}
-          <p className="text-xs text-muted-foreground/60 max-w-2xl">
-            Get your name, domain—it might be the next big thing in the future. Get ownership of your virtual identity
-            and showcase your porfolio.
-          </p>
-
           {/* Grid with Profile and Projects */}
           <div className="grid md:grid-cols-2 gap-5">
             {/* Profile Tile */}
@@ -120,7 +114,7 @@ const Index = () => {
           {/* Video Section */}
           <div className="mt-8">
             <Card className="p-0 overflow-hidden border-2 border-[#0d2000]/10 bg-white">
-              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+              <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
                 <iframe
                   className="absolute top-0 left-0 w-full h-full"
                   src="https://www.youtube.com/embed/FoPWLZdk51M?autoplay=1&loop=1&mute=1&playlist=FoPWLZdk51M&controls=0&modestbranding=1"
