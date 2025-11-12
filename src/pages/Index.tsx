@@ -62,7 +62,7 @@ const Index = () => {
           {/* Grid with Profile and Projects */}
           <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
             {/* Profile Tile */}
-            <Card className="p-4 sm:p-5 hover:shadow-xl transition-all duration-300 border border-[#0d2000]/10 bg-white flex flex-col h-full">
+            <Card className="p-4 sm:p-5 hover:shadow-xl transition-all duration-300 border border-[#0d2000]/10 bg-gray-50 flex flex-col h-full">
               <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center h-full">
                 {/* Left side: Picture, Name, Description */}
                 <div className="flex items-center gap-3 flex-1">
@@ -151,7 +151,7 @@ const Index = () => {
 
               return project.url ? (
                 <a key={project.name} href={project.url} target="_blank" rel="noopener noreferrer" className="block">
-                  <Card className="p-4 sm:p-5 hover:shadow-xl transition-all duration-300 border border-[#0d2000]/10 bg-white flex flex-col h-full cursor-pointer">
+                  <Card className="p-4 sm:p-5 hover:shadow-xl transition-all duration-300 border border-[#0d2000]/10 bg-gray-50 flex flex-col h-full cursor-pointer">
                     {CardContent}
                   </Card>
                 </a>
