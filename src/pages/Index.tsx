@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Twitter, ExternalLink, Lock } from "lucide-react";
+import { Twitter, ExternalLink, Youtube } from "lucide-react";
 import profileImage from "@/assets/profile-picture.jpg";
 import tasuLogo from "@/assets/tasu-logo.png";
 
@@ -24,31 +24,46 @@ const Index = () => {
           {/* Grid with Profile and Projects */}
           <div className="grid md:grid-cols-2 gap-5">
             {/* Profile Tile */}
-            <Card className="p-6 hover:shadow-2xl transition-all duration-300 border-2 border-[#0d2000]/10 bg-white flex flex-col h-full">
-              <div className="flex flex-col items-center text-center space-y-6 flex-1">
+            <Card className="p-5 hover:shadow-2xl transition-all duration-300 border-2 border-[#0d2000]/10 bg-white flex flex-col h-full">
+              <div className="flex flex-col items-center text-center space-y-4 flex-1">
                 <img
                   src={profileImage}
                   alt="Jeremy LASNE"
-                  className="w-28 h-28 rounded-full object-cover ring-2 ring-[#0d2000]/20"
+                  className="w-24 h-24 rounded-full object-cover ring-2 ring-[#0d2000]/20"
                 />
 
-                <div className="space-y-2">
-                  <h2 className="text-3xl font-bold text-[#0d2000] tracking-tight">Jeremy LASNE</h2>
-                  <p className="text-[#0d2000] text-lg">Business & Entrepreneurship</p>
+                <div className="space-y-1">
+                  <h2 className="text-2xl font-bold text-[#0d2000] tracking-tight">Jeremy LASNE</h2>
+                  <p className="text-[#0d2000]">Business & Entrepreneurship</p>
                 </div>
 
-                <Button className="w-full group mt-auto bg-[#0d2000] text-white hover:bg-[#0d2000]/90 border-0" asChild>
-                  <a
-                    href="https://x.com/jeremylasne"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2"
-                  >
-                    <Twitter className="w-4 h-4" />
-                    <span>Follow on X</span>
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-                </Button>
+                <div className="w-full space-y-2 mt-auto">
+                  <Button className="w-full group bg-[#0d2000] text-white hover:bg-[#0d2000]/90 border-0" asChild>
+                    <a
+                      href="https://x.com/jeremylasne"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2"
+                    >
+                      <Twitter className="w-4 h-4" />
+                      <span>Follow on X</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </Button>
+                  
+                  <Button className="w-full group bg-[#FF6B35] text-white hover:bg-[#FF6B35]/90 border-0" asChild>
+                    <a
+                      href="https://www.youtube.com/@jeremyfounder"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2"
+                    >
+                      <Youtube className="w-4 h-4" />
+                      <span>YouTube Channel</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </Button>
+                </div>
               </div>
             </Card>
 
@@ -96,14 +111,14 @@ const Index = () => {
 
               return project.url ? (
                 <a key={project.name} href={project.url} target="_blank" rel="noopener noreferrer" className="block">
-                  <Card className="p-6 hover:shadow-2xl transition-all duration-300 border-2 border-[#0d2000]/10 bg-white flex flex-col h-full cursor-pointer">
+                  <Card className="p-5 hover:shadow-2xl transition-all duration-300 border-2 border-[#0d2000]/10 bg-white flex flex-col h-full cursor-pointer">
                     {CardContent}
                   </Card>
                 </a>
               ) : (
                 <Card
                   key={project.name}
-                  className="p-6 hover:shadow-2xl transition-all duration-300 border-2 border-[#0d2000]/10 bg-white flex flex-col h-full"
+                  className="p-5 hover:shadow-2xl transition-all duration-300 border-2 border-[#0d2000]/10 bg-white flex flex-col h-full"
                 >
                   {CardContent}
                 </Card>
@@ -117,7 +132,7 @@ const Index = () => {
               <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
                 <iframe
                   className="absolute top-0 left-0 w-full h-full"
-                  src="https://www.youtube.com/embed/FoPWLZdk51M?autoplay=1&loop=1&mute=1&playlist=FoPWLZdk51M&controls=0&modestbranding=1"
+                  src="https://www.youtube.com/embed/FoPWLZdk51M?autoplay=1&loop=1&playlist=FoPWLZdk51M&controls=0&modestbranding=1"
                   title="Video"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
