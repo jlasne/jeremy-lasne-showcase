@@ -16,18 +16,6 @@ const Index = () => {
       videoId: "FoPWLZdk51M",
       url: "/intro",
     },
-    {
-      title: "Building Tasu",
-      description: "The story behind creating a platform focused on user behavior and feedback",
-      videoId: "FoPWLZdk51M",
-      url: "#",
-    },
-    {
-      title: "Lessons in Entrepreneurship",
-      description: "Key insights and hard-won lessons from years of building and scaling businesses",
-      videoId: "FoPWLZdk51M",
-      url: "#",
-    },
   ];
 
   return (
@@ -83,7 +71,12 @@ const Index = () => {
                 </div>
               </div>
               <Button variant="ghost" size="sm" className="text-white hover:text-white hover:bg-white/10 px-0" asChild>
-                <a href="https://x.com/jeremylasne" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                <a
+                  href="https://x.com/jeremylasne"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2"
+                >
                   Contact me on X <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               </Button>
@@ -113,20 +106,22 @@ const Index = () => {
           {/* Right: Interview Feed */}
           <div>
             <h2 className="text-2xl font-bold text-white mb-6">Interviews</h2>
-            
+
             <div className="space-y-6">
               {interviews.map((interview) => (
                 <div
                   key={interview.title}
                   className="flex gap-4 cursor-pointer hover:opacity-80 transition-opacity"
-                  onClick={() => interview.url.startsWith("/") ? navigate(interview.url) : window.open(interview.url, "_blank")}
+                  onClick={() =>
+                    interview.url.startsWith("/") ? navigate(interview.url) : window.open(interview.url, "_blank")
+                  }
                 >
                   {/* Left: Title and Description */}
                   <div className="flex-1">
                     <h3 className="text-xl font-semibold text-white mb-2">{interview.title}</h3>
                     <p className="text-sm text-gray-400 leading-relaxed">{interview.description}</p>
                   </div>
-                  
+
                   {/* Right: Video */}
                   <div className="w-64 flex-shrink-0">
                     <div className="aspect-video w-full rounded-lg overflow-hidden">
