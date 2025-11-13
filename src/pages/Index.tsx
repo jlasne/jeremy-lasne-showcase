@@ -59,15 +59,13 @@ const Index = () => {
               />
             </div>
 
-            {/* Name and Title */}
+            {/* Name and Tagline */}
             <div className="text-center lg:text-left">
               <h1 className="text-4xl font-bold text-white mb-2">Jeremy LASNE</h1>
+              <p className="text-sm italic text-gray-400">
+                Business growth is all about users. I host founders to prove it.
+              </p>
             </div>
-
-            {/* Tagline */}
-            <p className="text-xl italic text-gray-300 text-center lg:text-left">
-              Business growth is all about users. I host founders to prove it.
-            </p>
 
             {/* About Tasu */}
             <div className="space-y-3">
@@ -126,37 +124,29 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Right: Interview Feed (Vertical List) */}
+          {/* Right: Interview Feed */}
           <div>
             <h2 className="text-2xl font-bold text-white mb-6">Interviews</h2>
-            <div className="space-y-4">
-              {interviews.map((interview) => (
-                <Card
-                  key={interview.title}
-                  className="p-5 border border-[#0d2000]/10 bg-gray-50 hover:shadow-xl transition-all duration-300 cursor-pointer"
-                  onClick={() =>
-                    interview.url.startsWith("/") ? navigate(interview.url) : window.open(interview.url, "_blank")
-                  }
-                >
-                  <div className="flex gap-4">
-                    <div className="w-16 h-16 rounded-lg bg-white shadow-sm overflow-hidden flex-shrink-0">
-                      <img
-                        src={interview.logo}
-                        alt={`${interview.interviewee} logo`}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="text-lg font-semibold text-[#0d2000] mb-1">{interview.title}</h3>
-                      <p className="text-xs text-[#0d2000] font-medium mb-2">
-                        {interview.interviewee} • {interview.business}
-                      </p>
-                      <p className="text-sm text-[#0d2000] leading-relaxed">{interview.description}</p>
-                    </div>
-                  </div>
-                </Card>
-              ))}
+            
+            {/* Intro Video */}
+            <div 
+              className="mb-6 cursor-pointer"
+              onClick={() => navigate("/intro")}
+            >
+              <div className="aspect-video w-full max-w-md rounded-lg overflow-hidden">
+                <iframe
+                  className="w-full h-full"
+                  src="https://www.youtube.com/embed/FoPWLZdk51M?autoplay=1&mute=1&loop=1&playlist=FoPWLZdk51M&controls=0"
+                  title="Let's Talk Business - Introduction"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+              <p className="text-white mt-2 text-sm">Let's Talk Business - Introduction</p>
             </div>
+
+            {/* Coming Soon */}
+            <p className="text-gray-400 text-center py-8">All the interviews will be listed here</p>
           </div>
         </div>
       </div>
