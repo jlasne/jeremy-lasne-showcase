@@ -79,10 +79,6 @@ const Index = () => {
                   <p className="text-sm text-gray-400">with Ben Boarer & Dimitri Gilbert</p>
                 </div>
               </div>
-              <p className="text-gray-300 leading-relaxed">
-                I share insights on building SaaS products, understanding user behavior, and growing businesses through
-                feedback-driven strategies.
-              </p>
               <Button variant="ghost" size="sm" className="text-white hover:text-white hover:bg-white/10 px-0" asChild>
                 <a href="https://tasu.ai" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                   Learn more about Tasu <ExternalLink className="w-3.5 h-3.5" />
