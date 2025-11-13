@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import { Twitter, ExternalLink, Youtube } from "lucide-react";
 import profileImage from "@/assets/profile-picture-new.jpg";
 import tasuLogo from "@/assets/tasu-logo.png";
@@ -136,6 +137,13 @@ const Index = () => {
                   </div>
                 </div>
               ))}
+              
+              <Separator className="bg-gray-600" />
+              
+              {/* Coming Soon Section */}
+              <div className="border-2 border-dashed border-gray-600 rounded-lg p-8 flex items-center justify-center">
+                <p className="text-gray-400 text-sm">Interviews coming soon</p>
+              </div>
             </div>
           </div>
         </div>
