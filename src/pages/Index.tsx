@@ -105,26 +105,26 @@ const Index = () => {
           </div>
 
           {/* Right: Interview Feed */}
-          <div>
-            <h2 className="text-2xl font-bold text-white mb-6">Interviews</h2>
+          <div className="mt-8 lg:mt-0">
+            <h2 className="text-xl md:text-2xl font-bold text-white mb-6">Interviews</h2>
 
             <div className="space-y-6">
               {interviews.map((interview) => (
                 <div
                   key={interview.title}
-                  className="flex gap-4 cursor-pointer hover:opacity-80 transition-opacity"
+                  className="flex flex-col md:flex-row gap-4 cursor-pointer hover:opacity-80 transition-opacity"
                   onClick={() =>
                     interview.url.startsWith("/") ? navigate(interview.url) : window.open(interview.url, "_blank")
                   }
                 >
                   {/* Left: Title and Description */}
                   <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-white mb-2">{interview.title}</h3>
+                    <h3 className="text-lg md:text-xl font-semibold text-white mb-2">{interview.title}</h3>
                     <p className="text-sm text-gray-400 leading-relaxed">{interview.description}</p>
                   </div>
 
                   {/* Right: Video */}
-                  <div className="w-64 flex-shrink-0">
+                  <div className="w-full md:w-64 flex-shrink-0">
                     <div className="aspect-video w-full rounded-lg overflow-hidden">
                       <iframe
                         className="w-full h-full"
