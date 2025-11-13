@@ -61,12 +61,11 @@ const Index = () => {
             {/* Name and Title */}
             <div className="text-center lg:text-left">
               <h1 className="text-4xl font-bold text-white mb-2">Jeremy LASNE</h1>
-              <p className="text-lg text-gray-300">Business & Entrepreneurship</p>
             </div>
 
             {/* Tagline */}
             <p className="text-xl italic text-gray-300 text-center lg:text-left">
-              Building user-first businesses, one conversation at a time.
+              Business growth is all about users. I host founders to prove it.
             </p>
 
             {/* About Tasu */}
@@ -76,19 +75,15 @@ const Index = () => {
                   <img src={tasuLogo} alt="Tasu logo" className="w-full h-full object-cover" />
                 </div>
                 <div>
-                  <p className="text-white font-semibold">Co-founder at Tasu</p>
+                  <p className="text-white font-semibold">Growing Tasu</p>
                   <p className="text-sm text-gray-400">with Ben Boarer & Dimitri Gilbert</p>
                 </div>
               </div>
               <p className="text-gray-300 leading-relaxed">
-                I share insights on building SaaS products, understanding user behavior, and growing businesses through feedback-driven strategies.
+                I share insights on building SaaS products, understanding user behavior, and growing businesses through
+                feedback-driven strategies.
               </p>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                className="text-white hover:text-white hover:bg-white/10 px-0" 
-                asChild
-              >
+              <Button variant="ghost" size="sm" className="text-white hover:text-white hover:bg-white/10 px-0" asChild>
                 <a href="https://tasu.ai" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                   Learn more about Tasu <ExternalLink className="w-3.5 h-3.5" />
                 </a>
@@ -97,17 +92,17 @@ const Index = () => {
 
             {/* Social Links */}
             <div className="flex gap-4 justify-center lg:justify-start pt-4">
-              <a 
-                href="https://x.com/jeremylasne" 
-                target="_blank" 
+              <a
+                href="https://x.com/jeremylasne"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
               >
                 <Twitter className="w-5 h-5 text-white" />
               </a>
-              <a 
-                href="https://www.youtube.com/@jeremyfounder" 
-                target="_blank" 
+              <a
+                href="https://www.youtube.com/@jeremyfounder"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 rounded-full bg-[#FF6B35] hover:bg-[#FF6B35]/90 flex items-center justify-center transition-colors"
               >
@@ -124,13 +119,15 @@ const Index = () => {
                 <Card
                   key={interview.title}
                   className="p-5 border border-[#0d2000]/10 bg-gray-50 hover:shadow-xl transition-all duration-300 cursor-pointer"
-                  onClick={() => interview.url.startsWith('/') ? navigate(interview.url) : window.open(interview.url, '_blank')}
+                  onClick={() =>
+                    interview.url.startsWith("/") ? navigate(interview.url) : window.open(interview.url, "_blank")
+                  }
                 >
                   <div className="flex gap-4">
                     <div className="w-16 h-16 rounded-lg bg-white shadow-sm overflow-hidden flex-shrink-0">
-                      <img 
-                        src={interview.logo} 
-                        alt={`${interview.interviewee} logo`} 
+                      <img
+                        src={interview.logo}
+                        alt={`${interview.interviewee} logo`}
                         className="w-full h-full object-cover"
                       />
                     </div>
