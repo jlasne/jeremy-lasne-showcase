@@ -12,34 +12,20 @@ const Index = () => {
   const interviews = [
     {
       title: "Let's Talk Business - Introduction",
-      interviewee: "Jeremy LASNE",
-      business: "Tasu & Entrepreneurship",
       description: "Discover my entrepreneurial journey and what drives me to build user-first businesses",
-      logo: tasuLogo,
+      videoId: "FoPWLZdk51M",
       url: "/intro",
     },
     {
-      title: "Building Tasu with Ben & Dimitri",
-      interviewee: "Ben Boarer & Dimitri Gilbert",
-      business: "Tasu - SaaS Platform",
+      title: "Building Tasu",
       description: "The story behind creating a platform focused on user behavior and feedback",
-      logo: tasuLogo,
+      videoId: "FoPWLZdk51M",
       url: "#",
     },
     {
       title: "Lessons in Entrepreneurship",
-      interviewee: "Jeremy LASNE",
-      business: "Business Insights",
       description: "Key insights and hard-won lessons from years of building and scaling businesses",
-      logo: profileImage,
-      url: "#",
-    },
-    {
-      title: "The Future of SaaS",
-      interviewee: "Jeremy LASNE",
-      business: "Industry Trends",
-      description: "Predictions, emerging trends, and the evolution of the software industry",
-      logo: profileImage,
+      videoId: "FoPWLZdk51M",
       url: "#",
     },
   ];
@@ -128,25 +114,34 @@ const Index = () => {
           <div>
             <h2 className="text-2xl font-bold text-white mb-6">Interviews</h2>
             
-            {/* Intro Video */}
-            <div 
-              className="mb-6 cursor-pointer"
-              onClick={() => navigate("/intro")}
-            >
-              <div className="aspect-video w-full max-w-md rounded-lg overflow-hidden">
-                <iframe
-                  className="w-full h-full"
-                  src="https://www.youtube.com/embed/FoPWLZdk51M?autoplay=1&mute=1&loop=1&playlist=FoPWLZdk51M&controls=0"
-                  title="Let's Talk Business - Introduction"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
-              <p className="text-white mt-2 text-sm">Let's Talk Business - Introduction</p>
+            <div className="space-y-6">
+              {interviews.map((interview) => (
+                <div
+                  key={interview.title}
+                  className="flex gap-4 cursor-pointer hover:opacity-80 transition-opacity"
+                  onClick={() => interview.url.startsWith("/") ? navigate(interview.url) : window.open(interview.url, "_blank")}
+                >
+                  {/* Left: Title and Description */}
+                  <div className="flex-1">
+                    <h3 className="text-xl font-semibold text-white mb-2">{interview.title}</h3>
+                    <p className="text-sm text-gray-400 leading-relaxed">{interview.description}</p>
+                  </div>
+                  
+                  {/* Right: Video */}
+                  <div className="w-64 flex-shrink-0">
+                    <div className="aspect-video w-full rounded-lg overflow-hidden">
+                      <iframe
+                        className="w-full h-full"
+                        src={`https://www.youtube.com/embed/${interview.videoId}?autoplay=1&mute=1&loop=1&playlist=${interview.videoId}&controls=0`}
+                        title={interview.title}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
-
-            {/* Coming Soon */}
-            <p className="text-gray-400 text-center py-8">All the interviews will be listed here</p>
           </div>
         </div>
       </div>
