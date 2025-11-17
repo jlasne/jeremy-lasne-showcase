@@ -109,21 +109,6 @@ const Index = () => {
             <h2 className="text-xl md:text-2xl font-bold text-white mb-6">Feed</h2>
 
             <div className="space-y-6">
-              {/* Coming Soon Section */}
-              <div className="border-2 border-dashed border-gray-600 rounded-lg p-8 flex items-center justify-center">
-                <p className="text-gray-400 text-sm">Interviews coming soon</p>
-              </div>
-
-              <Separator className="bg-gray-600" />
-
-              {interviews.map((interview) => (
-                <div
-                  key={interview.title}
-                  className="flex flex-col md:flex-row gap-4 cursor-pointer hover:opacity-80 transition-opacity"
-                  onClick={() =>
-                    interview.url.startsWith("/") ? navigate(interview.url) : window.open(interview.url, "_blank")
-                  }
-                >
                   {/* Left: Title and Description */}
                   <div className="flex-1">
                     <h3 className="text-lg md:text-xl font-semibold text-white mb-2">{interview.title}</h3>
