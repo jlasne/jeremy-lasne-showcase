@@ -106,16 +106,16 @@ const Index = () => {
 
           {/* Right: Interview Feed */}
           <div className="mt-8 lg:mt-0">
-            <h2 className="text-xl md:text-2xl font-bold text-white mb-6">Videos</h2>
+            <h2 className="text-xl md:text-2xl font-bold text-white mb-6">Feed</h2>
 
             <div className="space-y-6">
               {/* Coming Soon Section */}
               <div className="border-2 border-dashed border-gray-600 rounded-lg p-8 flex items-center justify-center">
                 <p className="text-gray-400 text-sm">Interviews coming soon</p>
               </div>
-              
+
               <Separator className="bg-gray-600" />
-              
+
               {interviews.map((interview) => (
                 <div
                   key={interview.title}
