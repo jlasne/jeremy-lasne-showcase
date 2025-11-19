@@ -17,6 +17,12 @@ const Index = () => {
       videoId: "wAi0g0aG9fk",
       url: "https://tasu.ai",
     },
+    {
+      title: "Why Most Voice Tools Are Breaking Your Thoughts",
+      description: "Current AI tools smooth out your voice, removing emotion and energy. Ramble keeps your thoughts intact without alterations or censorship—organizing your raw ideas exactly as you speak them.",
+      videoId: "T8wscu8Eu54",
+      url: "https://x.com/BuildWithAJ",
+    },
   ];
 
   return (
