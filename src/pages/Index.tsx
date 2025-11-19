@@ -12,16 +12,16 @@ const Index = () => {
 
   const interviews = [
     {
+      title: "Why Most Voice Tools Are Breaking Your Thoughts",
+      description: "Current AI tools smooth out your voice, removing emotion and energy. Ramble keeps your thoughts intact without alterations or censorship—organizing your raw ideas exactly as you speak them.",
+      videoId: "T8wscu8Eu54",
+      url: "/ramble",
+    },
+    {
       title: "Launch Everything you Make",
       description: "Launching is not a one time event, it's a weekly marketing move, for every simple thing you make",
       videoId: "wAi0g0aG9fk",
       url: "https://tasu.ai",
-    },
-    {
-      title: "Why Most Voice Tools Are Breaking Your Thoughts",
-      description: "Current AI tools smooth out your voice, removing emotion and energy. Ramble keeps your thoughts intact without alterations or censorship—organizing your raw ideas exactly as you speak them.",
-      videoId: "T8wscu8Eu54",
-      url: "https://x.com/BuildWithAJ",
     },
   ];
 
@@ -115,13 +115,6 @@ const Index = () => {
             <h2 className="text-xl md:text-2xl font-bold text-white mb-6">Feed</h2>
 
             <div className="space-y-6">
-              {/* Coming Soon Section */}
-              <div className="border-2 border-dashed border-gray-600 rounded-lg p-8 flex items-center justify-center">
-                <p className="text-gray-400 text-sm">Interviews coming soon</p>
-              </div>
-
-              <Separator className="bg-gray-600" />
-
               {interviews.map((interview) => (
                 <div
                   key={interview.title}
