@@ -12,6 +12,12 @@ const Index = () => {
 
   const interviews = [
     {
+      title: "Tierly: Turn Pricing Into Your Growth Lever",
+      description: "Interviewed Ger (@MPlegas), founder of Tierly. He built Tierly for SaaS teams who are tired of guessing at pricing. Pricing is a critical strength—Tierly makes it a marketing asset.",
+      videoId: "kHqBqCtPZUs",
+      url: "/tierly",
+    },
+    {
       title: "Why Most Voice Tools Are Breaking Your Thoughts",
       description: "Current AI tools smooth out your voice, removing emotion and energy. Ramble keeps your thoughts intact without alterations or censorship—organizing your raw ideas exactly as you speak them.",
       videoId: "T8wscu8Eu54",
@@ -112,8 +118,6 @@ const Index = () => {
 
           {/* Right: Interview Feed */}
           <div className="mt-8 lg:mt-0">
-            <h2 className="text-xl md:text-2xl font-bold text-white mb-6">Feed</h2>
-
             <div className="space-y-6">
               {interviews.map((interview) => (
                 <div

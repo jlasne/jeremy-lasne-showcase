@@ -23,21 +23,38 @@ const Ramble = () => {
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">
               Why Most Voice Tools Are Breaking Your Thoughts
             </h1>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-white hover:text-white hover:bg-white/10 px-0"
-              asChild
-            >
-              <a
-                href="https://x.com/BuildWithAJ"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2"
+            <div className="flex flex-wrap gap-4">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-white hover:text-white hover:bg-white/10 px-0"
+                asChild
               >
-                @BuildWithAJ on X <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-            </Button>
+                <a
+                  href="https://x.com/BuildWithAJ"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2"
+                >
+                  @BuildWithAJ on X <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-white hover:text-white hover:bg-white/10 px-0"
+                asChild
+              >
+                <a
+                  href="https://www.rambleapp.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2"
+                >
+                  Ramble App <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </Button>
+            </div>
           </div>
 
           <div className="aspect-video w-full rounded-lg overflow-hidden">
