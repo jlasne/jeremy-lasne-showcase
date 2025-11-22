@@ -10,6 +10,10 @@ import TheFoundersMarketingMap from "./pages/TheFoundersMarketingMap";
 import TalkToUsers from "./pages/marketing/TalkToUsers";
 import LandingPage from "./pages/marketing/LandingPage";
 import Distribution from "./pages/marketing/Distribution";
+import Pricing from "./pages/marketing/Pricing";
+import Content from "./pages/marketing/Content";
+import Features from "./pages/marketing/Features";
+import Growth from "./pages/marketing/Growth";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +32,10 @@ const App = () => (
           <Route path="/the-founders-marketing-map/talk-to-users" element={<TalkToUsers />} />
           <Route path="/the-founders-marketing-map/landing-page" element={<LandingPage />} />
           <Route path="/the-founders-marketing-map/distribution" element={<Distribution />} />
+          <Route path="/the-founders-marketing-map/pricing" element={<Pricing />} />
+          <Route path="/the-founders-marketing-map/content" element={<Content />} />
+          <Route path="/the-founders-marketing-map/features" element={<Features />} />
+          <Route path="/the-founders-marketing-map/growth" element={<Growth />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

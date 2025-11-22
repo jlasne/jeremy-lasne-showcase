@@ -11,10 +11,10 @@ const TheFoundersMarketingMap = () => {
     { title: "Talk to Users", description: "The only validation that matters.", path: "/the-founders-marketing-map/talk-to-users" },
     { title: "Landing Page", description: "Hero section, video, and social proof.", path: "/the-founders-marketing-map/landing-page" },
     { title: "Distribution", description: "Backlinks, directories, and personal brand.", path: "/the-founders-marketing-map/distribution" },
-    { title: "Pricing", description: "Use it as marketing (trials, not free plans).", path: null },
-    { title: "Content", description: "Blogs and articles as freebies.", path: null },
-    { title: "Features", description: '"Coming soon" pages and cutting the dead wood.', path: null },
-    { title: "Growth", description: "Free tools, affiliates, and cold outreach.", path: null },
+    { title: "Pricing", description: "Your price is a filter for the right customers.", path: "/the-founders-marketing-map/pricing" },
+    { title: "Content", description: "The only marketing that compounds over time.", path: "/the-founders-marketing-map/content" },
+    { title: "Features", description: "Marketing weapons, not just retention tools.", path: "/the-founders-marketing-map/features" },
+    { title: "Growth", description: "Pour fuel on what already works.", path: "/the-founders-marketing-map/growth" },
   ];
 
   return (
