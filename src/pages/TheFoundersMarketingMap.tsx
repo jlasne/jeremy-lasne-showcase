@@ -1,8 +1,12 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const TheFoundersMarketingMap = () => {
+  const navigate = useNavigate();
+  
   const battlegrounds = [
     { title: "Talk to Users", description: "The only validation that matters." },
     { title: "Landing Page", description: "Hero section, video, and social proof." },
@@ -14,22 +18,37 @@ const TheFoundersMarketingMap = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background p-4 md:p-8">
-      <div className="max-w-4xl mx-auto">
-        <Link 
-          to="/" 
-          className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8 transition-colors"
+    <div className="min-h-screen bg-[#2a2a2a]">
+      <div className="container max-w-4xl mx-auto px-4 py-8 md:py-12">
+        <Button
+          variant="ghost"
+          size="sm"
+          className="text-white hover:text-white hover:bg-white/10 mb-6"
+          onClick={() => navigate("/")}
         >
-          <ArrowLeft className="w-4 h-4" />
-          Back to Home
-        </Link>
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Back to Feed
+        </Button>
 
         <article className="space-y-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-            The Founder's Marketing Map
-          </h1>
+          <div>
+            <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              The Founder's Marketing Map
+            </h1>
+            <div className="flex flex-wrap gap-2">
+              {battlegrounds.map((item, index) => (
+                <Badge 
+                  key={index} 
+                  variant="secondary"
+                  className="bg-white/10 text-white hover:bg-white/20 border-0"
+                >
+                  {item.title}
+                </Badge>
+              ))}
+            </div>
+          </div>
 
-          <div className="prose prose-invert max-w-none space-y-6 text-foreground/90">
+          <div className="prose prose-invert max-w-none space-y-6 text-gray-300">
             <p>
               Marketing in 2025 is actually fun for devs. It's not about ads; it's about shipping. 
               If you're waiting for a perfect moment to launch, stop. Here is the psychology you need right now.
@@ -42,7 +61,7 @@ const TheFoundersMarketingMap = () => {
                 href="https://tasu.ai" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-primary hover:underline"
+                className="text-white hover:underline font-medium"
               >
                 Tasu.ai
               </a>{" "}
@@ -51,7 +70,7 @@ const TheFoundersMarketingMap = () => {
                 href="https://x.com/jeremylasne" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-primary hover:underline"
+                className="text-white hover:underline font-medium"
               >
                 @jeremylasne
               </a>.
@@ -64,7 +83,7 @@ const TheFoundersMarketingMap = () => {
               successful founders you hear do that, and you watch.
             </p>
 
-            <h3 className="text-2xl font-semibold text-foreground mt-8">
+            <h3 className="text-2xl font-semibold text-white mt-8">
               There is no single launch.
             </h3>
             <p>
@@ -73,7 +92,7 @@ const TheFoundersMarketingMap = () => {
               forgive "Beta" tags if you're transparent.
             </p>
 
-            <h3 className="text-2xl font-semibold text-foreground mt-8">
+            <h3 className="text-2xl font-semibold text-white mt-8">
               Perfection is Complexity
             </h3>
             <p>
@@ -87,7 +106,7 @@ const TheFoundersMarketingMap = () => {
               it solely to deliver value.
             </p>
 
-            <h2 className="text-3xl font-bold text-foreground mt-12 mb-6">
+            <h2 className="text-2xl font-bold text-white mt-12 mb-6">
               Where to Act (The Map)
             </h2>
             <p>
@@ -95,24 +114,24 @@ const TheFoundersMarketingMap = () => {
               that energy. Here are actionable strategies to inspire and use.
             </p>
 
-            <p className="text-lg font-medium">Select a battleground to dive in:</p>
+            <p className="text-lg font-medium text-white">Select a battleground to dive in:</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
             {battlegrounds.map((item, index) => (
               <Card 
                 key={index}
-                className="cursor-pointer hover:bg-accent/50 transition-colors"
+                className="cursor-pointer bg-[#3a3a3a] border-white/10 hover:bg-[#4a4a4a] transition-colors"
                 onClick={() => {
                   // Coming soon functionality
                   alert("Coming soon!");
                 }}
               >
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold text-foreground mb-2">
+                  <h3 className="text-xl font-semibold text-white mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-muted-foreground">
+                  <p className="text-gray-300">
                     {item.description}
                   </p>
                 </CardContent>
