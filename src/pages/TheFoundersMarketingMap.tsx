@@ -8,13 +8,13 @@ const TheFoundersMarketingMap = () => {
   const navigate = useNavigate();
   
   const battlegrounds = [
-    { title: "Talk to Users", description: "The only validation that matters." },
-    { title: "Landing Page", description: "Hero section, video, and social proof." },
-    { title: "Distribution", description: "Backlinks, directories, and personal brand." },
-    { title: "Pricing", description: "Use it as marketing (trials, not free plans)." },
-    { title: "Content", description: "Blogs and articles as freebies." },
-    { title: "Features", description: '"Coming soon" pages and cutting the dead wood.' },
-    { title: "Growth", description: "Free tools, affiliates, and cold outreach." },
+    { title: "Talk to Users", description: "The only validation that matters.", path: "/the-founders-marketing-map/talk-to-users" },
+    { title: "Landing Page", description: "Hero section, video, and social proof.", path: "/the-founders-marketing-map/landing-page" },
+    { title: "Distribution", description: "Backlinks, directories, and personal brand.", path: "/the-founders-marketing-map/distribution" },
+    { title: "Pricing", description: "Use it as marketing (trials, not free plans).", path: null },
+    { title: "Content", description: "Blogs and articles as freebies.", path: null },
+    { title: "Features", description: '"Coming soon" pages and cutting the dead wood.', path: null },
+    { title: "Growth", description: "Free tools, affiliates, and cold outreach.", path: null },
   ];
 
   return (
@@ -123,8 +123,11 @@ const TheFoundersMarketingMap = () => {
                 key={index}
                 className="cursor-pointer bg-[#3a3a3a] border-white/10 hover:bg-[#4a4a4a] transition-colors"
                 onClick={() => {
-                  // Coming soon functionality
-                  alert("Coming soon!");
+                  if (item.path) {
+                    navigate(item.path);
+                  } else {
+                    alert("Coming soon!");
+                  }
                 }}
               >
                 <CardContent className="p-6">
