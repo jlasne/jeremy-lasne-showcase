@@ -12,6 +12,13 @@ const Index = () => {
 
   const interviews = [
     {
+      title: "Don't Build in Silence",
+      description:
+        "Interviewed @Aevmorfop, who built an app to quit smoking—not as a startup idea, but because he was in personal hell. He shared the process publicly, and a stranger used his tool to quit too.",
+      videoId: "6QrRr1cxVhg",
+      url: "/smokefree",
+    },
+    {
       title: "Turn Pricing Into Your Growth Lever",
       description:
         "Interviewed Ger (@MPlegas), founder of Tierly. He built Tierly for SaaS teams who are tired of guessing at pricing. Pricing is a critical strength—Tierly makes it a marketing asset.",
