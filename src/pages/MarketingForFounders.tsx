@@ -24,49 +24,47 @@ const MarketingForFounders = () => {
       case "intro":
         return (
           <div className="prose prose-invert max-w-none space-y-6 text-gray-300">
+            <p>I spent a year trying to do marketing as a "non-marketing guy." It wasn't enough. I needed a change.</p>
             <p>
-              I spent a year trying to do marketing as a "non-marketing guy." It wasn't enough. I needed a change.
-            </p>
-            <p>
-              So I stopped everything for a week. I watched 50+ hours of video, analyzed 100+ strategies, and studied 10+ successful bootstrappers.
+              So I stopped everything for a week. I watched 50+ hours of video, analyzed 100+ strategies, and studied
+              10+ successful bootstrappers.
             </p>
             <p>
               These cards are the result. Just the raw tactics I'm using to grow{" "}
-              <a 
-                href="https://tasu.ai" 
-                target="_blank" 
+              <a
+                href="https://tasu.ai"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:underline font-medium"
               >
                 Tasu.ai
               </a>{" "}
               right now. I'm documenting the whole journey on my X{" "}
-              <a 
-                href="https://x.com/jeremylasne" 
-                target="_blank" 
+              <a
+                href="https://x.com/jeremylasne"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:underline font-medium"
               >
                 @jeremylasne
-              </a>.
+              </a>
+              .
             </p>
-            <p className="font-medium text-white">
-              There is no TL;DR because this is the actionable summary.
-            </p>
+            <p className="font-medium text-white">There is no TL;DR because this is the actionable summary.</p>
           </div>
         );
       case "philosophy":
         return (
           <div className="prose prose-invert max-w-none space-y-6 text-gray-300">
             <h2 className="text-2xl font-bold text-white mb-4">The Launch Philosophy</h2>
-            
+
             <p>Override your dev-brain.</p>
             <p>Stop optimizing behind the scene.</p>
             <p>That is wrong.</p>
             <p>Successful founders trade perfection for speed.</p>
 
             <h3 className="text-xl font-bold text-white mt-8 mb-4">Just "Ship it"</h3>
-            
+
             <div className="overflow-x-auto">
               <table className="w-full border-collapse">
                 <thead>
@@ -78,36 +76,61 @@ const MarketingForFounders = () => {
                 <tbody>
                   <tr className="border-b border-gray-800">
                     <td className="py-3 px-4 font-medium text-white">Always Launch</td>
-                    <td className="py-3 px-4">There is no "one big launch." You launch continuously. Hundreds of small, compounding launches beat one big event. You build authority with it.</td>
+                    <td className="py-3 px-4">
+                      There is no "one big launch." You launch continuously. Hundreds of small, compounding launches
+                      beat one big event. You build authority with it.
+                    </td>
                   </tr>
                   <tr className="border-b border-gray-800">
                     <td className="py-3 px-4 font-medium text-white">Kill Perfection</td>
-                    <td className="py-3 px-4">A perfect product is when there is nothing left to remove. Cut features until you can't. Simplicity wins.</td>
+                    <td className="py-3 px-4">
+                      A perfect product is when there is nothing left to remove. Cut features until you can't.
+                      Simplicity wins.
+                    </td>
                   </tr>
                   <tr className="border-b border-gray-800">
                     <td className="py-3 px-4 font-medium text-white">Stick to Your Stack</td>
-                    <td className="py-3 px-4">Users don't care about your code or stack. They care about their problem. Stop chasing shiny tools. Pick one stack, master it, and ship.</td>
+                    <td className="py-3 px-4">
+                      Users don't care about your code or stack. They care about their problem. Stop chasing shiny
+                      tools. Pick one stack, master it, and ship.
+                    </td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
             <h3 className="text-xl font-bold text-white mt-8 mb-4">Launch Everything</h3>
-            
-            <p><strong className="text-white">No Single Shot:</strong> You don't get one shot, you get as many shots as you can ship. Launch every feature, every update, every tool.</p>
-            
-            <p><strong className="text-white">Transparency Wins:</strong> if it works for you, ship it, if it breaks, fix it live. Users forgive "Beta" tags if you are honest about it.</p>
-            
-            <p><strong className="text-white">Be Your Own User:</strong> Launch as your own customer. Use your product and get spammed by errors, but grow only with other actual active/paid users validation.</p>
+
+            <p>
+              <strong className="text-white">No Single Shot:</strong> You don't get one shot, you get as many shots as
+              you can ship. Launch every feature, every update, every tool.
+            </p>
+
+            <p>
+              <strong className="text-white">Transparency Wins:</strong> if it works for you, ship it, if it breaks, fix
+              it live. Users forgive "Beta" tags if you are honest about it.
+            </p>
+
+            <p>
+              <strong className="text-white">Be Your Own User:</strong> Launch as your own customer. Use your product
+              and get spammed by errors, but grow only with other actual active/paid users validation.
+            </p>
 
             <h3 className="text-xl font-bold text-white mt-8 mb-4">The "Worst" Case Scenario</h3>
-            
+
             <p>What are you afraid of?</p>
-            
+
             <ul className="space-y-2 my-4">
-              <li><strong className="text-white">The Fear:</strong> Someone sees your broken product and laughs.</li>
-              <li><strong className="text-white">The Reality:</strong> A user comes to you to give feedback.</li>
-              <li><strong className="text-white">The Win:</strong> That feedback is gold. It tells you exactly what to fix to make the next version better. The worst thing that happens is you make a friend.</li>
+              <li>
+                <strong className="text-white">The Fear:</strong> Someone sees your broken product and laughs.
+              </li>
+              <li>
+                <strong className="text-white">The Reality:</strong> A user comes to you to give feedback.
+              </li>
+              <li>
+                <strong className="text-white">The Win:</strong> That feedback is gold. It tells you exactly what to fix
+                to make the next version better. The worst thing that happens is you make a friend.
+              </li>
             </ul>
 
             <blockquote className="border-l-4 border-white pl-4 italic text-white my-6">
@@ -119,31 +142,36 @@ const MarketingForFounders = () => {
         return (
           <div className="prose prose-invert max-w-none space-y-6 text-gray-300">
             <h2 className="text-2xl font-bold text-white mb-4">Talks to Users</h2>
-            
+
             <p>
-              If you aren't regularly in conversation with users, you're not really building a business, you're just building a personal project.
+              If you aren't regularly in conversation with users, you're not really building a business, you're just
+              building a personal project.
             </p>
 
             <h3 className="text-xl font-bold text-white mt-8 mb-4">Why Talking to Users Is Your Real Job</h3>
-            
+
             <p>
-              As a founder, the main work is very simple: listen to people who have the problem, then share what you are building back to them.
+              As a founder, the main work is very simple: listen to people who have the problem, then share what you are
+              building back to them.
             </p>
-            
+
             <p>
-              Users tell you what matters enough to build, and every time you share progress, you attract more of the right people into that loop.
+              Users tell you what matters enough to build, and every time you share progress, you attract more of the
+              right people into that loop.
             </p>
-            
+
             <p>
-              Being your own first user is powerful because you deeply understand the problem, but your personal taste is not the ultimate source of truth (may lead you to the wrong path = overbuilding).
+              Being your own first user is powerful because you deeply understand the problem, but your personal taste
+              is not the ultimate source of truth (may lead you to the wrong path = overbuilding).
             </p>
 
             <blockquote className="border-l-4 border-white pl-4 italic text-white my-6">
-              Your role is to hold the vision while letting real users correct your assumptions with their behavior and their words.
+              Your role is to hold the vision while letting real users correct your assumptions with their behavior and
+              their words.
             </blockquote>
 
             <h3 className="text-xl font-bold text-white mt-8 mb-4">Who to Talk To (And What to Ask)</h3>
-            
+
             <div className="overflow-x-auto">
               <table className="w-full border-collapse">
                 <thead>
@@ -155,7 +183,9 @@ const MarketingForFounders = () => {
                 <tbody>
                   <tr className="border-b border-gray-800">
                     <td className="py-3 px-4 font-medium text-white">People using your product</td>
-                    <td className="py-3 px-4">Focus on the result they want, not whether they like a button or a color.</td>
+                    <td className="py-3 px-4">
+                      Focus on the result they want, not whether they like a button or a color.
+                    </td>
                   </tr>
                   <tr className="border-b border-gray-800">
                     <td className="py-3 px-4 font-medium text-white">People who signed up but never paid/used it</td>
@@ -163,11 +193,17 @@ const MarketingForFounders = () => {
                   </tr>
                   <tr className="border-b border-gray-800">
                     <td className="py-3 px-4 font-medium text-white">People who canceled</td>
-                    <td className="py-3 px-4">"What made you decide to stop?" Their reasons show the leaks in your product and onboarding.</td>
+                    <td className="py-3 px-4">
+                      "What made you decide to stop?" Their reasons show the leaks in your product and onboarding.
+                    </td>
                   </tr>
                   <tr className="border-b border-gray-800">
-                    <td className="py-3 px-4 font-medium text-white">People who have the problem but aren't users yet</td>
-                    <td className="py-3 px-4">"How are you solving this today?" This shows alternatives and what would make them switch.</td>
+                    <td className="py-3 px-4 font-medium text-white">
+                      People who have the problem but aren't users yet
+                    </td>
+                    <td className="py-3 px-4">
+                      "How are you solving this today?" This shows alternatives and what would make them switch.
+                    </td>
                   </tr>
                   <tr className="border-b border-gray-800">
                     <td className="py-3 px-4 font-medium text-white">Family and friend</td>
@@ -178,17 +214,34 @@ const MarketingForFounders = () => {
             </div>
 
             <h3 className="text-xl font-bold text-white mt-8 mb-4">How to Ask Smart Questions</h3>
-            
+
             <ul className="space-y-2 my-4">
-              <li><strong className="text-white">Ask about outcomes, not opinions on UI:</strong> You care about the job they're trying to get done, not whether they "like" a screen.</li>
-              <li><strong className="text-white">Don't rely on "Would you use this?"</strong> from people with no commitment. Credit card inputs are engagement; email signups are just clutter. If they aren't willing to pay, they are just tire-kickers.</li>
-              <li><strong className="text-white">Ask publicly on X:</strong> "If you signed up but never paid, why?" and let patterns appear in the replies. The feedback is brutally honest and gold.</li>
-              <li><strong className="text-white">Listen to error noise:</strong> The only feedback you (the founder) should obsess over is errors.</li>
-              <li>Ask specific: general feedback is tough to understand and get actionable steps from it. Be specific on something you doubt or try to do.</li>
+              <li>
+                <strong className="text-white">Ask about outcomes, not opinions on UI:</strong> You care about the job
+                they're trying to get done, not whether they "like" a screen.
+              </li>
+              <li>
+                <strong className="text-white">Don't rely on "Would you use this?"</strong> from people with no
+                commitment. Credit card inputs are engagement; email signups are just clutter. If they aren't willing to
+                pay, they are just tire-kickers.
+              </li>
+              <li>
+                <strong className="text-white">Ask publicly on X:</strong> "If you signed up but never paid, why?" and
+                let patterns appear in the replies. The feedback is brutally honest and gold.
+              </li>
+              <li>
+                <strong className="text-white">Listen to error noise:</strong> The only feedback you (the founder)
+                should obsess over is errors.
+              </li>
+              <li>
+                Ask specific: general feedback is tough to understand and get actionable steps from it. Be specific on
+                something you doubt or try to do.
+              </li>
             </ul>
 
             <blockquote className="border-l-4 border-white pl-4 italic text-white my-6">
-              Daily mission: Talk to at least one person who has the problem you solve, user or not, and write down exactly how they describe it in their own words.
+              Daily mission: Talk to at least one person who has the problem you solve, user or not, and write down
+              exactly how they describe it in their own words.
             </blockquote>
           </div>
         );
@@ -196,13 +249,14 @@ const MarketingForFounders = () => {
         return (
           <div className="prose prose-invert max-w-none space-y-6 text-gray-300">
             <h2 className="text-2xl font-bold text-white mb-4">Converting Landing Page</h2>
-            
+
             <p>
-              Most founders overthink this. You don't need a masterpiece; you need a filter. If your landing page doesn't answer "Why should a stranger care?" in 3 seconds, you've lost them.
+              Most founders overthink this. You don't need a masterpiece; you need a filter. If your landing page
+              doesn't answer "Why should a stranger care?" in 3 seconds, you've lost them.
             </p>
 
             <h3 className="text-xl font-bold text-white mt-8 mb-4">The Formula</h3>
-            
+
             <p>Spend 80% of your time on the Hero Section. This is the only part that matters at first.</p>
 
             <div className="overflow-x-auto">
@@ -216,15 +270,24 @@ const MarketingForFounders = () => {
                 <tbody>
                   <tr className="border-b border-gray-800">
                     <td className="py-3 px-4 font-medium text-white">Tagline</td>
-                    <td className="py-3 px-4">One sentence. Why should I give you my money? Answer the "Why", not the "What."</td>
+                    <td className="py-3 px-4">
+                      One sentence. Why should I give you my money? Answer the "Why", not the "What."
+                    </td>
                   </tr>
                   <tr className="border-b border-gray-800">
                     <td className="py-3 px-4 font-medium text-white">Video</td>
-                    <td className="py-3 px-4">Don't do a boring feature tour. Show the <strong className="text-white">outcome</strong> (the win), not the buttons. If they can see the result, they convert. Or clear screenshot of what you get.</td>
+                    <td className="py-3 px-4">
+                      Don't do a boring feature tour. Show the <strong className="text-white">outcome</strong> (the
+                      win), not the buttons. If they can see the result, they convert. Or clear screenshot of what you
+                      get.
+                    </td>
                   </tr>
                   <tr className="border-b border-gray-800">
                     <td className="py-3 px-4 font-medium text-white">Social Proof</td>
-                    <td className="py-3 px-4">Nobody trusts a ghost town. Use specific numbers: "Deployed in X businesses" beats "I love this app."</td>
+                    <td className="py-3 px-4">
+                      Nobody trusts a ghost town. Use specific numbers: "Deployed in X businesses" beats "I love this
+                      app."
+                    </td>
                   </tr>
                   <tr className="border-b border-gray-800">
                     <td className="py-3 px-4 font-medium text-white">Pricing</td>
@@ -234,20 +297,34 @@ const MarketingForFounders = () => {
               </table>
             </div>
 
-            <p><strong className="text-white">Noise Filter:</strong> Everything else on your landing page that is not one of these elements is noise. Remove it.</p>
+            <p>
+              <strong className="text-white">Noise Filter:</strong> Everything else on your landing page that is not one
+              of these elements is noise. Remove it.
+            </p>
 
             <h3 className="text-xl font-bold text-white mt-8 mb-4">Conversion &gt; Traffic</h3>
-            
+
             <p>Stop pouring water into a leaky bucket.</p>
 
             <ul className="space-y-2 my-4">
-              <li><strong className="text-white">Fix the Funnel First:</strong> Insane marketing efforts bringing people to a broken funnel = wasted effort. A 2x improvement in conversion beats 2x traffic every time.</li>
-              <li><strong className="text-white">Churn is Reality:</strong> For subscription products, 10% monthly churn is normal. Your job is to track where you lose people in the signup process and plug the holes.</li>
-              <li><strong className="text-white">The Trust Battery:</strong> Users need to trust you before they pay. Features like "Coming Soon" buttons build anticipation and trust about the utility. Detailed in teh "Feature as marketing section".</li>
+              <li>
+                <strong className="text-white">Fix the Funnel First:</strong> Insane marketing efforts bringing people
+                to a broken funnel = wasted effort. A 2x improvement in conversion beats 2x traffic every time.
+              </li>
+              <li>
+                <strong className="text-white">Churn is Reality:</strong> For subscription products, 10% monthly churn
+                is normal. Your job is to track where you lose people in the signup process and plug the holes.
+              </li>
+              <li>
+                <strong className="text-white">The Trust Battery:</strong> Users need to trust you before they pay.
+                Features like "Coming Soon" buttons build anticipation and trust about the utility. Detailed in teh
+                "Feature as marketing section".
+              </li>
             </ul>
 
             <blockquote className="border-l-4 border-white pl-4 italic text-white my-6">
-              Action Item: Go look at your hero section right now. Does it clearly state the outcome in one sentence? If not, rewrite your tagline first.
+              Action Item: Go look at your hero section right now. Does it clearly state the outcome in one sentence? If
+              not, rewrite your tagline first.
             </blockquote>
           </div>
         );
@@ -255,15 +332,18 @@ const MarketingForFounders = () => {
         return (
           <div className="prose prose-invert max-w-none space-y-6 text-gray-300">
             <h2 className="text-2xl font-bold text-white mb-4">Distribution Machine</h2>
-            
+
             <p>
-              You built it. Now build the roads to it. Don't rely on luck; build a machine that brings people to your door.
+              You built it. Now build the roads to it. Don't rely on luck; build a machine that brings people to your
+              door.
             </p>
 
             <h3 className="text-xl font-bold text-white mt-8 mb-4">Directories ARE the Strategy</h3>
-            
+
             <p>
-              There is no "one big launch." You launch constantly. Product Hunt, Hacker News, and Reddit are not events—they are just big directories. Treat them as such. Every directory you submit to is a new road leading to your city.
+              There is no "one big launch." You launch constantly. Product Hunt, Hacker News, and Reddit are not events,
+              they are just big directories. Treat them as such. Every directory you submit to is a new road leading to
+              your city.
             </p>
 
             <div className="overflow-x-auto">
@@ -277,45 +357,78 @@ const MarketingForFounders = () => {
                 <tbody>
                   <tr className="border-b border-gray-800">
                     <td className="py-3 px-4 font-medium text-white">Product Hunt</td>
-                    <td className="py-3 px-4">The holy grail. You can launch every month. Launch on Monday/Sunday for badges ("Product of the Day") or mid-week for traffic. First 4 hours (starting 12:01 AM PST) are critical.</td>
+                    <td className="py-3 px-4">
+                      The holy grail. You can launch every month. Launch on Monday/Sunday for badges ("Product of the
+                      Day") or mid-week for traffic. First 4 hours (starting 12:01 AM PST) are critical.
+                    </td>
                   </tr>
                   <tr className="border-b border-gray-800">
                     <td className="py-3 px-4 font-medium text-white">Hacker News</td>
-                    <td className="py-3 px-4">Title it "Show HN: I made [Product]". Use dry, technical language. No marketing fluff.</td>
+                    <td className="py-3 px-4">
+                      Title it "Show HN: I made [Product]". Use dry, technical language. No marketing fluff.
+                    </td>
                   </tr>
                   <tr className="border-b border-gray-800">
                     <td className="py-3 px-4 font-medium text-white">Reddit</td>
-                    <td className="py-3 px-4">Don't just drop a link. Share your story in <strong className="text-white">r/SideProject</strong>. Be a human first.</td>
+                    <td className="py-3 px-4">
+                      Don't just drop a link. Share your story in <strong className="text-white">r/SideProject</strong>.
+                      Be a human first.
+                    </td>
                   </tr>
                   <tr className="border-b border-gray-800">
                     <td className="py-3 px-4 font-medium text-white">The Long Tail</td>
-                    <td className="py-3 px-4">Uneed, Tiny Launch, etc. These are free backlinks. Do one a week. Use their badges to build credibility on your site.</td>
+                    <td className="py-3 px-4">
+                      Uneed, Tiny Launch, etc. These are free backlinks. Do one a week. Use their badges to build
+                      credibility on your site.
+                    </td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
             <h3 className="text-xl font-bold text-white mt-8 mb-4">Personal Brand: Embody the Vision</h3>
-            
-            <p>Focus &gt; Diversification. Pick 1-2 platforms (X or YouTube) and stick to them. Don't spread yourself thin.</p>
+
+            <p>
+              Focus &gt; Diversification. Pick 1-2 platforms (X or YouTube) and stick to them. Don't spread yourself
+              thin.
+            </p>
 
             <ul className="space-y-2 my-4">
-              <li><strong className="text-white">Don't Just "Show Up":</strong> Share the vision. You are the only one who sees the future of your product. Embody that future.</li>
-              <li><strong className="text-white">Share Everything:</strong> Share your wins, your losses, and your metrics. Transparency builds trust.</li>
-              <li><strong className="text-white">The Tactic:</strong> Comment and engage more than you post. The worst thing that happens is you make friends.</li>
+              <li>
+                <strong className="text-white">Don't Just "Show Up":</strong> Share the vision. You are the only one who
+                sees the future of your product. Embody that future.
+              </li>
+              <li>
+                <strong className="text-white">Share Everything:</strong> Share your wins, your losses, and your
+                metrics. Transparency builds trust.
+              </li>
+              <li>
+                <strong className="text-white">The Tactic:</strong> Comment and engage more than you post. The worst
+                thing that happens is you make friends.
+              </li>
             </ul>
 
-            <p><strong className="text-white">lil plus:</strong> Code + be loud simultaneously. Live stream your coding (silent or with music). It forces productivity and builds an audience who trusts you.</p>
+            <p>
+              <strong className="text-white">lil plus:</strong> Code + be loud simultaneously. Live stream your coding
+              (silent or with music). It forces productivity and builds an audience who trusts you.
+            </p>
 
             <h3 className="text-xl font-bold text-white mt-8 mb-4">Social Engineering</h3>
-            
+
             <ul className="space-y-2 my-4">
-              <li><strong className="text-white">Leverage:</strong> If you have known people using your product, showcase them. Social leverage is powerful.</li>
-              <li><strong className="text-white">Engage:</strong> Don't just broadcast. Reply to big accounts in your niche. Be useful. Be present.</li>
+              <li>
+                <strong className="text-white">Leverage:</strong> If you have known people using your product, showcase
+                them. Social leverage is powerful.
+              </li>
+              <li>
+                <strong className="text-white">Engage:</strong> Don't just broadcast. Reply to big accounts in your
+                niche. Be useful. Be present.
+              </li>
             </ul>
 
             <blockquote className="border-l-4 border-white pl-4 italic text-white my-6">
-              Action Item: Pick one directory you haven't submitted to yet. Submit your product today. That's one more road.
+              Action Item: Pick one directory you haven't submitted to yet. Submit your product today. That's one more
+              road.
             </blockquote>
           </div>
         );
@@ -328,7 +441,7 @@ const MarketingForFounders = () => {
     }
   };
 
-  const currentSection = sections.find(s => s.id === selectedSection);
+  const currentSection = sections.find((s) => s.id === selectedSection);
 
   return (
     <div className="min-h-screen bg-[#2a2a2a]">
@@ -347,18 +460,14 @@ const MarketingForFounders = () => {
           {/* Left Sidebar - Navigation */}
           <div className="md:col-span-4 lg:col-span-3 bg-[#222222] md:bg-transparent md:pr-6">
             <div className="sticky top-6 md:bg-[#222222] md:p-6 md:rounded-lg md:-ml-4">
-              <h1 className="text-xl font-bold text-white mb-2">
-                Marketing for Founders
-              </h1>
+              <h1 className="text-xl font-bold text-white mb-2">Marketing for Founders</h1>
               <p className="text-sm text-gray-400 mb-8">
                 Section {currentSection?.step} of {sections.length}
               </p>
 
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">
-                    Guide Sections
-                  </h3>
+                  <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Guide Sections</h3>
                   <nav className="space-y-1">
                     {sections.map((section) => (
                       <button
@@ -367,8 +476,8 @@ const MarketingForFounders = () => {
                           selectedSection === section.id
                             ? "bg-white/10 text-white"
                             : section.available
-                            ? "text-gray-300 hover:bg-white/5 hover:text-white"
-                            : "text-gray-500 cursor-not-allowed"
+                              ? "text-gray-300 hover:bg-white/5 hover:text-white"
+                              : "text-gray-500 cursor-not-allowed"
                         }`}
                         onClick={() => {
                           if (section.available) {
@@ -381,20 +490,12 @@ const MarketingForFounders = () => {
                       >
                         <div className="flex items-start gap-3">
                           <span className="text-xs font-medium mt-0.5 text-gray-400">
-                            {String(section.step).padStart(2, '0')}
+                            {String(section.step).padStart(2, "0")}
                           </span>
                           <div className="flex-1 min-w-0">
-                            <div className="font-medium text-sm">
-                              {section.title}
-                            </div>
-                            <div className="text-xs text-gray-400 mt-0.5">
-                              {section.subtitle}
-                            </div>
-                            {!section.available && (
-                              <div className="text-xs text-gray-500 mt-1">
-                                Coming soon
-                              </div>
-                            )}
+                            <div className="font-medium text-sm">{section.title}</div>
+                            <div className="text-xs text-gray-400 mt-0.5">{section.subtitle}</div>
+                            {!section.available && <div className="text-xs text-gray-500 mt-1">Coming soon</div>}
                           </div>
                         </div>
                       </button>
@@ -408,9 +509,7 @@ const MarketingForFounders = () => {
           {/* Right Content Area */}
           <div className="md:col-span-8 lg:col-span-9">
             <div className="bg-[#2a2a2a] pb-12">
-              <article className="space-y-6 max-w-3xl">
-                {renderContent()}
-              </article>
+              <article className="space-y-6 max-w-3xl">{renderContent()}</article>
             </div>
           </div>
         </div>
