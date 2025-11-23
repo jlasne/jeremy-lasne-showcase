@@ -10,7 +10,7 @@ const MarketingForFounders = () => {
   const sections = [
     { id: "intro", title: "Intro", subtitle: "Start here", available: true, step: 1 },
     { id: "philosophy", title: "The Founder Philosophy", subtitle: "Mindset shift", available: true, step: 2 },
-    { id: "talk-to-users", title: "Talk to Users", subtitle: "Real validation", available: false, step: 3 },
+    { id: "talk-to-users", title: "Talk to Users", subtitle: "Real validation", available: true, step: 3 },
     { id: "landing-page", title: "Converting Landing Page", subtitle: "First impression", available: false, step: 4 },
     { id: "distribution", title: "Distribution Machine", subtitle: "Get traffic", available: false, step: 5 },
     { id: "pricing", title: "Pricing is Marketing", subtitle: "Filter customers", available: false, step: 6 },
@@ -112,6 +112,83 @@ const MarketingForFounders = () => {
 
             <blockquote className="border-l-4 border-white pl-4 italic text-white my-6">
               If you are waiting for the perfect moment to launch, stop. You are just hiding. Ship it today.
+            </blockquote>
+          </div>
+        );
+      case "talk-to-users":
+        return (
+          <div className="prose prose-invert max-w-none space-y-6 text-gray-300">
+            <h2 className="text-2xl font-bold text-white mb-4">Talks to Users</h2>
+            
+            <p>
+              If you aren't regularly in conversation with users, you're not really building a business, you're just building a personal project.
+            </p>
+
+            <h3 className="text-xl font-bold text-white mt-8 mb-4">Why Talking to Users Is Your Real Job</h3>
+            
+            <p>
+              As a founder, the main work is very simple: listen to people who have the problem, then share what you are building back to them.
+            </p>
+            
+            <p>
+              Users tell you what matters enough to build, and every time you share progress, you attract more of the right people into that loop.
+            </p>
+            
+            <p>
+              Being your own first user is powerful because you deeply understand the problem, but your personal taste is not the ultimate source of truth (may lead you to the wrong path = overbuilding).
+            </p>
+
+            <blockquote className="border-l-4 border-white pl-4 italic text-white my-6">
+              Your role is to hold the vision while letting real users correct your assumptions with their behavior and their words.
+            </blockquote>
+
+            <h3 className="text-xl font-bold text-white mt-8 mb-4">Who to Talk To (And What to Ask)</h3>
+            
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className="border-b border-gray-700">
+                    <th className="text-left py-3 px-4 font-semibold text-white">Who you talk to</th>
+                    <th className="text-left py-3 px-4 font-semibold text-white">What you ask them</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-gray-800">
+                    <td className="py-3 px-4 font-medium text-white">People using your product</td>
+                    <td className="py-3 px-4">Focus on the result they want, not whether they like a button or a color.</td>
+                  </tr>
+                  <tr className="border-b border-gray-800">
+                    <td className="py-3 px-4 font-medium text-white">People who signed up but never paid/used it</td>
+                    <td className="py-3 px-4">"what stopped you?" This reveals friction and missing value.</td>
+                  </tr>
+                  <tr className="border-b border-gray-800">
+                    <td className="py-3 px-4 font-medium text-white">People who canceled</td>
+                    <td className="py-3 px-4">"What made you decide to stop?" Their reasons show the leaks in your product and onboarding.</td>
+                  </tr>
+                  <tr className="border-b border-gray-800">
+                    <td className="py-3 px-4 font-medium text-white">People who have the problem but aren't users yet</td>
+                    <td className="py-3 px-4">"How are you solving this today?" This shows alternatives and what would make them switch.</td>
+                  </tr>
+                  <tr className="border-b border-gray-800">
+                    <td className="py-3 px-4 font-medium text-white">Family and friend</td>
+                    <td className="py-3 px-4">No. Just support.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 className="text-xl font-bold text-white mt-8 mb-4">How to Ask Smart Questions</h3>
+            
+            <ul className="space-y-2 my-4">
+              <li><strong className="text-white">Ask about outcomes, not opinions on UI:</strong> You care about the job they're trying to get done, not whether they "like" a screen.</li>
+              <li><strong className="text-white">Don't rely on "Would you use this?"</strong> from people with no commitment. Credit card inputs are engagement; email signups are just clutter. If they aren't willing to pay, they are just tire-kickers.</li>
+              <li><strong className="text-white">Ask publicly on X:</strong> "If you signed up but never paid, why?" and let patterns appear in the replies. The feedback is brutally honest and gold.</li>
+              <li><strong className="text-white">Listen to error noise:</strong> The only feedback you (the founder) should obsess over is errors.</li>
+              <li>Ask specific: general feedback is tough to understand and get actionable steps from it. Be specific on something you doubt or try to do.</li>
+            </ul>
+
+            <blockquote className="border-l-4 border-white pl-4 italic text-white my-6">
+              Daily mission: Talk to at least one person who has the problem you solve, user or not, and write down exactly how they describe it in their own words.
             </blockquote>
           </div>
         );
