@@ -13,8 +13,8 @@ const MarketingForFounders = () => {
     { id: "talk-to-users", title: "Talk to Users", subtitle: "Real validation", available: true, step: 3 },
     { id: "landing-page", title: "Converting Landing Page", subtitle: "First impression", available: true, step: 4 },
     { id: "distribution", title: "Distribution Machine", subtitle: "Get traffic", available: true, step: 5 },
-    { id: "pricing", title: "Pricing is Marketing", subtitle: "Filter customers", available: false, step: 6 },
-    { id: "content", title: "Content & SEO", subtitle: "Compound growth", available: false, step: 7 },
+    { id: "pricing", title: "Pricing is Marketing", subtitle: "Filter customers", available: true, step: 6 },
+    { id: "content", title: "Make more Content", subtitle: "Compound growth", available: true, step: 7 },
     { id: "features", title: "Features as Marketing", subtitle: "Build in public", available: false, step: 8 },
     { id: "growth", title: "Growth Engines", subtitle: "Scale up", available: false, step: 9 },
   ];
@@ -429,6 +429,180 @@ const MarketingForFounders = () => {
             <blockquote className="border-l-4 border-white pl-4 italic text-white my-6">
               Action Item: Pick one directory you haven't submitted to yet. Submit your product today. That's one more
               road.
+            </blockquote>
+          </div>
+        );
+      case "pricing":
+        return (
+          <div className="prose prose-invert max-w-none space-y-6 text-gray-300">
+            <h2 className="text-2xl font-bold text-white mb-4">Pricing is Marketing</h2>
+
+            <p>
+              Your price isn't just a number; it's a filter. It tells users exactly who you are. Don't price for
+              everyone, price for the ones who matter.
+            </p>
+
+            <h3 className="text-xl font-bold text-white mt-8 mb-4">1. Kill Your Free Plan</h3>
+
+            <p>
+              <strong className="text-white">Brutal truth:</strong> Only 3% of free users upgrade. Free plans are for
+              VC-backed startups with huge budgets. For you, they are just costs and noise.
+            </p>
+
+            <ul className="space-y-2 my-4">
+              <li>
+                <strong className="text-white">The Fix:</strong> Get rid of it. You want users with skin in the game.
+              </li>
+              <li>
+                <strong className="text-white">The Alternative:</strong> Offer a 7-day trial (credit card required) or 5
+                free credits. A credit card is a commitment; an email is just clutter.
+              </li>
+            </ul>
+
+            <h3 className="text-xl font-bold text-white mt-8 mb-4">2. Choose the Right Model</h3>
+
+            <p>Subscription isn't the only way. Match the price to the value.</p>
+
+            <ul className="space-y-2 my-4">
+              <li>
+                <strong className="text-white">Subscription:</strong> Best for continuous service and B2B. Use this if
+                your product provides recurring value.
+              </li>
+              <li>
+                <strong className="text-white">Usage-Based:</strong> Best for variable use (like API calls). Fair for
+                everyone, light users pay less, heavy users scale naturally. Over 60% of SaaS companies are moving here.
+              </li>
+              <li>
+                <strong className="text-white">One-Time Payment:</strong> Best for tools, templates, and utilities. If
+                it's a static asset, charge once.
+              </li>
+            </ul>
+
+            <h3 className="text-xl font-bold text-white mt-8 mb-4">3. The Annual Hack</h3>
+
+            <p>Here is the math of churn.</p>
+
+            <ul className="space-y-2 my-4">
+              <li>
+                <strong className="text-white">The Stat:</strong> A good product churns ~10% monthly.
+              </li>
+              <li>
+                <strong className="text-white">The Tactic:</strong> Offer an annual plan at 40% off.
+              </li>
+              <li>
+                <strong className="text-white">The Reality:</strong> You win. With 10% churn, you end up with more
+                revenue and 3x more retained users after a year if you lock them in annually.
+              </li>
+            </ul>
+
+            <h3 className="text-xl font-bold text-white mt-8 mb-4">4. Price Anchoring (Psychology)</h3>
+
+            <p>Don't just give one price. Context creates value.</p>
+
+            <ul className="space-y-2 my-4">
+              <li>
+                <strong className="text-white">Tier 1 (The Anchor):</strong> Cheaper, but missing key features. It
+                exists to make Tier 2 look good.
+              </li>
+              <li>
+                <strong className="text-white">Tier 2 (The Real Offer):</strong> Your main product. Complete, valuable,
+                and priced just slightly higher than Tier 1.
+              </li>
+              <li>
+                <strong className="text-white">Tier 3 (Optional):</strong> Enterprise/Premium. High price. Implements
+                later once you have service to back it up.
+              </li>
+            </ul>
+
+            <blockquote className="border-l-4 border-white pl-4 italic text-white my-6">
+              Action Item: Go to your pricing page. If you have a "Free" plan, kill it today. Replace it with a trial or
+              credits.
+            </blockquote>
+          </div>
+        );
+      case "content":
+        return (
+          <div className="prose prose-invert max-w-none space-y-6 text-gray-300">
+            <h2 className="text-2xl font-bold text-white mb-4">Make more Content</h2>
+
+            <p>
+              Paid ads stop working the second you stop paying. Content is the only marketing that compounds. It's your
+              long-term equity.
+            </p>
+
+            <h3 className="text-xl font-bold text-white mt-8 mb-4">1. Freebies: Stop Hoarding Knowledge</h3>
+
+            <p>Give away your best stuff.</p>
+
+            <ul className="space-y-2 my-4">
+              <li>
+                <strong className="text-white">The Strategy:</strong> Create comprehensive guides, templates, or
+                checklists based on what you learn while building. Give them away for free (no email gate).
+              </li>
+              <li>
+                <strong className="text-white">The Loop:</strong> High-value content → Trust → Traffic → Product.
+              </li>
+            </ul>
+
+            <h3 className="text-xl font-bold text-white mt-8 mb-4">2. Free Tools (Engineering as Marketing)</h3>
+
+            <p>
+              Build small, free tools that solve one tiny problem for your target audience (e.g., a calculator, a
+              generator, a checker).
+            </p>
+
+            <ul className="space-y-2 my-4">
+              <li>
+                <strong className="text-white">The Strategy:</strong> Let them use it instantly. No sign-up friction.
+              </li>
+              <li>
+                <strong className="text-white">The Funnel:</strong> They come for the free tool (via search/sharing),
+                they see your main product.
+              </li>
+              <li>
+                <strong className="text-white">The Bonus:</strong> These pages get tons of backlinks naturally, boosting
+                your main site's SEO.
+              </li>
+            </ul>
+
+            <h3 className="text-xl font-bold text-white mt-8 mb-4">3. Blog & SEO (The "Repurpose" Hack)</h3>
+
+            <p>You don't need to be an SEO expert. You just need to squeeze every drop out of your content.</p>
+
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className="border-b border-gray-700">
+                    <th className="text-left py-3 px-4 font-semibold text-white">Strategy</th>
+                    <th className="text-left py-3 px-4 font-semibold text-white">How to execute</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-gray-800">
+                    <td className="py-3 px-4 font-medium text-white">Write Once, Ship Thrice</td>
+                    <td className="py-3 px-4">
+                      Write one article ("How to solve X"). Then turn it into a thread, a video script, and a newsletter.
+                    </td>
+                  </tr>
+                  <tr className="border-b border-gray-800">
+                    <td className="py-3 px-4 font-medium text-white">Target Outcomes</td>
+                    <td className="py-3 px-4">
+                      Don't write "Version 2.0 Update." Write "How to [Solve Problem X] in 5 Minutes." Mention your
+                      product gently as the faster way.
+                    </td>
+                  </tr>
+                  <tr className="border-b border-gray-800">
+                    <td className="py-3 px-4 font-medium text-white">Simple SEO</td>
+                    <td className="py-3 px-4">
+                      Use basics like sitemaps and headers. Target <strong className="text-white">long-tail keywords</strong> (specific questions) rather than broad terms.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <blockquote className="border-l-4 border-white pl-4 italic text-white my-6">
+              Action Item: Build one tiny free tool or write one guide this weekend. Launch it on a directory.
             </blockquote>
           </div>
         );
