@@ -11,7 +11,7 @@ const MarketingForFounders = () => {
     { id: "intro", title: "Intro", subtitle: "Start here", available: true, step: 1 },
     { id: "philosophy", title: "The Founder Philosophy", subtitle: "Mindset shift", available: true, step: 2 },
     { id: "talk-to-users", title: "Talk to Users", subtitle: "Real validation", available: true, step: 3 },
-    { id: "landing-page", title: "Converting Landing Page", subtitle: "First impression", available: false, step: 4 },
+    { id: "landing-page", title: "Converting Landing Page", subtitle: "First impression", available: true, step: 4 },
     { id: "distribution", title: "Distribution Machine", subtitle: "Get traffic", available: false, step: 5 },
     { id: "pricing", title: "Pricing is Marketing", subtitle: "Filter customers", available: false, step: 6 },
     { id: "content", title: "Content & SEO", subtitle: "Compound growth", available: false, step: 7 },
@@ -189,6 +189,65 @@ const MarketingForFounders = () => {
 
             <blockquote className="border-l-4 border-white pl-4 italic text-white my-6">
               Daily mission: Talk to at least one person who has the problem you solve, user or not, and write down exactly how they describe it in their own words.
+            </blockquote>
+          </div>
+        );
+      case "landing-page":
+        return (
+          <div className="prose prose-invert max-w-none space-y-6 text-gray-300">
+            <h2 className="text-2xl font-bold text-white mb-4">Converting Landing Page</h2>
+            
+            <p>
+              Most founders overthink this. You don't need a masterpiece; you need a filter. If your landing page doesn't answer "Why should a stranger care?" in 3 seconds, you've lost them.
+            </p>
+
+            <h3 className="text-xl font-bold text-white mt-8 mb-4">The Formula</h3>
+            
+            <p>Spend 80% of your time on the Hero Section. This is the only part that matters at first.</p>
+
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className="border-b border-gray-700">
+                    <th className="text-left py-3 px-4 font-semibold text-white">Element</th>
+                    <th className="text-left py-3 px-4 font-semibold text-white">What to do</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-gray-800">
+                    <td className="py-3 px-4 font-medium text-white">Tagline</td>
+                    <td className="py-3 px-4">One sentence. Why should I give you my money? Answer the "Why", not the "What."</td>
+                  </tr>
+                  <tr className="border-b border-gray-800">
+                    <td className="py-3 px-4 font-medium text-white">Video</td>
+                    <td className="py-3 px-4">Don't do a boring feature tour. Show the <strong className="text-white">outcome</strong> (the win), not the buttons. If they can see the result, they convert. Or clear screenshot of what you get.</td>
+                  </tr>
+                  <tr className="border-b border-gray-800">
+                    <td className="py-3 px-4 font-medium text-white">Social Proof</td>
+                    <td className="py-3 px-4">Nobody trusts a ghost town. Use specific numbers: "Deployed in X businesses" beats "I love this app."</td>
+                  </tr>
+                  <tr className="border-b border-gray-800">
+                    <td className="py-3 px-4 font-medium text-white">Pricing</td>
+                    <td className="py-3 px-4">Detailled later (super important)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p><strong className="text-white">Noise Filter:</strong> Everything else on your landing page that is not one of these elements is noise. Remove it.</p>
+
+            <h3 className="text-xl font-bold text-white mt-8 mb-4">Conversion &gt; Traffic</h3>
+            
+            <p>Stop pouring water into a leaky bucket.</p>
+
+            <ul className="space-y-2 my-4">
+              <li><strong className="text-white">Fix the Funnel First:</strong> Insane marketing efforts bringing people to a broken funnel = wasted effort. A 2x improvement in conversion beats 2x traffic every time.</li>
+              <li><strong className="text-white">Churn is Reality:</strong> For subscription products, 10% monthly churn is normal. Your job is to track where you lose people in the signup process and plug the holes.</li>
+              <li><strong className="text-white">The Trust Battery:</strong> Users need to trust you before they pay. Features like "Coming Soon" buttons build anticipation and trust about the utility. Detailed in teh "Feature as marketing section".</li>
+            </ul>
+
+            <blockquote className="border-l-4 border-white pl-4 italic text-white my-6">
+              Action Item: Go look at your hero section right now. Does it clearly state the outcome in one sentence? If not, rewrite your tagline first.
             </blockquote>
           </div>
         );
