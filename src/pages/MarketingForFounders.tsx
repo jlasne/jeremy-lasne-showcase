@@ -12,7 +12,7 @@ const MarketingForFounders = () => {
     { id: "philosophy", title: "The Founder Philosophy", subtitle: "Mindset shift", available: true, step: 2 },
     { id: "talk-to-users", title: "Talk to Users", subtitle: "Real validation", available: true, step: 3 },
     { id: "landing-page", title: "Converting Landing Page", subtitle: "First impression", available: true, step: 4 },
-    { id: "distribution", title: "Distribution Machine", subtitle: "Get traffic", available: false, step: 5 },
+    { id: "distribution", title: "Distribution Machine", subtitle: "Get traffic", available: true, step: 5 },
     { id: "pricing", title: "Pricing is Marketing", subtitle: "Filter customers", available: false, step: 6 },
     { id: "content", title: "Content & SEO", subtitle: "Compound growth", available: false, step: 7 },
     { id: "features", title: "Features as Marketing", subtitle: "Build in public", available: false, step: 8 },
@@ -248,6 +248,74 @@ const MarketingForFounders = () => {
 
             <blockquote className="border-l-4 border-white pl-4 italic text-white my-6">
               Action Item: Go look at your hero section right now. Does it clearly state the outcome in one sentence? If not, rewrite your tagline first.
+            </blockquote>
+          </div>
+        );
+      case "distribution":
+        return (
+          <div className="prose prose-invert max-w-none space-y-6 text-gray-300">
+            <h2 className="text-2xl font-bold text-white mb-4">Distribution Machine</h2>
+            
+            <p>
+              You built it. Now build the roads to it. Don't rely on luck; build a machine that brings people to your door.
+            </p>
+
+            <h3 className="text-xl font-bold text-white mt-8 mb-4">Directories ARE the Strategy</h3>
+            
+            <p>
+              There is no "one big launch." You launch constantly. Product Hunt, Hacker News, and Reddit are not events—they are just big directories. Treat them as such. Every directory you submit to is a new road leading to your city.
+            </p>
+
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className="border-b border-gray-700">
+                    <th className="text-left py-3 px-4 font-semibold text-white">Directory</th>
+                    <th className="text-left py-3 px-4 font-semibold text-white">The Playbook</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-gray-800">
+                    <td className="py-3 px-4 font-medium text-white">Product Hunt</td>
+                    <td className="py-3 px-4">The holy grail. You can launch every month. Launch on Monday/Sunday for badges ("Product of the Day") or mid-week for traffic. First 4 hours (starting 12:01 AM PST) are critical.</td>
+                  </tr>
+                  <tr className="border-b border-gray-800">
+                    <td className="py-3 px-4 font-medium text-white">Hacker News</td>
+                    <td className="py-3 px-4">Title it "Show HN: I made [Product]". Use dry, technical language. No marketing fluff.</td>
+                  </tr>
+                  <tr className="border-b border-gray-800">
+                    <td className="py-3 px-4 font-medium text-white">Reddit</td>
+                    <td className="py-3 px-4">Don't just drop a link. Share your story in <strong className="text-white">r/SideProject</strong>. Be a human first.</td>
+                  </tr>
+                  <tr className="border-b border-gray-800">
+                    <td className="py-3 px-4 font-medium text-white">The Long Tail</td>
+                    <td className="py-3 px-4">Uneed, Tiny Launch, etc. These are free backlinks. Do one a week. Use their badges to build credibility on your site.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 className="text-xl font-bold text-white mt-8 mb-4">Personal Brand: Embody the Vision</h3>
+            
+            <p>Focus &gt; Diversification. Pick 1-2 platforms (X or YouTube) and stick to them. Don't spread yourself thin.</p>
+
+            <ul className="space-y-2 my-4">
+              <li><strong className="text-white">Don't Just "Show Up":</strong> Share the vision. You are the only one who sees the future of your product. Embody that future.</li>
+              <li><strong className="text-white">Share Everything:</strong> Share your wins, your losses, and your metrics. Transparency builds trust.</li>
+              <li><strong className="text-white">The Tactic:</strong> Comment and engage more than you post. The worst thing that happens is you make friends.</li>
+            </ul>
+
+            <p><strong className="text-white">lil plus:</strong> Code + be loud simultaneously. Live stream your coding (silent or with music). It forces productivity and builds an audience who trusts you.</p>
+
+            <h3 className="text-xl font-bold text-white mt-8 mb-4">Social Engineering</h3>
+            
+            <ul className="space-y-2 my-4">
+              <li><strong className="text-white">Leverage:</strong> If you have known people using your product, showcase them. Social leverage is powerful.</li>
+              <li><strong className="text-white">Engage:</strong> Don't just broadcast. Reply to big accounts in your niche. Be useful. Be present.</li>
+            </ul>
+
+            <blockquote className="border-l-4 border-white pl-4 italic text-white my-6">
+              Action Item: Pick one directory you haven't submitted to yet. Submit your product today. That's one more road.
             </blockquote>
           </div>
         );
