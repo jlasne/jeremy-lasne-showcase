@@ -81,8 +81,8 @@ const MarketingForFounders = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           {/* Left Sidebar - Navigation */}
-          <div className="md:col-span-4 lg:col-span-3">
-            <div className="sticky top-6">
+          <div className="md:col-span-4 lg:col-span-3 bg-[#222222] md:bg-transparent md:pr-6">
+            <div className="sticky top-6 md:bg-[#222222] md:p-6 md:rounded-lg md:-ml-4">
               <h1 className="text-xl font-bold text-white mb-2">
                 Marketing for Founders
               </h1>
