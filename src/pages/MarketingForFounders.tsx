@@ -16,7 +16,7 @@ const MarketingForFounders = () => {
     { id: "pricing", title: "Pricing is Marketing", subtitle: "Filter customers", available: true, step: 6 },
     { id: "content", title: "Make more Content", subtitle: "Compound growth", available: true, step: 7 },
     { id: "features", title: "Features as Marketing", subtitle: "Build in public", available: true, step: 8 },
-    { id: "growth", title: "Growth Engines", subtitle: "Scale up", available: false, step: 9 },
+    { id: "growth", title: "Growth Engines", subtitle: "Scale up", available: true, step: 9 },
   ];
 
   const renderContent = () => {
@@ -685,6 +685,93 @@ const MarketingForFounders = () => {
 
             <blockquote className="border-l-4 border-white pl-4 italic text-white my-6">
               Action Item: Add a "Share" button to your product's core output today. Or, kill one dead feature.
+            </blockquote>
+          </div>
+        );
+      case "growth":
+        return (
+          <div className="prose prose-invert max-w-none space-y-6 text-gray-300">
+            <h2 className="text-2xl font-bold text-white mb-4">Growth Engines</h2>
+
+            <p>
+              Once the foundation is built, you need fuel. These strategies are about leveraging others to do the work for
+              you. <strong className="text-white">Note:</strong> Affiliates and paid ads only work when you have a validated
+              product and good traffic-to-conversion rates.
+            </p>
+
+            <h3 className="text-xl font-bold text-white mt-8 mb-4">Affiliate Marketing: Build Your Sales Army</h3>
+
+            <p>
+              <strong className="text-white">Requirement:</strong> Product must convert. Don't offer affiliates a broken
+              funnel.
+            </p>
+
+            <p>
+              The split is simple: offer 30-50% recurring commission and be generous. If they bring you a customer who stays
+              for years, they deserve it. Target power users and influencers in your niche, then give them a "Partner Pack"
+              with logos and copy so promotion becomes easy. One rule: only pay out after the user stays for 30 days.
+            </p>
+
+            <h3 className="text-xl font-bold text-white mt-8 mb-4">Cold Outreach: The Manual Grind</h3>
+
+            <p>Yes, you have to do it. It's hard, but it works.</p>
+
+            <p>
+              The mindset shift is key: you are not "selling"; you are solving a problem they clearly have. Here's the method
+              that actually converts:
+            </p>
+
+            <ul className="space-y-2 my-4">
+              <li>
+                <strong className="text-white">Personalize:</strong> Show you researched them. "I saw you launched X..."
+                proves you care.
+              </li>
+              <li>
+                <strong className="text-white">Benefit First:</strong> Not "I built this tool," but "I can save you 10 hours
+                on X." Lead with their win, not your product.
+              </li>
+              <li>
+                <strong className="text-white">The Ask:</strong> Keep it stupid simple. "Interested in seeing how?"
+              </li>
+            </ul>
+
+            <h3 className="text-xl font-bold text-white mt-8 mb-4">"Powered By" Viral Loops</h3>
+
+            <ul className="space-y-2 my-4">
+              <li>
+                <strong className="text-white">The Watermark:</strong> If you have a free tier or tool, add a "Powered by
+                [Your Product]" badge on every output.
+              </li>
+              <li>
+                <strong className="text-white">The Effect:</strong> When users share their report/image/site, their audience
+                sees your brand. One share → 10 views → 1 click. This is how Typeform grew.
+              </li>
+            </ul>
+
+            <h3 className="text-xl font-bold text-white mt-8 mb-4">Paid Ads</h3>
+
+            <p>
+              <strong className="text-white">Requirement:</strong> Only run ads when your funnel converts reliably. Ads are
+              fuel, not the fire. If the bucket is leaky, you are just burning cash.
+            </p>
+
+            <p>
+              <strong className="text-white">The Strategy:</strong>
+            </p>
+
+            <ul className="space-y-2 my-4">
+              <li>
+                <strong className="text-white">Copy What Works:</strong> Don't reinvent the wheel. Look at successful
+                competitors. Use classical Google or Facebook ads targeting your specific audience.
+              </li>
+              <li>
+                <strong className="text-white">Test & Double Down:</strong> Test 3 creatives/angles. Kill the 2 losers.
+                Double down on the 1 winner.
+              </li>
+            </ul>
+
+            <blockquote className="border-l-4 border-white pl-4 italic text-white my-6">
+              Action Item: Start one affiliate partnership this week, or send 10 personalized cold emails.
             </blockquote>
           </div>
         );
