@@ -15,7 +15,7 @@ const MarketingForFounders = () => {
     { id: "distribution", title: "Distribution Machine", subtitle: "Get traffic", available: true, step: 5 },
     { id: "pricing", title: "Pricing is Marketing", subtitle: "Filter customers", available: true, step: 6 },
     { id: "content", title: "Make more Content", subtitle: "Compound growth", available: true, step: 7 },
-    { id: "features", title: "Features as Marketing", subtitle: "Build in public", available: false, step: 8 },
+    { id: "features", title: "Features as Marketing", subtitle: "Build in public", available: true, step: 8 },
     { id: "growth", title: "Growth Engines", subtitle: "Scale up", available: false, step: 9 },
   ];
 
@@ -603,6 +603,88 @@ const MarketingForFounders = () => {
 
             <blockquote className="border-l-4 border-white pl-4 italic text-white my-6">
               Action Item: Build one tiny free tool or write one guide this weekend. Launch it on a directory.
+            </blockquote>
+          </div>
+        );
+      case "features":
+        return (
+          <div className="prose prose-invert max-w-none space-y-6 text-gray-300">
+            <h2 className="text-2xl font-bold text-white mb-4">Feature as Marketing</h2>
+
+            <p>
+              Your product is your marketing team. Don't just build features; build hooks. If a feature doesn't get you
+              new users or retain old ones, why are you building it?
+            </p>
+
+            <h3 className="text-xl font-bold text-white mt-8 mb-4">1. Ship Every Feature Loudly</h3>
+
+            <p>Every new feature is a marketing event.</p>
+
+            <ul className="space-y-2 my-4">
+              <li>
+                <strong className="text-white">The Opportunity:</strong> You can launch on Product Hunt every month. A new
+                major feature is a new launch.
+              </li>
+              <li>
+                <strong className="text-white">The Loop:</strong> Ship feature → Announce it (X, Newsletter) → Relaunch on
+                directories (Product Hunt, etc.) as a "v2" or "New Feature Update."
+              </li>
+              <li>
+                <strong className="text-white">The Benefit:</strong> It keeps you visible and shows momentum to potential
+                customers.
+              </li>
+            </ul>
+
+            <h3 className="text-xl font-bold text-white mt-8 mb-4">2. Shareable Moments</h3>
+
+            <p>Design features that users want to share.</p>
+
+            <ul className="space-y-2 my-4">
+              <li>
+                <strong className="text-white">The Psychology:</strong> People share what makes them look good.
+              </li>
+              <li>
+                <strong className="text-white">The Tactic:</strong> If your tool generates a report, an image, or a score,
+                make it beautiful. Add a "Share to X" button that pre-fills a humble-brag message.
+              </li>
+            </ul>
+
+            <h3 className="text-xl font-bold text-white mt-8 mb-4">3. The "Coming Soon" Validation</h3>
+
+            <p>Don't write code until you have demand.</p>
+
+            <ul className="space-y-2 my-4">
+              <li>
+                <strong className="text-white">The Hack:</strong> Place a "New Feature" button in your menu before you
+                build it.
+              </li>
+              <li>
+                <strong className="text-white">The Click:</strong> When they click, show a "Coming Soon" popup with an
+                email capture form.
+              </li>
+              <li>
+                <strong className="text-white">The Signal:</strong> If nobody clicks, don't build it. If 50 people give you
+                their email, you have validated demand and a launch list.
+              </li>
+            </ul>
+
+            <h3 className="text-xl font-bold text-white mt-8 mb-4">4. Roadmap is Marketing</h3>
+
+            <p>Your roadmap isn't an internal document; it's a promise.</p>
+
+            <ul className="space-y-2 my-4">
+              <li>
+                <strong className="text-white">Public Roadmap:</strong> Share what you are building next. It shows
+                potential customers that the product is alive and ambitious.
+              </li>
+              <li>
+                <strong className="text-white">Transparency:</strong> When you ship a requested feature, tag the users who
+                asked for it. They will become your biggest evangelists.
+              </li>
+            </ul>
+
+            <blockquote className="border-l-4 border-white pl-4 italic text-white my-6">
+              Action Item: Add a "Share" button to your product's core output today. Or, kill one dead feature.
             </blockquote>
           </div>
         );
