@@ -9,7 +9,7 @@ const MarketingForFounders = () => {
 
   const sections = [
     { id: "intro", title: "Intro", subtitle: "Start here", available: true, step: 1 },
-    { id: "philosophy", title: "The Founder Philosophy", subtitle: "Mindset shift", available: false, step: 2 },
+    { id: "philosophy", title: "The Founder Philosophy", subtitle: "Mindset shift", available: true, step: 2 },
     { id: "talk-to-users", title: "Talk to Users", subtitle: "Real validation", available: false, step: 3 },
     { id: "landing-page", title: "Converting Landing Page", subtitle: "First impression", available: false, step: 4 },
     { id: "distribution", title: "Distribution Machine", subtitle: "Get traffic", available: false, step: 5 },
@@ -53,6 +53,66 @@ const MarketingForFounders = () => {
             <p className="font-medium text-white">
               There is no TL;DR because this is the actionable summary.
             </p>
+          </div>
+        );
+      case "philosophy":
+        return (
+          <div className="prose prose-invert max-w-none space-y-6 text-gray-300">
+            <h2 className="text-2xl font-bold text-white mb-4">The Launch Philosophy</h2>
+            
+            <p>Override your dev-brain.</p>
+            <p>Stop optimizing behind the scene.</p>
+            <p>That is wrong.</p>
+            <p>Successful founders trade perfection for speed.</p>
+
+            <h3 className="text-xl font-bold text-white mt-8 mb-4">Just "Ship it"</h3>
+            
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className="border-b border-gray-700">
+                    <th className="text-left py-3 px-4 font-semibold text-white">Principle</th>
+                    <th className="text-left py-3 px-4 font-semibold text-white">Why It Matters</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-gray-800">
+                    <td className="py-3 px-4 font-medium text-white">Always Launch</td>
+                    <td className="py-3 px-4">There is no "one big launch." You launch continuously. Hundreds of small, compounding launches beat one big event. You build authority with it.</td>
+                  </tr>
+                  <tr className="border-b border-gray-800">
+                    <td className="py-3 px-4 font-medium text-white">Kill Perfection</td>
+                    <td className="py-3 px-4">A perfect product is when there is nothing left to remove. Cut features until you can't. Simplicity wins.</td>
+                  </tr>
+                  <tr className="border-b border-gray-800">
+                    <td className="py-3 px-4 font-medium text-white">Stick to Your Stack</td>
+                    <td className="py-3 px-4">Users don't care about your code or stack. They care about their problem. Stop chasing shiny tools. Pick one stack, master it, and ship.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 className="text-xl font-bold text-white mt-8 mb-4">Launch Everything</h3>
+            
+            <p><strong className="text-white">No Single Shot:</strong> You don't get one shot, you get as many shots as you can ship. Launch every feature, every update, every tool.</p>
+            
+            <p><strong className="text-white">Transparency Wins:</strong> if it works for you, ship it, if it breaks, fix it live. Users forgive "Beta" tags if you are honest about it.</p>
+            
+            <p><strong className="text-white">Be Your Own User:</strong> Launch as your own customer. Use your product and get spammed by errors, but grow only with other actual active/paid users validation.</p>
+
+            <h3 className="text-xl font-bold text-white mt-8 mb-4">The "Worst" Case Scenario</h3>
+            
+            <p>What are you afraid of?</p>
+            
+            <ul className="space-y-2 my-4">
+              <li><strong className="text-white">The Fear:</strong> Someone sees your broken product and laughs.</li>
+              <li><strong className="text-white">The Reality:</strong> A user comes to you to give feedback.</li>
+              <li><strong className="text-white">The Win:</strong> That feedback is gold. It tells you exactly what to fix to make the next version better. The worst thing that happens is you make a friend.</li>
+            </ul>
+
+            <blockquote className="border-l-4 border-white pl-4 italic text-white my-6">
+              If you are waiting for the perfect moment to launch, stop. You are just hiding. Ship it today.
+            </blockquote>
           </div>
         );
       default:
