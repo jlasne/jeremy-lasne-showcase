@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, CheckCircle2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const MarketingForFounders = () => {
@@ -9,15 +8,15 @@ const MarketingForFounders = () => {
   const [selectedSection, setSelectedSection] = useState("intro");
 
   const sections = [
-    { id: "intro", title: "Intro", available: true },
-    { id: "philosophy", title: "The Founder Philosophy", available: false },
-    { id: "talk-to-users", title: "Talk to Users", available: false },
-    { id: "landing-page", title: "Converting Landing Page", available: false },
-    { id: "distribution", title: "Distribution Machine", available: false },
-    { id: "pricing", title: "Pricing is Marketing", available: false },
-    { id: "content", title: "Content & SEO", available: false },
-    { id: "features", title: "Features as Marketing", available: false },
-    { id: "growth", title: "Growth Engines", available: false },
+    { id: "intro", title: "Intro", subtitle: "Start here", available: true, step: 1 },
+    { id: "philosophy", title: "The Founder Philosophy", subtitle: "Mindset shift", available: false, step: 2 },
+    { id: "talk-to-users", title: "Talk to Users", subtitle: "Real validation", available: false, step: 3 },
+    { id: "landing-page", title: "Converting Landing Page", subtitle: "First impression", available: false, step: 4 },
+    { id: "distribution", title: "Distribution Machine", subtitle: "Get traffic", available: false, step: 5 },
+    { id: "pricing", title: "Pricing is Marketing", subtitle: "Filter customers", available: false, step: 6 },
+    { id: "content", title: "Content & SEO", subtitle: "Compound growth", available: false, step: 7 },
+    { id: "features", title: "Features as Marketing", subtitle: "Build in public", available: false, step: 8 },
+    { id: "growth", title: "Growth Engines", subtitle: "Scale up", available: false, step: 9 },
   ];
 
   const renderContent = () => {
@@ -65,63 +64,90 @@ const MarketingForFounders = () => {
     }
   };
 
+  const currentSection = sections.find(s => s.id === selectedSection);
+
   return (
     <div className="min-h-screen bg-[#2a2a2a]">
-      <div className="container max-w-7xl mx-auto px-4 py-8 md:py-12">
+      <div className="container max-w-7xl mx-auto px-4 py-6 md:py-8">
         <Button
           variant="ghost"
           size="sm"
-          className="text-white hover:text-white hover:bg-white/10 mb-6"
+          className="text-white hover:text-white hover:bg-white/10 mb-4"
           onClick={() => navigate("/")}
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Feed
         </Button>
 
-        <h1 className="text-3xl md:text-4xl font-bold text-white mb-8">
-          Marketing for Founders
-        </h1>
-
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           {/* Left Sidebar - Navigation */}
           <div className="md:col-span-4 lg:col-span-3">
-            <div className="sticky top-8 space-y-2">
-              {sections.map((section) => (
-                <Card
-                  key={section.id}
-                  className={`cursor-pointer transition-colors ${
-                    selectedSection === section.id
-                      ? "bg-[#4a4a4a] border-white/20"
-                      : "bg-[#3a3a3a] border-white/10 hover:bg-[#404040]"
-                  }`}
-                  onClick={() => {
-                    if (section.available) {
-                      setSelectedSection(section.id);
-                    } else {
-                      alert("Coming soon!");
-                    }
-                  }}
-                >
-                  <CardContent className="p-4">
-                    <p className="text-white font-medium">{section.title}</p>
-                    {!section.available && (
-                      <p className="text-xs text-gray-400 mt-1">Coming soon</p>
-                    )}
-                  </CardContent>
-                </Card>
-              ))}
+            <div className="sticky top-6">
+              <h1 className="text-xl font-bold text-white mb-2">
+                Marketing for Founders
+              </h1>
+              <p className="text-sm text-gray-400 mb-8">
+                Section {currentSection?.step} of {sections.length}
+              </p>
+
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">
+                    Guide Sections
+                  </h3>
+                  <nav className="space-y-1">
+                    {sections.map((section) => (
+                      <button
+                        key={section.id}
+                        className={`w-full text-left px-3 py-2 rounded-md transition-colors ${
+                          selectedSection === section.id
+                            ? "bg-white/10 text-white"
+                            : section.available
+                            ? "text-gray-300 hover:bg-white/5 hover:text-white"
+                            : "text-gray-500 cursor-not-allowed"
+                        }`}
+                        onClick={() => {
+                          if (section.available) {
+                            setSelectedSection(section.id);
+                          } else {
+                            alert("Coming soon!");
+                          }
+                        }}
+                        disabled={!section.available}
+                      >
+                        <div className="flex items-start gap-3">
+                          <span className="text-xs font-medium mt-0.5 text-gray-400">
+                            {String(section.step).padStart(2, '0')}
+                          </span>
+                          <div className="flex-1 min-w-0">
+                            <div className="font-medium text-sm">
+                              {section.title}
+                            </div>
+                            <div className="text-xs text-gray-400 mt-0.5">
+                              {section.subtitle}
+                            </div>
+                            {!section.available && (
+                              <div className="text-xs text-gray-500 mt-1">
+                                Coming soon
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </button>
+                    ))}
+                  </nav>
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Right Content Area */}
           <div className="md:col-span-8 lg:col-span-9">
-            <Card className="bg-[#3a3a3a] border-white/10">
-              <CardContent className="p-6 md:p-8">
-                <article className="space-y-6">
-                  {renderContent()}
-                </article>
-              </CardContent>
-            </Card>
+            <div className="bg-[#2a2a2a] pb-12">
+              <article className="space-y-6 max-w-3xl">
+                {renderContent()}
+              </article>
+            </div>
           </div>
         </div>
       </div>
