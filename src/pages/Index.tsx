@@ -16,7 +16,7 @@ const Index = () => {
       description:
         "Interviewed @Aevmorfop, who built an app to quit smoking—not as a startup idea, but because he was in personal hell. He shared the process publicly, and a stranger used his tool to quit too.",
       videoId: "6QrRr1cxVhg",
-      url: "/smokefree",
+      url: "/quitesmoking",
     },
     {
       title: "Turn Pricing Into Your Growth Lever",
