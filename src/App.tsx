@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Ramble from "./pages/Ramble";
 import Tierly from "./pages/Tierly";
 import SmokeFree from "./pages/SmokeFree";
+import Marketing from "./pages/Marketing";
 import MarketingForFounders from "./pages/MarketingForFounders";
 import NotFound from "./pages/NotFound";
 
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/ramble" element={<Ramble />} />
           <Route path="/tierly" element={<Tierly />} />
           <Route path="/quitesmoking" element={<SmokeFree />} />
+          <Route path="/marketing" element={<Marketing />} />
           <Route path="/marketing-for-founders" element={<MarketingForFounders />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
