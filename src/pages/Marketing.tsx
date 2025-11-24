@@ -1,7 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { CheckCircle2, Circle, ChevronDown, Trophy, Target, Zap, Award } from "lucide-react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { toast } from "sonner";
 
 interface ActionCard {
   id: string;
@@ -20,34 +19,14 @@ interface Section {
 const Marketing = () => {
   const [completedTasks, setCompletedTasks] = useState<Set<string>>(new Set());
   const [openCards, setOpenCards] = useState<Set<string>>(new Set());
-  const [showCelebration, setShowCelebration] = useState(false);
 
   const toggleTask = (taskId: string) => {
     setCompletedTasks(prev => {
       const newSet = new Set(prev);
-      const isCompleting = !newSet.has(taskId);
-      
       if (newSet.has(taskId)) {
         newSet.delete(taskId);
       } else {
         newSet.add(taskId);
-        // Show celebration animation
-        setShowCelebration(true);
-        setTimeout(() => setShowCelebration(false), 1000);
-        
-        // Check for milestones
-        const newCount = newSet.size;
-        if (newCount === 1) {
-          toast.success("🎯 First Win!", { description: "You've started your marketing journey!" });
-        } else if (newCount === 5) {
-          toast.success("⚡ Quick Starter!", { description: "5 tasks completed!" });
-        } else if (newCount === 10) {
-          toast.success("🚀 Marketing Pro!", { description: "10 tasks down, keep going!" });
-        } else if (newCount === 20) {
-          toast.success("🏆 Marketing Master!", { description: "20 tasks! You're unstoppable!" });
-        } else if (newCount === totalTasks) {
-          toast.success("👑 Complete Domination!", { description: "All tasks completed! You're a legend!" });
-        }
       }
       return newSet;
     });
@@ -236,15 +215,6 @@ const Marketing = () => {
 
   return (
     <div className="min-h-screen bg-[#2a2a2a] relative overflow-hidden">
-      {/* Celebration Effect */}
-      {showCelebration && (
-        <div className="fixed inset-0 pointer-events-none z-50 flex items-center justify-center">
-          <div className="animate-scale-in">
-            <CheckCircle2 className="w-32 h-32 text-[#FF6B35] animate-pulse" />
-          </div>
-        </div>
-      )}
-      
       <div className="max-w-4xl mx-auto px-6 py-8">
         {/* Header with Stats */}
         <div className="mb-8">
@@ -288,36 +258,17 @@ const Marketing = () => {
             . No TL;DR, just results.
           </p>
           
-          {/* Enhanced Progress Bar */}
-          <div className="space-y-3">
-            <div className="flex justify-between items-center text-sm">
-              <div className="flex items-center gap-2">
-                <Zap className="w-4 h-4 text-[#FF6B35]" />
-                <span className="text-gray-400">Your Progress</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="text-white font-bold">{completedCount}</span>
-                <span className="text-gray-500">/</span>
-                <span className="text-gray-400">{totalTasks}</span>
-              </div>
-            </div>
-            
-            {/* Main Progress Bar */}
-            <div className="relative h-3 bg-white/5 rounded-full overflow-hidden border border-white/10">
-              <div 
-                className="h-full bg-gradient-to-r from-[#FF6B35] to-[#FF8C5A] transition-all duration-500 ease-out relative"
-                style={{ width: `${progressPercent}%` }}
-              >
-                <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
-              </div>
-            </div>
-            
-            {/* Next Level Progress */}
+          {/* Task Counter */}
+          <div className="flex items-center gap-2 text-sm">
+            <Zap className="w-4 h-4 text-[#FF6B35]" />
+            <span className="text-gray-400">Your Progress:</span>
+            <span className="text-white font-bold">{completedCount}</span>
+            <span className="text-gray-500">/</span>
+            <span className="text-gray-400">{totalTasks}</span>
             {completedCount < totalTasks && (
-              <div className="text-xs text-gray-500 flex items-center gap-2">
-                <Target className="w-3 h-3" />
-                <span>{5 - tasksInCurrentLevel} tasks until Level {level + 1}</span>
-              </div>
+              <span className="text-xs text-gray-500 ml-2">
+                • {5 - tasksInCurrentLevel} tasks until Level {level + 1}
+              </span>
             )}
           </div>
         </div>
