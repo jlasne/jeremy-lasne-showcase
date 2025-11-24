@@ -198,14 +198,34 @@ const Marketing = () => {
 
   return (
     <div className="min-h-screen bg-[#2a2a2a]">
-      <div className="max-w-4xl mx-auto px-6 py-12">
+      <div className="max-w-4xl mx-auto px-6 py-8">
         {/* Header */}
-        <div className="mb-12">
-          <h1 className="text-5xl font-bold text-white mb-4">
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold text-white mb-3">
             Founder's Marketing Guide
           </h1>
-          <p className="text-lg text-gray-400 mb-6">
-            An actionable checklist to grow your product.
+          
+          {/* Intro Text */}
+          <p className="text-gray-300 leading-relaxed mb-6">
+            Built by a founder, for founders. After studying 50+ hours of successful bootstrappers, I'm testing these strategies live with{" "}
+            <a 
+              href="https://tasu.ai" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-[#FF6B35] hover:underline font-medium"
+            >
+              Tasu.ai
+            </a>
+            . Catch the daily updates and lessons on X{" "}
+            <a 
+              href="https://x.com/jeremylasne" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-[#FF6B35] hover:underline font-medium"
+            >
+              (@jeremylasne)
+            </a>
+            . No TL;DR, just results.
           </p>
           
           {/* Progress Bar */}
@@ -224,13 +244,13 @@ const Marketing = () => {
         </div>
 
         {/* Sections */}
-        <div className="space-y-12">
+        <div className="space-y-8">
           {sections.map((section) => (
-            <div key={section.id} className="space-y-4">
+            <div key={section.id} className="space-y-3">
               {/* Section Header */}
-              <div className="flex items-center gap-3 mb-6">
-                <span className="text-3xl">{section.emoji}</span>
-                <h2 className="text-3xl font-bold text-white">
+              <div className="flex items-center gap-2 mb-4">
+                <span className="text-2xl">{section.emoji}</span>
+                <h2 className="text-2xl font-bold text-white">
                   {section.title}
                 </h2>
               </div>
@@ -241,9 +261,9 @@ const Marketing = () => {
                   open={openCards.has(section.id)}
                   onOpenChange={() => toggleCard(section.id)}
                 >
-                  <div className="border border-white/10 bg-white/5 rounded-lg overflow-hidden hover:border-[#FF6B35]/50 transition-colors mb-6">
-                    <CollapsibleTrigger className="w-full flex items-center justify-between gap-4 p-6 text-left">
-                      <span className="text-lg font-semibold text-white">
+                  <div className="border border-white/10 bg-white/5 rounded-lg overflow-hidden hover:border-[#FF6B35]/50 transition-colors mb-4">
+                    <CollapsibleTrigger className="w-full flex items-center justify-between gap-4 p-4 text-left">
+                      <span className="text-base font-semibold text-white">
                         Read the mindset shift
                       </span>
                       <ChevronDown 
@@ -251,9 +271,9 @@ const Marketing = () => {
                       />
                     </CollapsibleTrigger>
                     <CollapsibleContent>
-                      <div className="px-6 pb-6">
+                      <div className="px-4 pb-4">
                         <div className="pt-2 border-t border-white/10">
-                          <p className="text-white whitespace-pre-line leading-relaxed mt-3">
+                          <p className="text-white text-sm whitespace-pre-line leading-relaxed mt-3">
                             {section.intro}
                           </p>
                         </div>
@@ -264,7 +284,7 @@ const Marketing = () => {
               )}
 
               {/* Action Cards */}
-              <div className="space-y-3">
+              <div className="space-y-2">
                 {section.cards.map((card) => {
                   const isCompleted = completedTasks.has(card.id);
                   const isOpen = openCards.has(card.id);
@@ -277,7 +297,7 @@ const Marketing = () => {
                     >
                       <div className="border border-white/10 bg-white/5 rounded-lg overflow-hidden hover:border-[#FF6B35]/50 transition-colors">
                         {/* Card Header - Always Visible */}
-                        <div className="flex items-center gap-4 p-4">
+                        <div className="flex items-center gap-3 p-3">
                           {/* Checkbox */}
                           <button
                             onClick={(e) => {
@@ -287,28 +307,28 @@ const Marketing = () => {
                             className="flex-shrink-0 hover:scale-110 transition-transform"
                           >
                             {isCompleted ? (
-                              <CheckCircle2 className="w-6 h-6 text-[#FF6B35]" />
+                              <CheckCircle2 className="w-5 h-5 text-[#FF6B35]" />
                             ) : (
-                              <Circle className="w-6 h-6 text-gray-400" />
+                              <Circle className="w-5 h-5 text-gray-400" />
                             )}
                           </button>
 
                           {/* Title */}
-                          <CollapsibleTrigger className="flex-1 flex items-center justify-between gap-4 text-left group">
-                            <span className={`text-lg font-semibold ${isCompleted ? 'text-gray-500 line-through' : 'text-white'}`}>
+                          <CollapsibleTrigger className="flex-1 flex items-center justify-between gap-3 text-left group">
+                            <span className={`text-base font-semibold ${isCompleted ? 'text-gray-500 line-through' : 'text-white'}`}>
                               {card.title}
                             </span>
                             <ChevronDown 
-                              className={`w-5 h-5 text-gray-400 transition-transform flex-shrink-0 ${isOpen ? 'rotate-180' : ''}`}
+                              className={`w-4 h-4 text-gray-400 transition-transform flex-shrink-0 ${isOpen ? 'rotate-180' : ''}`}
                             />
                           </CollapsibleTrigger>
                         </div>
 
                         {/* Expandable Content */}
                         <CollapsibleContent>
-                          <div className="px-4 pb-4 pl-14">
+                          <div className="px-3 pb-3 pl-11">
                             <div className="pt-2 border-t border-white/10">
-                              <p className="text-white whitespace-pre-line leading-relaxed mt-3">
+                              <p className="text-white text-sm whitespace-pre-line leading-relaxed mt-2">
                                 {card.content}
                               </p>
                             </div>
