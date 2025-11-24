@@ -236,7 +236,7 @@ const Marketing = () => {
           </div>
           
           {/* Intro Text */}
-          <p className="text-gray-300 text-sm leading-relaxed mb-6">
+          <p className="text-gray-300 text-sm leading-relaxed">
             Built by a founder, for founders. After studying 50+ hours of successful bootstrappers, I'm testing these strategies live with{" "}
             <a 
               href="https://tasu.ai" 
@@ -257,20 +257,6 @@ const Marketing = () => {
             </a>
             . No TL;DR, just results.
           </p>
-          
-          {/* Task Counter */}
-          <div className="flex items-center gap-2 text-sm">
-            <Zap className="w-4 h-4 text-[#FF6B35]" />
-            <span className="text-gray-400">Your Progress:</span>
-            <span className="text-white font-bold">{completedCount}</span>
-            <span className="text-gray-500">/</span>
-            <span className="text-gray-400">{totalTasks}</span>
-            {completedCount < totalTasks && (
-              <span className="text-xs text-gray-500 ml-2">
-                • {5 - tasksInCurrentLevel} tasks until Level {level + 1}
-              </span>
-            )}
-          </div>
         </div>
 
         {/* Sections */}
