@@ -197,26 +197,26 @@ const Marketing = () => {
   const progressPercent = totalTasks > 0 ? Math.round((completedCount / totalTasks) * 100) : 0;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[#2a2a2a]">
       <div className="max-w-4xl mx-auto px-6 py-12">
         {/* Header */}
         <div className="mb-12">
-          <h1 className="text-5xl font-bold text-foreground mb-4">
+          <h1 className="text-5xl font-bold text-white mb-4">
             Founder's Marketing Guide
           </h1>
-          <p className="text-lg text-muted-foreground mb-6">
+          <p className="text-lg text-gray-400 mb-6">
             An actionable checklist to grow your product.
           </p>
           
           {/* Progress Bar */}
           <div className="space-y-2">
-            <div className="flex justify-between text-sm text-muted-foreground">
+            <div className="flex justify-between text-sm text-gray-400">
               <span>Progress</span>
               <span>{completedCount} / {totalTasks} tasks</span>
             </div>
-            <div className="h-2 bg-muted rounded-full overflow-hidden">
+            <div className="h-2 bg-white/10 rounded-full overflow-hidden">
               <div 
-                className="h-full bg-accent transition-all duration-300"
+                className="h-full bg-[#FF6B35] transition-all duration-300"
                 style={{ width: `${progressPercent}%` }}
               />
             </div>
@@ -230,18 +230,37 @@ const Marketing = () => {
               {/* Section Header */}
               <div className="flex items-center gap-3 mb-6">
                 <span className="text-3xl">{section.emoji}</span>
-                <h2 className="text-3xl font-bold text-foreground">
+                <h2 className="text-3xl font-bold text-white">
                   {section.title}
                 </h2>
               </div>
 
-              {/* Section Intro (for Mindset Shift) */}
+              {/* Section Intro (for Mindset Shift) - Now Collapsible */}
               {section.intro && (
-                <div className="bg-muted/50 border-l-4 border-accent p-6 rounded-r-lg mb-6">
-                  <p className="text-foreground whitespace-pre-line leading-relaxed">
-                    {section.intro}
-                  </p>
-                </div>
+                <Collapsible
+                  open={openCards.has(section.id)}
+                  onOpenChange={() => toggleCard(section.id)}
+                >
+                  <div className="border border-white/10 bg-white/5 rounded-lg overflow-hidden hover:border-[#FF6B35]/50 transition-colors mb-6">
+                    <CollapsibleTrigger className="w-full flex items-center justify-between gap-4 p-6 text-left">
+                      <span className="text-lg font-semibold text-white">
+                        Read the mindset shift
+                      </span>
+                      <ChevronDown 
+                        className={`w-5 h-5 text-gray-400 transition-transform flex-shrink-0 ${openCards.has(section.id) ? 'rotate-180' : ''}`}
+                      />
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <div className="px-6 pb-6">
+                        <div className="pt-2 border-t border-white/10">
+                          <p className="text-white whitespace-pre-line leading-relaxed mt-3">
+                            {section.intro}
+                          </p>
+                        </div>
+                      </div>
+                    </CollapsibleContent>
+                  </div>
+                </Collapsible>
               )}
 
               {/* Action Cards */}
@@ -256,7 +275,7 @@ const Marketing = () => {
                       open={isOpen}
                       onOpenChange={() => toggleCard(card.id)}
                     >
-                      <div className="border border-border bg-card rounded-lg overflow-hidden hover:border-accent transition-colors">
+                      <div className="border border-white/10 bg-white/5 rounded-lg overflow-hidden hover:border-[#FF6B35]/50 transition-colors">
                         {/* Card Header - Always Visible */}
                         <div className="flex items-center gap-4 p-4">
                           {/* Checkbox */}
@@ -268,19 +287,19 @@ const Marketing = () => {
                             className="flex-shrink-0 hover:scale-110 transition-transform"
                           >
                             {isCompleted ? (
-                              <CheckCircle2 className="w-6 h-6 text-accent" />
+                              <CheckCircle2 className="w-6 h-6 text-[#FF6B35]" />
                             ) : (
-                              <Circle className="w-6 h-6 text-muted-foreground" />
+                              <Circle className="w-6 h-6 text-gray-400" />
                             )}
                           </button>
 
                           {/* Title */}
                           <CollapsibleTrigger className="flex-1 flex items-center justify-between gap-4 text-left group">
-                            <span className={`text-lg font-semibold ${isCompleted ? 'text-muted-foreground line-through' : 'text-foreground'}`}>
+                            <span className={`text-lg font-semibold ${isCompleted ? 'text-gray-500 line-through' : 'text-white'}`}>
                               {card.title}
                             </span>
                             <ChevronDown 
-                              className={`w-5 h-5 text-muted-foreground transition-transform flex-shrink-0 ${isOpen ? 'rotate-180' : ''}`}
+                              className={`w-5 h-5 text-gray-400 transition-transform flex-shrink-0 ${isOpen ? 'rotate-180' : ''}`}
                             />
                           </CollapsibleTrigger>
                         </div>
@@ -288,8 +307,8 @@ const Marketing = () => {
                         {/* Expandable Content */}
                         <CollapsibleContent>
                           <div className="px-4 pb-4 pl-14">
-                            <div className="pt-2 border-t border-border">
-                              <p className="text-foreground whitespace-pre-line leading-relaxed mt-3">
+                            <div className="pt-2 border-t border-white/10">
+                              <p className="text-white whitespace-pre-line leading-relaxed mt-3">
                                 {card.content}
                               </p>
                             </div>
@@ -306,13 +325,13 @@ const Marketing = () => {
 
         {/* Footer CTA */}
         <div className="mt-16 text-center">
-          <p className="text-muted-foreground">
+          <p className="text-gray-400">
             Questions? Reach out on{" "}
             <a 
               href="https://x.com/jeremylasne" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-accent hover:underline font-medium"
+              className="text-[#FF6B35] hover:underline font-medium"
             >
               @jeremylasne
             </a>
