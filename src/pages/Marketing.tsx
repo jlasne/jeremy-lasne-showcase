@@ -323,20 +323,6 @@ const Marketing = () => {
           ))}
         </div>
 
-        {/* Footer CTA */}
-        <div className="mt-16 text-center">
-          <p className="text-gray-400">
-            Questions? Reach out on{" "}
-            <a 
-              href="https://x.com/jeremylasne" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-[#FF6B35] hover:underline font-medium"
-            >
-              @jeremylasne
-            </a>
-          </p>
-        </div>
       </div>
     </div>
   );
