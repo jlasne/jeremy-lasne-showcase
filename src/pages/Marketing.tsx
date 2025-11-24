@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { CheckCircle2, Circle, ChevronDown } from "lucide-react";
+import { useState, useEffect } from "react";
+import { CheckCircle2, Circle, ChevronDown, Trophy, Target, Zap, Award } from "lucide-react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { toast } from "sonner";
 
 interface ActionCard {
   id: string;
@@ -19,14 +20,34 @@ interface Section {
 const Marketing = () => {
   const [completedTasks, setCompletedTasks] = useState<Set<string>>(new Set());
   const [openCards, setOpenCards] = useState<Set<string>>(new Set());
+  const [showCelebration, setShowCelebration] = useState(false);
 
   const toggleTask = (taskId: string) => {
     setCompletedTasks(prev => {
       const newSet = new Set(prev);
+      const isCompleting = !newSet.has(taskId);
+      
       if (newSet.has(taskId)) {
         newSet.delete(taskId);
       } else {
         newSet.add(taskId);
+        // Show celebration animation
+        setShowCelebration(true);
+        setTimeout(() => setShowCelebration(false), 1000);
+        
+        // Check for milestones
+        const newCount = newSet.size;
+        if (newCount === 1) {
+          toast.success("🎯 First Win!", { description: "You've started your marketing journey!" });
+        } else if (newCount === 5) {
+          toast.success("⚡ Quick Starter!", { description: "5 tasks completed!" });
+        } else if (newCount === 10) {
+          toast.success("🚀 Marketing Pro!", { description: "10 tasks down, keep going!" });
+        } else if (newCount === 20) {
+          toast.success("🏆 Marketing Master!", { description: "20 tasks! You're unstoppable!" });
+        } else if (newCount === totalTasks) {
+          toast.success("👑 Complete Domination!", { description: "All tasks completed! You're a legend!" });
+        }
       }
       return newSet;
     });
@@ -196,17 +217,56 @@ const Marketing = () => {
   const completedCount = completedTasks.size;
   const progressPercent = totalTasks > 0 ? Math.round((completedCount / totalTasks) * 100) : 0;
 
+  // Calculate level based on completed tasks
+  const level = Math.floor(completedCount / 5) + 1;
+  const tasksForNextLevel = level * 5;
+  const tasksInCurrentLevel = completedCount % 5;
+  
+  // Determine current achievement badge
+  const getBadge = () => {
+    if (completedCount === totalTasks) return { icon: Trophy, text: "Marketing Legend", color: "text-yellow-400" };
+    if (completedCount >= 20) return { icon: Award, text: "Marketing Master", color: "text-purple-400" };
+    if (completedCount >= 10) return { icon: Zap, text: "Marketing Pro", color: "text-blue-400" };
+    if (completedCount >= 5) return { icon: Target, text: "Quick Starter", color: "text-green-400" };
+    if (completedCount >= 1) return { icon: CheckCircle2, text: "First Win", color: "text-[#FF6B35]" };
+    return null;
+  };
+  
+  const currentBadge = getBadge();
+
   return (
-    <div className="min-h-screen bg-[#2a2a2a]">
+    <div className="min-h-screen bg-[#2a2a2a] relative overflow-hidden">
+      {/* Celebration Effect */}
+      {showCelebration && (
+        <div className="fixed inset-0 pointer-events-none z-50 flex items-center justify-center">
+          <div className="animate-scale-in">
+            <CheckCircle2 className="w-32 h-32 text-[#FF6B35] animate-pulse" />
+          </div>
+        </div>
+      )}
+      
       <div className="max-w-4xl mx-auto px-6 py-8">
-        {/* Header */}
+        {/* Header with Stats */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-white mb-3">
-            Founder's Marketing Guide
-          </h1>
+          <div className="flex items-start justify-between mb-3">
+            <div>
+              <h1 className="text-4xl font-bold text-white mb-1">
+                Founder's Marketing Guide
+              </h1>
+              <p className="text-sm text-gray-400">Level {level} Marketing Founder</p>
+            </div>
+            
+            {/* Current Badge */}
+            {currentBadge && (
+              <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg px-4 py-2 animate-fade-in">
+                <currentBadge.icon className={`w-5 h-5 ${currentBadge.color}`} />
+                <span className="text-sm font-semibold text-white">{currentBadge.text}</span>
+              </div>
+            )}
+          </div>
           
           {/* Intro Text */}
-          <p className="text-gray-300 leading-relaxed mb-6">
+          <p className="text-gray-300 text-sm leading-relaxed mb-6">
             Built by a founder, for founders. After studying 50+ hours of successful bootstrappers, I'm testing these strategies live with{" "}
             <a 
               href="https://tasu.ai" 
@@ -228,32 +288,75 @@ const Marketing = () => {
             . No TL;DR, just results.
           </p>
           
-          {/* Progress Bar */}
-          <div className="space-y-2">
-            <div className="flex justify-between text-sm text-gray-400">
-              <span>Progress</span>
-              <span>{completedCount} / {totalTasks} tasks</span>
+          {/* Enhanced Progress Bar */}
+          <div className="space-y-3">
+            <div className="flex justify-between items-center text-sm">
+              <div className="flex items-center gap-2">
+                <Zap className="w-4 h-4 text-[#FF6B35]" />
+                <span className="text-gray-400">Your Progress</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="text-white font-bold">{completedCount}</span>
+                <span className="text-gray-500">/</span>
+                <span className="text-gray-400">{totalTasks}</span>
+              </div>
             </div>
-            <div className="h-2 bg-white/10 rounded-full overflow-hidden">
+            
+            {/* Main Progress Bar */}
+            <div className="relative h-3 bg-white/5 rounded-full overflow-hidden border border-white/10">
               <div 
-                className="h-full bg-[#FF6B35] transition-all duration-300"
+                className="h-full bg-gradient-to-r from-[#FF6B35] to-[#FF8C5A] transition-all duration-500 ease-out relative"
                 style={{ width: `${progressPercent}%` }}
-              />
+              >
+                <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
+              </div>
             </div>
+            
+            {/* Next Level Progress */}
+            {completedCount < totalTasks && (
+              <div className="text-xs text-gray-500 flex items-center gap-2">
+                <Target className="w-3 h-3" />
+                <span>{5 - tasksInCurrentLevel} tasks until Level {level + 1}</span>
+              </div>
+            )}
           </div>
         </div>
 
         {/* Sections */}
         <div className="space-y-8">
-          {sections.map((section) => (
-            <div key={section.id} className="space-y-3">
-              {/* Section Header */}
-              <div className="flex items-center gap-2 mb-4">
-                <span className="text-2xl">{section.emoji}</span>
-                <h2 className="text-2xl font-bold text-white">
-                  {section.title}
-                </h2>
-              </div>
+          {sections.map((section) => {
+            const sectionTasks = section.cards.length;
+            const sectionCompleted = section.cards.filter(card => completedTasks.has(card.id)).length;
+            const sectionProgress = sectionTasks > 0 ? Math.round((sectionCompleted / sectionTasks) * 100) : 0;
+            const isSectionComplete = sectionCompleted === sectionTasks && sectionTasks > 0;
+            
+            return (
+              <div key={section.id} className="space-y-3">
+                {/* Section Header with Progress */}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-2">
+                    <span className="text-2xl">{section.emoji}</span>
+                    <h2 className="text-2xl font-bold text-white">
+                      {section.title}
+                    </h2>
+                    {isSectionComplete && (
+                      <Trophy className="w-5 h-5 text-yellow-400 animate-scale-in" />
+                    )}
+                  </div>
+                  {sectionTasks > 0 && (
+                    <div className="flex items-center gap-2 text-sm">
+                      <span className={`font-semibold ${isSectionComplete ? 'text-[#FF6B35]' : 'text-gray-400'}`}>
+                        {sectionCompleted}/{sectionTasks}
+                      </span>
+                      <div className="w-16 h-1.5 bg-white/10 rounded-full overflow-hidden">
+                        <div 
+                          className="h-full bg-[#FF6B35] transition-all duration-500"
+                          style={{ width: `${sectionProgress}%` }}
+                        />
+                      </div>
+                    </div>
+                  )}
+                </div>
 
               {/* Section Intro (for Mindset Shift) - Now Collapsible */}
               {section.intro && (
@@ -295,7 +398,7 @@ const Marketing = () => {
                       open={isOpen}
                       onOpenChange={() => toggleCard(card.id)}
                     >
-                      <div className="border border-white/10 bg-white/5 rounded-lg overflow-hidden hover:border-[#FF6B35]/50 transition-colors">
+                      <div className={`border border-white/10 bg-white/5 rounded-lg overflow-hidden hover:border-[#FF6B35]/50 transition-all duration-300 ${isCompleted ? 'opacity-60 hover:opacity-80' : 'hover:scale-[1.01]'}`}>
                         {/* Card Header - Always Visible */}
                         <div className="flex items-center gap-3 p-3">
                           {/* Checkbox */}
@@ -304,12 +407,12 @@ const Marketing = () => {
                               e.stopPropagation();
                               toggleTask(card.id);
                             }}
-                            className="flex-shrink-0 hover:scale-110 transition-transform"
+                            className="flex-shrink-0 hover:scale-125 transition-transform group relative"
                           >
                             {isCompleted ? (
-                              <CheckCircle2 className="w-5 h-5 text-[#FF6B35]" />
+                              <CheckCircle2 className="w-5 h-5 text-[#FF6B35] animate-scale-in" />
                             ) : (
-                              <Circle className="w-5 h-5 text-gray-400" />
+                              <Circle className="w-5 h-5 text-gray-400 group-hover:text-[#FF6B35]/50 transition-colors" />
                             )}
                           </button>
 
@@ -340,7 +443,8 @@ const Marketing = () => {
                 })}
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
 
       </div>
