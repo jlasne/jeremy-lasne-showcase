@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Twitter, ExternalLink, Youtube } from "lucide-react";
+import { Twitter, ExternalLink, Youtube, FileText } from "lucide-react";
 import profileImage from "@/assets/profile-picture-new.jpg";
 import tasuLogo from "@/assets/tasu-logo.png";
 import interviewLogo from "@/assets/interview-logo.png";
@@ -11,6 +11,13 @@ const Index = () => {
   const navigate = useNavigate();
 
   const interviews = [
+    {
+      title: "Unveiling Actual Business Growth: The Feedback Map",
+      description:
+        "Most founders are leaving money on the table—not because they can't build, but because they're running their feedback loops blind. I built a framework that maps 11 critical feedback loops.",
+      isArticle: true,
+      url: "/feedback-map",
+    },
     {
       title: "Don't Build in Silence",
       description:
@@ -140,19 +147,30 @@ const Index = () => {
                   <div className="flex-1">
                     <h3 className="text-lg md:text-xl font-semibold text-white mb-2">{interview.title}</h3>
                     <p className="text-sm text-gray-400 leading-relaxed">{interview.description}</p>
+                    {interview.isArticle && (
+                      <span className="inline-block mt-2 text-xs bg-[#FF6B35]/20 text-[#FF6B35] px-2 py-1 rounded">
+                        Article
+                      </span>
+                    )}
                   </div>
 
-                  {/* Right: Video */}
+                  {/* Right: Video or Placeholder */}
                   <div className="w-full md:w-64 flex-shrink-0">
-                    <div className="aspect-video w-full rounded-lg overflow-hidden">
-                      <iframe
-                        className="w-full h-full"
-                        src={`https://www.youtube.com/embed/${interview.videoId}?autoplay=1&mute=1&loop=1&playlist=${interview.videoId}&controls=0`}
-                        title={interview.title}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
-                    </div>
+                    {interview.videoId ? (
+                      <div className="aspect-video w-full rounded-lg overflow-hidden">
+                        <iframe
+                          className="w-full h-full"
+                          src={`https://www.youtube.com/embed/${interview.videoId}?autoplay=1&mute=1&loop=1&playlist=${interview.videoId}&controls=0`}
+                          title={interview.title}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        />
+                      </div>
+                    ) : (
+                      <div className="aspect-video w-full rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
+                        <FileText className="w-12 h-12 text-[#FF6B35]/50" />
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
