@@ -5,6 +5,7 @@ import { Twitter, ExternalLink, Youtube, FileText } from "lucide-react";
 import profileImage from "@/assets/profile-picture-new.jpg";
 import tasuLogo from "@/assets/tasu-logo.png";
 import interviewLogo from "@/assets/interview-logo.png";
+import feedbackMapThumbnail from "@/assets/feedback-map-thumbnail.png";
 import { useNavigate } from "react-router-dom";
 
 const Index = () => {
@@ -16,6 +17,7 @@ const Index = () => {
       description:
         "Most founders are leaving money on the table—not because they can't build, but because they're running their feedback loops blind. I built a framework that maps 11 critical feedback loops.",
       isArticle: true,
+      thumbnail: feedbackMapThumbnail,
       url: "/feedback-map",
     },
     {
@@ -164,6 +166,14 @@ const Index = () => {
                           title={interview.title}
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                           allowFullScreen
+                        />
+                      </div>
+                    ) : interview.thumbnail ? (
+                      <div className="aspect-video w-full rounded-lg overflow-hidden">
+                        <img
+                          src={interview.thumbnail}
+                          alt={interview.title}
+                          className="w-full h-full object-cover"
                         />
                       </div>
                     ) : (
