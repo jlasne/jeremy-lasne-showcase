@@ -9,6 +9,7 @@ import Tierly from "./pages/Tierly";
 import SmokeFree from "./pages/SmokeFree";
 import Marketing from "./pages/Marketing";
 import MarketingForFounders from "./pages/MarketingForFounders";
+import FeedbackMap from "./pages/FeedbackMap";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/quitesmoking" element={<SmokeFree />} />
           <Route path="/marketing" element={<Marketing />} />
           <Route path="/marketing-for-founders" element={<MarketingForFounders />} />
+          <Route path="/feedback-map" element={<FeedbackMap />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
