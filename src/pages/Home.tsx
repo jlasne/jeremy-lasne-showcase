@@ -8,14 +8,15 @@ const Home = () => {
 
       {/* Hero Section */}
       <section className="pt-[110px] md:pt-[140px] pb-8 md:pb-12 px-6 md:px-8">
-        <div className="max-w-[1000px] mx-auto flex flex-col items-end text-right">
+        <div className="max-w-[1000px] mx-auto flex flex-col items-center">
+          <div className="w-full max-w-[700px] text-left">
           <p className="text-xs md:text-sm font-bold text-accent-red mb-3 md:mb-4 tracking-wider uppercase">
             User-Led Growth Founder
           </p>
           <h1 className="text-[42px] md:text-[56px] lg:text-[72px] font-black leading-[1.1] mb-4 md:mb-6 tracking-tight">
             Hey, I'm Jeremy.
           </h1>
-          <p className="text-[15px] md:text-[17px] lg:text-[18px] leading-relaxed text-muted-foreground mb-6 md:mb-8 max-w-[700px]">
+          <p className="text-[15px] md:text-[17px] lg:text-[18px] leading-relaxed text-muted-foreground mb-6 md:mb-8">
             I build SaaS products where users drive growth, not dashboards.<br />
             Fueled by failures, feedback loops, and shipping fast.<br />
             I share the messy truth about startups in my newsletter.
@@ -53,6 +54,7 @@ const Home = () => {
               tasu.ai
             </a>
           </div>
+        </div>
         </div>
       </section>
 
