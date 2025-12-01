@@ -14,7 +14,7 @@ const FeedbackMap = () => {
         <Button
           variant="ghost"
           className="text-muted-foreground hover:text-foreground hover:bg-secondary mb-8"
-          onClick={() => navigate("/interview")}
+          onClick={() => navigate("/talk")}
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back
