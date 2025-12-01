@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { CheckCircle2, Circle, ChevronDown, Trophy, Target, Zap, Award } from "lucide-react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import NavBar from "@/components/NavBar";
 
 interface ActionCard {
   id: string;
@@ -237,33 +238,34 @@ const Marketing = () => {
   const currentBadge = getBadge();
 
   return (
-    <div className="min-h-screen bg-[#2a2a2a] relative overflow-hidden">
-      <div className="max-w-4xl mx-auto px-6 py-8">
+    <div className="min-h-screen bg-background relative overflow-hidden">
+      <NavBar />
+      <div className="max-w-4xl mx-auto px-6 py-8 pt-[110px] md:pt-[140px]">
         {/* Header with Stats */}
         <div className="mb-8">
           <div className="flex items-start justify-between mb-3">
             <div>
-              <h1 className="text-4xl font-bold text-white mb-1">Founder's Marketing Guide</h1>
+              <h1 className="text-4xl font-bold text-foreground mb-1">Founder's Marketing Guide</h1>
             </div>
 
             {/* Current Badge */}
             {currentBadge && (
-              <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg px-4 py-2 animate-fade-in">
+              <div className="flex items-center gap-2 bg-card border border-border rounded-lg px-4 py-2 animate-fade-in">
                 <currentBadge.icon className={`w-5 h-5 ${currentBadge.color}`} />
-                <span className="text-sm font-semibold text-white">{currentBadge.text}</span>
+                <span className="text-sm font-semibold text-foreground">{currentBadge.text}</span>
               </div>
             )}
           </div>
 
           {/* Intro Text */}
-          <p className="text-gray-300 text-sm leading-relaxed">
+          <p className="text-muted-foreground text-sm leading-relaxed">
             Built by a founder, for founders. After studying 50+ hours of successful bootstrappers, I'm testing these
             strategies live with{" "}
             <a
               href="https://tasu.ai"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#FF6B35] hover:underline font-medium"
+              className="text-cta-orange hover:underline font-medium"
             >
               Tasu.ai
             </a>
@@ -272,7 +274,7 @@ const Marketing = () => {
               href="https://x.com/jeremylasne"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#FF6B35] hover:underline font-medium"
+              className="text-cta-orange hover:underline font-medium"
             >
               (@jeremylasne)
             </a>
@@ -291,106 +293,106 @@ const Marketing = () => {
             return (
               <div key={section.id} className="space-y-3">
                 {/* Section Header with Progress */}
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-2">
-                    <span className="text-2xl">{section.emoji}</span>
-                    <h2 className="text-2xl font-bold text-white">{section.title}</h2>
-                    {isSectionComplete && <Trophy className="w-5 h-5 text-yellow-400 animate-scale-in" />}
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-2">
+                  <span className="text-2xl">{section.emoji}</span>
+                  <h2 className="text-2xl font-bold text-foreground">{section.title}</h2>
+                  {isSectionComplete && <Trophy className="w-5 h-5 text-yellow-400 animate-scale-in" />}
+                </div>
+                {sectionTasks > 0 && (
+                  <div className="flex items-center gap-2 text-sm">
+                    <span className={`font-semibold ${isSectionComplete ? "text-cta-orange" : "text-muted-foreground"}`}>
+                      {sectionCompleted}/{sectionTasks}
+                    </span>
+                    <div className="w-16 h-1.5 bg-secondary rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-cta-orange transition-all duration-500"
+                        style={{ width: `${sectionProgress}%` }}
+                      />
+                    </div>
                   </div>
-                  {sectionTasks > 0 && (
-                    <div className="flex items-center gap-2 text-sm">
-                      <span className={`font-semibold ${isSectionComplete ? "text-[#FF6B35]" : "text-gray-400"}`}>
-                        {sectionCompleted}/{sectionTasks}
-                      </span>
-                      <div className="w-16 h-1.5 bg-white/10 rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-[#FF6B35] transition-all duration-500"
-                          style={{ width: `${sectionProgress}%` }}
-                        />
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Section Intro (for Mindset Shift) - Now Collapsible */}
-                {section.intro && (
-                  <Collapsible open={openCards.has(section.id)} onOpenChange={() => toggleCard(section.id)}>
-                    <div className="border border-white/10 bg-white/5 rounded-lg overflow-hidden hover:border-[#FF6B35]/50 transition-colors mb-4">
-                      <CollapsibleTrigger className="w-full flex items-center justify-between gap-4 p-4 text-left">
-                        <span className="text-base font-semibold text-white">Read the mindset shift</span>
-                        <ChevronDown
-                          className={`w-5 h-5 text-gray-400 transition-transform flex-shrink-0 ${openCards.has(section.id) ? "rotate-180" : ""}`}
-                        />
-                      </CollapsibleTrigger>
-                      <CollapsibleContent>
-                        <div className="px-4 pb-4">
-                          <div className="pt-2 border-t border-white/10">
-                            <p className="text-white text-sm whitespace-pre-line leading-relaxed mt-3">
-                              {section.intro}
-                            </p>
-                          </div>
-                        </div>
-                      </CollapsibleContent>
-                    </div>
-                  </Collapsible>
                 )}
+              </div>
 
-                {/* Action Cards */}
-                <div className="space-y-2">
-                  {section.cards.map((card) => {
-                    const isCompleted = completedTasks.has(card.id);
-                    const isOpen = openCards.has(card.id);
-
-                    return (
-                      <Collapsible key={card.id} open={isOpen} onOpenChange={() => toggleCard(card.id)}>
-                        <div
-                          className={`border border-white/10 bg-white/5 rounded-lg overflow-hidden hover:border-[#FF6B35]/50 transition-all duration-300 ${isCompleted ? "opacity-60 hover:opacity-80" : "hover:scale-[1.01]"}`}
-                        >
-                          {/* Card Header - Always Visible */}
-                          <div className="flex items-center gap-3 p-3">
-                            {/* Checkbox */}
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                toggleTask(card.id);
-                              }}
-                              className="flex-shrink-0 hover:scale-125 transition-transform group relative"
-                            >
-                              {isCompleted ? (
-                                <CheckCircle2 className="w-5 h-5 text-[#FF6B35] animate-scale-in" />
-                              ) : (
-                                <Circle className="w-5 h-5 text-gray-400 group-hover:text-[#FF6B35]/50 transition-colors" />
-                              )}
-                            </button>
-
-                            {/* Title */}
-                            <CollapsibleTrigger className="flex-1 flex items-center justify-between gap-3 text-left group">
-                              <span
-                                className={`text-base font-semibold ${isCompleted ? "text-gray-500 line-through" : "text-white"}`}
-                              >
-                                {card.title}
-                              </span>
-                              <ChevronDown
-                                className={`w-4 h-4 text-gray-400 transition-transform flex-shrink-0 ${isOpen ? "rotate-180" : ""}`}
-                              />
-                            </CollapsibleTrigger>
-                          </div>
-
-                          {/* Expandable Content */}
-                          <CollapsibleContent>
-                            <div className="px-3 pb-3 pl-11">
-                              <div className="pt-2 border-t border-white/10">
-                                <p className="text-white text-sm whitespace-pre-line leading-relaxed mt-2">
-                                  {card.content}
-                                </p>
-                              </div>
-                            </div>
-                          </CollapsibleContent>
+              {/* Section Intro (for Mindset Shift) - Now Collapsible */}
+              {section.intro && (
+                <Collapsible open={openCards.has(section.id)} onOpenChange={() => toggleCard(section.id)}>
+                  <div className="border border-border bg-card rounded-lg overflow-hidden hover:border-cta-orange/50 transition-colors mb-4">
+                    <CollapsibleTrigger className="w-full flex items-center justify-between gap-4 p-4 text-left">
+                      <span className="text-base font-semibold text-foreground">Read the mindset shift</span>
+                      <ChevronDown
+                        className={`w-5 h-5 text-muted-foreground transition-transform flex-shrink-0 ${openCards.has(section.id) ? "rotate-180" : ""}`}
+                      />
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <div className="px-4 pb-4">
+                        <div className="pt-2 border-t border-border">
+                          <p className="text-foreground text-sm whitespace-pre-line leading-relaxed mt-3">
+                            {section.intro}
+                          </p>
                         </div>
-                      </Collapsible>
-                    );
-                  })}
-                </div>
+                      </div>
+                    </CollapsibleContent>
+                  </div>
+                </Collapsible>
+              )}
+
+              {/* Action Cards */}
+              <div className="space-y-2">
+                {section.cards.map((card) => {
+                  const isCompleted = completedTasks.has(card.id);
+                  const isOpen = openCards.has(card.id);
+
+                  return (
+                    <Collapsible key={card.id} open={isOpen} onOpenChange={() => toggleCard(card.id)}>
+                      <div
+                        className={`border border-border bg-card rounded-lg overflow-hidden hover:border-cta-orange/50 transition-all duration-300 ${isCompleted ? "opacity-60 hover:opacity-80" : "hover:scale-[1.01]"}`}
+                      >
+                        {/* Card Header - Always Visible */}
+                        <div className="flex items-center gap-3 p-3">
+                          {/* Checkbox */}
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleTask(card.id);
+                            }}
+                            className="flex-shrink-0 hover:scale-125 transition-transform group relative"
+                          >
+                            {isCompleted ? (
+                              <CheckCircle2 className="w-5 h-5 text-cta-orange animate-scale-in" />
+                            ) : (
+                              <Circle className="w-5 h-5 text-muted-foreground group-hover:text-cta-orange/50 transition-colors" />
+                            )}
+                          </button>
+
+                          {/* Title */}
+                          <CollapsibleTrigger className="flex-1 flex items-center justify-between gap-3 text-left group">
+                            <span
+                              className={`text-base font-semibold ${isCompleted ? "text-muted-foreground line-through" : "text-foreground"}`}
+                            >
+                              {card.title}
+                            </span>
+                            <ChevronDown
+                              className={`w-4 h-4 text-muted-foreground transition-transform flex-shrink-0 ${isOpen ? "rotate-180" : ""}`}
+                            />
+                          </CollapsibleTrigger>
+                        </div>
+
+                        {/* Expandable Content */}
+                        <CollapsibleContent>
+                          <div className="px-3 pb-3 pl-11">
+                            <div className="pt-2 border-t border-border">
+                              <p className="text-foreground text-sm whitespace-pre-line leading-relaxed mt-2">
+                                {card.content}
+                              </p>
+                            </div>
+                          </div>
+                        </CollapsibleContent>
+                      </div>
+                    </Collapsible>
+                  );
+                })}
+              </div>
               </div>
             );
           })}

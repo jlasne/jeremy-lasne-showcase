@@ -1,12 +1,7 @@
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { Twitter, ExternalLink, Youtube, FileText } from "lucide-react";
-import profileImage from "@/assets/profile-picture-new.jpg";
-import tasuLogo from "@/assets/tasu-logo.png";
-import interviewLogo from "@/assets/interview-logo.png";
+import { FileText } from "lucide-react";
 import feedbackMapThumbnail from "@/assets/feedback-map-thumbnail.png";
 import { useNavigate } from "react-router-dom";
+import NavBar from "@/components/NavBar";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -18,28 +13,28 @@ const Index = () => {
         "Most founders are leaving money on the table—not because they can't build, but because they're running their feedback loops blind. I built a framework that maps 11 critical feedback loops.",
       isArticle: true,
       thumbnail: feedbackMapThumbnail,
-      url: "/in/feedback-map",
+      url: "/interview/feedback-map",
     },
     {
       title: "Don't Build in Silence",
       description:
         "Interviewed @Aevmorfop, who built an app to quit smoking—not as a startup idea, but because he was in personal hell. He shared the process publicly, and a stranger used his tool to quit too.",
       videoId: "6QrRr1cxVhg",
-      url: "/in/quitesmoking",
+      url: "/interview/quitesmoking",
     },
     {
       title: "Turn Pricing Into Your Growth Lever",
       description:
         "Interviewed Ger (@MPlegas), founder of Tierly. He built Tierly for SaaS teams who are tired of guessing at pricing. Pricing is a critical strength—Tierly makes it a marketing asset.",
       videoId: "kHqBqCtPZUs",
-      url: "/in/tierly",
+      url: "/interview/tierly",
     },
     {
       title: "Why Most Voice Tools Are Breaking Your Thoughts",
       description:
         "Current AI tools smooth out your voice, removing emotion and energy. Ramble keeps your thoughts intact without alterations or censorship—organizing your raw ideas exactly as you speak them.",
       videoId: "T8wscu8Eu54",
-      url: "/in/ramble",
+      url: "/interview/ramble",
     },
     {
       title: "Launch Everything you Make",
@@ -50,142 +45,58 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#2a2a2a]">
-      <div className="container max-w-7xl mx-auto px-4 py-8 md:py-12">
-        <div className="grid lg:grid-cols-[380px_1fr] gap-8">
-          {/* Left: Personal Profile & Channel Intro */}
-          <div className="space-y-8">
-            {/* Profile Picture */}
-            <div className="flex justify-center lg:justify-start">
-              <img
-                src={profileImage}
-                alt="Jeremy LASNE"
-                className="w-40 h-40 rounded-full object-cover ring-4 ring-white/20"
-              />
-            </div>
-
-            {/* Name and Tagline */}
-            <div className="text-center lg:text-left">
-              <h1 className="text-4xl font-bold text-white mb-2">Jeremy LASNE</h1>
-              <p className="text-sm italic text-gray-400">
-                Business growth is all about users. I host founders to prove it.
-              </p>
-            </div>
-
-            {/* About Tasu */}
-            <div className="space-y-3">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-white/10 overflow-hidden flex-shrink-0">
-                  <img src={tasuLogo} alt="Tasu logo" className="w-full h-full object-cover" />
-                </div>
-                <div>
-                  <p className="text-white font-semibold">Growing Tasu</p>
-                  <p className="text-sm text-gray-400">with Ben Boarer & Dimitri Gilbert</p>
-                </div>
+    <div className="min-h-screen bg-background">
+      <NavBar />
+      
+      <div className="container max-w-4xl mx-auto px-4 py-8 md:py-12 pt-[110px] md:pt-[140px]">
+        <div className="space-y-6">
+          {interviews.map((interview) => (
+            <div
+              key={interview.title}
+              className="flex flex-col md:flex-row gap-4 cursor-pointer hover:opacity-80 transition-opacity"
+              onClick={() =>
+                interview.url.startsWith("/") ? navigate(interview.url) : window.open(interview.url, "_blank")
+              }
+            >
+              {/* Left: Title and Description */}
+              <div className="flex-1">
+                <h3 className="text-lg md:text-xl font-semibold text-foreground mb-2">{interview.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{interview.description}</p>
+                {interview.isArticle && (
+                  <span className="inline-block mt-2 text-xs bg-cta-orange/20 text-cta-orange px-2 py-1 rounded">
+                    Article
+                  </span>
+                )}
               </div>
-              <Button variant="ghost" size="sm" className="text-white hover:text-white hover:bg-white/10 px-0" asChild>
-                <a href="https://tasu.ai" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                  Learn more about Tasu <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              </Button>
-            </div>
 
-            {/* Interview Founders */}
-            <div className="space-y-3">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-white/10 overflow-hidden flex-shrink-0">
-                  <img src={interviewLogo} alt="Interview logo" className="w-full h-full object-cover" />
-                </div>
-                <div>
-                  <p className="text-white font-semibold">Interview Founders</p>
-                  <p className="text-sm text-gray-400">Hosting a Talk about Business</p>
-                </div>
+              {/* Right: Video or Placeholder */}
+              <div className="w-full md:w-64 flex-shrink-0">
+                {interview.videoId ? (
+                  <div className="aspect-video w-full rounded-lg overflow-hidden">
+                    <iframe
+                      className="w-full h-full"
+                      src={`https://www.youtube.com/embed/${interview.videoId}`}
+                      title={interview.title}
+                      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                ) : interview.thumbnail ? (
+                  <div className="aspect-video w-full rounded-lg overflow-hidden">
+                    <img
+                      src={interview.thumbnail}
+                      alt={interview.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div className="aspect-video w-full rounded-lg bg-secondary border border-border flex items-center justify-center">
+                    <FileText className="w-12 h-12 text-cta-orange/50" />
+                  </div>
+                )}
               </div>
-              <Button variant="ghost" size="sm" className="text-white hover:text-white hover:bg-white/10 px-0" asChild>
-                <a
-                  href="https://x.com/jeremylasne"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2"
-                >
-                  Contact me on X <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              </Button>
             </div>
-
-            {/* Social Links */}
-            <div className="flex gap-4 justify-center lg:justify-start pt-4">
-              <a
-                href="https://x.com/jeremylasne"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
-              >
-                <Twitter className="w-5 h-5 text-white" />
-              </a>
-              <a
-                href="https://www.youtube.com/@jeremyfounder"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 rounded-full bg-[#FF6B35] hover:bg-[#FF6B35]/90 flex items-center justify-center transition-colors"
-              >
-                <Youtube className="w-5 h-5 text-white" />
-              </a>
-            </div>
-          </div>
-
-          {/* Right: Interview Feed */}
-          <div className="mt-8 lg:mt-0">
-            <div className="space-y-6">
-              {interviews.map((interview) => (
-                <div
-                  key={interview.title}
-                  className="flex flex-col md:flex-row gap-4 cursor-pointer hover:opacity-80 transition-opacity"
-                  onClick={() =>
-                    interview.url.startsWith("/") ? navigate(interview.url) : window.open(interview.url, "_blank")
-                  }
-                >
-                  {/* Left: Title and Description */}
-                  <div className="flex-1">
-                    <h3 className="text-lg md:text-xl font-semibold text-white mb-2">{interview.title}</h3>
-                    <p className="text-sm text-gray-400 leading-relaxed">{interview.description}</p>
-                    {interview.isArticle && (
-                      <span className="inline-block mt-2 text-xs bg-[#FF6B35]/20 text-[#FF6B35] px-2 py-1 rounded">
-                        Article
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Right: Video or Placeholder */}
-                  <div className="w-full md:w-64 flex-shrink-0">
-                    {interview.videoId ? (
-                      <div className="aspect-video w-full rounded-lg overflow-hidden">
-                        <iframe
-                          className="w-full h-full"
-                          src={`https://www.youtube.com/embed/${interview.videoId}?autoplay=1&mute=1&loop=1&playlist=${interview.videoId}&controls=0`}
-                          title={interview.title}
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                        />
-                      </div>
-                    ) : interview.thumbnail ? (
-                      <div className="aspect-video w-full rounded-lg overflow-hidden">
-                        <img
-                          src={interview.thumbnail}
-                          alt={interview.title}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                    ) : (
-                      <div className="aspect-video w-full rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
-                        <FileText className="w-12 h-12 text-[#FF6B35]/50" />
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
