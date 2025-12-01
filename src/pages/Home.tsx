@@ -17,10 +17,7 @@ const Home = () => {
               Hey, I'm Jeremy.
             </h1>
             <p className="text-[15px] md:text-[17px] lg:text-[18px] leading-relaxed text-muted-foreground mb-6 md:mb-8">
-              I build SaaS products where users drive growth, not dashboards.
-              <br />
-              Fueled by failures, feedback loops, and shipping fast.
-              <br />I share the messy truth about startups in my newsletter.
+              Building user-driven SaaS. Sharing the messy truth about failures, feedback, and shipping fast.
             </p>
             <div className="flex gap-4 items-center">
               <a
