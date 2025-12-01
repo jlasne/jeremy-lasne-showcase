@@ -12,7 +12,7 @@ const FeedbackMap = () => {
         <Button
           variant="ghost"
           className="text-gray-400 hover:text-white mb-8"
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/in")}
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back

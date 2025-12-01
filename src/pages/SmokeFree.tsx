@@ -11,7 +11,7 @@ const SmokeFree = () => {
         <Button
           variant="ghost"
           className="text-white hover:text-white hover:bg-white/10 mb-6"
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/in")}
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Feed
