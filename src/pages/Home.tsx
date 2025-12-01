@@ -1,5 +1,5 @@
-import { ArrowRight } from "lucide-react";
 import NavBar from "@/components/NavBar";
+import CTACard from "@/components/CTACard";
 
 const Home = () => {
   return (
@@ -62,53 +62,21 @@ const Home = () => {
       {/* CTA Section */}
       <section className="px-6 md:px-8 py-8 md:py-12 pb-16 md:pb-24">
         <div className="max-w-[900px] mx-auto grid md:grid-cols-2 gap-6 md:gap-8">
-          {/* Newsletter CTA */}
-          <a
+          <CTACard
             href="https://blog.jeremylasne.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group block p-8 md:p-10 bg-card border-2 border-border rounded-2xl hover:-translate-y-2 hover:border-cta-orange hover:shadow-[0_12px_40px_rgba(247,147,26,0.15)] transition-all relative overflow-hidden"
-          >
-            <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-accent-red to-cta-orange scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
-            <div className="flex flex-col gap-2 md:gap-3">
-              <span className="text-[11px] md:text-xs font-semibold uppercase tracking-wider text-cta-orange">
-                Newsletter
-              </span>
-              <h2 className="text-2xl md:text-3xl lg:text-[32px] font-extrabold leading-tight mb-1 md:mb-2">
-                Read the Latest
-              </h2>
-              <p className="text-[15px] md:text-[17px] lg:text-[18px] text-muted-foreground leading-relaxed mb-3 md:mb-4">
-                Sharing insights about marketing and real businesses experience.
-              </p>
-              <span className="inline-flex items-center gap-2 text-[13px] md:text-sm font-semibold text-foreground group-hover:text-cta-orange transition-colors">
-                blog.jeremylasne.com
-                <ArrowRight className="w-[18px] h-[18px] group-hover:translate-x-1 transition-transform" />
-              </span>
-            </div>
-          </a>
-
-          {/* Talk CTA */}
-          <a
+            label="Newsletter"
+            title="Read the Latest"
+            description="Sharing insights about marketing and real businesses experience."
+            linkText="blog.jeremylasne.com"
+            isExternal
+          />
+          <CTACard
             href="/talk"
-            className="group block p-8 md:p-10 bg-card border-2 border-border rounded-2xl hover:-translate-y-2 hover:border-cta-orange hover:shadow-[0_12px_40px_rgba(247,147,26,0.15)] transition-all relative overflow-hidden"
-          >
-            <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-accent-red to-cta-orange scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
-            <div className="flex flex-col gap-2 md:gap-3">
-              <span className="text-[11px] md:text-xs font-semibold uppercase tracking-wider text-cta-orange">
-                Talk
-              </span>
-              <h2 className="text-2xl md:text-3xl lg:text-[32px] font-extrabold leading-tight mb-1 md:mb-2">
-                Learn from Builders
-              </h2>
-              <p className="text-[15px] md:text-[17px] lg:text-[18px] text-muted-foreground leading-relaxed mb-3 md:mb-4">
-                Conversations with founders who ship. Real stories, real tactics, real growth.
-              </p>
-              <span className="inline-flex items-center gap-2 text-[13px] md:text-sm font-semibold text-foreground group-hover:text-cta-orange transition-colors">
-                jeremylasne.com/talk
-                <ArrowRight className="w-[18px] h-[18px] group-hover:translate-x-1 transition-transform" />
-              </span>
-            </div>
-          </a>
+            label="Talk"
+            title="Learn from Builders"
+            description="Conversations with founders who ship. Real stories, real tactics, real growth."
+            linkText="jeremylasne.com/talk"
+          />
         </div>
       </section>
     </div>
