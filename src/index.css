@@ -8,19 +8,19 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 16 5% 87%;
+    --background: 0 0% 94%;
     --foreground: 0 0% 12%;
-    --card: 18 6% 91%;
+    --card: 0 0% 96%;
     --card-foreground: 0 0% 12%;
-    --popover: 18 6% 91%;
+    --popover: 0 0% 96%;
     --popover-foreground: 0 0% 12%;
     --primary: 0 0% 9%;
     --primary-foreground: 0 0% 98%;
-    --secondary: 16 4% 82%;
+    --secondary: 0 0% 88%;
     --secondary-foreground: 0 0% 9%;
-    --muted: 16 4% 82%;
+    --muted: 0 0% 88%;
     --muted-foreground: 0 0% 35%;
-    --accent: 16 4% 82%;
+    --accent: 0 0% 88%;
     --accent-foreground: 0 0% 9%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
@@ -28,8 +28,8 @@ All colors MUST be HSL.
     --input: 0 0% 89.8%;
     --ring: 0 0% 3.9%;
     --radius: 1rem;
-    --accent-red: 0 100% 27%;
-    --accent-red-hover: 0 100% 35%;
+    --accent-red: 0 65% 45%;
+    --accent-red-hover: 0 65% 35%;
     --cta-orange: 29 93% 53%;
     --cta-orange-hover: 29 100% 59%;
     --sidebar-background: 0 0% 98%;
@@ -51,19 +51,19 @@ All colors MUST be HSL.
     --popover-foreground: 0 0% 94%;
     --primary: 0 0% 98%;
     --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 16%;
+    --secondary: 0 0% 18%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 16%;
+    --muted: 0 0% 18%;
     --muted-foreground: 0 0% 63%;
-    --accent: 0 0% 16%;
+    --accent: 0 0% 18%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
     --border: 0 0% 100% / 0.05;
     --input: 0 0% 14.9%;
     --ring: 0 0% 83.1%;
-    --accent-red: 0 100% 27%;
-    --accent-red-hover: 0 100% 35%;
+    --accent-red: 0 65% 45%;
+    --accent-red-hover: 0 65% 35%;
     --cta-orange: 29 93% 53%;
     --cta-orange-hover: 29 100% 59%;
     --sidebar-background: 240 5.9% 10%;

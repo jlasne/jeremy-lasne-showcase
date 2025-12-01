@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, CheckCircle2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import NavBar from "@/components/NavBar";
 
 const MarketingForFounders = () => {
   const navigate = useNavigate();
@@ -787,13 +788,14 @@ const MarketingForFounders = () => {
   const currentSection = sections.find((s) => s.id === selectedSection);
 
   return (
-    <div className="min-h-screen bg-[#2a2a2a]">
-      <div className="container max-w-7xl mx-auto px-4 py-6 md:py-8">
+    <div className="min-h-screen bg-background">
+      <NavBar />
+      <div className="container max-w-7xl mx-auto px-4 py-6 md:py-8 pt-[110px] md:pt-[140px]">
         <Button
           variant="ghost"
           size="sm"
-          className="text-white hover:text-white hover:bg-white/10 mb-4"
-          onClick={() => navigate("/in")}
+          className="text-muted-foreground hover:text-foreground hover:bg-secondary mb-4"
+          onClick={() => navigate("/interview")}
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Feed
@@ -801,26 +803,26 @@ const MarketingForFounders = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           {/* Left Sidebar - Navigation */}
-          <div className="md:col-span-4 lg:col-span-3 bg-[#222222] md:bg-transparent md:pr-6">
-            <div className="sticky top-6 md:bg-[#222222] md:p-6 md:rounded-lg md:-ml-4">
-              <h1 className="text-xl font-bold text-white mb-2">Marketing for Founders</h1>
-              <p className="text-sm text-gray-400 mb-8">
+          <div className="md:col-span-4 lg:col-span-3 bg-secondary md:bg-transparent md:pr-6">
+            <div className="sticky top-6 md:bg-secondary md:p-6 md:rounded-lg md:-ml-4">
+              <h1 className="text-xl font-bold text-foreground mb-2">Marketing for Founders</h1>
+              <p className="text-sm text-muted-foreground mb-8">
                 Section {currentSection?.step} of {sections.length}
               </p>
 
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Guide Sections</h3>
+                  <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">Guide Sections</h3>
                   <nav className="space-y-1">
                     {sections.map((section) => (
                       <button
                         key={section.id}
                         className={`w-full text-left px-3 py-2 rounded-md transition-colors ${
                           selectedSection === section.id
-                            ? "bg-white/10 text-white"
+                            ? "bg-card text-foreground"
                             : section.available
-                              ? "text-gray-300 hover:bg-white/5 hover:text-white"
-                              : "text-gray-500 cursor-not-allowed"
+                              ? "text-muted-foreground hover:bg-card/50 hover:text-foreground"
+                              : "text-muted-foreground/50 cursor-not-allowed"
                         }`}
                         onClick={() => {
                           if (section.available) {
@@ -832,13 +834,13 @@ const MarketingForFounders = () => {
                         disabled={!section.available}
                       >
                         <div className="flex items-start gap-3">
-                          <span className="text-xs font-medium mt-0.5 text-gray-400">
+                          <span className="text-xs font-medium mt-0.5 text-muted-foreground">
                             {String(section.step).padStart(2, "0")}
                           </span>
                           <div className="flex-1 min-w-0">
                             <div className="font-medium text-sm">{section.title}</div>
-                            <div className="text-xs text-gray-400 mt-0.5">{section.subtitle}</div>
-                            {!section.available && <div className="text-xs text-gray-500 mt-1">Coming soon</div>}
+                            <div className="text-xs text-muted-foreground mt-0.5">{section.subtitle}</div>
+                            {!section.available && <div className="text-xs text-muted-foreground/50 mt-1">Coming soon</div>}
                           </div>
                         </div>
                       </button>
@@ -851,7 +853,7 @@ const MarketingForFounders = () => {
 
           {/* Right Content Area */}
           <div className="md:col-span-8 lg:col-span-9">
-            <div className="bg-[#2a2a2a] pb-12">
+            <div className="bg-background pb-12">
               <article className="space-y-6 max-w-3xl">{renderContent()}</article>
             </div>
           </div>

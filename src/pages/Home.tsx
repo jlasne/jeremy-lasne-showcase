@@ -1,50 +1,14 @@
-import { Button } from "@/components/ui/button";
-import { Moon, Sun, ArrowRight } from "lucide-react";
-import { useState, useEffect } from "react";
+import { ArrowRight } from "lucide-react";
+import NavBar from "@/components/NavBar";
 
 const Home = () => {
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") as "dark" | "light" || "dark";
-    setTheme(savedTheme);
-    document.documentElement.setAttribute("data-theme", savedTheme);
-  }, []);
-
-  const toggleTheme = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
-    setTheme(newTheme);
-    document.documentElement.setAttribute("data-theme", newTheme);
-    localStorage.setItem("theme", newTheme);
-  };
-
   return (
     <div className="min-h-screen bg-background">
-      {/* Sticky Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/85 backdrop-blur-xl border-b border-border">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-8 py-4 md:py-6 flex justify-between items-center">
-          <a href="/" className="text-sm font-bold tracking-wider text-foreground hover:text-accent-red transition-colors">
-            JEREMY LASNE
-          </a>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleTheme}
-            className="w-10 h-10 bg-secondary border border-border hover:bg-accent-red hover:border-accent-red hover:scale-105 transition-all"
-            aria-label="Toggle dark/light mode"
-          >
-            {theme === "dark" ? (
-              <Moon className="w-5 h-5" />
-            ) : (
-              <Sun className="w-5 h-5" />
-            )}
-          </Button>
-        </div>
-      </nav>
+      <NavBar />
 
       {/* Hero Section */}
       <section className="pt-[110px] md:pt-[140px] pb-8 md:pb-12 px-6 md:px-8">
-        <div className="max-w-[1000px] mx-auto">
+        <div className="max-w-[1000px] mx-auto flex flex-col items-center text-center">
           <p className="text-xs md:text-sm font-bold text-accent-red mb-3 md:mb-4 tracking-wider uppercase">
             User-Led Growth Founder
           </p>
@@ -56,12 +20,12 @@ const Home = () => {
             Fueled by failures, feedback loops, and shipping fast.<br />
             I share the messy truth about startups in my newsletter.
           </p>
-          <div className="flex gap-4 items-center">
+          <div className="flex gap-4 items-center justify-center">
             <a
               href="https://x.com/jeremylasne"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-11 h-11 flex items-center justify-center text-muted-foreground bg-secondary rounded-lg hover:text-foreground hover:bg-accent-red hover:-translate-y-1 transition-all"
+              className="w-11 h-11 flex items-center justify-center text-muted-foreground bg-secondary rounded-lg hover:text-foreground hover:bg-cta-orange hover:-translate-y-1 transition-all"
               aria-label="X (Twitter)"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
@@ -72,7 +36,7 @@ const Home = () => {
               href="https://www.youtube.com/@jeremyfounder"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-11 h-11 flex items-center justify-center text-muted-foreground bg-secondary rounded-lg hover:text-foreground hover:bg-accent-red hover:-translate-y-1 transition-all"
+              className="w-11 h-11 flex items-center justify-center text-muted-foreground bg-secondary rounded-lg hover:text-foreground hover:bg-cta-orange hover:-translate-y-1 transition-all"
               aria-label="YouTube"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
@@ -83,7 +47,7 @@ const Home = () => {
               href="https://tasu.ai"
               target="_blank"
               rel="noopener noreferrer"
-              className="h-11 px-4 flex items-center justify-center text-muted-foreground bg-secondary rounded-lg hover:text-foreground hover:bg-accent-red hover:-translate-y-1 transition-all text-[13px] md:text-sm font-semibold tracking-wide"
+              className="h-11 px-4 flex items-center justify-center text-muted-foreground bg-secondary rounded-lg hover:text-foreground hover:bg-cta-orange hover:-translate-y-1 transition-all text-[13px] md:text-sm font-semibold tracking-wide"
               aria-label="Tasu.ai"
             >
               tasu.ai
@@ -113,7 +77,7 @@ const Home = () => {
               <p className="text-[15px] md:text-[17px] lg:text-[18px] text-muted-foreground leading-relaxed mb-3 md:mb-4">
                 Deep dives on user-led growth, startup failures, and shipping fast. No fluff, just tactical insights.
               </p>
-              <span className="inline-flex items-center gap-2 text-[13px] md:text-sm font-semibold text-cta-orange group-hover:text-cta-orange-hover transition-colors">
+              <span className="inline-flex items-center gap-2 text-[13px] md:text-sm font-semibold text-foreground group-hover:text-cta-orange transition-colors">
                 blog.jeremylasne.com
                 <ArrowRight className="w-[18px] h-[18px] group-hover:translate-x-1 transition-transform" />
               </span>
@@ -122,7 +86,7 @@ const Home = () => {
 
           {/* Founder Interviews CTA */}
           <a
-            href="/in"
+            href="/interview"
             className="group block p-8 md:p-10 bg-card border-2 border-border rounded-2xl hover:-translate-y-2 hover:border-cta-orange hover:shadow-[0_12px_40px_rgba(247,147,26,0.15)] transition-all relative overflow-hidden"
           >
             <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-accent-red to-cta-orange scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
@@ -136,8 +100,8 @@ const Home = () => {
               <p className="text-[15px] md:text-[17px] lg:text-[18px] text-muted-foreground leading-relaxed mb-3 md:mb-4">
                 Conversations with founders who ship. Real stories, real tactics, real growth.
               </p>
-              <span className="inline-flex items-center gap-2 text-[13px] md:text-sm font-semibold text-cta-orange group-hover:text-cta-orange-hover transition-colors">
-                jeremylasne.com/in
+              <span className="inline-flex items-center gap-2 text-[13px] md:text-sm font-semibold text-foreground group-hover:text-cta-orange transition-colors">
+                jeremylasne.com/interview
                 <ArrowRight className="w-[18px] h-[18px] group-hover:translate-x-1 transition-transform" />
               </span>
             </div>
