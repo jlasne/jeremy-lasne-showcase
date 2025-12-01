@@ -8,7 +8,7 @@ const Home = () => {
 
       {/* Hero Section */}
       <section className="pt-[110px] md:pt-[140px] pb-8 md:pb-12 px-6 md:px-8">
-        <div className="max-w-[1000px] mx-auto flex flex-col items-center text-center">
+        <div className="max-w-[1000px] mx-auto flex flex-col items-end text-right">
           <p className="text-xs md:text-sm font-bold text-accent-red mb-3 md:mb-4 tracking-wider uppercase">
             User-Led Growth Founder
           </p>
@@ -20,12 +20,12 @@ const Home = () => {
             Fueled by failures, feedback loops, and shipping fast.<br />
             I share the messy truth about startups in my newsletter.
           </p>
-          <div className="flex gap-4 items-center justify-center">
+          <div className="flex gap-4 items-center">
             <a
               href="https://x.com/jeremylasne"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-11 h-11 flex items-center justify-center text-muted-foreground bg-secondary rounded-lg hover:text-foreground hover:bg-cta-orange hover:-translate-y-1 transition-all"
+              className="w-11 h-11 flex items-center justify-center text-muted-foreground bg-secondary rounded-lg hover:text-foreground hover:bg-accent-red hover:-translate-y-1 transition-all"
               aria-label="X (Twitter)"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
@@ -36,7 +36,7 @@ const Home = () => {
               href="https://www.youtube.com/@jeremyfounder"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-11 h-11 flex items-center justify-center text-muted-foreground bg-secondary rounded-lg hover:text-foreground hover:bg-cta-orange hover:-translate-y-1 transition-all"
+              className="w-11 h-11 flex items-center justify-center text-muted-foreground bg-secondary rounded-lg hover:text-foreground hover:bg-accent-red hover:-translate-y-1 transition-all"
               aria-label="YouTube"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
@@ -47,7 +47,7 @@ const Home = () => {
               href="https://tasu.ai"
               target="_blank"
               rel="noopener noreferrer"
-              className="h-11 px-4 flex items-center justify-center text-muted-foreground bg-secondary rounded-lg hover:text-foreground hover:bg-cta-orange hover:-translate-y-1 transition-all text-[13px] md:text-sm font-semibold tracking-wide"
+              className="h-11 px-4 flex items-center justify-center text-muted-foreground bg-secondary rounded-lg hover:text-foreground hover:bg-accent-red hover:-translate-y-1 transition-all text-[13px] md:text-sm font-semibold tracking-wide"
               aria-label="Tasu.ai"
             >
               tasu.ai
