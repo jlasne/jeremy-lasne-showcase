@@ -795,7 +795,7 @@ const MarketingForFounders = () => {
           variant="ghost"
           size="sm"
           className="text-muted-foreground hover:text-foreground hover:bg-secondary mb-4"
-          onClick={() => navigate("/interview")}
+          onClick={() => navigate("/talk")}
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Feed
