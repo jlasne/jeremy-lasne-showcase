@@ -118,33 +118,55 @@ const Directory = () => {
           </p>
         </div>
 
-        {/* Directory List */}
-        <div className="space-y-4">
-          {DIRECTORIES.map((directory) => (
-            <a
-              key={directory.name}
-              href={directory.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group block p-5 md:p-6 bg-card border border-border rounded-xl hover:border-cta-orange hover:shadow-[0_8px_30px_rgba(247,147,26,0.1)] transition-all"
-            >
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
-                <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-1">
-                    <h3 className="text-lg md:text-xl font-bold text-foreground group-hover:text-cta-orange transition-colors">
+        {/* Directory Table */}
+        <div className="overflow-x-auto rounded-lg border border-border">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="bg-secondary/50 border-b border-border">
+                <th className="text-left py-3 px-4 font-semibold text-foreground">Name</th>
+                <th className="text-left py-3 px-4 font-semibold text-foreground hidden md:table-cell">Tagline</th>
+                <th className="text-left py-3 px-4 font-semibold text-foreground">Pricing</th>
+                <th className="py-3 px-4 w-10"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {DIRECTORIES.map((directory, index) => (
+                <tr
+                  key={directory.name}
+                  className={`group hover:bg-secondary/30 transition-colors ${index !== DIRECTORIES.length - 1 ? 'border-b border-border' : ''}`}
+                >
+                  <td className="py-3 px-4">
+                    <a
+                      href={directory.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-semibold text-foreground group-hover:text-cta-orange transition-colors"
+                    >
                       {directory.name}
-                    </h3>
-                    <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-secondary text-muted-foreground">
+                    </a>
+                  </td>
+                  <td className="py-3 px-4 text-muted-foreground hidden md:table-cell">
+                    {directory.tagline}
+                  </td>
+                  <td className="py-3 px-4">
+                    <span className="text-xs font-medium px-2 py-1 rounded bg-secondary text-muted-foreground">
                       {directory.pricing}
                     </span>
-                  </div>
-                  <p className="text-sm text-muted-foreground mb-1">{directory.tagline}</p>
-                  <p className="text-xs text-muted-foreground/70">{directory.description}</p>
-                </div>
-                <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-cta-orange transition-colors flex-shrink-0" />
-              </div>
-            </a>
-          ))}
+                  </td>
+                  <td className="py-3 px-4">
+                    <a
+                      href={directory.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-muted-foreground group-hover:text-cta-orange transition-colors"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
