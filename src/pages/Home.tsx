@@ -58,12 +58,11 @@ const Home = () => {
 
       {/* CTA Section */}
       <section className="px-6 md:px-8 py-8 md:py-12 pb-16 md:pb-24">
-        <div className="max-w-[900px] mx-auto grid md:grid-cols-2 gap-6 md:gap-8">
+        <div className="max-w-[900px] mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           <CTACard
             href="https://blog.jeremylasne.com"
             label="Newsletter"
             title="Read the Latest"
-            description="Sharing insights about marketing and real businesses experience."
             linkText="blog.jeremylasne.com"
             isExternal
           />
@@ -71,8 +70,13 @@ const Home = () => {
             href="/talk"
             label="Talk"
             title="Learn from Builders"
-            description="Conversations with founders who ship. Real stories, real tactics, real growth."
             linkText="jeremylasne.com/talk"
+          />
+          <CTACard
+            href="/directory"
+            label="Directory"
+            title="Get Listed. Everywhere."
+            linkText="jeremylasne.com/directory"
           />
         </div>
       </section>

@@ -4,7 +4,7 @@ interface CTACardProps {
   href: string;
   label: string;
   title: string;
-  description: string;
+  description?: string;
   linkText: string;
   isExternal?: boolean;
 }
@@ -29,9 +29,11 @@ const CTACard = ({ href, label, title, description, linkText, isExternal = false
         <h2 className="text-2xl md:text-3xl lg:text-[32px] font-extrabold leading-tight mb-1 md:mb-2">
           {title}
         </h2>
-        <p className="text-[15px] md:text-[17px] lg:text-[18px] text-muted-foreground leading-relaxed mb-3 md:mb-4">
-          {description}
-        </p>
+        {description && (
+          <p className="text-[15px] md:text-[17px] lg:text-[18px] text-muted-foreground leading-relaxed mb-3 md:mb-4">
+            {description}
+          </p>
+        )}
         <span className="inline-flex items-center gap-2 text-[13px] md:text-sm font-semibold text-foreground group-hover:text-cta-orange transition-colors">
           {linkText}
           <ArrowRight className="w-[18px] h-[18px] group-hover:translate-x-1 transition-transform" />
