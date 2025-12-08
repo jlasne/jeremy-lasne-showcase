@@ -2,6 +2,13 @@ import { Interview } from "@/types/interview";
 
 export const INTERVIEWS: Interview[] = [
   {
+    title: "Movement Meets Vibecoding",
+    description:
+      "Interviewed Jonathan Magno (@HyperM0nkey1), founder of SAFU Move—a movement app that gives instant feedback while you exercise, merging vibecoding with motion capture to gamify fitness.",
+    videoId: "707zNS6u_ew",
+    url: "/talk/safumove",
+  },
+  {
     title: "Don't Build in Silence",
     description:
       "Interviewed @Aevmorfop, who built an app to quit smoking—not as a startup idea, but because he was in personal hell. He shared the process publicly, and a stranger used his tool to quit too.",
