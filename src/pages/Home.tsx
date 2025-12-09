@@ -10,14 +10,11 @@ const Home = () => {
       <section className="pt-[110px] md:pt-[140px] pb-8 md:pb-12 px-6 md:px-8">
         <div className="max-w-[1000px] mx-auto flex flex-col items-center">
           <div className="w-full max-w-[700px] text-left">
-            <p className="text-xs md:text-sm font-bold text-accent-red mb-3 md:mb-4 tracking-wider uppercase">
-              User-Led Growth Founder
-            </p>
             <h1 className="text-[42px] md:text-[56px] lg:text-[72px] font-black leading-[1.1] mb-4 md:mb-6 tracking-tight">
               Hey, I'm Jeremy.
             </h1>
             <p className="text-[15px] md:text-[17px] lg:text-[18px] leading-relaxed text-muted-foreground mb-6 md:mb-8">
-              Building user-driven SaaS. Sharing the messy truth about failures, feedback, and shipping fast.
+              Obsessed with simple products that actually bring value.
             </p>
             <div className="flex gap-4 items-center">
               <a
@@ -42,15 +39,6 @@ const Home = () => {
                   <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
                 </svg>
               </a>
-              <a
-                href="https://tasu.ai"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="h-11 px-4 flex items-center justify-center text-muted-foreground bg-secondary rounded-lg hover:text-foreground hover:bg-accent-red hover:-translate-y-1 transition-all text-[13px] md:text-sm font-semibold tracking-wide"
-                aria-label="Tasu.ai"
-              >
-                tasu.ai
-              </a>
             </div>
           </div>
         </div>
@@ -73,10 +61,11 @@ const Home = () => {
             linkText="jeremylasne.com/talk"
           />
           <CTACard
-            href="/directory"
-            label="Directory"
-            title="Get Listed. Everywhere."
-            linkText="jeremylasne.com/directory"
+            href="https://trustviews.io"
+            label="Business"
+            title="TrustViews"
+            linkText="Real website views, public and trusted"
+            isExternal
           />
         </div>
       </section>
