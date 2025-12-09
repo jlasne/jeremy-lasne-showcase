@@ -64,7 +64,7 @@ const Home = () => {
             href="https://trustviews.io"
             label="Business"
             title="TrustViews"
-            linkText="Real website views, public and trusted"
+            linkText="trustviews.io"
             isExternal
           />
         </div>
