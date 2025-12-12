@@ -73,7 +73,7 @@ const Home = () => {
           </div>
 
           {/* Categories/Tiles */}
-          <div className="space-y-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {categories.map((category) => (
               <CategoryTile key={category.id} category={category} />
             ))}
