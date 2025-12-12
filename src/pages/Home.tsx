@@ -38,8 +38,8 @@ const Home = () => {
       <NavBar />
 
       {/* Full screen content - no scroll */}
-      <div className="flex-1 flex flex-col justify-center px-6 md:px-8 pt-[80px]">
-        <div className="max-w-4xl mx-auto w-full">
+      <div className="flex-1 flex flex-col px-6 md:px-8 pt-[80px] pb-8">
+        <div className="flex-1 flex flex-col w-full max-w-6xl mx-auto">
           {/* Header with social links */}
           <div className="text-center mb-8 md:mb-12">
             <h1 className="text-4xl md:text-5xl font-bold mb-2 tracking-tight">Hey, I'm Jeremy.</h1>
@@ -72,8 +72,8 @@ const Home = () => {
             </div>
           </div>
 
-          {/* Categories/Tiles */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {/* Categories/Tiles - fills remaining space */}
+          <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-4">
             {categories.map((category) => (
               <CategoryTile key={category.id} category={category} />
             ))}
@@ -105,10 +105,10 @@ const CategoryTile = ({ category }: { category: Category }) => {
       onClick={handleClick}
     >
       <div
-        className={`relative overflow-hidden border bg-card transition-all duration-300 ease-in-out cursor-pointer ${
+        className={`relative overflow-hidden border bg-card transition-all duration-300 ease-in-out cursor-pointer h-full min-h-[120px] ${
           isHovered
-            ? 'h-32 border-primary shadow-lg shadow-primary/20 bg-primary/5'
-            : 'h-24 border-border hover:border-primary/50'
+            ? 'border-primary shadow-lg shadow-primary/20 bg-primary/5'
+            : 'border-border hover:border-primary/50'
         }`}
       >
         {/* Corner brackets that appear on hover */}
