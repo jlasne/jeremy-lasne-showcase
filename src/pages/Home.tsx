@@ -105,10 +105,10 @@ const CategoryTile = ({ category }: { category: Category }) => {
       onClick={handleClick}
     >
       <div
-        className={`relative overflow-hidden border bg-card transition-all duration-300 ease-in-out cursor-pointer ${
+        className={`relative overflow-hidden border bg-card transition-all duration-300 ease-in-out cursor-pointer p-5 ${
           isHovered
-            ? 'h-32 border-primary shadow-lg shadow-primary/20 bg-primary/5'
-            : 'h-24 border-border hover:border-primary/50'
+            ? 'border-primary shadow-lg shadow-primary/20 bg-primary/5'
+            : 'border-border hover:border-primary/50'
         }`}
       >
         {/* Corner brackets that appear on hover */}
@@ -125,37 +125,28 @@ const CategoryTile = ({ category }: { category: Category }) => {
           </>
         )}
 
-        {/* Content */}
-        <div className="flex items-center justify-between h-full px-6 md:px-8">
-          <div className="flex-1">
-            {category.label && (
-              <span className="text-xs font-semibold uppercase tracking-wider text-primary mb-1 block">
-                {category.label}
-              </span>
-            )}
-            <h3
-              className={`font-bold transition-colors duration-300 ${
-                category.featured ? 'text-2xl md:text-3xl' : 'text-xl md:text-2xl'
-              } ${isHovered ? 'text-primary' : 'text-foreground'}`}
+        {/* Content - left aligned, vertically centered */}
+        <div className="flex flex-col justify-center h-full text-left">
+          {category.label && (
+            <span className="text-xs font-semibold uppercase tracking-wider text-primary mb-1 block">
+              {category.label}
+            </span>
+          )}
+          <h3
+            className={`font-bold transition-colors duration-300 text-lg md:text-xl ${
+              isHovered ? 'text-primary' : 'text-foreground'
+            }`}
+          >
+            {category.title}
+          </h3>
+          {category.subtitle && (
+            <p
+              className={`mt-1 transition-colors duration-300 text-xs md:text-sm ${
+                isHovered ? 'text-foreground/90' : 'text-muted-foreground'
+              }`}
             >
-              {category.title}
-            </h3>
-            {category.subtitle && (
-              <p
-                className={`mt-1 transition-colors duration-300 text-sm md:text-base ${
-                  isHovered ? 'text-foreground/90' : 'text-muted-foreground'
-                }`}
-              >
-                {category.subtitle}
-              </p>
-            )}
-          </div>
-
-          {/* Icon appears on the right on hover */}
-          {category.icon && isHovered && (
-            <div className="text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              {category.icon}
-            </div>
+              {category.subtitle}
+            </p>
           )}
         </div>
       </div>
