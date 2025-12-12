@@ -1,7 +1,6 @@
-import React from "react";
 import NavBar from "@/components/NavBar";
-import { Category } from "@/components/ui/category-list";
-import { Mail, Mic, TrendingUp } from "lucide-react";
+import { CategoryList, Category } from "@/components/ui/category-list";
+import { ArrowRight, Mail, Mic, TrendingUp } from "lucide-react";
 
 const categories: Category[] = [
   {
@@ -35,48 +34,50 @@ const categories: Category[] = [
 
 const Home = () => {
   return (
-    <div className="h-screen bg-background flex flex-col overflow-hidden">
+    <div className="min-h-screen bg-background flex flex-col">
       <NavBar />
 
       {/* Full screen content - no scroll */}
-      <div className="flex-1 flex flex-col justify-center px-6 md:px-8 py-8">
-        {/* Header with social links */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold mb-2 tracking-tight">Hey, I'm Jeremy.</h1>
-          <p className="text-lg md:text-xl text-muted-foreground mb-6">
-            Obsessed with simple products that actually bring value.
-          </p>
-          <div className="flex gap-4 items-center justify-center">
-            <a
-              href="https://x.com/jeremylasne"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-11 h-11 flex items-center justify-center text-muted-foreground bg-secondary rounded-lg hover:text-foreground hover:bg-accent-red hover:-translate-y-1 transition-all"
-              aria-label="X (Twitter)"
-            >
-              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
-            </a>
-            <a
-              href="https://www.youtube.com/@jeremyfounder"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-11 h-11 flex items-center justify-center text-muted-foreground bg-secondary rounded-lg hover:text-foreground hover:bg-accent-red hover:-translate-y-1 transition-all"
-              aria-label="YouTube"
-            >
-              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-              </svg>
-            </a>
+      <div className="flex-1 flex flex-col justify-center px-6 md:px-8 pt-[80px]">
+        <div className="max-w-4xl mx-auto w-full">
+          {/* Header with social links */}
+          <div className="text-center mb-8 md:mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold mb-2 tracking-tight">Hey, I'm Jeremy.</h1>
+            <p className="text-lg md:text-xl text-muted-foreground mb-6">
+              Obsessed with simple products that actually bring value.
+            </p>
+            <div className="flex gap-4 items-center justify-center">
+              <a
+                href="https://x.com/jeremylasne"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-11 h-11 flex items-center justify-center text-muted-foreground bg-secondary rounded-lg hover:text-foreground hover:bg-accent-red hover:-translate-y-1 transition-all"
+                aria-label="X (Twitter)"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg>
+              </a>
+              <a
+                href="https://www.youtube.com/@jeremyfounder"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-11 h-11 flex items-center justify-center text-muted-foreground bg-secondary rounded-lg hover:text-foreground hover:bg-accent-red hover:-translate-y-1 transition-all"
+                aria-label="YouTube"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                </svg>
+              </a>
+            </div>
           </div>
-        </div>
 
-        {/* Categories/Tiles - fills remaining space */}
-        <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-4 max-w-6xl mx-auto w-full">
-          {categories.map((category) => (
-            <CategoryTile key={category.id} category={category} />
-          ))}
+          {/* Categories/Tiles */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {categories.map((category) => (
+              <CategoryTile key={category.id} category={category} />
+            ))}
+          </div>
         </div>
       </div>
     </div>
@@ -98,16 +99,16 @@ const CategoryTile = ({ category }: { category: Category }) => {
 
   return (
     <div
-      className="relative group h-full"
+      className="relative group"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={handleClick}
     >
       <div
-        className={`relative overflow-hidden border bg-card transition-all duration-300 ease-in-out cursor-pointer h-full flex flex-col justify-center ${
+        className={`relative overflow-hidden border bg-card transition-all duration-300 ease-in-out cursor-pointer ${
           isHovered
-            ? 'border-primary shadow-lg shadow-primary/20 bg-primary/5'
-            : 'border-border hover:border-primary/50'
+            ? 'h-32 border-primary shadow-lg shadow-primary/20 bg-primary/5'
+            : 'h-24 border-border hover:border-primary/50'
         }`}
       >
         {/* Corner brackets that appear on hover */}
@@ -161,5 +162,7 @@ const CategoryTile = ({ category }: { category: Category }) => {
     </div>
   );
 };
+
+import React from "react";
 
 export default Home;
