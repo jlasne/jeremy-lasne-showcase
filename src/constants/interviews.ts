@@ -2,6 +2,13 @@ import { Interview } from "@/types/interview";
 
 export const INTERVIEWS: Interview[] = [
   {
+    title: "How Simple Products Become Powerful Through Newsletters",
+    description:
+      "Interviewed Jon Phillips (@joncphillips), creator of Auto Changelog—a micro-SaaS that turns GitHub activity into readable changelogs, combining newsletters with simple, shippable tools.",
+    videoId: "LjVJpa1w5TI",
+    url: "/talk/autochangelog",
+  },
+  {
     title: "Movement Meets Vibecoding",
     description:
       "Interviewed Jonathan Magno (@HyperM0nkey1), founder of SAFU Move—a movement app that gives instant feedback while you exercise, merging vibecoding with motion capture to gamify fitness.",

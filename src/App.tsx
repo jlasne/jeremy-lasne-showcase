@@ -9,6 +9,7 @@ import Ramble from "./pages/Ramble";
 import Tierly from "./pages/Tierly";
 import SmokeFree from "./pages/SmokeFree";
 import SafuMove from "./pages/SafuMove";
+import AutoChangelog from "./pages/AutoChangelog";
 import Marketing from "./pages/Marketing";
 import Directory from "./pages/Directory";
 import NotFound from "./pages/NotFound";
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/talk/tierly" element={<Tierly />} />
           <Route path="/talk/quitesmoking" element={<SmokeFree />} />
           <Route path="/talk/safumove" element={<SafuMove />} />
+          <Route path="/talk/autochangelog" element={<AutoChangelog />} />
           <Route path="/talk/marketing" element={<Marketing />} />
           <Route path="/directory" element={<Directory />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
