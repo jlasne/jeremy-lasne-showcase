@@ -54,17 +54,12 @@ const Home = () => {
             linkText="blog.jeremylasne.com"
             isExternal
           />
-          <CTACard
-            href="/talk"
-            label="Talk"
-            title="Learn from Builders"
-            linkText="jeremylasne.com/talk"
-          />
+          <CTACard href="/talk" label="Talk" title="Learn from Builders" linkText="jeremylasne.com/talk" />
           <CTACard
             href="https://trustviews.io"
             label="Business"
             title="TrustViews"
-            description="Real website views, public and trusted"
+            description="Make your traffic visible and trusted"
             linkText="trustviews.io"
             isExternal
           />
