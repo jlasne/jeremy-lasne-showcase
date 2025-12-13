@@ -45,7 +45,7 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="px-6 md:px-8 py-8 md:py-12 pb-16 md:pb-24">
+      <section className="px-6 md:px-8 py-8 md:py-12">
         <div className="max-w-[900px] mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           <CTACard
             href="https://blog.jeremylasne.com"
@@ -63,6 +63,86 @@ const Home = () => {
             linkText="trustviews.io"
             isExternal
           />
+        </div>
+      </section>
+
+      {/* About Me Section */}
+      <section className="px-6 md:px-8 py-12 md:py-16 pb-16 md:pb-24">
+        <div className="max-w-[700px] mx-auto">
+          <h2 className="text-[28px] md:text-[36px] font-bold mb-6 tracking-tight">
+            Failures, pivots, and a big vision.
+          </h2>
+          
+          <div className="prose prose-lg dark:prose-invert max-w-none text-muted-foreground space-y-6">
+            <p className="text-[15px] md:text-[16px] leading-relaxed">
+              In September 2024, I launched my first business right after a Master where I basically learned nothing useful about building a company. Since then, I've failed more times than I can count, but each one pushed me closer to what I'm building now.
+            </p>
+
+            <hr className="border-border my-8" />
+
+            <p className="text-[15px] md:text-[16px] leading-relaxed">
+              Today, I can clearly see my main lever: <strong className="text-foreground">fixing trust and retention in online businesses.</strong>
+            </p>
+
+            <p className="text-[15px] md:text-[16px] leading-relaxed">
+              I partnered with Kyle to build two products around that idea:
+            </p>
+
+            <ul className="text-[15px] md:text-[16px] leading-relaxed space-y-3 list-disc pl-5">
+              <li>
+                <strong className="text-foreground">Trustviews</strong>: like TrustMRR but for traffic, acting as a third‑party that verifies visits on your website, so you can't fake screenshots or vanity numbers. It's an indie‑hacker‑oriented side project that evolves on its own, to experiment with "real" launches in public.
+              </li>
+              <li>
+                <strong className="text-foreground">Retn</strong>: a focused product on retention. It comes from a small but powerful part of Tasu's original vision: instead of "analytics for everything", Retn helps B2B teams keep users around by turning usage signals into concrete, simple retention actions.
+              </li>
+            </ul>
+
+            <p className="text-[15px] md:text-[16px] leading-relaxed">
+              This is the chapter I'm in now: less fantasy dashboards, more tight products that solve one clear problem and can actually grow.
+            </p>
+
+            <hr className="border-border my-8" />
+
+            <h3 className="text-[22px] md:text-[26px] font-semibold text-foreground mt-10 mb-4">
+              The failures
+            </h3>
+
+            <p className="text-[15px] md:text-[16px] leading-relaxed">
+              First, with Maxime, we tried to build a "Duolingo for finance". Endless Figma screens, no real product, no real users, just a beautiful, unfinishable project.
+            </p>
+
+            <p className="text-[15px] md:text-[16px] leading-relaxed">
+              Then came <strong className="text-foreground">OneMeet</strong>, "the everything app to close deals on a single call". We ran ads before building, probably terrible ones, and got exactly 0 traction.
+            </p>
+
+            <p className="text-[15px] md:text-[16px] leading-relaxed">
+              Next was <strong className="text-foreground">Everdistinct</strong>, carousels for creators. I had a few clients, then better AI image tools came out and we became irrelevant overnight.
+            </p>
+
+            <p className="text-[15px] md:text-[16px] leading-relaxed">
+              <strong className="text-foreground">Script2Clip</strong> turned a single photo into a small video scene. I killed it because "the market was crowded", instead of seeing competition as proof there was money on the table.
+            </p>
+
+            <p className="text-[15px] md:text-[16px] leading-relaxed">
+              Then <strong className="text-foreground">AVA</strong>, an AI agent to manage your calendar, emails and Drive through chat. When the big LLMs moved native into that space, we got scared again and stopped.
+            </p>
+
+            <p className="text-[15px] md:text-[16px] leading-relaxed">
+              We even built a contract analysis tool with real legal documentation because GPT wasn't accurate enough. Same mistake again.
+            </p>
+
+            <p className="text-[15px] md:text-[16px] leading-relaxed">
+              And then there was <strong className="text-foreground">Tasu</strong>.
+            </p>
+
+            <p className="text-[15px] md:text-[16px] leading-relaxed">
+              Tasu started as a feedback hub: collect, centralize and manage feedback so businesses can grow from it. Talking with real users, I realized the real pain wasn't "more feedback" but drowning in dashboards and useless numbers, with no clear growth moves coming out of them. So Tasu evolved into a system that turned user behavior and feedback into clear, simple, actionable growth moves.
+            </p>
+
+            <p className="text-[15px] md:text-[16px] leading-relaxed">
+              I shipped it, launched it… and in one month, it made 44€. The product was finished, but I fell into the trap I warn others about: too many ideas, not enough long‑term focus. Tasu became another failed chapter, but it also gave birth to the sharper, more focused bets I'm making now with Trustviews and Retn.
+            </p>
+          </div>
         </div>
       </section>
     </div>
