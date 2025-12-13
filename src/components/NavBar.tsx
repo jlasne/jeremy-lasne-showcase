@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Moon, Sun } from "lucide-react";
 import { useState, useEffect } from "react";
+import jlLogo from "@/assets/jl-logo.png";
 
 const NavBar = () => {
   const [theme, setTheme] = useState<"dark" | "light">("dark");
@@ -32,6 +33,11 @@ const NavBar = () => {
         <a href="/" className="text-sm font-bold tracking-wider text-foreground hover:text-accent-red transition-colors">
           JEREMY LASNE
         </a>
+        <div className="flex items-center gap-4">
+          <a href="/">
+            <img src={jlLogo} alt="JL Logo" className="w-10 h-10 rounded-lg" />
+          </a>
+        </div>
         <Button
           variant="ghost"
           size="icon"
