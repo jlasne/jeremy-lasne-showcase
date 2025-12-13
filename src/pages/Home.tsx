@@ -8,9 +8,10 @@ const Home = () => {
 
       {/* Hero Section */}
       <section className="pt-[110px] md:pt-[140px] pb-8 md:pb-12 px-6 md:px-8">
-        <div className="max-w-[1000px] mx-auto flex flex-col items-center">
-          <div className="w-full max-w-[700px] text-left">
-            <h1 className="text-[42px] md:text-[56px] lg:text-[72px] font-black leading-[1.1] mb-4 md:mb-6 tracking-tight">
+        <div className="max-w-[1100px] mx-auto grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+          {/* Left: Intro */}
+          <div className="text-left">
+            <h1 className="text-[42px] md:text-[48px] lg:text-[56px] font-black leading-[1.1] mb-4 md:mb-6 tracking-tight">
               Hey, I'm Jeremy.
             </h1>
             <p className="text-[15px] md:text-[17px] lg:text-[18px] leading-relaxed text-muted-foreground mb-6 md:mb-8">
@@ -41,12 +42,52 @@ const Home = () => {
               </a>
             </div>
           </div>
+
+          {/* Right: TrustViews Stats */}
+          <a
+            href="https://trustviews.io"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-secondary/50 border border-border rounded-xl p-6 hover:border-accent-red/50 transition-colors group"
+          >
+            <div className="flex items-center gap-2 mb-4">
+              <span className="text-xs font-semibold uppercase tracking-wider text-accent-red">TrustViews</span>
+            </div>
+            <p className="text-muted-foreground text-sm mb-6">
+              Real website views, public and trusted.
+            </p>
+            
+            {/* Progress Grid */}
+            <div className="space-y-4">
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-muted-foreground">Objective</span>
+                <span className="font-semibold text-foreground">10,000 monthly views</span>
+              </div>
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-muted-foreground">Currently</span>
+                <span className="font-semibold text-foreground">325 monthly views</span>
+              </div>
+              
+              {/* Progress Squares */}
+              <div className="flex gap-1 mt-4">
+                {Array.from({ length: 10 }).map((_, i) => (
+                  <div
+                    key={i}
+                    className={`w-6 h-6 rounded-sm ${
+                      i === 0 ? 'bg-green-500' : 'bg-muted'
+                    }`}
+                  />
+                ))}
+              </div>
+              <div className="text-right text-xs text-muted-foreground">3.25%</div>
+            </div>
+          </a>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="px-6 md:px-8 py-8 md:py-12">
-        <div className="max-w-[900px] mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="max-w-[900px] mx-auto grid md:grid-cols-2 gap-6 md:gap-8">
           <CTACard
             href="https://blog.jeremylasne.com"
             label="Newsletter"
@@ -55,14 +96,6 @@ const Home = () => {
             isExternal
           />
           <CTACard href="/talk" label="Talk" title="Learn from Builders" linkText="jeremylasne.com/talk" />
-          <CTACard
-            href="https://trustviews.io"
-            label="Business"
-            title="TrustViews"
-            description="Make your traffic visible and trusted"
-            linkText="trustviews.io"
-            isExternal
-          />
         </div>
       </section>
 
