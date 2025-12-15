@@ -48,38 +48,25 @@ const Home = () => {
             href="https://trustviews.io"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-secondary/50 border border-border rounded-xl p-6 hover:border-accent-red/50 transition-colors group"
+            className="bg-secondary/50 border border-border rounded-xl p-5 hover:border-accent-red/50 transition-colors group self-start"
           >
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center justify-between mb-3">
               <span className="text-xs font-semibold uppercase tracking-wider text-accent-red">TrustViews</span>
+              <p className="text-muted-foreground text-xs">Real website views, public and trusted.</p>
             </div>
-            <p className="text-muted-foreground text-sm mb-6">
-              Real website views, public and trusted.
-            </p>
             
-            {/* Progress Grid */}
-            <div className="space-y-4">
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-muted-foreground">Objective</span>
-                <span className="font-semibold text-foreground">10,000 monthly views</span>
-              </div>
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-muted-foreground">Currently</span>
-                <span className="font-semibold text-foreground">325 monthly views</span>
-              </div>
-              
-              {/* Progress Squares */}
-              <div className="flex gap-1 mt-4">
-                {Array.from({ length: 10 }).map((_, i) => (
-                  <div
-                    key={i}
-                    className={`w-6 h-6 rounded-sm ${
-                      i === 0 ? 'bg-green-500' : 'bg-muted'
-                    }`}
-                  />
-                ))}
-              </div>
-              <div className="text-right text-xs text-muted-foreground">3.25%</div>
+            <div className="flex items-center justify-between text-sm mb-3">
+              <span className="text-muted-foreground">Objective: <span className="font-semibold text-foreground">10k views</span></span>
+              <span className="text-muted-foreground">Current: <span className="font-semibold text-foreground">325</span></span>
+            </div>
+            
+            <div className="flex gap-1">
+              {Array.from({ length: 10 }).map((_, i) => (
+                <div
+                  key={i}
+                  className={`w-5 h-5 rounded-sm flex-1 ${i === 0 ? 'bg-green-500' : 'bg-muted'}`}
+                />
+              ))}
             </div>
           </a>
         </div>
