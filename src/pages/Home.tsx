@@ -57,7 +57,7 @@ const Home = () => {
             
             <div className="flex items-center justify-between text-sm mb-3">
               <span className="text-muted-foreground">Objective: <span className="font-semibold text-foreground">10k views</span></span>
-              <span className="text-muted-foreground">Current: <span className="font-semibold text-foreground">325</span></span>
+              <span className="text-muted-foreground">Current: <span className="font-semibold text-foreground">533</span></span>
             </div>
             
             <div className="flex gap-1">
