@@ -60,7 +60,7 @@ const Home = () => {
                 Objective: <span className="font-semibold text-foreground">10k views</span>
               </span>
               <span className="text-muted-foreground">
-                Current: <span className="font-semibold text-foreground">533</span>
+                Current: <span className="font-semibold text-foreground">802</span>
               </span>
             </div>
 
@@ -189,7 +189,7 @@ const Home = () => {
         src="https://trustviews.io/w/jeremylasne/badge"
         width="200"
         height="50"
-        frameborder="0"
+        frameBorder="0"
         scrolling="no"
       ></iframe>
     </div>
