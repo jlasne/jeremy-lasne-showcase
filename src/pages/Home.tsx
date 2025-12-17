@@ -43,27 +43,17 @@ const Home = () => {
             </div>
           </div>
 
-          {/* Right: TrustViews Stats */}
-          <a
-            href="https://trustviews.io"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-secondary/50 border border-border rounded-xl p-5 hover:border-accent-red/50 transition-colors group self-start"
-          >
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-xs font-semibold uppercase tracking-wider text-accent-red">TrustViews</span>
-              <p className="text-muted-foreground text-xs">Real website views, public and trusted.</p>
-            </div>
-
+          {/* Right: TrustViews Objective */}
+          <div className="self-start">
             <iframe
               src="https://trustviews.io/w/trustviews/objective"
-              width="100%"
+              width="500"
               height="120"
               frameBorder="0"
               scrolling="no"
-              className="rounded-lg"
+              className="max-w-full"
             ></iframe>
-          </a>
+          </div>
         </div>
       </section>
 
