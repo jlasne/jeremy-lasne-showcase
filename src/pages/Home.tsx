@@ -55,20 +55,14 @@ const Home = () => {
               <p className="text-muted-foreground text-xs">Real website views, public and trusted.</p>
             </div>
 
-            <div className="flex items-center justify-between text-sm mb-3">
-              <span className="text-muted-foreground">
-                Objective: <span className="font-semibold text-foreground">10k views</span>
-              </span>
-              <span className="text-muted-foreground">
-                Current: <span className="font-semibold text-foreground">802</span>
-              </span>
-            </div>
-
-            <div className="flex gap-1">
-              {Array.from({ length: 10 }).map((_, i) => (
-                <div key={i} className={`w-5 h-5 rounded-sm flex-1 ${i === 0 ? "bg-green-500" : "bg-muted"}`} />
-              ))}
-            </div>
+            <iframe
+              src="https://trustviews.io/w/trustviews/objective"
+              width="100%"
+              height="120"
+              frameBorder="0"
+              scrolling="no"
+              className="rounded-lg"
+            ></iframe>
           </a>
         </div>
       </section>
