@@ -169,13 +169,17 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <iframe
-        src="https://trustviews.io/w/jeremylasne/badge"
-        width="200"
-        height="50"
-        frameBorder="0"
-        scrolling="no"
-      ></iframe>
+      {/* TrustViews Bento */}
+      <section className="px-6 md:px-8 pb-12 md:pb-16 flex justify-center">
+        <iframe
+          src="https://trustviews.io/w/jeremylasne/bento"
+          width="600"
+          height="412"
+          frameBorder="0"
+          scrolling="no"
+          className="rounded-xl max-w-full"
+        ></iframe>
+      </section>
     </div>
   );
 };
