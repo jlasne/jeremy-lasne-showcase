@@ -10,18 +10,21 @@ const projects = [
     description: "Grow Revenue by 40% with Smart Retention.",
     logo: retnLogo,
     type: "main" as const,
+    url: "https://retn.io",
   },
   {
     name: "Trustviews",
     description: "Your Traffic Shareable And Trusted",
     logo: trustviewsLogo,
     type: "side" as const,
+    url: "https://trustviews.io",
   },
   {
     name: "OneDollarFeedback",
     description: "Collect user feedback for just $1/month",
     logo: onedollarfeedbackLogo,
     type: "side" as const,
+    url: "https://onedollarfeedback.com",
   },
 ];
 
@@ -71,9 +74,12 @@ const Home = () => {
           <div className="space-y-3">
             <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">Current Projects</h3>
             {projects.map((project) => (
-              <div
+              <a
                 key={project.name}
-                className="flex items-center gap-4 p-3 rounded-xl bg-secondary/50 hover:bg-secondary transition-colors"
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 p-3 rounded-xl bg-secondary/50 hover:bg-secondary transition-colors cursor-pointer"
               >
                 <img
                   src={project.logo}
@@ -93,7 +99,7 @@ const Home = () => {
                   </div>
                   <p className="text-sm text-muted-foreground truncate">{project.description}</p>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
