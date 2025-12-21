@@ -1,5 +1,29 @@
 import NavBar from "@/components/NavBar";
 import CTACard from "@/components/CTACard";
+import retnLogo from "@/assets/retn-logo.png";
+import trustviewsLogo from "@/assets/trustviews-logo.png";
+import onedollarfeedbackLogo from "@/assets/onedollarfeedback-logo.png";
+
+const projects = [
+  {
+    name: "Retn",
+    description: "Grow Revenue by 40% with Smart Retention.",
+    logo: retnLogo,
+    type: "main" as const,
+  },
+  {
+    name: "Trustviews",
+    description: "Your Traffic Shareable And Trusted",
+    logo: trustviewsLogo,
+    type: "side" as const,
+  },
+  {
+    name: "OneDollarFeedback",
+    description: "Collect user feedback for just $1/month",
+    logo: onedollarfeedbackLogo,
+    type: "side" as const,
+  },
+];
 
 const Home = () => {
   return (
@@ -43,16 +67,34 @@ const Home = () => {
             </div>
           </div>
 
-          {/* Right: TrustViews Objective */}
-          <div className="self-start">
-            <iframe
-              src="https://trustviews.io/w/trustviews/objective"
-              width="500"
-              height="120"
-              frameBorder="0"
-              scrolling="no"
-              className="max-w-full"
-            ></iframe>
+          {/* Right: Current Projects */}
+          <div className="space-y-3">
+            <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">Current Projects</h3>
+            {projects.map((project) => (
+              <div
+                key={project.name}
+                className="flex items-center gap-4 p-3 rounded-xl bg-secondary/50 hover:bg-secondary transition-colors"
+              >
+                <img
+                  src={project.logo}
+                  alt={`${project.name} logo`}
+                  className="w-10 h-10 rounded-lg object-cover"
+                />
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className="font-semibold text-foreground">{project.name}</span>
+                    <span className={`text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded ${
+                      project.type === "main" 
+                        ? "bg-primary/20 text-primary" 
+                        : "bg-muted text-muted-foreground"
+                    }`}>
+                      {project.type}
+                    </span>
+                  </div>
+                  <p className="text-sm text-muted-foreground truncate">{project.description}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
