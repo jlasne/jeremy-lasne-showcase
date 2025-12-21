@@ -73,34 +73,59 @@ const Home = () => {
           {/* Right: Current Projects */}
           <div className="space-y-3">
             <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">Current Projects</h3>
-            {projects.map((project) => (
-              <a
-                key={project.name}
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-4 p-3 rounded-xl bg-secondary/50 hover:bg-secondary transition-colors cursor-pointer"
-              >
-                <img
-                  src={project.logo}
-                  alt={`${project.name} logo`}
-                  className="w-10 h-10 rounded-lg object-cover"
-                />
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2">
-                    <span className="font-semibold text-foreground">{project.name}</span>
-                    <span className={`text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded ${
-                      project.type === "main" 
-                        ? "bg-primary/20 text-primary" 
-                        : "bg-muted text-muted-foreground"
-                    }`}>
-                      {project.type}
+            {projects.map((project) => {
+              const isComingSoon = project.name === "Retn";
+              
+              return isComingSoon ? (
+                <div
+                  key={project.name}
+                  className="flex items-center gap-4 p-3 rounded-xl bg-secondary/50 relative overflow-hidden"
+                >
+                  <div className="absolute inset-0 backdrop-blur-[2px] bg-background/30 z-10 flex items-center justify-center">
+                    <span className="bg-primary text-primary-foreground text-xs font-medium px-3 py-1 rounded-full">
+                      Coming Soon
                     </span>
                   </div>
-                  <p className="text-sm text-muted-foreground truncate">{project.description}</p>
+                  <img
+                    src={project.logo}
+                    alt={`${project.name} logo`}
+                    className="w-10 h-10 rounded-lg object-cover"
+                  />
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <span className="font-semibold text-foreground">{project.name}</span>
+                      <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-primary/20 text-primary">
+                        {project.type}
+                      </span>
+                    </div>
+                    <p className="text-sm text-muted-foreground truncate">{project.description}</p>
+                  </div>
                 </div>
-              </a>
-            ))}
+              ) : (
+                <a
+                  key={project.name}
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-4 p-3 rounded-xl bg-secondary/50 hover:bg-secondary transition-colors cursor-pointer"
+                >
+                  <img
+                    src={project.logo}
+                    alt={`${project.name} logo`}
+                    className="w-10 h-10 rounded-lg object-cover"
+                  />
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <span className="font-semibold text-foreground">{project.name}</span>
+                      <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-muted text-muted-foreground">
+                        {project.type}
+                      </span>
+                    </div>
+                    <p className="text-sm text-muted-foreground truncate">{project.description}</p>
+                  </div>
+                </a>
+              );
+            })}
           </div>
         </div>
       </section>
