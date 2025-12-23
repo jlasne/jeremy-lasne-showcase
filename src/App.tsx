@@ -12,6 +12,7 @@ import SafuMove from "./pages/SafuMove";
 import AutoChangelog from "./pages/AutoChangelog";
 import Marketing from "./pages/Marketing";
 import Directory from "./pages/Directory";
+import Reddit from "./pages/Reddit";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/talk/autochangelog" element={<AutoChangelog />} />
           <Route path="/talk/marketing" element={<Marketing />} />
           <Route path="/directory" element={<Directory />} />
+          <Route path="/reddit" element={<Reddit />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
