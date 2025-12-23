@@ -7,22 +7,20 @@ const Reddit = () => {
       icon: Users,
       title: "Principles of the Group",
       points: [
-        "Small, curated group of founders using Reddit (especially good for low-follower, bootstrapped builders).",
+        "Small, curated group of founders using Reddit.",
         '"Give before you take": you help on 2–3 recent posts before dropping your own link.',
-        'New accounts must "warm up" for at least a week by commenting daily and behaving like real users.',
-        "Focus on helping each other: real comments, occasional upvotes, sometimes boosting each other's comments, not just the post.",
-        "Everything must respect Reddit and subreddit rules to avoid bans.",
+        'New reddit accounts must "warm up", = comment, for at least a week (or reddit bans you).',
+        "Focus on helping each other: real comments, occasional upvotes post/comments",
       ],
     },
     {
       icon: BookOpen,
       title: "Reddit Playbook",
       points: [
-        "Always comment when you post, and prioritize thoughtful comments over mindless upvotes.",
-        "Never hard-sell; share experiences and stories, and if needed, drop the link only in the comments (or when the sub explicitly allows promotion).",
+        "Always comment when you post, and prioritize thoughtful comments over promotion.",
+        "Never hard-sell; share experiences and stories (or when the sub explicitly allows promotion).",
         "Reuse what already works on Reddit: model successful posts, but adapt them to your product/message.",
-        "Cross-post the same post to several relevant subreddits when allowed, adjusting to each sub's rules.",
-        "Goal: generate an honest first wave of activity so the Reddit algorithm pushes your post to more people, and any tool mention feels natural (answering questions, not forcing plugs).",
+        "Cross-post the same post to several relevant subreddits (adjusting to each sub's rules).",
       ],
     },
     {
@@ -30,9 +28,8 @@ const Reddit = () => {
       title: "Format of the Community",
       points: [
         "For now, everything runs through a simple X group chat so it's low-friction to join and experiment together.",
-        "Each day, members can drop one Reddit link in the chat, and the group focuses on real comments first, with occasional upvotes on posts or comments when it feels natural.",
-        "New members are expected to warm up a fresh or existing Reddit account for at least a week before relying on the group, by commenting daily and learning each subreddit's norms.",
-        'The only "rule": don\'t be spammy. Share experiences, answer questions, and only mention tools when it genuinely fits the conversation and the subreddit rules.',
+        "Each day, you can drop one Reddit link in the chat, and the group focuses on real comments first, with occasional upvotes on posts or comments.",
+        'The only "rule": don\'t be spammy. And keep the chat clean :)',
       ],
     },
   ];
@@ -42,11 +39,9 @@ const Reddit = () => {
       <NavBar />
       <div className="container max-w-6xl mx-auto px-4 py-8 md:py-12 pt-[110px] md:pt-[140px]">
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Reddit Growth Community
-          </h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">X-Reddit Community</h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            A curated group of founders helping each other grow authentically on Reddit.
+            A curated group of founders helping each other grow on Reddit.
           </p>
         </div>
 
