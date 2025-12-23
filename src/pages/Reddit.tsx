@@ -68,6 +68,27 @@ const Reddit = () => {
             </div>
           ))}
         </div>
+
+        {/* Daily Routine Section */}
+        <div className="mt-12 bg-secondary/50 rounded-2xl p-6 md:p-8 border border-border/50">
+          <h2 className="text-2xl font-semibold text-foreground mb-6">Each day, the routine is simple:</h2>
+          <ol className="space-y-4">
+            {[
+              "Go to the group and help 2–3 people first (upvote post, leave a comment, or upvote member's comment).",
+              "Find a Reddit post that performed well, and adapt it to your own topic while making sure it respects both Reddit's global rules and the subreddit's specific rules.",
+              "Post it in one subreddit and wait a few minutes to check it does not get removed or banned.",
+              "If it stays up, share the link in the community group and then cross‑post or repurpose it into as many relevant subreddits as you want.",
+              "Finally, reply to your notifications: answer comments, keep the conversation going, and engage.",
+            ].map((step, index) => (
+              <li key={index} className="flex gap-4 text-muted-foreground leading-relaxed">
+                <span className="flex-shrink-0 w-7 h-7 rounded-full bg-primary/10 text-primary text-sm font-semibold flex items-center justify-center">
+                  {index + 1}
+                </span>
+                <span className="pt-0.5">{step}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
       </div>
 
       {/* Floating arrow pointing to bottom-right */}
