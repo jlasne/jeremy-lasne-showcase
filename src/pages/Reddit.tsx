@@ -1,37 +1,33 @@
 import NavBar from "@/components/NavBar";
-import { Users, BookOpen, MessageSquare } from "lucide-react";
+import { Users, Calendar, BookOpen, ExternalLink } from "lucide-react";
 
 const Reddit = () => {
-  const cards = [
-    {
-      icon: Users,
-      title: "Principles of the Group",
-      points: [
-        "Small, curated group of founders using Reddit.",
-        '"Give before you take": you help on 2–3 recent posts before dropping your own link.',
-        'New reddit accounts must "warm up", = comment, for at least a week (or reddit bans you).',
-        "Focus on helping each other: real comments, occasional upvotes post/comments",
-      ],
-    },
-    {
-      icon: BookOpen,
-      title: "Reddit Playbook",
-      points: [
-        "Always comment when you post, and prioritize thoughtful comments over promotion.",
-        "Never hard-sell; share experiences and stories (or when the sub explicitly allows promotion).",
-        "Reuse what already works on Reddit: model successful posts, but adapt them to your product/message.",
-        "Cross-post the same post to several relevant subreddits (adjusting to each sub's rules).",
-      ],
-    },
-    {
-      icon: MessageSquare,
-      title: "Format of the Community",
-      points: [
-        "For now, everything runs through a simple X group chat so it's low-friction to join and experiment together.",
-        "Each day, you can drop one Reddit link in the chat, and the group focuses on real comments first, with occasional upvotes on posts or comments.",
-        'The only "rule": don\'t be spammy. And keep the chat clean :)',
-      ],
-    },
+  const principles = [
+    '"Give before you take": help on 2–3 posts before sharing your own link.',
+    "Focus on real help: thoughtful comments first, occasional upvotes.",
+    "10 People in a X group chat for a month (then we see)",
+  ];
+
+  const dailyRoutine = [
+    "Help 2–3 members first (comment, upvote, or both).",
+    "Find a well-performing Reddit post and adapt it to your topic and the sub's rules.",
+    "Post in one subreddit and wait a few minutes to confirm it sticks.",
+    "If it stays up, share the link in the group, then cross-post or repurpose to other subs.",
+    "Reply to notifications: answer comments, keep conversation going, and engage.",
+  ];
+
+  const playbook = [
+    "New reddit accounts: warm up with comments for a week to avoid bans.",
+    "Always comment before you post & reply to notifications.",
+    "No hard sell; share stories, lessons, or behind-the-scenes. Promotion in the comments.",
+    "Model posts that already perform well, adapted to your topic and each sub's rules.",
+    "Cross-post to relevant subreddits, tweaking title and angle.",
+    "Tweak your post so it fits the subreddit rules & reddit rules.",
+  ];
+
+  const quickLinks = [
+    { label: "Group chat", url: "https://x.com/i/chat/g2003755755262910595" },
+    { label: "Reddit rules", url: "https://redditinc.com/policies/reddit-rules" },
   ];
 
   return (
@@ -45,49 +41,91 @@ const Reddit = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {cards.map((card) => (
-            <div
-              key={card.title}
-              className="bg-secondary/50 rounded-2xl p-6 border border-border/50 hover:border-primary/30 transition-colors"
-            >
-              <div className="flex items-center gap-3 mb-5">
-                <div className="p-2.5 rounded-xl bg-primary/10">
-                  <card.icon className="w-5 h-5 text-primary" />
-                </div>
-                <h2 className="text-xl font-semibold text-foreground">{card.title}</h2>
+        {/* Top Row: Principles & Daily Routine */}
+        <div className="grid md:grid-cols-2 gap-6 mb-6">
+          {/* Principles */}
+          <div className="bg-secondary/50 rounded-2xl p-6 border border-border/50">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="p-2.5 rounded-xl bg-primary/10">
+                <Users className="w-5 h-5 text-primary" />
               </div>
-              <ul className="space-y-4">
-                {card.points.map((point, index) => (
-                  <li key={index} className="flex gap-3 text-sm text-muted-foreground leading-relaxed">
-                    <span className="text-primary mt-1 shrink-0">•</span>
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
+              <h2 className="text-xl font-semibold text-foreground">Principles</h2>
             </div>
-          ))}
+            <ul className="space-y-4">
+              {principles.map((point, index) => (
+                <li key={index} className="flex gap-3 text-sm text-muted-foreground leading-relaxed">
+                  <span className="text-primary mt-1 shrink-0">•</span>
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Daily Routine */}
+          <div className="bg-secondary/50 rounded-2xl p-6 border border-border/50">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="p-2.5 rounded-xl bg-primary/10">
+                <Calendar className="w-5 h-5 text-primary" />
+              </div>
+              <h2 className="text-xl font-semibold text-foreground">Daily Routine</h2>
+            </div>
+            <ol className="space-y-4">
+              {dailyRoutine.map((step, index) => (
+                <li key={index} className="flex gap-3 text-sm text-muted-foreground leading-relaxed">
+                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 text-primary text-xs font-semibold flex items-center justify-center">
+                    {index + 1}
+                  </span>
+                  <span>{step}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
         </div>
 
-        {/* Daily Routine Section */}
-        <div className="mt-12 bg-secondary/50 rounded-2xl p-6 md:p-8 border border-border/50">
-          <h2 className="text-2xl font-semibold text-foreground mb-6">Each day, the routine is simple:</h2>
-          <ol className="space-y-4">
-            {[
-              "Go to the group and help 2–3 people first (upvote post, leave a comment, or upvote member's comment).",
-              "Find a Reddit post that performed well, and adapt it to your own topic while making sure it respects both Reddit's global rules and the subreddit's specific rules.",
-              "Post it in one subreddit and wait a few minutes to check it does not get removed or banned.",
-              "If it stays up, share the link in the community group and then cross‑post or repurpose it into as many relevant subreddits as you want.",
-              "Finally, reply to your notifications: answer comments, keep the conversation going, and engage.",
-            ].map((step, index) => (
-              <li key={index} className="flex gap-4 text-muted-foreground leading-relaxed">
-                <span className="flex-shrink-0 w-7 h-7 rounded-full bg-primary/10 text-primary text-sm font-semibold flex items-center justify-center">
-                  {index + 1}
-                </span>
-                <span className="pt-0.5">{step}</span>
-              </li>
-            ))}
-          </ol>
+        {/* Bottom Row: Playbook & Quick Links */}
+        <div className="grid md:grid-cols-3 gap-6">
+          {/* Playbook */}
+          <div className="md:col-span-2 bg-secondary/50 rounded-2xl p-6 border border-border/50">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="p-2.5 rounded-xl bg-primary/10">
+                <BookOpen className="w-5 h-5 text-primary" />
+              </div>
+              <h2 className="text-xl font-semibold text-foreground">Playbook</h2>
+            </div>
+            <ul className="space-y-4">
+              {playbook.map((point, index) => (
+                <li key={index} className="flex gap-3 text-sm text-muted-foreground leading-relaxed">
+                  <span className="text-primary mt-1 shrink-0">•</span>
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Quick Links */}
+          <div className="bg-secondary/50 rounded-2xl p-6 border border-border/50">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="p-2.5 rounded-xl bg-primary/10">
+                <ExternalLink className="w-5 h-5 text-primary" />
+              </div>
+              <h2 className="text-xl font-semibold text-foreground">Quick Links</h2>
+            </div>
+            <ul className="space-y-3">
+              {quickLinks.map((link, index) => (
+                <li key={index}>
+                  <a
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm text-primary hover:underline"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
 
