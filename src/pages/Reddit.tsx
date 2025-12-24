@@ -42,19 +42,19 @@ const Reddit = () => {
         </div>
 
         {/* Top Row: Principles & Daily Routine */}
-        <div className="grid md:grid-cols-2 gap-6 mb-6">
+        <div className="grid md:grid-cols-2 gap-5 mb-5">
           {/* Principles */}
-          <div className="bg-secondary/50 rounded-2xl p-6 border border-border/50">
-            <div className="flex items-center gap-3 mb-5">
-              <div className="p-2.5 rounded-xl bg-primary/10">
-                <Users className="w-5 h-5 text-primary" />
+          <div className="bg-secondary/30 rounded-xl p-5 border border-border/30">
+            <div className="flex items-center gap-2.5 mb-4">
+              <div className="p-2 rounded-lg bg-primary/10">
+                <Users className="w-4 h-4 text-primary" />
               </div>
-              <h2 className="text-xl font-semibold text-foreground">Principles</h2>
+              <h2 className="text-lg font-semibold text-foreground">Principles</h2>
             </div>
-            <ul className="space-y-4">
+            <ul className="space-y-3">
               {principles.map((point, index) => (
-                <li key={index} className="flex gap-3 text-sm text-muted-foreground leading-relaxed">
-                  <span className="text-primary mt-1 shrink-0">•</span>
+                <li key={index} className="flex gap-3 text-muted-foreground leading-relaxed">
+                  <span className="text-primary/70 mt-0.5 shrink-0">→</span>
                   <span>{point}</span>
                 </li>
               ))}
@@ -62,17 +62,17 @@ const Reddit = () => {
           </div>
 
           {/* Daily Routine */}
-          <div className="bg-secondary/50 rounded-2xl p-6 border border-border/50">
-            <div className="flex items-center gap-3 mb-5">
-              <div className="p-2.5 rounded-xl bg-primary/10">
-                <Calendar className="w-5 h-5 text-primary" />
+          <div className="bg-secondary/30 rounded-xl p-5 border border-border/30">
+            <div className="flex items-center gap-2.5 mb-4">
+              <div className="p-2 rounded-lg bg-primary/10">
+                <Calendar className="w-4 h-4 text-primary" />
               </div>
-              <h2 className="text-xl font-semibold text-foreground">Daily Routine</h2>
+              <h2 className="text-lg font-semibold text-foreground">Daily Routine</h2>
             </div>
-            <ol className="space-y-4">
+            <ol className="space-y-3">
               {dailyRoutine.map((step, index) => (
-                <li key={index} className="flex gap-3 text-sm text-muted-foreground leading-relaxed">
-                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 text-primary text-xs font-semibold flex items-center justify-center">
+                <li key={index} className="flex gap-3 text-muted-foreground leading-relaxed">
+                  <span className="flex-shrink-0 w-5 h-5 rounded-full bg-primary/15 text-primary text-xs font-medium flex items-center justify-center mt-0.5">
                     {index + 1}
                   </span>
                   <span>{step}</span>
@@ -83,19 +83,19 @@ const Reddit = () => {
         </div>
 
         {/* Bottom Row: Playbook & Quick Links */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-5">
           {/* Playbook */}
-          <div className="md:col-span-2 bg-secondary/50 rounded-2xl p-6 border border-border/50">
-            <div className="flex items-center gap-3 mb-5">
-              <div className="p-2.5 rounded-xl bg-primary/10">
-                <BookOpen className="w-5 h-5 text-primary" />
+          <div className="md:col-span-2 bg-secondary/30 rounded-xl p-5 border border-border/30">
+            <div className="flex items-center gap-2.5 mb-4">
+              <div className="p-2 rounded-lg bg-primary/10">
+                <BookOpen className="w-4 h-4 text-primary" />
               </div>
-              <h2 className="text-xl font-semibold text-foreground">Playbook</h2>
+              <h2 className="text-lg font-semibold text-foreground">Playbook</h2>
             </div>
-            <ul className="space-y-4">
+            <ul className="space-y-3">
               {playbook.map((point, index) => (
-                <li key={index} className="flex gap-3 text-sm text-muted-foreground leading-relaxed">
-                  <span className="text-primary mt-1 shrink-0">•</span>
+                <li key={index} className="flex gap-3 text-muted-foreground leading-relaxed">
+                  <span className="text-primary/70 mt-0.5 shrink-0">→</span>
                   <span>{point}</span>
                 </li>
               ))}
@@ -103,23 +103,23 @@ const Reddit = () => {
           </div>
 
           {/* Quick Links */}
-          <div className="bg-secondary/50 rounded-2xl p-6 border border-border/50">
-            <div className="flex items-center gap-3 mb-5">
-              <div className="p-2.5 rounded-xl bg-primary/10">
-                <ExternalLink className="w-5 h-5 text-primary" />
+          <div className="bg-secondary/30 rounded-xl p-5 border border-border/30">
+            <div className="flex items-center gap-2.5 mb-4">
+              <div className="p-2 rounded-lg bg-primary/10">
+                <ExternalLink className="w-4 h-4 text-primary" />
               </div>
-              <h2 className="text-xl font-semibold text-foreground">Quick Links</h2>
+              <h2 className="text-lg font-semibold text-foreground">Quick Links</h2>
             </div>
-            <ul className="space-y-3">
+            <ul className="space-y-2.5">
               {quickLinks.map((link, index) => (
                 <li key={index}>
                   <a
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm text-primary hover:underline"
+                    className="flex items-center gap-2 text-primary/90 hover:text-primary transition-colors"
                   >
-                    <ExternalLink className="w-4 h-4" />
+                    <ExternalLink className="w-3.5 h-3.5" />
                     {link.label}
                   </a>
                 </li>
