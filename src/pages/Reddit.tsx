@@ -5,7 +5,6 @@ const Reddit = () => {
   const principles = [
     '"Give before you take": help on 2–3 posts before sharing your own link.',
     "Focus on real help: thoughtful comments first, occasional upvotes.",
-    "10 People in a X group chat for a month (then we see)",
   ];
 
   const dailyRoutine = [
@@ -22,12 +21,6 @@ const Reddit = () => {
     "No hard sell; share stories, lessons, or behind-the-scenes. Promotion in the comments.",
     "Model posts that already perform well, adapted to your topic and each sub's rules.",
     "Cross-post to relevant subreddits, tweaking title and angle.",
-    "Tweak your post so it fits the subreddit rules & reddit rules.",
-  ];
-
-  const quickLinks = [
-    { label: "Group chat", url: "https://x.com/i/chat/g2003755755262910595" },
-    { label: "Reddit rules", url: "https://redditinc.com/policies/reddit-rules" },
   ];
 
   return (
@@ -58,6 +51,22 @@ const Reddit = () => {
                   <span>{point}</span>
                 </li>
               ))}
+              <li className="flex gap-3 text-muted-foreground leading-relaxed">
+                <span className="text-primary/70 mt-0.5 shrink-0">→</span>
+                <span>
+                  10 People in a{" "}
+                  <a
+                    href="https://x.com/i/chat/g2003755755262910595"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline inline-flex items-center gap-1"
+                  >
+                    X group chat
+                    <ExternalLink className="w-3 h-3" />
+                  </a>{" "}
+                  for a month (then we see)
+                </span>
+              </li>
             </ul>
           </div>
 
@@ -82,50 +91,38 @@ const Reddit = () => {
           </div>
         </div>
 
-        {/* Bottom Row: Playbook & Quick Links */}
-        <div className="grid md:grid-cols-3 gap-5">
-          {/* Playbook */}
-          <div className="md:col-span-2 bg-secondary/30 rounded-xl p-5 border border-border/30">
-            <div className="flex items-center gap-2.5 mb-4">
-              <div className="p-2 rounded-lg bg-primary/10">
-                <BookOpen className="w-4 h-4 text-primary" />
-              </div>
-              <h2 className="text-lg font-semibold text-foreground">Playbook</h2>
+        {/* Bottom Row: Playbook */}
+        <div className="bg-secondary/30 rounded-xl p-5 border border-border/30">
+          <div className="flex items-center gap-2.5 mb-4">
+            <div className="p-2 rounded-lg bg-primary/10">
+              <BookOpen className="w-4 h-4 text-primary" />
             </div>
-            <ul className="space-y-3">
-              {playbook.map((point, index) => (
-                <li key={index} className="flex gap-3 text-muted-foreground leading-relaxed">
-                  <span className="text-primary/70 mt-0.5 shrink-0">→</span>
-                  <span>{point}</span>
-                </li>
-              ))}
-            </ul>
+            <h2 className="text-lg font-semibold text-foreground">Playbook</h2>
           </div>
-
-          {/* Quick Links */}
-          <div className="bg-secondary/30 rounded-xl p-5 border border-border/30">
-            <div className="flex items-center gap-2.5 mb-4">
-              <div className="p-2 rounded-lg bg-primary/10">
-                <ExternalLink className="w-4 h-4 text-primary" />
-              </div>
-              <h2 className="text-lg font-semibold text-foreground">Quick Links</h2>
-            </div>
-            <ul className="space-y-2.5">
-              {quickLinks.map((link, index) => (
-                <li key={index}>
-                  <a
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-primary/90 hover:text-primary transition-colors"
-                  >
-                    <ExternalLink className="w-3.5 h-3.5" />
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ul className="space-y-3">
+            {playbook.map((point, index) => (
+              <li key={index} className="flex gap-3 text-muted-foreground leading-relaxed">
+                <span className="text-primary/70 mt-0.5 shrink-0">→</span>
+                <span>{point}</span>
+              </li>
+            ))}
+            <li className="flex gap-3 text-muted-foreground leading-relaxed">
+              <span className="text-primary/70 mt-0.5 shrink-0">→</span>
+              <span>
+                Tweak your post so it fits the subreddit rules &{" "}
+                <a
+                  href="https://redditinc.com/policies/reddit-rules"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline inline-flex items-center gap-1"
+                >
+                  Reddit rules
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+                .
+              </span>
+            </li>
+          </ul>
         </div>
       </div>
 
