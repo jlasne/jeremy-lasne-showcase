@@ -92,8 +92,8 @@ const Reddit = () => {
         </div>
 
         {/* Bottom Row: Playbook */}
-        <div className="bg-secondary/30 rounded-xl p-5 border border-border/30">
-          <div className="flex items-center gap-2.5 mb-4">
+        <div className="max-w-2xl mx-auto p-5">
+          <div className="flex items-center justify-center gap-2.5 mb-4">
             <div className="p-2 rounded-lg bg-primary/10">
               <BookOpen className="w-4 h-4 text-primary" />
             </div>
