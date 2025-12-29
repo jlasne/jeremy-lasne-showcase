@@ -72,10 +72,12 @@ const Home = () => {
 
           {/* Right: Current Projects */}
           <div className="space-y-3">
-            <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">Current Projects</h3>
+            <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">
+              Current Projects
+            </h3>
             {projects.map((project) => {
               const isComingSoon = project.name === "Retn";
-              
+
               return isComingSoon ? (
                 <div
                   key={project.name}
@@ -86,11 +88,7 @@ const Home = () => {
                       Coming Soon
                     </span>
                   </div>
-                  <img
-                    src={project.logo}
-                    alt={`${project.name} logo`}
-                    className="w-10 h-10 rounded-lg object-cover"
-                  />
+                  <img src={project.logo} alt={`${project.name} logo`} className="w-10 h-10 rounded-lg object-cover" />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
                       <span className="font-semibold text-foreground">{project.name}</span>
@@ -109,11 +107,7 @@ const Home = () => {
                   rel="noopener noreferrer"
                   className="flex items-center gap-4 p-3 rounded-xl bg-secondary/50 hover:bg-secondary transition-colors cursor-pointer"
                 >
-                  <img
-                    src={project.logo}
-                    alt={`${project.name} logo`}
-                    className="w-10 h-10 rounded-lg object-cover"
-                  />
+                  <img src={project.logo} alt={`${project.name} logo`} className="w-10 h-10 rounded-lg object-cover" />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
                       <span className="font-semibold text-foreground">{project.name}</span>
@@ -139,7 +133,7 @@ const Home = () => {
           >
             <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
               <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-primary">
-                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z" />
               </svg>
             </div>
             <div className="flex-1 min-w-0">
@@ -149,105 +143,11 @@ const Home = () => {
                   guide
                 </span>
               </div>
-              <p className="text-sm text-muted-foreground truncate">The best platform for bootstrapped founders in 2026</p>
+              <p className="text-sm text-muted-foreground truncate">
+                The best platform for bootstrapped founders in 2026
+              </p>
             </div>
           </a>
-        </div>
-      </section>
-
-      {/* About Me Section */}
-      <section className="px-6 md:px-8 py-12 md:py-16 pb-16 md:pb-24">
-        <div className="max-w-[700px] mx-auto">
-
-          <div className="prose prose-lg dark:prose-invert max-w-none text-muted-foreground space-y-6">
-            <p className="text-[15px] md:text-[16px] leading-relaxed">
-              In September 2024, I launched my first business right after a Master where I basically learned nothing
-              useful about building a company. Since then, I've failed more times than I can count, but each one pushed
-              me closer to what I'm building now.
-            </p>
-
-            <hr className="border-border my-8" />
-
-            <p className="text-[15px] md:text-[16px] leading-relaxed">
-              Today, I can clearly see my main lever:{" "}
-              <strong className="text-foreground">fixing trust and retention in online businesses.</strong>
-            </p>
-
-            <p className="text-[15px] md:text-[16px] leading-relaxed">
-              I partnered with Kyle to build two products around that idea:
-            </p>
-
-            <ul className="text-[15px] md:text-[16px] leading-relaxed space-y-3 list-disc pl-5">
-              <li>
-                <strong className="text-foreground">Trustviews</strong>: like TrustMRR but for traffic, acting as a
-                third‑party that verifies visits on your website, so you can't fake screenshots or vanity numbers. It's
-                an indie‑hacker‑oriented side project that evolves on its own, to experiment with "real" launches in
-                public.
-              </li>
-              <li>
-                <strong className="text-foreground">Retn</strong>: a focused product on retention. It comes from a small
-                but powerful part of Tasu's original vision: instead of "analytics for everything", Retn helps B2B teams
-                keep users around by turning usage signals into concrete, simple retention actions.
-              </li>
-            </ul>
-
-            <p className="text-[15px] md:text-[16px] leading-relaxed">
-              This is the chapter I'm in now: less fantasy dashboards, more tight products that solve one clear problem
-              and can actually grow.
-            </p>
-
-            <hr className="border-border my-8" />
-
-            <h3 className="text-[22px] md:text-[26px] font-semibold text-foreground mt-10 mb-4">The failures</h3>
-
-            <p className="text-[15px] md:text-[16px] leading-relaxed">
-              First, with Maxime, we tried to build a "Duolingo for finance". Endless Figma screens, no real product, no
-              real users, just a beautiful, unfinishable project.
-            </p>
-
-            <p className="text-[15px] md:text-[16px] leading-relaxed">
-              Then came <strong className="text-foreground">OneMeet</strong>, "the everything app to close deals on a
-              single call". We ran ads before building, probably terrible ones, and got exactly 0 traction.
-            </p>
-
-            <p className="text-[15px] md:text-[16px] leading-relaxed">
-              Next was <strong className="text-foreground">Everdistinct</strong>, carousels for creators. I had a few
-              clients, then better AI image tools came out and we became irrelevant overnight.
-            </p>
-
-            <p className="text-[15px] md:text-[16px] leading-relaxed">
-              <strong className="text-foreground">Script2Clip</strong> turned a single photo into a small video scene. I
-              killed it because "the market was crowded", instead of seeing competition as proof there was money on the
-              table.
-            </p>
-
-            <p className="text-[15px] md:text-[16px] leading-relaxed">
-              Then <strong className="text-foreground">AVA</strong>, an AI agent to manage your calendar, emails and
-              Drive through chat. When the big LLMs moved native into that space, we got scared again and stopped.
-            </p>
-
-            <p className="text-[15px] md:text-[16px] leading-relaxed">
-              We even built a contract analysis tool with real legal documentation because GPT wasn't accurate enough.
-              Same mistake again.
-            </p>
-
-            <p className="text-[15px] md:text-[16px] leading-relaxed">
-              And then there was <strong className="text-foreground">Tasu</strong>.
-            </p>
-
-            <p className="text-[15px] md:text-[16px] leading-relaxed">
-              Tasu started as a feedback hub: collect, centralize and manage feedback so businesses can grow from it.
-              Talking with real users, I realized the real pain wasn't "more feedback" but drowning in dashboards and
-              useless numbers, with no clear growth moves coming out of them. So Tasu evolved into a system that turned
-              user behavior and feedback into clear, simple, actionable growth moves.
-            </p>
-
-            <p className="text-[15px] md:text-[16px] leading-relaxed">
-              I shipped it, launched it… and in one month, it made 44€. The product was finished, but I fell into the
-              trap I warn others about: too many ideas, not enough long‑term focus. Tasu became another failed chapter,
-              but it also gave birth to the sharper, more focused bets I'm making now with Trustviews and Retn.
-            </p>
-          </div>
         </div>
       </section>
       {/* TrustViews Bento */}
