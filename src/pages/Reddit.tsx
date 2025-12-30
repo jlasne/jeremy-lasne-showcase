@@ -272,8 +272,13 @@ const Reddit = () => {
                 <span className="flex-shrink-0 w-6 h-5 rounded-full bg-primary/15 text-primary text-[10px] font-bold flex items-center justify-center">2b</span>
                 <h3 className="text-xs font-semibold text-foreground">Product-focused but not pushy</h3>
               </div>
-              <p className="text-xs text-muted-foreground">
-                Describe problems without naming your app. Create "top tools" posts ranking competitors honestly.
+              <ul className="text-xs text-muted-foreground space-y-0.5">
+                <li>Niche expert posts solution. Never lead with promotion; use comments and DMs to mention what you do.</li>
+                <li>Create "top tools" posts ranking competitors honestly.</li>
+                <li>You as a customer, describe problems without naming your app.</li>
+              </ul>
+              <p className="text-xs text-muted-foreground mt-2 italic">
+                Discuss and eventually talk about your product in the comments.
               </p>
             </div>
           </CollapsibleContent>
@@ -347,8 +352,71 @@ const Reddit = () => {
                 })}
               </TableBody>
             </Table>
+        </div>
+
+        {/* 3-Day Strategy Calendar */}
+        <div className="mb-6">
+          <h2 className="text-base font-bold text-foreground mb-3">3-Day Posting Strategy</h2>
+          <p className="text-xs text-muted-foreground mb-3">
+            <span className="font-semibold text-foreground">Every day:</span> Reply to notifications & messages. Don't post in the same subreddit during the 3-day loop. Before each posting: 5 messages. After each posting: 5 messages.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            {/* Day 1 */}
+            <div className="bg-secondary/30 rounded-lg p-3 border border-border/30">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center">1</span>
+                <h3 className="text-sm font-semibold text-foreground">Day 1</h3>
+              </div>
+              <ul className="text-xs text-muted-foreground space-y-1.5">
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-0.5">•</span>
+                  <span><span className="font-medium text-foreground">Build In Public:</span> Entertaining</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-0.5">•</span>
+                  <span><span className="font-medium text-foreground">Niche Subreddits:</span> Expertise Content</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Day 2 */}
+            <div className="bg-secondary/30 rounded-lg p-3 border border-border/30">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center">2</span>
+                <h3 className="text-sm font-semibold text-foreground">Day 2</h3>
+              </div>
+              <ul className="text-xs text-muted-foreground space-y-1.5">
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-0.5">•</span>
+                  <span><span className="font-medium text-foreground">Build In Public:</span> Educational</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-0.5">•</span>
+                  <span><span className="font-medium text-foreground">Niche Subreddits:</span> As a Customer</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Day 3 */}
+            <div className="bg-secondary/30 rounded-lg p-3 border border-border/30">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center">3</span>
+                <h3 className="text-sm font-semibold text-foreground">Day 3</h3>
+              </div>
+              <ul className="text-xs text-muted-foreground space-y-1.5">
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-0.5">•</span>
+                  <span><span className="font-medium text-foreground">Build In Public:</span> Inspirational</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-0.5">•</span>
+                  <span><span className="font-medium text-foreground">Niche Subreddits:</span> Comparison</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
