@@ -213,7 +213,7 @@ const Reddit = () => {
   return (
     <div className="min-h-screen bg-background">
       <NavBar />
-      <div className="container max-w-3xl mx-auto px-4 py-6 pt-[100px] md:pt-[120px]">
+      <div className="container max-w-7xl mx-auto px-4 py-6 pt-[100px] md:pt-[120px]">
         {/* Header */}
         <div className="text-center mb-6">
           <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Reddit Strategy</h1>
@@ -222,201 +222,207 @@ const Reddit = () => {
           </p>
         </div>
 
-        {/* Goal - Paragraph */}
-        <p className="text-sm text-muted-foreground mb-4">
-          <span className="font-semibold text-foreground">The Goal:</span> Earn karma, talk to your audience, and turn that attention into sales over time.
-        </p>
-
-        {/* Strategy - Paragraph */}
-        <p className="text-sm text-muted-foreground mb-6">
-          <span className="font-semibold text-foreground">The Strategy:</span> Make 2 posts per day. 5 comments before and after every post + reply to notifications. Cross-post to multiple relevant subreddits the same post. Wait at least 3 days before posting again in the same subreddit.
-        </p>
-
-        {/* Collapsible Daily Post Content */}
-        <Collapsible open={isOpen} onOpenChange={setIsOpen} className="mb-6">
-          <CollapsibleTrigger className="flex items-center justify-between w-full bg-secondary/30 rounded-lg p-3 border border-border/30 hover:bg-secondary/50 transition-colors">
-            <span className="text-sm font-semibold text-foreground">Daily Post Content</span>
-            <ChevronDown className={`w-4 h-4 text-muted-foreground transition-transform ${isOpen ? "rotate-180" : ""}`} />
-          </CollapsibleTrigger>
-          <CollapsibleContent className="mt-2 space-y-2">
-            {/* Type 1: Build in Public */}
-            <div className="bg-secondary/30 rounded-lg p-3 border border-border/30">
-              <div className="flex items-center gap-2 mb-1.5">
-                <span className="flex-shrink-0 w-5 h-5 rounded-full bg-primary/15 text-primary text-[10px] font-bold flex items-center justify-center">1</span>
-                <h3 className="text-xs font-semibold text-foreground">X-style "Build in Public" Content</h3>
-              </div>
-              <p className="text-xs text-muted-foreground mb-2">
-                Use the Rob Hallam loop: rotate content types, focus on karma first, sales later.
-              </p>
-              <ul className="text-xs text-muted-foreground space-y-0.5">
-                <li><span className="text-foreground font-medium">Entertaining:</span> Anecdotes from your journey</li>
-                <li><span className="text-foreground font-medium">Educational:</span> Learnings about users, revenue, launches</li>
-                <li><span className="text-foreground font-medium">Inspirational:</span> Growth charts with a short story</li>
-              </ul>
-            </div>
-
-            {/* Type 2: Expertise */}
-            <div className="bg-secondary/30 rounded-lg p-3 border border-border/30">
-              <div className="flex items-center gap-2 mb-1.5">
-                <span className="flex-shrink-0 w-5 h-5 rounded-full bg-primary/15 text-primary text-[10px] font-bold flex items-center justify-center">2</span>
-                <h3 className="text-xs font-semibold text-foreground">Expertise Content (from your blog)</h3>
-              </div>
-              <p className="text-xs text-muted-foreground">
-                Niche SEO-style posts. Never lead with promotion; use comments and DMs to mention what you do.
-              </p>
-            </div>
-
-            {/* Type 2bis: Product-focused */}
-            <div className="bg-secondary/30 rounded-lg p-3 border border-border/30">
-              <div className="flex items-center gap-2 mb-1.5">
-                <span className="flex-shrink-0 w-6 h-5 rounded-full bg-primary/15 text-primary text-[10px] font-bold flex items-center justify-center">2b</span>
-                <h3 className="text-xs font-semibold text-foreground">Product-focused but not pushy</h3>
-              </div>
-              <ul className="text-xs text-muted-foreground space-y-0.5">
-                <li>Niche expert posts solution. Never lead with promotion; use comments and DMs to mention what you do.</li>
-                <li>Create "top tools" posts ranking competitors honestly.</li>
-                <li>You as a customer, describe problems without naming your app.</li>
-              </ul>
-              <p className="text-xs text-muted-foreground mt-2 italic">
-                Discuss and eventually talk about your product in the comments.
-              </p>
-            </div>
-          </CollapsibleContent>
-        </Collapsible>
-
-        {/* Subreddits Table */}
+        {/* Goal & Strategy - Full width */}
         <div className="mb-6">
-          <h2 className="text-base font-bold text-foreground mb-3">Build In Public Subreddits</h2>
-          <div className="border border-border/30 rounded-lg overflow-hidden">
-            <Table>
-              <TableHeader>
-                <TableRow className="bg-secondary/30">
-                  <TableHead className="text-xs h-9 w-8"></TableHead>
-                  <TableHead className="text-xs h-9">Subreddit</TableHead>
-                  <TableHead className="text-xs h-9 text-right">Visitors/wk</TableHead>
-                  <TableHead className="text-xs h-9 text-right">Contributors</TableHead>
-                  <TableHead className="text-xs h-9 text-right">Engagement</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {subreddits.map((sub) => {
-                  const isExpanded = expandedRows.has(sub.name);
-                  return (
-                    <>
-                      <TableRow 
-                        key={sub.name} 
-                        className="hover:bg-secondary/20 cursor-pointer"
-                        onClick={() => toggleRow(sub.name)}
-                      >
-                        <TableCell className="py-2 w-8">
-                          {isExpanded ? (
-                            <ChevronDown className="w-3 h-3 text-muted-foreground" />
-                          ) : (
-                            <ChevronRight className="w-3 h-3 text-muted-foreground" />
-                          )}
-                        </TableCell>
-                        <TableCell className="text-xs py-2 font-medium">
-                          <span className="text-primary">{sub.name}</span>
-                        </TableCell>
-                        <TableCell className="text-xs py-2 text-right text-muted-foreground">{sub.visitors}</TableCell>
-                        <TableCell className="text-xs py-2 text-right text-muted-foreground">{sub.contributors}</TableCell>
-                        <TableCell className="text-xs py-2 text-right text-muted-foreground">{sub.engagement}</TableCell>
-                      </TableRow>
-                      {isExpanded && (
-                        <TableRow key={`${sub.name}-details`} className="bg-secondary/10">
-                          <TableCell colSpan={5} className="py-3 px-4">
-                            <div className="space-y-2">
-                              <div>
-                                <span className="text-xs font-semibold text-foreground">Description:</span>
-                                <p className="text-xs text-muted-foreground mt-0.5">{sub.description}</p>
-                              </div>
-                              <div>
-                                <span className="text-xs font-semibold text-foreground">Rules:</span>
-                                <p className="text-xs text-muted-foreground mt-0.5 whitespace-pre-line">{sub.rules}</p>
-                              </div>
-                              <a 
-                                href={`https://reddit.com/${sub.name}`} 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                className="inline-block text-xs text-primary hover:underline mt-1"
-                                onClick={(e) => e.stopPropagation()}
-                              >
-                                Visit subreddit →
-                              </a>
-                            </div>
-                          </TableCell>
-                        </TableRow>
-                      )}
-                    </>
-                  );
-                })}
-              </TableBody>
-            </Table>
+          <p className="text-sm text-muted-foreground mb-2">
+            <span className="font-semibold text-foreground">The Goal:</span> Earn karma, talk to your audience, and turn that attention into sales over time.
+          </p>
+          <p className="text-sm text-muted-foreground">
+            <span className="font-semibold text-foreground">The Strategy:</span> Make 2 posts per day. 5 comments before and after every post + reply to notifications. Cross-post to multiple relevant subreddits the same post. Wait at least 3 days before posting again in the same subreddit.
+          </p>
         </div>
 
-        {/* 3-Day Strategy Calendar */}
-        <div className="mb-6">
-          <h2 className="text-base font-bold text-foreground mb-3">3-Day Posting Strategy</h2>
-          <p className="text-xs text-muted-foreground mb-3">
-            <span className="font-semibold text-foreground">Every day:</span> Reply to notifications & messages. Don't post in the same subreddit during the 3-day loop. Before each posting: 5 messages. After each posting: 5 messages.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            {/* Day 1 */}
-            <div className="bg-secondary/30 rounded-lg p-3 border border-border/30">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center">1</span>
-                <h3 className="text-sm font-semibold text-foreground">Day 1</h3>
+        {/* Two Column Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Left Column: Strategy & Daily Content */}
+          <div className="space-y-4">
+            {/* 3-Day Strategy Calendar */}
+            <div>
+              <h2 className="text-base font-bold text-foreground mb-3">3-Day Posting Strategy</h2>
+              <p className="text-xs text-muted-foreground mb-3">
+                <span className="font-semibold text-foreground">Every day:</span> Reply to notifications & messages. Don't post in the same subreddit during the 3-day loop. Before each posting: 5 messages. After each posting: 5 messages.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {/* Day 1 */}
+                <div className="bg-secondary/30 rounded-lg p-3 border border-border/30">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center">1</span>
+                    <h3 className="text-sm font-semibold text-foreground">Day 1</h3>
+                  </div>
+                  <ul className="text-xs text-muted-foreground space-y-1.5">
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary mt-0.5">•</span>
+                      <span><span className="font-medium text-foreground">Build In Public:</span> Entertaining</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary mt-0.5">•</span>
+                      <span><span className="font-medium text-foreground">Niche Subreddits:</span> Expertise Content</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Day 2 */}
+                <div className="bg-secondary/30 rounded-lg p-3 border border-border/30">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center">2</span>
+                    <h3 className="text-sm font-semibold text-foreground">Day 2</h3>
+                  </div>
+                  <ul className="text-xs text-muted-foreground space-y-1.5">
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary mt-0.5">•</span>
+                      <span><span className="font-medium text-foreground">Build In Public:</span> Educational</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary mt-0.5">•</span>
+                      <span><span className="font-medium text-foreground">Niche Subreddits:</span> As a Customer</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Day 3 */}
+                <div className="bg-secondary/30 rounded-lg p-3 border border-border/30">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center">3</span>
+                    <h3 className="text-sm font-semibold text-foreground">Day 3</h3>
+                  </div>
+                  <ul className="text-xs text-muted-foreground space-y-1.5">
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary mt-0.5">•</span>
+                      <span><span className="font-medium text-foreground">Build In Public:</span> Inspirational</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary mt-0.5">•</span>
+                      <span><span className="font-medium text-foreground">Niche Subreddits:</span> Comparison</span>
+                    </li>
+                  </ul>
+                </div>
               </div>
-              <ul className="text-xs text-muted-foreground space-y-1.5">
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-0.5">•</span>
-                  <span><span className="font-medium text-foreground">Build In Public:</span> Entertaining</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-0.5">•</span>
-                  <span><span className="font-medium text-foreground">Niche Subreddits:</span> Expertise Content</span>
-                </li>
-              </ul>
             </div>
 
-            {/* Day 2 */}
-            <div className="bg-secondary/30 rounded-lg p-3 border border-border/30">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center">2</span>
-                <h3 className="text-sm font-semibold text-foreground">Day 2</h3>
-              </div>
-              <ul className="text-xs text-muted-foreground space-y-1.5">
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-0.5">•</span>
-                  <span><span className="font-medium text-foreground">Build In Public:</span> Educational</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-0.5">•</span>
-                  <span><span className="font-medium text-foreground">Niche Subreddits:</span> As a Customer</span>
-                </li>
-              </ul>
-            </div>
+            {/* Collapsible Daily Post Content */}
+            <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+              <CollapsibleTrigger className="flex items-center justify-between w-full bg-secondary/30 rounded-lg p-3 border border-border/30 hover:bg-secondary/50 transition-colors">
+                <span className="text-sm font-semibold text-foreground">Daily Post Content</span>
+                <ChevronDown className={`w-4 h-4 text-muted-foreground transition-transform ${isOpen ? "rotate-180" : ""}`} />
+              </CollapsibleTrigger>
+              <CollapsibleContent className="mt-2 space-y-2">
+                {/* Type 1: Build in Public */}
+                <div className="bg-secondary/30 rounded-lg p-3 border border-border/30">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="flex-shrink-0 w-5 h-5 rounded-full bg-primary/15 text-primary text-[10px] font-bold flex items-center justify-center">1</span>
+                    <h3 className="text-xs font-semibold text-foreground">X-style "Build in Public" Content</h3>
+                  </div>
+                  <p className="text-xs text-muted-foreground mb-2">
+                    Use the Rob Hallam loop: rotate content types, focus on karma first, sales later.
+                  </p>
+                  <ul className="text-xs text-muted-foreground space-y-0.5">
+                    <li><span className="text-foreground font-medium">Entertaining:</span> Anecdotes from your journey</li>
+                    <li><span className="text-foreground font-medium">Educational:</span> Learnings about users, revenue, launches</li>
+                    <li><span className="text-foreground font-medium">Inspirational:</span> Growth charts with a short story</li>
+                  </ul>
+                </div>
 
-            {/* Day 3 */}
-            <div className="bg-secondary/30 rounded-lg p-3 border border-border/30">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center">3</span>
-                <h3 className="text-sm font-semibold text-foreground">Day 3</h3>
-              </div>
-              <ul className="text-xs text-muted-foreground space-y-1.5">
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-0.5">•</span>
-                  <span><span className="font-medium text-foreground">Build In Public:</span> Inspirational</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-0.5">•</span>
-                  <span><span className="font-medium text-foreground">Niche Subreddits:</span> Comparison</span>
-                </li>
-              </ul>
+                {/* Type 2: Expertise */}
+                <div className="bg-secondary/30 rounded-lg p-3 border border-border/30">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="flex-shrink-0 w-5 h-5 rounded-full bg-primary/15 text-primary text-[10px] font-bold flex items-center justify-center">2</span>
+                    <h3 className="text-xs font-semibold text-foreground">Expertise Content (from your blog)</h3>
+                  </div>
+                  <p className="text-xs text-muted-foreground">
+                    Niche SEO-style posts. Never lead with promotion; use comments and DMs to mention what you do.
+                  </p>
+                </div>
+
+                {/* Type 2bis: Product-focused */}
+                <div className="bg-secondary/30 rounded-lg p-3 border border-border/30">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="flex-shrink-0 w-6 h-5 rounded-full bg-primary/15 text-primary text-[10px] font-bold flex items-center justify-center">2b</span>
+                    <h3 className="text-xs font-semibold text-foreground">Product-focused but not pushy</h3>
+                  </div>
+                  <ul className="text-xs text-muted-foreground space-y-0.5">
+                    <li>Niche expert posts solution. Never lead with promotion; use comments and DMs to mention what you do.</li>
+                    <li>Create "top tools" posts ranking competitors honestly.</li>
+                    <li>You as a customer, describe problems without naming your app.</li>
+                  </ul>
+                  <p className="text-xs text-muted-foreground mt-2 italic">
+                    Discuss and eventually talk about your product in the comments.
+                  </p>
+                </div>
+              </CollapsibleContent>
+            </Collapsible>
+          </div>
+
+          {/* Right Column: Subreddits Table */}
+          <div>
+            <h2 className="text-base font-bold text-foreground mb-3">Build In Public Subreddits</h2>
+            <div className="border border-border/30 rounded-lg overflow-hidden max-h-[600px] overflow-y-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow className="bg-secondary/30">
+                    <TableHead className="text-xs h-9 w-8"></TableHead>
+                    <TableHead className="text-xs h-9">Subreddit</TableHead>
+                    <TableHead className="text-xs h-9 text-right">Visitors/wk</TableHead>
+                    <TableHead className="text-xs h-9 text-right">Contributors</TableHead>
+                    <TableHead className="text-xs h-9 text-right">Engagement</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {subreddits.map((sub) => {
+                    const isExpanded = expandedRows.has(sub.name);
+                    return (
+                      <>
+                        <TableRow 
+                          key={sub.name} 
+                          className="hover:bg-secondary/20 cursor-pointer"
+                          onClick={() => toggleRow(sub.name)}
+                        >
+                          <TableCell className="py-2 w-8">
+                            {isExpanded ? (
+                              <ChevronDown className="w-3 h-3 text-muted-foreground" />
+                            ) : (
+                              <ChevronRight className="w-3 h-3 text-muted-foreground" />
+                            )}
+                          </TableCell>
+                          <TableCell className="text-xs py-2 font-medium">
+                            <span className="text-primary">{sub.name}</span>
+                          </TableCell>
+                          <TableCell className="text-xs py-2 text-right text-muted-foreground">{sub.visitors}</TableCell>
+                          <TableCell className="text-xs py-2 text-right text-muted-foreground">{sub.contributors}</TableCell>
+                          <TableCell className="text-xs py-2 text-right text-muted-foreground">{sub.engagement}</TableCell>
+                        </TableRow>
+                        {isExpanded && (
+                          <TableRow key={`${sub.name}-details`} className="bg-secondary/10">
+                            <TableCell colSpan={5} className="py-3 px-4">
+                              <div className="space-y-2">
+                                <div>
+                                  <span className="text-xs font-semibold text-foreground">Description:</span>
+                                  <p className="text-xs text-muted-foreground mt-0.5">{sub.description}</p>
+                                </div>
+                                <div>
+                                  <span className="text-xs font-semibold text-foreground">Rules:</span>
+                                  <p className="text-xs text-muted-foreground mt-0.5 whitespace-pre-line">{sub.rules}</p>
+                                </div>
+                                <a 
+                                  href={`https://reddit.com/${sub.name}`} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer"
+                                  className="inline-block text-xs text-primary hover:underline mt-1"
+                                  onClick={(e) => e.stopPropagation()}
+                                >
+                                  Visit subreddit →
+                                </a>
+                              </div>
+                            </TableCell>
+                          </TableRow>
+                        )}
+                      </>
+                    );
+                  })}
+                </TableBody>
+              </Table>
             </div>
           </div>
         </div>
-      </div>
       </div>
     </div>
   );
