@@ -214,16 +214,12 @@ const Reddit = () => {
     <div className="min-h-screen bg-background">
       <NavBar />
       <div className="container max-w-7xl mx-auto px-4 py-6 pt-[100px] md:pt-[120px]">
-        {/* Header */}
-        <div className="text-center mb-6">
+        {/* Header - Centered Column */}
+        <div className="max-w-2xl mx-auto text-center mb-6">
           <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Reddit Strategy</h1>
-          <p className="text-sm text-muted-foreground max-w-xl mx-auto">
+          <p className="text-sm text-muted-foreground mb-4">
             Reddit is the best platform for bootstrapped founders in 2026.
           </p>
-        </div>
-
-        {/* Goal & Strategy - Full width */}
-        <div className="mb-6">
           <p className="text-sm text-muted-foreground mb-2">
             <span className="font-semibold text-foreground">The Goal:</span> Earn karma, talk to your audience, and turn that attention into sales over time.
           </p>
@@ -354,7 +350,10 @@ const Reddit = () => {
 
           {/* Right Column: Subreddits Table */}
           <div>
-            <h2 className="text-base font-bold text-foreground mb-3">Build In Public Subreddits</h2>
+            <h2 className="text-base font-bold text-foreground mb-2">Build In Public Subreddits</h2>
+            <p className="text-xs text-muted-foreground mb-3 italic">
+              Note: The niche subreddits must be found by yourself regarding your niche audience.
+            </p>
             <div className="border border-border/30 rounded-lg overflow-hidden max-h-[600px] overflow-y-auto">
               <Table>
                 <TableHeader>
