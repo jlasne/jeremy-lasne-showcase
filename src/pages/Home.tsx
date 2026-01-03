@@ -59,17 +59,18 @@ const Home = () => {
               </p>
 
               {/* Social Links */}
-              <div className="flex items-center gap-5 mb-6">
+              <div className="flex items-center gap-3 mb-6">
                 <a
                   href="https://x.com/Jeremylasne1"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="inline-flex items-center gap-2 px-3 py-1.5 bg-muted text-muted-foreground hover:text-foreground rounded-lg transition-colors text-sm"
                   aria-label="X (Twitter)"
                 >
-                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                   </svg>
+                  @jeremylasne
                 </a>
               </div>
 
@@ -108,7 +109,7 @@ const Home = () => {
               {projects.map((project) => (
                 <div
                   key={project.name}
-                  className="relative bg-card rounded-xl p-5 border border-border/50 hover:border-border hover:shadow-md transition-all"
+                  className="relative bg-card rounded-xl p-5 border border-border/50 hover:border-border shadow-[0_4px_20px_-4px_rgba(139,0,0,0.3)] hover:shadow-[0_8px_30px_-4px_rgba(139,0,0,0.4)] transition-all"
                 >
                   {project.comingSoon && (
                     <div className="absolute inset-0 rounded-xl backdrop-blur-[2px] bg-background/40 z-10 flex items-center justify-center">
