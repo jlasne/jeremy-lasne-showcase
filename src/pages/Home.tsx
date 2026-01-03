@@ -18,7 +18,7 @@ const projects = [
     name: "Trustviews",
     description: "Your Traffic Shareable And Trusted",
     logo: trustviewsLogo,
-    type: "side" as const,
+    type: "main" as const,
     url: "https://trustviews.io",
     comingSoon: false,
   },
