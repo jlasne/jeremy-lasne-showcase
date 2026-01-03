@@ -3,6 +3,7 @@ import profilePicture from "@/assets/profile-picture-new.jpg";
 import retnLogo from "@/assets/retn-logo.png";
 import trustviewsLogo from "@/assets/trustviews-logo.png";
 import onedollarfeedbackLogo from "@/assets/onedollarfeedback-logo.png";
+import launchedEmailsLogo from "@/assets/launched-emails-logo.png";
 
 const projects = [
   {
@@ -28,6 +29,14 @@ const projects = [
     type: "side" as const,
     url: "https://onedollarfeedback.com",
     comingSoon: false,
+  },
+  {
+    name: "Launched Emails",
+    description: "Custom-domain email, simplified.",
+    logo: launchedEmailsLogo,
+    type: "side" as const,
+    url: "",
+    comingSoon: true,
   },
 ];
 
