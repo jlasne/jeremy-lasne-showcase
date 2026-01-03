@@ -189,17 +189,6 @@ const Home = () => {
               </a>
             </div>
 
-            {/* TrustViews Bento */}
-            <div className="mt-8">
-              <iframe
-                src="https://trustviews.io/w/jeremylasne/bento"
-                width="100%"
-                height="320"
-                frameBorder="0"
-                scrolling="no"
-                className="rounded-xl max-w-full"
-              ></iframe>
-            </div>
           </div>
         </div>
       </div>
