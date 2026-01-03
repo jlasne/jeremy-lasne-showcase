@@ -11,7 +11,6 @@ import SmokeFree from "./pages/SmokeFree";
 import SafuMove from "./pages/SafuMove";
 import AutoChangelog from "./pages/AutoChangelog";
 import Marketing from "./pages/Marketing";
-import Directory from "./pages/Directory";
 import Reddit from "./pages/Reddit";
 import NotFound from "./pages/NotFound";
 
@@ -31,11 +30,8 @@ const App = () => (
           <Route path="/talk/quitesmoking" element={<SmokeFree />} />
           <Route path="/talk/safumove" element={<SafuMove />} />
           <Route path="/talk/autochangelog" element={<AutoChangelog />} />
-          <Route path="/talk/marketing" element={<Marketing />} />
           <Route path="/marketing" element={<Marketing />} />
-          <Route path="/directory" element={<Directory />} />
           <Route path="/reddit" element={<Reddit />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
