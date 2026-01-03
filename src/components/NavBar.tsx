@@ -4,10 +4,10 @@ import { useState, useEffect } from "react";
 import jlLogo from "@/assets/jl-logo.png";
 
 const NavBar = () => {
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const [theme, setTheme] = useState<"dark" | "light">("light");
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") as "dark" | "light" || "dark";
+    const savedTheme = localStorage.getItem("theme") as "dark" | "light" || "light";
     setTheme(savedTheme);
     if (savedTheme === "dark") {
       document.documentElement.classList.add("dark");
