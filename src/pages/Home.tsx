@@ -1,24 +1,18 @@
+import { useState } from "react";
+import { ChevronDown, ChevronRight } from "lucide-react";
 import NavBar from "@/components/NavBar";
 import profilePicture from "@/assets/profile-picture-new.jpg";
 import retnLogo from "@/assets/retn-logo.png";
 import trustviewsLogo from "@/assets/trustviews-logo.png";
 import onedollarfeedbackLogo from "@/assets/onedollarfeedback-logo.png";
 import launchedEmailsLogo from "@/assets/launched-emails-logo.png";
+import startuphuntLogo from "@/assets/startuphunt-logo.png";
 
 const projects = [
-  {
-    name: "Retn",
-    description: "Grow Revenue by 40% with Smart Retention.",
-    logo: retnLogo,
-    type: "main" as const,
-    url: "https://retn.io",
-    comingSoon: true,
-  },
   {
     name: "Trustviews",
     description: "Your Traffic Shareable And Trusted",
     logo: trustviewsLogo,
-    type: "main" as const,
     url: "https://trustviews.io",
     comingSoon: false,
   },
@@ -26,21 +20,38 @@ const projects = [
     name: "OneDollarFeedback",
     description: "Collect user feedback for just $1/month",
     logo: onedollarfeedbackLogo,
-    type: "side" as const,
     url: "https://onedollarfeedback.com",
     comingSoon: false,
+  },
+  {
+    name: "Retn",
+    description: "Grow Revenue by 40% with Smart Retention.",
+    logo: retnLogo,
+    url: "https://retn.io",
+    comingSoon: true,
   },
   {
     name: "Launched Emails",
     description: "Custom-domain email, simplified.",
     logo: launchedEmailsLogo,
-    type: "side" as const,
     url: "",
+    comingSoon: true,
+  },
+  {
+    name: "Startuphunt.io",
+    description: "The startup analysis you wish you had for your launch.",
+    logo: startuphuntLogo,
+    url: "https://startuphunt.io",
     comingSoon: true,
   },
 ];
 
 const Home = () => {
+  const [comingSoonExpanded, setComingSoonExpanded] = useState(false);
+
+  const activeProjects = projects.filter(p => !p.comingSoon);
+  const comingSoonProjects = projects.filter(p => p.comingSoon);
+
   return (
     <div className="min-h-screen bg-background">
       <NavBar />
@@ -104,69 +115,60 @@ const Home = () => {
 
           {/* Right Column - Project Cards */}
           <div className="lg:col-span-8 xl:col-span-9 space-y-8">
-            {/* Main Projects */}
+            {/* Active Projects */}
             <div>
               <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">
-                Main Projects
+                Active Projects
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {projects.filter(p => p.type === "main").map((project) => (
-                  <div
+                {activeProjects.map((project) => (
+                  <a
                     key={project.name}
-                    className="relative bg-card rounded-xl p-5 border border-border/50 hover:border-border shadow-[0_4px_20px_-4px_rgba(139,0,0,0.3)] hover:shadow-[0_8px_30px_-4px_rgba(139,0,0,0.4)] transition-all"
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-card rounded-xl p-5 border border-border/50 hover:border-border shadow-[0_4px_20px_-4px_rgba(139,0,0,0.3)] hover:shadow-[0_8px_30px_-4px_rgba(139,0,0,0.4)] transition-all block"
                   >
-                    {project.comingSoon && (
-                      <div className="absolute inset-0 rounded-xl backdrop-blur-[2px] bg-background/40 z-10 flex items-center justify-center">
-                        <span className="bg-primary text-primary-foreground text-xs font-medium px-3 py-1 rounded-full">
-                          Coming Soon
-                        </span>
-                      </div>
-                    )}
-                    <a
-                      href={project.comingSoon ? undefined : project.url}
-                      target={project.comingSoon ? undefined : "_blank"}
-                      rel={project.comingSoon ? undefined : "noopener noreferrer"}
-                      className={project.comingSoon ? "cursor-default" : "cursor-pointer block"}
-                    >
-                      <div className="flex items-center gap-3 mb-3">
-                        <img
-                          src={project.logo}
-                          alt={`${project.name} logo`}
-                          className="w-10 h-10 rounded-lg object-cover"
-                        />
-                        <span className="font-semibold text-foreground">{project.name}</span>
-                      </div>
-                      <p className="text-sm text-muted-foreground">{project.description}</p>
-                    </a>
-                  </div>
+                    <div className="flex items-center gap-3 mb-3">
+                      <img
+                        src={project.logo}
+                        alt={`${project.name} logo`}
+                        className="w-10 h-10 rounded-lg object-cover"
+                      />
+                      <span className="font-semibold text-foreground">{project.name}</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground">{project.description}</p>
+                  </a>
                 ))}
               </div>
             </div>
 
-            {/* Side Projects */}
+            {/* Coming Soon Projects - Expandable */}
             <div>
-              <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">
-                Side Projects
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {projects.filter(p => p.type === "side").map((project) => (
-                  <div
-                    key={project.name}
-                    className="relative bg-card rounded-xl p-5 border border-border/50 hover:border-border shadow-[0_4px_20px_-4px_rgba(139,0,0,0.3)] hover:shadow-[0_8px_30px_-4px_rgba(139,0,0,0.4)] transition-all"
-                  >
-                    {project.comingSoon && (
+              <button
+                onClick={() => setComingSoonExpanded(!comingSoonExpanded)}
+                className="flex items-center gap-2 text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4 hover:text-foreground transition-colors"
+              >
+                {comingSoonExpanded ? (
+                  <ChevronDown className="w-4 h-4" />
+                ) : (
+                  <ChevronRight className="w-4 h-4" />
+                )}
+                Coming Soon ({comingSoonProjects.length})
+              </button>
+              
+              {comingSoonExpanded && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {comingSoonProjects.map((project) => (
+                    <div
+                      key={project.name}
+                      className="relative bg-card rounded-xl p-5 border border-border/50 shadow-[0_4px_20px_-4px_rgba(139,0,0,0.3)] transition-all"
+                    >
                       <div className="absolute inset-0 rounded-xl backdrop-blur-[2px] bg-background/40 z-10 flex items-center justify-center">
                         <span className="bg-primary text-primary-foreground text-xs font-medium px-3 py-1 rounded-full">
                           Coming Soon
                         </span>
                       </div>
-                    )}
-                    <a
-                      href={project.comingSoon ? undefined : project.url}
-                      target={project.comingSoon ? undefined : "_blank"}
-                      rel={project.comingSoon ? undefined : "noopener noreferrer"}
-                      className={project.comingSoon ? "cursor-default" : "cursor-pointer block"}
-                    >
                       <div className="flex items-center gap-3 mb-3">
                         <img
                           src={project.logo}
@@ -176,10 +178,10 @@ const Home = () => {
                         <span className="font-semibold text-foreground">{project.name}</span>
                       </div>
                       <p className="text-sm text-muted-foreground">{project.description}</p>
-                    </a>
-                  </div>
-                ))}
-              </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>
