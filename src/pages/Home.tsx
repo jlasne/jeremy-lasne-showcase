@@ -19,7 +19,7 @@ const projects = [
     logo: onedollarfeedbackLogo,
     url: "https://onedollarfeedback.com",
     comingSoon: false,
-    tag: "SaaS & Side Project",
+    tag: "Side Project",
   },
   {
     name: "Launched Emails",
