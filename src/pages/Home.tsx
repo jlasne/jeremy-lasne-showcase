@@ -27,7 +27,7 @@ const projects = [
     comingSoon: true,
   },
   {
-    name: "Startuphunt.io",
+    name: "StartupHunt",
     description: "The startup analysis you wish you had for your launch.",
     logo: startuphuntLogo,
     url: "https://startuphunt.io",
