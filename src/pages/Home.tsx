@@ -1,13 +1,9 @@
-import { useState } from "react";
-import { ChevronDown, ChevronRight } from "lucide-react";
 import NavBar from "@/components/NavBar";
 import profilePicture from "@/assets/profile-picture-new.jpg";
-import retnLogo from "@/assets/retn-logo.png";
 import trustviewsLogo from "@/assets/trustviews-logo.png";
 import onedollarfeedbackLogo from "@/assets/onedollarfeedback-logo.png";
 import launchedEmailsLogo from "@/assets/launched-emails-logo.png";
 import startuphuntLogo from "@/assets/startuphunt-logo.png";
-
 const projects = [
   {
     name: "Trustviews",
@@ -22,13 +18,6 @@ const projects = [
     logo: onedollarfeedbackLogo,
     url: "https://onedollarfeedback.com",
     comingSoon: false,
-  },
-  {
-    name: "Retn",
-    description: "Grow Revenue by 40% with Smart Retention.",
-    logo: retnLogo,
-    url: "https://retn.io",
-    comingSoon: true,
   },
   {
     name: "Launched Emails",
@@ -47,7 +36,6 @@ const projects = [
 ];
 
 const Home = () => {
-  const [comingSoonExpanded, setComingSoonExpanded] = useState(false);
 
   const activeProjects = projects.filter(p => !p.comingSoon);
   const comingSoonProjects = projects.filter(p => p.comingSoon);
@@ -143,45 +131,34 @@ const Home = () => {
               </div>
             </div>
 
-            {/* Coming Soon Projects - Expandable */}
+            {/* Building Projects */}
             <div>
-              <button
-                onClick={() => setComingSoonExpanded(!comingSoonExpanded)}
-                className="flex items-center gap-2 text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4 hover:text-foreground transition-colors"
-              >
-                {comingSoonExpanded ? (
-                  <ChevronDown className="w-4 h-4" />
-                ) : (
-                  <ChevronRight className="w-4 h-4" />
-                )}
-                Coming Soon ({comingSoonProjects.length})
-              </button>
-              
-              {comingSoonExpanded && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {comingSoonProjects.map((project) => (
-                    <div
-                      key={project.name}
-                      className="relative bg-card rounded-xl p-5 border border-border/50 shadow-[0_4px_20px_-4px_rgba(139,0,0,0.3)] transition-all"
-                    >
-                      <div className="absolute inset-0 rounded-xl backdrop-blur-[2px] bg-background/40 z-10 flex items-center justify-center">
-                        <span className="bg-primary text-primary-foreground text-xs font-medium px-3 py-1 rounded-full">
-                          Coming Soon
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-3 mb-3">
-                        <img
-                          src={project.logo}
-                          alt={`${project.name} logo`}
-                          className="w-10 h-10 rounded-lg object-cover"
-                        />
-                        <span className="font-semibold text-foreground">{project.name}</span>
-                      </div>
-                      <p className="text-sm text-muted-foreground">{project.description}</p>
+              <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">
+                Building Projects
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {comingSoonProjects.map((project) => (
+                  <div
+                    key={project.name}
+                    className="relative bg-card rounded-xl p-5 border border-border/50 shadow-[0_4px_20px_-4px_rgba(139,0,0,0.3)] transition-all"
+                  >
+                    <div className="absolute inset-0 rounded-xl backdrop-blur-[2px] bg-background/40 z-10 flex items-center justify-center">
+                      <span className="bg-primary text-primary-foreground text-xs font-medium px-3 py-1 rounded-full">
+                        Coming Soon
+                      </span>
                     </div>
-                  ))}
-                </div>
-              )}
+                    <div className="flex items-center gap-3 mb-3">
+                      <img
+                        src={project.logo}
+                        alt={`${project.name} logo`}
+                        className="w-10 h-10 rounded-lg object-cover"
+                      />
+                      <span className="font-semibold text-foreground">{project.name}</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground">{project.description}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
