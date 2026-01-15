@@ -11,6 +11,7 @@ const projects = [
     logo: trustviewsLogo,
     url: "https://trustviews.io",
     comingSoon: false,
+    tag: "Directory",
   },
   {
     name: "OneDollarFeedback",
@@ -18,6 +19,7 @@ const projects = [
     logo: onedollarfeedbackLogo,
     url: "https://onedollarfeedback.com",
     comingSoon: false,
+    tag: "SaaS & Side Project",
   },
   {
     name: "Launched Emails",
@@ -117,13 +119,20 @@ const Home = () => {
                     rel="noopener noreferrer"
                     className="bg-card rounded-xl p-5 border border-border/50 hover:border-border shadow-[0_4px_20px_-4px_rgba(139,0,0,0.3)] hover:shadow-[0_8px_30px_-4px_rgba(139,0,0,0.4)] transition-all block"
                   >
-                    <div className="flex items-center gap-3 mb-3">
+                    <div className="flex items-center gap-3 mb-2">
                       <img
                         src={project.logo}
                         alt={`${project.name} logo`}
                         className="w-10 h-10 rounded-lg object-cover"
                       />
-                      <span className="font-semibold text-foreground">{project.name}</span>
+                      <div>
+                        <span className="font-semibold text-foreground">{project.name}</span>
+                        {project.tag && (
+                          <span className="ml-2 text-xs bg-muted text-muted-foreground px-2 py-0.5 rounded-full">
+                            {project.tag}
+                          </span>
+                        )}
+                      </div>
                     </div>
                     <p className="text-sm text-muted-foreground">{project.description}</p>
                   </a>
