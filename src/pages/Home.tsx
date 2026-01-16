@@ -30,10 +30,11 @@ const projects = [
   },
   {
     name: "StartupHunt",
-    description: "The startup analysis you wish you had for your launch.",
+    description: "Hunt startups worth copying",
     logo: startuphuntLogo,
     url: "https://startuphunt.io",
-    comingSoon: true,
+    comingSoon: false,
+    tag: "Newsletter",
   },
 ];
 
