@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import NavBar from "@/components/NavBar";
 import profilePicture from "@/assets/profile-picture-new.jpg";
 import trustviewsLogo from "@/assets/trustviews-logo.png";
@@ -39,10 +40,20 @@ const projects = [
 ];
 
 const Home = () => {
-
   const activeProjects = projects.filter(p => !p.comingSoon);
   const comingSoonProjects = projects.filter(p => p.comingSoon);
 
+  useEffect(() => {
+    // Load Twitter widget script
+    if (!document.querySelector('script[src="https://platform.twitter.com/widgets.js"]')) {
+      const script = document.createElement('script');
+      script.src = 'https://platform.twitter.com/widgets.js';
+      script.async = true;
+      document.body.appendChild(script);
+    } else if ((window as any).twttr?.widgets) {
+      (window as any).twttr.widgets.load();
+    }
+  }, []);
   return (
     <div className="min-h-screen bg-background">
       <NavBar />
@@ -168,6 +179,15 @@ const Home = () => {
                     <p className="text-sm text-muted-foreground">{project.description}</p>
                   </div>
                 ))}
+              </div>
+            </div>
+
+            {/* Twitter Embed */}
+            <div className="mt-8">
+              <div className="bg-card rounded-xl p-5 border border-border/50 shadow-[0_4px_20px_-4px_rgba(139,0,0,0.3)]">
+                <blockquote className="twitter-tweet" data-theme="dark">
+                  <a href="https://x.com/JeremyLasne/status/2013581399748497693">Loading tweet...</a>
+                </blockquote>
               </div>
             </div>
           </div>
