@@ -186,7 +186,7 @@ const Home = () => {
             <div className="mt-8">
               <div className="bg-card rounded-xl p-5 border border-border/50 shadow-[0_4px_20px_-4px_rgba(139,0,0,0.3)]">
                 <blockquote className="twitter-tweet" data-theme="dark">
-                  <a href="https://x.com/JeremyLasne/status/2013581399748497693">Loading tweet...</a>
+                  <a href="https://x.com/JeremyLasne/status/2013581399748497693"></a>
                 </blockquote>
               </div>
             </div>
