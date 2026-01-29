@@ -6,6 +6,7 @@ import onedollarfeedbackLogo from "@/assets/onedollarfeedback-logo.png";
 import launchedEmailsLogo from "@/assets/launched-emails-logo.png";
 import startuphuntLogo from "@/assets/startuphunt-logo.png";
 import onedollarfeedbackPreview from "@/assets/onedollarfeedback-preview.png";
+import startuphuntPreview from "@/assets/startuphunt-preview.png";
 
 const projects = [
   {
@@ -38,7 +39,7 @@ const projects = [
     name: "StartupHunt",
     description: "Hunt startups worth copying",
     logo: startuphuntLogo,
-    preview: null,
+    preview: startuphuntPreview,
     url: "https://startuphunt.io",
     comingSoon: false,
     tag: "Newsletter",
