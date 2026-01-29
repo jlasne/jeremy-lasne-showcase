@@ -7,13 +7,14 @@ import launchedEmailsLogo from "@/assets/launched-emails-logo.png";
 import startuphuntLogo from "@/assets/startuphunt-logo.png";
 import onedollarfeedbackPreview from "@/assets/onedollarfeedback-preview.png";
 import startuphuntPreview from "@/assets/startuphunt-preview.png";
+import trustviewsPreview from "@/assets/trustviews-preview.png";
 
 const projects = [
   {
     name: "Trustviews",
     description: "Your Traffic Shareable And Trusted",
     logo: trustviewsLogo,
-    preview: null,
+    preview: trustviewsPreview,
     url: "https://trustviews.io",
     comingSoon: false,
     tag: "Directory",
