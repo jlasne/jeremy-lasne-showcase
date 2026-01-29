@@ -5,11 +5,14 @@ import trustviewsLogo from "@/assets/trustviews-logo.png";
 import onedollarfeedbackLogo from "@/assets/onedollarfeedback-logo.png";
 import launchedEmailsLogo from "@/assets/launched-emails-logo.png";
 import startuphuntLogo from "@/assets/startuphunt-logo.png";
+import onedollarfeedbackPreview from "@/assets/onedollarfeedback-preview.png";
+
 const projects = [
   {
     name: "Trustviews",
     description: "Your Traffic Shareable And Trusted",
     logo: trustviewsLogo,
+    preview: null,
     url: "https://trustviews.io",
     comingSoon: false,
     tag: "Directory",
@@ -18,6 +21,7 @@ const projects = [
     name: "OneDollarFeedback",
     description: "Collect user feedback for just $1/month",
     logo: onedollarfeedbackLogo,
+    preview: onedollarfeedbackPreview,
     url: "https://onedollarfeedback.com",
     comingSoon: false,
     tag: "Side Project",
@@ -26,6 +30,7 @@ const projects = [
     name: "Launched Emails",
     description: "Custom-domain email, simplified.",
     logo: launchedEmailsLogo,
+    preview: null,
     url: "",
     comingSoon: true,
   },
@@ -33,6 +38,7 @@ const projects = [
     name: "StartupHunt",
     description: "Hunt startups worth copying",
     logo: startuphuntLogo,
+    preview: null,
     url: "https://startuphunt.io",
     comingSoon: false,
     tag: "Newsletter",
@@ -118,24 +124,34 @@ const Home = () => {
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-card rounded-xl p-5 border border-border/50 hover:border-border shadow-[0_4px_20px_-4px_rgba(139,0,0,0.3)] hover:shadow-[0_8px_30px_-4px_rgba(139,0,0,0.4)] transition-all block"
+                    className="bg-card rounded-xl border border-border/50 hover:border-border shadow-[0_4px_20px_-4px_rgba(139,0,0,0.3)] hover:shadow-[0_8px_30px_-4px_rgba(139,0,0,0.4)] transition-all block overflow-hidden"
                   >
-                    <div className="flex items-center gap-3 mb-2">
+                    {project.preview ? (
                       <img
-                        src={project.logo}
-                        alt={`${project.name} logo`}
-                        className="w-10 h-10 rounded-lg object-cover"
+                        src={project.preview}
+                        alt={`${project.name} preview`}
+                        className="w-full h-40 object-cover object-top"
                       />
-                      <div>
+                    ) : (
+                      <div className="w-full h-40 bg-muted/30 flex items-center justify-center">
+                        <img
+                          src={project.logo}
+                          alt={`${project.name} logo`}
+                          className="w-16 h-16 rounded-lg object-cover"
+                        />
+                      </div>
+                    )}
+                    <div className="p-4">
+                      <div className="flex items-center gap-2 mb-1">
                         <span className="font-semibold text-foreground">{project.name}</span>
                         {project.tag && (
-                          <span className="ml-2 text-xs bg-muted text-muted-foreground px-2 py-0.5 rounded-full">
+                          <span className="text-xs bg-muted text-muted-foreground px-2 py-0.5 rounded-full">
                             {project.tag}
                           </span>
                         )}
                       </div>
+                      <p className="text-sm text-muted-foreground">{project.description}</p>
                     </div>
-                    <p className="text-sm text-muted-foreground">{project.description}</p>
                   </a>
                 ))}
               </div>
