@@ -3,7 +3,7 @@ import NavBar from "@/components/NavBar";
 import profilePicture from "@/assets/profile-picture-new.jpg";
 import trustviewsLogo from "@/assets/trustviews-logo.png";
 import onedollarfeedbackLogo from "@/assets/onedollarfeedback-logo.png";
-import launchedEmailsLogo from "@/assets/launched-emails-logo.png";
+
 import startuphuntLogo from "@/assets/startuphunt-logo.png";
 import onedollarfeedbackPreview from "@/assets/onedollarfeedback-preview.png";
 import startuphuntPreview from "@/assets/startuphunt-preview.png";
@@ -29,16 +29,8 @@ const projects = [
     tag: "Side Project",
   },
   {
-    name: "Launched Emails",
-    description: "Custom-domain email, simplified.",
-    logo: launchedEmailsLogo,
-    preview: null,
-    url: "",
-    comingSoon: true,
-  },
-  {
     name: "StartupHunt",
-    description: "Hunt startups worth copying",
+    description: "Learn how successful startups make money",
     logo: startuphuntLogo,
     preview: startuphuntPreview,
     url: "https://startuphunt.io",
@@ -72,7 +64,7 @@ const Home = () => {
 
               {/* Tagline */}
               <p className="text-foreground mb-6 leading-relaxed text-sm md:text-base">
-                Founder turning learnings from 13 failures into valuable projects
+                On a mission to help 10,000 founders hit their next revenue milestone.
               </p>
 
               {/* Social Links */}
@@ -91,22 +83,6 @@ const Home = () => {
                 </a>
               </div>
 
-              {/* Action Links */}
-              <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
-                <a
-                  href="/reddit"
-                  className="hover:text-foreground transition-colors underline underline-offset-2"
-                >
-                  Reddit Strategy Guide
-                </a>
-                <span className="text-border">•</span>
-                <a
-                  href="/talk"
-                  className="hover:text-foreground transition-colors underline underline-offset-2"
-                >
-                  Interviews
-                </a>
-              </div>
             </div>
           </div>
 
