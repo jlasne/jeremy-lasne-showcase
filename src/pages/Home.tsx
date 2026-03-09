@@ -1,53 +1,60 @@
-
 import NavBar from "@/components/NavBar";
 import profilePicture from "@/assets/profile-picture-new.jpg";
-import trustviewsLogo from "@/assets/trustviews-logo.png";
-import onedollarfeedbackLogo from "@/assets/onedollarfeedback-logo.png";
-
-import startuphuntLogo from "@/assets/startuphunt-logo.png";
-import onedollarfeedbackPreview from "@/assets/onedollarfeedback-preview.png";
-import startuphuntPreview from "@/assets/startuphunt-preview.png";
-import trustviewsPreview from "@/assets/trustviews-preview.png";
+import Timeline, { type TimelineEntry } from "@/components/ui/timeline";
 
 const projects = [
   {
+    name: "StartupHunt",
+    description: "Learn how successful startups make money",
+    url: "https://startuphunt.io",
+  },
+  {
     name: "Trustviews",
     description: "Your Traffic Shareable And Trusted",
-    logo: trustviewsLogo,
-    preview: trustviewsPreview,
     url: "https://trustviews.io",
-    comingSoon: false,
-    tag: "Directory",
   },
   {
     name: "OneDollarFeedback",
     description: "Collect user feedback for just $1/month",
-    logo: onedollarfeedbackLogo,
-    preview: onedollarfeedbackPreview,
     url: "https://onedollarfeedback.com",
-    comingSoon: false,
-    tag: "Side Project",
+  },
+];
+
+const logbookEntries: TimelineEntry[] = [
+  {
+    date: "March 9, 2025",
+    title: "Launched StartupHunt newsletter",
+    content:
+      "Started a weekly newsletter breaking down how successful startups make money. First issue sent to 200+ subscribers.",
   },
   {
-    name: "StartupHunt",
-    description: "Learn how successful startups make money",
-    logo: startuphuntLogo,
-    preview: startuphuntPreview,
-    url: "https://startuphunt.io",
-    comingSoon: false,
-    tag: "Newsletter",
+    date: "March 1, 2025",
+    title: "Trustviews hits 500 listings",
+    content:
+      "Reached 500 verified directory listings on Trustviews. Organic traffic growing steadily week over week.",
+  },
+  {
+    date: "February 20, 2025",
+    title: "OneDollarFeedback launched",
+    content:
+      "Shipped the MVP of OneDollarFeedback — a dead-simple feedback widget for $1/month. First paying customers on day one.",
+  },
+  {
+    date: "February 10, 2025",
+    title: "Redesigned personal site",
+    content:
+      "Complete overhaul of my portfolio site. New logbook format to share the building journey publicly.",
   },
 ];
 
 const Home = () => {
-
   return (
     <div className="min-h-screen bg-background">
       <NavBar />
 
       <div className="max-w-7xl mx-auto px-6 md:px-8 pt-[100px] md:pt-[120px] pb-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
-          {/* Left Column - Profile */}
+          {/* Left Column - Profile & Projects */}
           <div className="lg:col-span-4 xl:col-span-3">
             <div className="lg:sticky lg:top-[120px]">
               {/* Profile Picture */}
@@ -68,7 +75,7 @@ const Home = () => {
               </p>
 
               {/* Social Links */}
-              <div className="flex items-center gap-3 mb-6">
+              <div className="flex items-center gap-3 mb-8">
                 <a
                   href="https://x.com/Jeremylasne1"
                   target="_blank"
@@ -83,82 +90,37 @@ const Home = () => {
                 </a>
               </div>
 
-            </div>
-          </div>
-
-          {/* Right Column - Project Cards */}
-          <div className="lg:col-span-8 xl:col-span-9 space-y-8">
-            {/* Active Projects */}
-            <div>
-              <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">
-                Active Projects
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {projects.map((project) => (
-                  project.comingSoon ? (
-                    <div
-                      key={project.name}
-                      className="relative bg-card rounded-xl border border-border/50 shadow-[0_4px_20px_-4px_rgba(139,0,0,0.3)] transition-all overflow-hidden"
-                    >
-                      <div className="absolute inset-0 rounded-xl backdrop-blur-[2px] bg-background/40 z-10 flex items-center justify-center">
-                        <span className="bg-primary text-primary-foreground text-xs font-medium px-3 py-1 rounded-full">
-                          Coming Soon
-                        </span>
-                      </div>
-                      <div className="w-full h-40 bg-muted/30 flex items-center justify-center">
-                        <img
-                          src={project.logo}
-                          alt={`${project.name} logo`}
-                          className="w-16 h-16 rounded-lg object-cover"
-                        />
-                      </div>
-                      <div className="p-4">
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="font-semibold text-foreground">{project.name}</span>
-                        </div>
-                        <p className="text-sm text-muted-foreground">{project.description}</p>
-                      </div>
-                    </div>
-                  ) : (
+              {/* Projects List */}
+              <div>
+                <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3">
+                  Projects
+                </h3>
+                <div className="space-y-3">
+                  {projects.map((project) => (
                     <a
                       key={project.name}
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-card rounded-xl border border-border/50 hover:border-border shadow-[0_4px_20px_-4px_rgba(139,0,0,0.3)] hover:shadow-[0_8px_30px_-4px_rgba(139,0,0,0.4)] transition-all block overflow-hidden"
+                      className="block group"
                     >
-                      {project.preview ? (
-                        <img
-                          src={project.preview}
-                          alt={`${project.name} preview`}
-                          className="w-full h-40 object-cover object-top"
-                        />
-                      ) : (
-                        <div className="w-full h-40 bg-muted/30 flex items-center justify-center">
-                          <img
-                            src={project.logo}
-                            alt={`${project.name} logo`}
-                            className="w-16 h-16 rounded-lg object-cover"
-                          />
-                        </div>
-                      )}
-                      <div className="p-4">
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="font-semibold text-foreground">{project.name}</span>
-                          {project.tag && (
-                            <span className="text-xs bg-muted text-muted-foreground px-2 py-0.5 rounded-full">
-                              {project.tag}
-                            </span>
-                          )}
-                        </div>
-                        <p className="text-sm text-muted-foreground">{project.description}</p>
-                      </div>
+                      <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
+                        {project.name}
+                      </span>
+                      <p className="text-xs text-muted-foreground">{project.description}</p>
                     </a>
-                  )
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
+          </div>
 
+          {/* Right Column - Logbook Timeline */}
+          <div className="lg:col-span-8 xl:col-span-9">
+            <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-6">
+              Logbook
+            </h3>
+            <Timeline entries={logbookEntries} />
           </div>
         </div>
       </div>
