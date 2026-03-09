@@ -1,5 +1,8 @@
 import NavBar from "@/components/NavBar";
 import profilePicture from "@/assets/profile-picture-new.jpg";
+import startuphuntLogo from "@/assets/startuphunt-logo.png";
+import trustviewsLogo from "@/assets/trustviews-logo.png";
+import onedollarfeedbackLogo from "@/assets/onedollarfeedback-logo.png";
 import Timeline, { type TimelineEntry } from "@/components/ui/timeline";
 
 const projects = [
@@ -7,16 +10,19 @@ const projects = [
     name: "StartupHunt",
     description: "Learn how successful startups make money",
     url: "https://startuphunt.io",
+    logo: startuphuntLogo,
   },
   {
     name: "Trustviews",
     description: "Your Traffic Shareable And Trusted",
     url: "https://trustviews.io",
+    logo: trustviewsLogo,
   },
   {
     name: "OneDollarFeedback",
     description: "Collect user feedback for just $1/month",
     url: "https://onedollarfeedback.com",
+    logo: onedollarfeedbackLogo,
   },
 ];
 
@@ -54,9 +60,9 @@ const Home = () => {
 
       <div className="max-w-7xl mx-auto px-6 md:px-8 pt-[100px] md:pt-[120px] pb-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
-          {/* Left Column - Profile & Projects */}
+          {/* Left Column - Profile & Projects (fixed) */}
           <div className="lg:col-span-4 xl:col-span-3">
-            <div className="lg:sticky lg:top-[120px]">
+            <div className="lg:fixed lg:top-[120px] lg:w-[calc((100vw-theme(maxWidth.7xl))/2+theme(maxWidth.7xl)*3/12-2rem)] xl:w-[calc((100vw-theme(maxWidth.7xl))/2+theme(maxWidth.7xl)*3/12-2rem)] lg:max-w-[280px]">
               {/* Profile Picture */}
               <div className="mb-6">
                 <img
@@ -102,12 +108,19 @@ const Home = () => {
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block group"
+                      className="flex items-center gap-3 group"
                     >
-                      <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
-                        {project.name}
-                      </span>
-                      <p className="text-xs text-muted-foreground">{project.description}</p>
+                      <img
+                        src={project.logo}
+                        alt={`${project.name} logo`}
+                        className="w-8 h-8 rounded-lg object-cover flex-shrink-0"
+                      />
+                      <div>
+                        <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
+                          {project.name}
+                        </span>
+                        <p className="text-xs text-muted-foreground">{project.description}</p>
+                      </div>
                     </a>
                   ))}
                 </div>
