@@ -4,14 +4,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import Index from "./pages/Index";
-import Ramble from "./pages/Ramble";
-import Tierly from "./pages/Tierly";
-import SmokeFree from "./pages/SmokeFree";
-import SafuMove from "./pages/SafuMove";
-import AutoChangelog from "./pages/AutoChangelog";
-import Marketing from "./pages/Marketing";
-import Reddit from "./pages/Reddit";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,14 +16,6 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/talk" element={<Index />} />
-          <Route path="/talk/ramble" element={<Ramble />} />
-          <Route path="/talk/tierly" element={<Tierly />} />
-          <Route path="/talk/quitesmoking" element={<SmokeFree />} />
-          <Route path="/talk/safumove" element={<SafuMove />} />
-          <Route path="/talk/autochangelog" element={<AutoChangelog />} />
-          <Route path="/marketing" element={<Marketing />} />
-          <Route path="/reddit" element={<Reddit />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
