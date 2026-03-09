@@ -36,8 +36,7 @@ const logbookEntries: TimelineEntry[] = [
   {
     date: "March 1, 2025",
     title: "Trustviews hits 500 listings",
-    content:
-      "Reached 500 verified directory listings on Trustviews. Organic traffic growing steadily week over week.",
+    content: "Reached 500 verified directory listings on Trustviews. Organic traffic growing steadily week over week.",
   },
   {
     date: "February 20, 2025",
@@ -48,8 +47,7 @@ const logbookEntries: TimelineEntry[] = [
   {
     date: "February 10, 2025",
     title: "Redesigned personal site",
-    content:
-      "Complete overhaul of my portfolio site. New logbook format to share the building journey publicly.",
+    content: "Complete overhaul of my portfolio site. New logbook format to share the building journey publicly.",
   },
 ];
 
@@ -83,7 +81,7 @@ const Home = () => {
               {/* Social Links */}
               <div className="flex items-center gap-3 mb-8">
                 <a
-                  href="https://x.com/Jeremylasne1"
+                  href="https://x.com/Jeremylasne"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-3 py-1.5 bg-muted text-muted-foreground hover:text-foreground rounded-lg transition-colors text-sm"
@@ -98,9 +96,7 @@ const Home = () => {
 
               {/* Projects List */}
               <div>
-                <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3">
-                  Projects
-                </h3>
+                <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3">Projects</h3>
                 <div className="space-y-3">
                   {projects.map((project) => (
                     <a
@@ -130,9 +126,7 @@ const Home = () => {
 
           {/* Right Column - Logbook Timeline */}
           <div className="lg:col-span-8 xl:col-span-9">
-            <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-6">
-              Logbook
-            </h3>
+            <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-6">Logbook</h3>
             <Timeline entries={logbookEntries} />
           </div>
         </div>
