@@ -8,7 +8,7 @@ import Timeline, { type TimelineEntry } from "@/components/ui/timeline";
 const projects = [
   {
     name: "Newsletter",
-    description: "Learn how successful startups make money",
+    description: "How do successful startups make money",
     url: "https://newsletter.jeremylasne.com",
     icon: Mail,
   },
