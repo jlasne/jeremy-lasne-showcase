@@ -1,16 +1,16 @@
 import NavBar from "@/components/NavBar";
 import profilePicture from "@/assets/profile-picture-new.jpg";
-import startuphuntLogo from "@/assets/startuphunt-logo.png";
 import trustviewsLogo from "@/assets/trustviews-logo.png";
 import onedollarfeedbackLogo from "@/assets/onedollarfeedback-logo.png";
+import { Mail } from "lucide-react";
 import Timeline, { type TimelineEntry } from "@/components/ui/timeline";
 
 const projects = [
   {
-    name: "StartupHunt",
-    description: "Learn how successful startups make money",
-    url: "https://startuphunt.io",
-    logo: startuphuntLogo,
+    name: "Newsletter",
+    description: "Weekly insights for founders",
+    url: "https://newsletter.jeremylasne.com",
+    icon: Mail,
   },
   {
     name: "Trustviews",
@@ -28,26 +28,10 @@ const projects = [
 
 const logbookEntries: TimelineEntry[] = [
   {
-    date: "March 9, 2025",
-    title: "Launched StartupHunt newsletter",
+    date: "Coming soon",
+    title: "Daily Journal",
     content:
-      "Started a weekly newsletter breaking down how successful startups make money. First issue sent to 200+ subscribers.",
-  },
-  {
-    date: "March 1, 2025",
-    title: "Trustviews hits 500 listings",
-    content: "Reached 500 verified directory listings on Trustviews. Organic traffic growing steadily week over week.",
-  },
-  {
-    date: "February 20, 2025",
-    title: "OneDollarFeedback launched",
-    content:
-      "Shipped the MVP of OneDollarFeedback — a dead-simple feedback widget for $1/month. First paying customers on day one.",
-  },
-  {
-    date: "February 10, 2025",
-    title: "Redesigned personal site",
-    content: "Complete overhaul of my portfolio site. New logbook format to share the building journey publicly.",
+      "This logbook will become my daily journal, documenting the experiences I go through and how to navigate them. Watch this space.",
   },
 ];
 
