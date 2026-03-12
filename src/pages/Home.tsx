@@ -2,10 +2,17 @@ import NavBar from "@/components/NavBar";
 import profilePicture from "@/assets/profile-picture-new.jpg";
 import trustviewsLogo from "@/assets/trustviews-logo.png";
 import onedollarfeedbackLogo from "@/assets/onedollarfeedback-logo.png";
+import startuphuntLogo from "@/assets/startuphunt-logo.png";
 import { Mail } from "lucide-react";
 import Timeline, { type TimelineEntry } from "@/components/ui/timeline";
 
 const projects = [
+  {
+    name: "Startuphunt",
+    description: "Polymarket for startups. Bet and earn visibility.",
+    url: "https://startuphunt.io",
+    logo: startuphuntLogo,
+  },
   {
     name: "Newsletter",
     description: "How do successful startups make money",
