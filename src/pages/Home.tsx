@@ -2,7 +2,7 @@ import NavBar from "@/components/NavBar";
 import profilePicture from "@/assets/profile-picture-new.jpg";
 import trustviewsLogo from "@/assets/trustviews-logo.png";
 import onedollarfeedbackLogo from "@/assets/onedollarfeedback-logo.png";
-import { Mail } from "lucide-react";
+import newsletterLogo from "@/assets/newsletter-logo.png";
 import Timeline, { type TimelineEntry } from "@/components/ui/timeline";
 
 const projects = [
@@ -10,7 +10,7 @@ const projects = [
     name: "Newsletter",
     description: "How do successful startups make money",
     url: "https://newsletter.jeremylasne.com",
-    icon: Mail,
+    logo: newsletterLogo,
   },
   {
     name: "Trustviews",
@@ -90,17 +90,11 @@ const Home = () => {
                       rel="noopener noreferrer"
                       className="flex items-center gap-3 group"
                     >
-                      {project.icon ? (
-                        <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                          <project.icon className="w-4 h-4 text-primary" />
-                        </div>
-                      ) : (
-                        <img
-                          src={project.logo}
-                          alt={`${project.name} logo`}
-                          className="w-8 h-8 rounded-lg object-cover flex-shrink-0"
-                        />
-                      )}
+                      <img
+                        src={project.logo}
+                        alt={`${project.name} logo`}
+                        className="w-8 h-8 rounded-lg object-cover flex-shrink-0"
+                      />
                       <div>
                         <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
                           {project.name}
