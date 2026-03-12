@@ -10,7 +10,7 @@ const projects = [
     name: "Newsletter",
     description: "How do successful startups make money",
     url: "https://newsletter.jeremylasne.com",
-    icon: Mail,
+    logo: newsletterLogo,
   },
   {
     name: "Trustviews",
