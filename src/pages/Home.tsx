@@ -81,17 +81,17 @@ const Home = () => {
               {/* Projects List */}
               <div>
                 <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3">Projects</h3>
-                <div className="space-y-3">
+                <div className="space-y-2">
                   {projects.map((project) => (
                     <a
                       key={project.name}
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 group"
+                      className="flex items-center gap-3 group p-2 -mx-2 rounded-lg hover:bg-muted/50 transition-all"
                     >
                       {project.icon ? (
-                        <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
                           <project.icon className="w-4 h-4 text-primary" />
                         </div>
                       ) : (
@@ -101,11 +101,22 @@ const Home = () => {
                           className="w-8 h-8 rounded-lg object-cover flex-shrink-0"
                         />
                       )}
-                      <div>
-                        <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
-                          {project.name}
-                        </span>
-                        <p className="text-xs text-muted-foreground">{project.description}</p>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
+                            {project.name}
+                          </span>
+                          <svg
+                            className="w-3 h-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0"
+                            viewBox="0 0 12 12"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                          >
+                            <path d="M2 6H10M10 6L7 3M10 6L7 9" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </div>
+                        <p className="text-xs text-muted-foreground truncate">{project.description}</p>
                       </div>
                     </a>
                   ))}
