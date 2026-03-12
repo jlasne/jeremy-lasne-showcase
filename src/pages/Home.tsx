@@ -2,7 +2,7 @@ import NavBar from "@/components/NavBar";
 import profilePicture from "@/assets/profile-picture-new.jpg";
 import trustviewsLogo from "@/assets/trustviews-logo.png";
 import onedollarfeedbackLogo from "@/assets/onedollarfeedback-logo.png";
-import { Mail } from "lucide-react";
+import newsletterLogo from "@/assets/newsletter-logo.png";
 import Timeline, { type TimelineEntry } from "@/components/ui/timeline";
 
 const projects = [
