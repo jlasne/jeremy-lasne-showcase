@@ -9,7 +9,7 @@ import Timeline, { type TimelineEntry } from "@/components/ui/timeline";
 const projects = [
   {
     name: "Startuphunt",
-    description: "Polymarket for startups. Bet and earn visibility.",
+    description: "Polymarket for startups (earn visibility).",
     url: "https://startuphunt.io",
     logo: startuphuntLogo,
   },
