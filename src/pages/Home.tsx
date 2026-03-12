@@ -90,17 +90,11 @@ const Home = () => {
                       rel="noopener noreferrer"
                       className="flex items-center gap-3 group"
                     >
-                      {project.icon ? (
-                        <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                          <project.icon className="w-4 h-4 text-primary" />
-                        </div>
-                      ) : (
-                        <img
-                          src={project.logo}
-                          alt={`${project.name} logo`}
-                          className="w-8 h-8 rounded-lg object-cover flex-shrink-0"
-                        />
-                      )}
+                      <img
+                        src={project.logo}
+                        alt={`${project.name} logo`}
+                        className="w-8 h-8 rounded-lg object-cover flex-shrink-0"
+                      />
                       <div>
                         <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
                           {project.name}
