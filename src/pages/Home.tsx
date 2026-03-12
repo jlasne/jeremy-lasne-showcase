@@ -29,9 +29,9 @@ const projects = [
 const logbookEntries: TimelineEntry[] = [
   {
     date: "Coming soon",
-    title: "Daily Journal",
+    title: "Startuphunt journey starts here",
     content:
-      "This logbook will become my daily journal, documenting the experiences I go through and how to navigate them. Watch this space.",
+      "Polymarket for startups, built in a few days on TrustMRR.com api as Oracle. A competitor shipped before me but it's fine, free market. Now reaching out to people I know for them to test and have fun before going fully public.",
   },
 ];
 
