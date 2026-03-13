@@ -40,6 +40,12 @@ const logbookEntries: TimelineEntry[] = [
     content:
       "Polymarket for startups, built in a few days on TrustMRR.com api as Oracle. A competitor shipped before me but it's fine, free market. Now reaching out to people I know for them to test and have fun before going fully public.",
   },
+  {
+    date: "March 13, 2026",
+    title: "Got my first users",
+    content:
+      "I DMed friends on X and discord to test the app & simplified it. Brainstorming on the business model and distribution around it at the same time. Without it, no revenue.",
+  },
 ];
 
 const Home = () => {
