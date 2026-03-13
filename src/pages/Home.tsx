@@ -38,7 +38,7 @@ const logbookEntries: TimelineEntry[] = [
     date: "March 13, 2026",
     title: "Got my first users",
     content:
-      "I DMed friends on X and discord to test the app & simplified it. Brainstorming on the business model and distribution around it at the same time. Without it, no revenue.",
+      "I DMed friends on X and discord to test the app. Led me to simplify it & add an onboarding. Brainstorming on the business model and distribution around it at the same time. Without it, no revenue.",
   },
   {
     date: "March 12, 2026",
