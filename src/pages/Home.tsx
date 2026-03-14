@@ -35,6 +35,12 @@ const projects = [
 
 const logbookEntries: TimelineEntry[] = [
   {
+    date: "March 14, 2026",
+    title: "Emailing & Analytics set",
+    content:
+      "So i have everything to grow proprely I set up all the automation and setup my email. Newsletter & business understanding. Improved the UI/UX before going all in in public",
+  },
+  {
     date: "March 13, 2026",
     title: "Got my first users",
     content:
