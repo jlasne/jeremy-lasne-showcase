@@ -195,6 +195,26 @@ const LaunchPrice = ({ full, offer, lang }: { full: string; offer: string; lang:
   </span>
 );
 
+/* --- Animated Counter --- */
+const AnimatedStat = ({ value, suffix, label }: { value: string; suffix?: string; label: string }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={isInView ? { opacity: 1, scale: 1 } : {}}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      style={{ textAlign: "center", padding: "24px 16px" }}
+    >
+      <div style={{ fontSize: 36, fontWeight: 700, color: "#c9a84c", lineHeight: 1 }}>
+        {value}{suffix && <span style={{ fontSize: 20, fontWeight: 400 }}>{suffix}</span>}
+      </div>
+      <div style={{ fontSize: 13, color: "#9a9790", marginTop: 8, lineHeight: 1.4 }}>{label}</div>
+    </motion.div>
+  );
+};
+
 /* =========================================== */
 /*                   MAIN                      */
 /* =========================================== */
@@ -204,8 +224,6 @@ const Wealth = () => {
   const [showLangPopup, setShowLangPopup] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
   const heroRef = useRef<HTMLDivElement>(null);
-  const svgRef = useRef<HTMLDivElement>(null);
-  const svgInView = useInView(svgRef, { once: true, margin: "-100px" });
 
   /* scroll progress */
   const { scrollYProgress } = useScroll();
@@ -276,15 +294,10 @@ const Wealth = () => {
           borderBottom: "1px solid #222",
         }}
       >
-        {/* Left: name */}
         <Link to="/" style={{ fontWeight: 600, fontSize: 13, letterSpacing: "0.14em", textTransform: "uppercase", color: "#e8e6e1", textDecoration: "none" }}>
           Jeremy Lasne
         </Link>
-
-        {/* Center: logo */}
         <img src={jlLogo} alt="JL" style={{ height: 32, borderRadius: 6 }} />
-
-        {/* Right: lang + CTA */}
         <div style={{ display: "flex", alignItems: "center", gap: 24, justifyContent: "flex-end" }}>
           <div style={{ display: "flex", borderRadius: 6, overflow: "hidden", border: "1px solid #222", fontSize: 12 }}>
             <button onClick={() => changeLang("en")} style={{
@@ -322,7 +335,6 @@ const Wealth = () => {
           overflow: "hidden",
         }}
       >
-        {/* Mouse-follow glow */}
         <div style={{
           position: "absolute",
           left: `${mousePos.x * 100}%`,
@@ -387,7 +399,6 @@ const Wealth = () => {
           {t(lang, "30-min call \u00B7 Free \u00B7 I show you my system before I ask about yours", "Appel de 30 min \u00B7 Gratuit \u00B7 Je vous montre mon syst\u00E8me avant de vous poser des questions")}
         </motion.span>
 
-        {/* Scroll hint */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.4, y: [0, 8, 0] }}
@@ -407,7 +418,7 @@ const Wealth = () => {
 
       <div style={{ width: 60, height: 1, background: "rgba(201,168,76,0.2)", margin: "0 auto" }} />
 
-      {/* SCHEMA SECTION */}
+      {/* METHODOLOGY - text only, no blueprint */}
       <Section style={{ padding: "100px 24px", maxWidth: 960, margin: "0 auto", textAlign: "center" }}>
         <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16 }}>
           {t(lang, "The methodology", "La m\u00E9thodologie")}
@@ -422,172 +433,107 @@ const Wealth = () => {
           )}
         </p>
 
+        {/* Visual stats ribbon */}
         <div style={{
-          position: "relative", background: "#161616", border: "1px solid #2a2a2a", borderRadius: 16, padding: "48px 32px", overflow: "hidden",
+          display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: 8,
+          background: "#161616", border: "1px solid #2a2a2a", borderRadius: 16, padding: "32px 16px",
+          position: "relative", overflow: "hidden",
         }}>
           <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, rgba(201,168,76,0.2), transparent)" }} />
+          <AnimatedStat value="<6" suffix="h" label={t(lang, "of sessions per year", "de sessions par an")} />
+          <AnimatedStat value="1" label={t(lang, "living blueprint", "blueprint vivant")} />
+          <AnimatedStat value="4" label={t(lang, "quarterly reviews", "revues trimestrielles")} />
+          <AnimatedStat value="0" suffix="%" label={t(lang, "commission on products", "de commission sur les produits")} />
+        </div>
+      </Section>
+
+      <div style={{ width: 60, height: 1, background: "rgba(201,168,76,0.2)", margin: "0 auto" }} />
+
+      {/* HOW IT WORKS - visual process */}
+      <Section style={{ padding: "80px 24px", maxWidth: 860, margin: "0 auto" }}>
+        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16, textAlign: "center" }}>
+          {t(lang, "How it works", "Comment \u00E7a marche")}
+        </div>
+        <h2 style={{ fontSize: 28, fontWeight: 600, marginBottom: 48, textAlign: "center" }}>
+          {t(lang, "From scattered to structured", "Du d\u00E9sordre \u00E0 la structure")}
+        </h2>
+
+        <div style={{ position: "relative" }}>
+          {/* Vertical line */}
           <div style={{
-            display: "inline-block", padding: "6px 16px", background: "rgba(201,168,76,0.08)",
-            border: "1px solid rgba(201,168,76,0.2)", borderRadius: 100,
-            fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 32,
-          }}>
-            {t(lang, "Example blueprint", "Blueprint exemple")}
-          </div>
+            position: "absolute", left: 24, top: 0, bottom: 0, width: 1,
+            background: "linear-gradient(to bottom, transparent, rgba(201,168,76,0.3) 10%, rgba(201,168,76,0.3) 90%, transparent)",
+          }} />
 
-          {/* SVG Schema with draw-in animation */}
-          <div ref={svgRef} style={{ maxWidth: 700, margin: "0 auto" }}>
-            <svg viewBox="0 0 700 520" xmlns="http://www.w3.org/2000/svg" fill="none" style={{ width: "100%", height: "auto" }}>
-              <defs>
-                <marker id="arrow" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="8" markerHeight="6" orient="auto-start-reverse">
-                  <path d="M0 0L10 3.5L0 7z" fill="#c9a84c" opacity="0.5"/>
-                </marker>
-                <filter id="glow"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-                <radialGradient id="radGlow"><stop offset="0%" stopColor="#c9a84c"/><stop offset="100%" stopColor="transparent"/></radialGradient>
-              </defs>
-
-              <g style={{ opacity: svgInView ? 1 : 0, transition: "opacity 0.8s ease 0.2s" }}>
-                {/* Person icon */}
-                <circle cx="350" cy="28" r="16" fill="#2a2a2a" stroke="#c9a84c" strokeWidth="1"/>
-                <circle cx="350" cy="22" r="5" fill="#c9a84c" opacity="0.6"/>
-                <path d="M341 34 c0-5 8-9 9-9 s9 4 9 9" stroke="#c9a84c" strokeWidth="1" fill="none" opacity="0.6"/>
-              </g>
-
-              {/* Cash Management Layer */}
-              <g style={{ opacity: svgInView ? 1 : 0, transition: "opacity 0.6s ease 0.4s" }}>
-                <rect x="130" y="70" width="440" height="90" rx="10" fill="#1a1a1a" stroke="#2a2a2a" strokeWidth="1"/>
-                <text x="350" y="64" textAnchor="middle" fill="#c9a84c" fontSize="9" fontWeight="600" letterSpacing="0.1em" fontFamily="Inter,sans-serif">CASH MANAGEMENT</text>
-                <rect x="320" y="85" width="120" height="34" rx="6" fill="#222" stroke="#333" strokeWidth="1"/>
-                <text x="380" y="106" textAnchor="middle" fill="#e8e6e1" fontSize="10" fontFamily="Inter,sans-serif">Current Account</text>
-                <rect x="180" y="85" width="120" height="34" rx="6" fill="#222" stroke="#c9a84c" strokeWidth="1" opacity="0.8"/>
-                <text x="240" y="102" textAnchor="middle" fill="#e8e6e1" fontSize="9" fontWeight="600" fontFamily="Inter,sans-serif">Cash Reserve</text>
-                <text x="240" y="114" textAnchor="middle" fill="#9a9790" fontSize="7.5" fontFamily="Inter,sans-serif">Min threshold</text>
-                <rect x="150" y="125" width="80" height="26" rx="5" fill="#222" stroke="#333" strokeWidth="1"/>
-                <text x="190" y="142" textAnchor="middle" fill="#9a9790" fontSize="9" fontFamily="Inter,sans-serif">Savings</text>
-                <rect x="520" y="85" width="70" height="34" rx="6" fill="#c9a84c" opacity="0.12" stroke="#c9a84c" strokeWidth="1"/>
-                <text x="555" y="106" textAnchor="middle" fill="#c9a84c" fontSize="10" fontWeight="600" fontFamily="Inter,sans-serif">Life</text>
-              </g>
-
-              {/* Flow lines - animate in */}
-              <g style={{ opacity: svgInView ? 1 : 0, transition: "opacity 0.6s ease 0.7s" }}>
-                <line x1="350" y1="48" x2="380" y2="82" stroke="#c9a84c" strokeWidth="1" opacity="0.4" markerEnd="url(#arrow)"/>
-                <text x="395" y="60" fill="#9a9790" fontSize="7.5" fontFamily="Inter,sans-serif">Activity Revenue</text>
-                <line x1="318" y1="102" x2="302" y2="102" stroke="#c9a84c" strokeWidth="1" opacity="0.3" markerEnd="url(#arrow)"/>
-                <line x1="442" y1="102" x2="518" y2="102" stroke="#c9a84c" strokeWidth="1" opacity="0.3" markerEnd="url(#arrow)"/>
-                <text x="475" y="96" fill="#9a9790" fontSize="7" fontFamily="Inter,sans-serif">Expenses</text>
-                <text x="540" y="132" fill="#9a9790" fontSize="7" fontFamily="Inter,sans-serif">Taxes</text>
-              </g>
-
-              {/* Liquid Strategy Layer */}
-              <g style={{ opacity: svgInView ? 1 : 0, transition: "opacity 0.6s ease 0.9s" }}>
-                <rect x="130" y="200" width="340" height="100" rx="10" fill="#1a1a1a" stroke="#2a2a2a" strokeWidth="1"/>
-                <text x="300" y="194" textAnchor="middle" fill="#c9a84c" fontSize="9" fontWeight="600" letterSpacing="0.1em" fontFamily="Inter,sans-serif">LIQUID STRATEGY</text>
-                <rect x="150" y="218" width="140" height="42" rx="6" fill="#222" stroke="#333" strokeWidth="1"/>
-                <text x="220" y="236" textAnchor="middle" fill="#e8e6e1" fontSize="10" fontWeight="600" fontFamily="Inter,sans-serif">Risk ON</text>
-                <text x="220" y="250" textAnchor="middle" fill="#9a9790" fontSize="8" fontFamily="Inter,sans-serif">bet on the future</text>
-                <rect x="310" y="218" width="140" height="42" rx="6" fill="#222" stroke="#333" strokeWidth="1"/>
-                <text x="380" y="236" textAnchor="middle" fill="#e8e6e1" fontSize="10" fontWeight="600" fontFamily="Inter,sans-serif">Risk OFF</text>
-                <text x="380" y="250" textAnchor="middle" fill="#9a9790" fontSize="8" fontFamily="Inter,sans-serif">diversified assets</text>
-                <text x="300" y="280" textAnchor="middle" fill="#9a9790" fontSize="7" fontStyle="italic" fontFamily="Inter,sans-serif">Profits</text>
-              </g>
-
-              {/* Connecting flows */}
-              <g style={{ opacity: svgInView ? 1 : 0, transition: "opacity 0.6s ease 1.1s" }}>
-                <line x1="240" y1="155" x2="240" y2="168" stroke="#c9a84c" strokeWidth="1" opacity="0.3"/>
-                <text x="210" y="175" fill="#9a9790" fontSize="7" fontFamily="Inter,sans-serif">Excess Cash</text>
-                <line x1="240" y1="180" x2="240" y2="196" stroke="#c9a84c" strokeWidth="1" opacity="0.3" markerEnd="url(#arrow)"/>
-                <line x1="130" y1="250" x2="100" y2="250" stroke="#c9a84c" strokeWidth="1" opacity="0.3"/>
-                <line x1="100" y1="250" x2="100" y2="130" stroke="#c9a84c" strokeWidth="1" opacity="0.3"/>
-                <line x1="100" y1="130" x2="148" y2="130" stroke="#c9a84c" strokeWidth="1" opacity="0.3" markerEnd="url(#arrow)"/>
-                <text x="70" y="190" fill="#9a9790" fontSize="7" fontFamily="Inter,sans-serif" transform="rotate(-90 70 190)">Investment Revenue</text>
-              </g>
-
-              {/* Bank + leverage */}
-              <g style={{ opacity: svgInView ? 1 : 0, transition: "opacity 0.6s ease 1.3s" }}>
-                <rect x="530" y="230" width="100" height="45" rx="8" fill="#1a1a1a" stroke="#c9a84c" strokeWidth="1" opacity="0.5"/>
-                <text x="580" y="257" textAnchor="middle" fill="#c9a84c" fontSize="11" fontWeight="600" fontFamily="Inter,sans-serif">Bank</text>
-                <line x1="528" y1="245" x2="472" y2="245" stroke="#c9a84c" strokeWidth="1" opacity="0.3" markerEnd="url(#arrow)"/>
-                <text x="495" y="240" fill="#9a9790" fontSize="7" fontFamily="Inter,sans-serif">Leverage</text>
-                <line x1="580" y1="228" x2="580" y2="140" stroke="#c9a84c" strokeWidth="1" opacity="0.3"/>
-                <line x1="580" y1="140" x2="555" y2="121" stroke="#c9a84c" strokeWidth="1" opacity="0.3" markerEnd="url(#arrow)"/>
-                <text x="594" y="185" fill="#9a9790" fontSize="7" fontFamily="Inter,sans-serif">Loan</text>
-                <text x="610" y="300" fill="#9a9790" fontSize="7" fontFamily="Inter,sans-serif">Borrowing</text>
-                <text x="614" y="309" fill="#9a9790" fontSize="7" fontFamily="Inter,sans-serif">Power</text>
-                <line x1="580" y1="277" x2="580" y2="310" stroke="#c9a84c" strokeWidth="1" opacity="0.2"/>
-              </g>
-
-              {/* Illiquid Strategy Layer */}
-              <g style={{ opacity: svgInView ? 1 : 0, transition: "opacity 0.6s ease 1.5s" }}>
-                <rect x="130" y="360" width="440" height="120" rx="10" fill="#1a1a1a" stroke="#2a2a2a" strokeWidth="1"/>
-                <text x="350" y="354" textAnchor="middle" fill="#c9a84c" fontSize="9" fontWeight="600" letterSpacing="0.1em" fontFamily="Inter,sans-serif">ILLIQUID STRATEGY</text>
-                <rect x="150" y="380" width="110" height="40" rx="6" fill="#222" stroke="#333" strokeWidth="1"/>
-                <text x="205" y="404" textAnchor="middle" fill="#e8e6e1" fontSize="10" fontFamily="Inter,sans-serif">Real Estate</text>
-                <rect x="280" y="380" width="110" height="40" rx="6" fill="#222" stroke="#333" strokeWidth="1"/>
-                <text x="335" y="398" textAnchor="middle" fill="#e8e6e1" fontSize="9.5" fontFamily="Inter,sans-serif">Private Equity</text>
-                <text x="335" y="410" textAnchor="middle" fill="#9a9790" fontSize="8" fontFamily="Inter,sans-serif">Businesses</text>
-                <rect x="410" y="380" width="80" height="40" rx="6" fill="#222" stroke="#333" strokeWidth="1"/>
-                <text x="450" y="404" textAnchor="middle" fill="#9a9790" fontSize="9.5" fontFamily="Inter,sans-serif">Other</text>
-                <line x1="300" y1="302" x2="300" y2="340" stroke="#c9a84c" strokeWidth="1" opacity="0.3"/>
-                <text x="270" y="325" fill="#9a9790" fontSize="7" fontFamily="Inter,sans-serif">Asset Rotation</text>
-                <line x1="300" y1="340" x2="300" y2="358" stroke="#c9a84c" strokeWidth="1" opacity="0.3" markerEnd="url(#arrow)"/>
-                <line x1="492" y1="400" x2="540" y2="400" stroke="#c9a84c" strokeWidth="1" opacity="0.2"/>
-                <line x1="540" y1="400" x2="580" y2="310" stroke="#c9a84c" strokeWidth="1" opacity="0.2"/>
-              </g>
-
-              {/* Pulsing glow */}
-              <circle cx="350" cy="260" r="120" fill="url(#radGlow)" opacity="0.04">
-                {svgInView && <animate attributeName="opacity" values="0.03;0.06;0.03" dur="4s" repeatCount="indefinite" />}
-              </circle>
-            </svg>
-          </div>
-
-          {/* Blueprint description - 4 layers */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 0, marginTop: 40, textAlign: "left" }}>
-            {[
-              {
-                label: t(lang, "Cash management", "Gestion de tr\u00E9sorerie"),
-                desc: t(lang,
-                  "Activity revenue flows into a Current Account, which handles life\u2019s outflows \u2014 expenses, taxes, and loan reimbursements. The Current Account feeds a Cash Reserve with a minimum cash threshold. Once complete, excess cash gets deployed down into investments. Savings sits as an emergency backstop.",
-                  "Les revenus d\u2019activit\u00E9 alimentent un Compte Courant, qui g\u00E8re les sorties de la vie \u2014 d\u00E9penses, imp\u00F4ts et remboursements. Le Compte Courant alimente une R\u00E9serve de Tr\u00E9sorerie avec un seuil minimum. Une fois atteint, l\u2019exc\u00E9dent est d\u00E9ploy\u00E9 en investissements. L\u2019\u00E9pargne sert de filet de s\u00E9curit\u00E9."
-                ),
-              },
-              {
-                label: t(lang, "Liquid strategy", "Strat\u00E9gie liquide"),
-                desc: t(lang,
-                  "\u201CRisk ON \u2014 bet on the future\u201D is your conviction-driven, high-upside allocation: early-stage tech, crypto, concentrated positions you believe in. \u201CRisk OFF \u2014 diversified across assets\u201D is your broad, all-weather allocation that doesn\u2019t depend on any single thesis. Profits flow back up or rotate into illiquid assets.",
-                  "\u00AB Risk ON \u2014 parier sur le futur \u00BB est votre allocation de conviction \u00E0 fort potentiel : tech early-stage, crypto, positions concentr\u00E9es. \u00AB Risk OFF \u2014 diversifi\u00E9 \u00BB est votre allocation tous temps, ind\u00E9pendante d\u2019une seule th\u00E8se. Les profits remontent ou sont r\u00E9allou\u00E9s en illiquide."
-                ),
-              },
-              {
-                label: t(lang, "Illiquid strategy", "Strat\u00E9gie illiquide"),
-                desc: t(lang,
-                  "Real estate, private equity/businesses, and other holdings. Long-duration, harder to exit, but serve as both wealth builders and collateral for the bank relationship.",
-                  "Immobilier, private equity/entreprises, et autres actifs. Longue dur\u00E9e, moins liquides, mais servent \u00E0 la fois de moteurs de richesse et de garantie pour la relation bancaire."
-                ),
-              },
-              {
-                label: t(lang, "The bank as leverage engine", "La banque comme moteur de levier"),
-                desc: t(lang,
-                  "Your life (income/stability) and your illiquid assets both generate borrowing power. The bank provides loans that enable asset rotation and leverage back into the system. Loan reimbursements flow out from the current account, closing the loop.",
-                  "Votre vie (revenus/stabilit\u00E9) et vos actifs illiquides g\u00E9n\u00E8rent une capacit\u00E9 d\u2019emprunt. La banque fournit des pr\u00EAts qui permettent la rotation d\u2019actifs et le levier. Les remboursements sortent du compte courant, bouclant le syst\u00E8me."
-                ),
-              },
-            ].map((item, i) => (
+          {[
+            {
+              step: "01",
+              title: t(lang, "We talk", "On \u00E9change"),
+              desc: t(lang,
+                "30-min discovery call. I show you my own system running on my capital. You tell me your situation. We both decide if there\u2019s a fit.",
+                "Appel d\u00E9couverte de 30 min. Je vous montre mon syst\u00E8me qui tourne sur mon capital. Vous me parlez de votre situation. On d\u00E9cide ensemble."
+              ),
+              icon: "\u260E",
+            },
+            {
+              step: "02",
+              title: t(lang, "I map everything", "Je cartographie tout"),
+              desc: t(lang,
+                "Deep intake session. I map your entire financial life \u2014 income, assets, structures, flows, goals. Nothing left in the dark.",
+                "Session d\u2019intake approfondie. Je cartographie toute votre vie financi\u00E8re \u2014 revenus, actifs, structures, flux, objectifs. Rien n\u2019est laiss\u00E9 dans l\u2019ombre."
+              ),
+              icon: "\u2727",
+            },
+            {
+              step: "03",
+              title: t(lang, "You get your blueprint", "Vous recevez votre blueprint"),
+              desc: t(lang,
+                "A personalized wealth architecture. Visual. Actionable. 5 to 10 structural moves ordered by impact. Your roadmap for the year.",
+                "Une architecture patrimoniale personnalis\u00E9e. Visuelle. Actionnable. 5 \u00E0 10 actions structurelles class\u00E9es par impact. Votre feuille de route."
+              ),
+              icon: "\u25A0",
+            },
+            {
+              step: "04",
+              title: t(lang, "We refine together", "On affine ensemble"),
+              desc: t(lang,
+                "Every quarter we review, adjust, and evolve your system. I bring macro context. You stay in control.",
+                "Chaque trimestre on r\u00E9vise, ajuste et fait \u00E9voluer votre syst\u00E8me. J\u2019apporte le contexte macro. Vous gardez le contr\u00F4le."
+              ),
+              icon: "\u21BB",
+            },
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.12 }}
+              style={{ display: "flex", gap: 24, marginBottom: 40, paddingLeft: 56, position: "relative" }}
+            >
+              {/* Dot on timeline */}
               <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                whileInView={{ scale: [0, 1.3, 1] }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
+                transition={{ duration: 0.4, delay: i * 0.12 + 0.2 }}
                 style={{
-                  padding: "20px 0",
-                  borderBottom: i < 3 ? "1px solid #222" : "none",
+                  position: "absolute", left: 16, top: 4, width: 17, height: 17,
+                  borderRadius: "50%", background: "#0e0e0e", border: "2px solid #c9a84c",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontSize: 8, color: "#c9a84c",
                 }}
               >
-                <div style={{ fontSize: 13, fontWeight: 600, color: "#c9a84c", marginBottom: 6 }}>{item.label}</div>
-                <div style={{ fontSize: 14, color: "#9a9790", lineHeight: 1.7 }}>{item.desc}</div>
+                {item.icon}
               </motion.div>
-            ))}
-          </div>
+              <div>
+                <div style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.1em", color: "#c9a84c", marginBottom: 4, textTransform: "uppercase" }}>
+                  {t(lang, "Step", "\u00C9tape")} {item.step}
+                </div>
+                <div style={{ fontSize: 17, fontWeight: 600, marginBottom: 6, color: "#e8e6e1" }}>{item.title}</div>
+                <div style={{ fontSize: 14, color: "#9a9790", lineHeight: 1.7 }}>{item.desc}</div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </Section>
 
@@ -603,8 +549,8 @@ const Wealth = () => {
         </h2>
         <p style={{ color: "#9a9790", fontSize: 16, marginBottom: 16 }}>
           {t(lang,
-            "I\u2019ve been deep in this world since 2017. I\u2019m strongly inspired by Charles Gave \u2014 I\u2019ve met him several times and built my entire macro framework around his work and Didier Darcet\u2019s econophysics. I worked private equity with Constant Helper. I run crypto and blockchain strategies myself. This isn\u2019t theory. I live this system every day.",
-            "Je suis plong\u00E9 dans cet univers depuis 2017. Je suis profond\u00E9ment inspir\u00E9 par Charles Gave \u2014 je l\u2019ai rencontr\u00E9 plusieurs fois et j\u2019ai construit tout mon cadre macro autour de son travail et de l\u2019\u00E9cono-physique de Didier Darcet. J\u2019ai travaill\u00E9 en private equity avec Constant Helper. Je g\u00E8re moi-m\u00EAme des strat\u00E9gies crypto et blockchain. Ce n\u2019est pas de la th\u00E9orie. Je vis ce syst\u00E8me chaque jour."
+            "I\u2019ve been deep in this world since 2017. I\u2019m strongly inspired by Charles Gave \u2014 I\u2019ve met him several times and built my entire macro framework around his work and Didier Darcet\u2019s econophysics. I worked private equity with Constant Helper. I run crypto and blockchain strategies myself.",
+            "Je suis plong\u00E9 dans cet univers depuis 2017. Je suis profond\u00E9ment inspir\u00E9 par Charles Gave \u2014 je l\u2019ai rencontr\u00E9 plusieurs fois et j\u2019ai construit tout mon cadre macro autour de son travail et de l\u2019\u00E9cono-physique de Didier Darcet. J\u2019ai travaill\u00E9 en private equity avec Constant Helper. Je g\u00E8re moi-m\u00EAme des strat\u00E9gies crypto et blockchain."
           )}
         </p>
         <p style={{ color: "#9a9790", fontSize: 16, marginBottom: 16 }}>
@@ -615,8 +561,8 @@ const Wealth = () => {
         </p>
         <p style={{ color: "#9a9790", fontSize: 16 }}>
           {t(lang,
-            "I don\u2019t give you a list of ETFs to buy. I don\u2019t tell you to put everything in the S&P 500 or the CAC 40. My approach is structured, risk-managed, and diversified worldwide. I think in systems, not products. I manage risk the way it should be managed: simply.",
-            "Je ne vous donne pas une liste d\u2019ETFs \u00E0 acheter. Je ne vous dis pas de tout mettre dans le S&P 500 ou le CAC 40. Mon approche est structur\u00E9e, g\u00E9r\u00E9e en risque et diversifi\u00E9e mondialement. Je pense en syst\u00E8mes, pas en produits. Je g\u00E8re le risque comme il devrait l\u2019\u00EAtre : simplement."
+            "My approach is structured, risk-managed, and diversified worldwide. I think in systems, not products. I manage risk the way it should be managed: simply.",
+            "Mon approche est structur\u00E9e, g\u00E9r\u00E9e en risque et diversifi\u00E9e mondialement. Je pense en syst\u00E8mes, pas en produits. Je g\u00E8re le risque comme il devrait l\u2019\u00EAtre : simplement."
           )}
         </p>
       </Section>
@@ -663,8 +609,8 @@ const Wealth = () => {
         </h2>
         <p style={{ color: "#9a9790", fontSize: 16, marginBottom: 36 }}>
           {t(lang,
-            "This isn\u2019t a one-off consultation. It\u2019s a year-long engagement designed to build, implement, and refine your wealth architecture. Here\u2019s what each phase looks like.",
-            "Ce n\u2019est pas une consultation ponctuelle. C\u2019est un accompagnement d\u2019un an con\u00E7u pour construire, mettre en \u0153uvre et affiner votre architecture patrimoniale. Voici \u00E0 quoi ressemble chaque phase."
+            "This isn\u2019t a one-off consultation. It\u2019s a year-long engagement designed to build, implement, and refine your wealth architecture.",
+            "Ce n\u2019est pas une consultation ponctuelle. C\u2019est un accompagnement d\u2019un an con\u00E7u pour construire, mettre en \u0153uvre et affiner votre architecture patrimoniale."
           )}
         </p>
 
@@ -711,7 +657,7 @@ const Wealth = () => {
           {/* Phase 03 */}
           <EngagementCard>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 10, flexWrap: "wrap", gap: 8 }}>
-              <div><span style={{ fontSize: 11, fontWeight: 600, color: "#c9a84c", letterSpacing: "0.06em", marginRight: 8 }}>03</span><span style={{ fontSize: 17, fontWeight: 600 }}>{t(lang, "4 Quarterly Reviews", "4 Revues Trimestrielles")}</span></div>
+              <div><span style={{ fontSize: 11, fontWeight: 600, color: "#c9a84c", letterSpacing: "0.06em", marginRight: 8 }}>03</span><span style={{ fontSize: 17, fontWeight: 600 }}>{t(lang, "Quarterly Reviews", "Revues Trimestrielles")}</span></div>
               <LaunchPrice
                 full={t(lang, "\u20AC500 / quarter", "500 \u20AC / trimestre")}
                 offer={t(lang, "\u20AC300 / quarter", "300 \u20AC / trimestre")}
@@ -719,18 +665,21 @@ const Wealth = () => {
               />
             </div>
             <div style={{ color: "#9a9790", fontSize: 14, lineHeight: 1.75 }}>
-              {t(lang, "45-min private session each quarter. We update your schema, track execution, adjust priorities. I bring macro context \u2014 where we are in the cycle and what it means for your architecture. Includes a private client newsletter so you always know what\u2019s going on.", "Session priv\u00E9e de 45 min chaque trimestre. On met \u00E0 jour votre sch\u00E9ma, on suit l\u2019ex\u00E9cution, on ajuste les priorit\u00E9s. J\u2019apporte le contexte macro \u2014 o\u00F9 on en est dans le cycle et ce que \u00E7a signifie pour votre architecture. Inclus : newsletter client priv\u00E9e pour que vous sachiez toujours ce qui se passe.")}
+              {t(lang, "45-min private session each quarter. We update your schema, track execution, adjust priorities. I bring macro context \u2014 where we are in the cycle and what it means for your architecture.", "Session priv\u00E9e de 45 min chaque trimestre. On met \u00E0 jour votre sch\u00E9ma, on suit l\u2019ex\u00E9cution, on ajuste les priorit\u00E9s. J\u2019apporte le contexte macro \u2014 o\u00F9 on en est dans le cycle et ce que \u00E7a signifie pour votre architecture.")}
             </div>
           </EngagementCard>
 
           {/* Phase 04 */}
           <EngagementCard>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 10, flexWrap: "wrap", gap: 8 }}>
-              <div><span style={{ fontSize: 11, fontWeight: 600, color: "#c9a84c", letterSpacing: "0.06em", marginRight: 8 }}>04</span><span style={{ fontSize: 17, fontWeight: 600 }}>{t(lang, "Direct line", "Ligne directe")}</span></div>
+              <div><span style={{ fontSize: 11, fontWeight: 600, color: "#c9a84c", letterSpacing: "0.06em", marginRight: 8 }}>04</span><span style={{ fontSize: 17, fontWeight: 600 }}>{t(lang, "Direct contact + Newsletter", "Contact direct + Newsletter")}</span></div>
               <span style={{ fontSize: 13, color: "#5a5750" }}>{t(lang, "Included for all active clients", "Inclus pour tous les clients actifs")}</span>
             </div>
             <div style={{ color: "#9a9790", fontSize: 14, lineHeight: 1.75 }}>
-              {t(lang, "You have direct access to me between sessions. No assistant, no ticketing system. You message me, I respond personally.", "Vous avez un acc\u00E8s direct \u00E0 moi entre les sessions. Pas d\u2019assistant, pas de syst\u00E8me de tickets. Vous m\u2019\u00E9crivez, je r\u00E9ponds personnellement.")}
+              {t(lang,
+                "You have direct access to me between sessions. No assistant, no ticketing system. You message me, I respond personally. Plus a private client newsletter a few times per month \u2014 macro updates, cycle positioning, and what it means for your architecture. So you always know what\u2019s going on.",
+                "Vous avez un acc\u00E8s direct \u00E0 moi entre les sessions. Pas d\u2019assistant, pas de syst\u00E8me de tickets. Vous m\u2019\u00E9crivez, je r\u00E9ponds personnellement. Plus une newsletter client priv\u00E9e quelques fois par mois \u2014 mises \u00E0 jour macro, positionnement de cycle, et ce que \u00E7a signifie pour votre architecture. Pour que vous sachiez toujours ce qui se passe."
+              )}
             </div>
           </EngagementCard>
         </div>
@@ -752,15 +701,15 @@ const Wealth = () => {
             {
               q: t(lang, "\u201CI already have a financial advisor.\u201D", "\u00AB J\u2019ai d\u00E9j\u00E0 un conseiller financier. \u00BB"),
               a: t(lang,
-                "Your advisor picks products. I design the system those products fit into. We don\u2019t compete \u2014 I make their work more effective. Most of my clients keep their existing advisors and bankers. They just finally have an architecture connecting everything.",
-                "Votre conseiller choisit des produits. Je con\u00E7ois le syst\u00E8me dans lequel ces produits s\u2019int\u00E8grent. On n\u2019est pas en comp\u00E9tition \u2014 je rends leur travail plus efficace. La plupart de mes clients gardent leurs conseillers et banquiers. Ils ont juste enfin une architecture qui connecte tout."
+                "Your advisor is a salesman, not an investor. Their revenue comes from the products they sell you \u2014 that\u2019s how the model works. If they don\u2019t charge you directly for the service, ask yourself: who\u2019s paying them? Being a CIF doesn\u2019t mean competent \u2014 it\u2019s a regulatory label, not an expertise badge. I design the system those products should fit into. Most of my clients keep their advisors. They just finally understand what they\u2019re being sold and why.",
+                "Votre conseiller est un commercial, pas un investisseur. Son revenu vient des produits qu\u2019il vous vend \u2014 c\u2019est comme \u00E7a que le mod\u00E8le fonctionne. S\u2019il ne vous facture pas directement le service, demandez-vous : qui le paie ? \u00CAtre CIF ne veut pas dire comp\u00E9tent \u2014 c\u2019est un label r\u00E9glementaire, pas un badge d\u2019expertise. Je con\u00E7ois le syst\u00E8me dans lequel ces produits devraient s\u2019int\u00E9grer. La plupart de mes clients gardent leurs conseillers. Ils comprennent juste enfin ce qu\u2019on leur vend et pourquoi."
               ),
             },
             {
               q: t(lang, "\u201CMy bank handles my wealth.\u201D", "\u00AB Ma banque g\u00E8re mon patrimoine. \u00BB"),
               a: t(lang,
-                "Your bank sees one slice. I see the full board \u2014 across all your banks, assets, structures, and flows. I design the system. They execute the pieces they handle. An architect doesn\u2019t replace your builders. He tells them what to build.",
-                "Votre banque voit une tranche. Moi je vois le tableau complet \u2014 toutes vos banques, actifs, structures et flux. Je con\u00E7ois le syst\u00E8me. Ils ex\u00E9cutent les parties qu\u2019ils g\u00E8rent. Un architecte ne remplace pas vos ma\u00E7ons. Il leur dit quoi construire."
+                "Your banker is a salesperson with quarterly targets. Their interests are not aligned with yours \u2014 they\u2019re aligned with the bank\u2019s. They see one slice of your assets. I see the full board \u2014 across all your banks, structures, and flows. I design the system. They execute the pieces they handle. An architect doesn\u2019t replace your builders. He tells them what to build.",
+                "Votre banquier est un commercial avec des objectifs trimestriels. Ses int\u00E9r\u00EAts ne sont pas align\u00E9s avec les v\u00F4tres \u2014 ils sont align\u00E9s avec ceux de la banque. Il voit une tranche de vos actifs. Moi je vois le tableau complet \u2014 toutes vos banques, structures et flux. Je con\u00E7ois le syst\u00E8me. Ils ex\u00E9cutent les parties qu\u2019ils g\u00E8rent. Un architecte ne remplace pas vos ma\u00E7ons. Il leur dit quoi construire."
               ),
             },
             {
@@ -773,8 +722,8 @@ const Wealth = () => {
             {
               q: t(lang, "\u201CThat\u2019s expensive for advice.\u201D", "\u00AB C\u2019est cher pour du conseil. \u00BB"),
               a: t(lang,
-                "One structural gap \u2014 money sitting idle, a tax wrapper you didn\u2019t know about, borrowing power you\u2019re not using \u2014 typically costs more in a single year than the entire engagement. This isn\u2019t an expense. It\u2019s the highest-leverage investment you\u2019ll make.",
-                "Un seul trou structurel \u2014 de l\u2019argent qui dort, une enveloppe fiscale que vous ne connaissiez pas, un pouvoir d\u2019emprunt que vous n\u2019utilisez pas \u2014 co\u00FBte g\u00E9n\u00E9ralement plus en une seule ann\u00E9e que tout l\u2019accompagnement. Ce n\u2019est pas une d\u00E9pense. C\u2019est l\u2019investissement le plus levier que vous ferez."
+                "The cost of missed opportunities and uninformed moves is far higher. Money sitting idle, a tax wrapper you didn\u2019t know about, borrowing power you\u2019re not using. The majority of even aware investors end up losing money by following trends and making emotional decisions. One structural adjustment typically saves more than the entire engagement in a single year. This isn\u2019t an expense \u2014 it\u2019s the highest-leverage investment you\u2019ll make.",
+                "Le co\u00FBt des opportunit\u00E9s manqu\u00E9es et des d\u00E9cisions non \u00E9clair\u00E9es est bien plus \u00E9lev\u00E9. De l\u2019argent qui dort, une enveloppe fiscale que vous ne connaissiez pas, un pouvoir d\u2019emprunt que vous n\u2019utilisez pas. La majorit\u00E9 des investisseurs, m\u00EAme avertis, finissent par perdre de l\u2019argent en suivant les tendances et en prenant des d\u00E9cisions \u00E9motionnelles. Un seul ajustement structurel \u00E9conomise g\u00E9n\u00E9ralement plus que tout l\u2019accompagnement en une seule ann\u00E9e. Ce n\u2019est pas une d\u00E9pense \u2014 c\u2019est l\u2019investissement le plus levier que vous ferez."
               ),
             },
             {
@@ -792,34 +741,85 @@ const Wealth = () => {
 
       <hr style={{ maxWidth: 760, margin: "0 auto", border: "none", borderTop: "1px solid #222" }} />
 
-      {/* INDEPENDENCE */}
-      <Section style={{ padding: "80px 24px", maxWidth: 760, margin: "0 auto" }}>
-        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16 }}>
+      {/* INDEPENDENCE - visual comparison */}
+      <Section style={{ padding: "80px 24px", maxWidth: 860, margin: "0 auto" }}>
+        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16, textAlign: "center" }}>
           {t(lang, "Independence", "Ind\u00E9pendance")}
         </div>
-        <h2 style={{ fontSize: 28, fontWeight: 600, marginBottom: 20 }}>
+        <h2 style={{ fontSize: 28, fontWeight: 600, marginBottom: 36, textAlign: "center" }}>
           {t(lang, "Fully independent. Here\u2019s what that means.", "Totalement ind\u00E9pendant. Voici ce que \u00E7a veut dire.")}
         </h2>
-        <div style={{ marginTop: 28 }}>
-          {[
-            t(lang, "Zero commissions. I don\u2019t earn a cent from any product you buy.", "Z\u00E9ro commission. Je ne gagne pas un centime sur aucun produit que vous achetez."),
-            t(lang, "Zero affiliations. No bank, insurer, or platform has any tie to me.", "Z\u00E9ro affiliation. Aucune banque, assureur ou plateforme n\u2019a de lien avec moi."),
-            t(lang, "Zero % on your capital. I never manage your money. You stay in full control.", "Z\u00E9ro % sur votre capital. Je ne g\u00E8re jamais votre argent. Vous gardez le contr\u00F4le total."),
-          ].map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.1 }}
-              style={{ display: "flex", alignItems: "flex-start", gap: 14, padding: "10px 0", color: "#9a9790", fontSize: 15 }}
-            >
-              <span style={{ color: "#5a5750", fontWeight: 500, flexShrink: 0, marginTop: 1 }}>{"\u2717"}</span>
-              <span>{item}</span>
-            </motion.div>
-          ))}
+
+        {/* Comparison grid */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 36 }}>
+          {/* Them column */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            style={{
+              background: "#161616", border: "1px solid #2a2a2a", borderRadius: 12, padding: "28px 24px",
+            }}
+          >
+            <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "#5a5750", marginBottom: 20 }}>
+              {t(lang, "Typical advisors", "Conseillers classiques")}
+            </div>
+            {[
+              t(lang, "Earn commissions on products", "Gagnent des commissions sur les produits"),
+              t(lang, "Affiliated to banks or platforms", "Affili\u00E9s \u00E0 des banques ou plateformes"),
+              t(lang, "Manage your money for a %", "G\u00E8rent votre argent contre un %"),
+              t(lang, "Interests aligned with the seller", "Int\u00E9r\u00EAts align\u00E9s avec le vendeur"),
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08 }}
+                style={{ display: "flex", gap: 10, padding: "8px 0", fontSize: 14, color: "#9a9790" }}
+              >
+                <span style={{ color: "#5a5750", flexShrink: 0 }}>{"\u2717"}</span>
+                <span>{item}</span>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Me column */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            style={{
+              background: "rgba(201,168,76,0.05)", border: "1px solid rgba(201,168,76,0.2)", borderRadius: 12, padding: "28px 24px",
+              position: "relative", overflow: "hidden",
+            }}
+          >
+            <div style={{ position: "absolute", top: 0, left: 20, right: 20, height: 1, background: "linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent)" }} />
+            <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 20 }}>
+              {t(lang, "My model", "Mon mod\u00E8le")}
+            </div>
+            {[
+              t(lang, "Zero commissions. Ever.", "Z\u00E9ro commission. Jamais."),
+              t(lang, "Zero affiliations. No ties.", "Z\u00E9ro affiliation. Aucun lien."),
+              t(lang, "Zero % on your capital.", "Z\u00E9ro % sur votre capital."),
+              t(lang, "Interests aligned with yours.", "Int\u00E9r\u00EAts align\u00E9s avec les v\u00F4tres."),
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08 + 0.2 }}
+                style={{ display: "flex", gap: 10, padding: "8px 0", fontSize: 14, color: "#e8e6e1" }}
+              >
+                <span style={{ color: "#c9a84c", flexShrink: 0 }}>{"\u2713"}</span>
+                <span>{item}</span>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
-        <p style={{ color: "#9a9790", fontSize: 15, marginTop: 24, fontStyle: "italic" }}>
+
+        <p style={{ color: "#9a9790", fontSize: 15, textAlign: "center", fontStyle: "italic", maxWidth: 600, margin: "0 auto" }}>
           {t(lang,
             "When I tell you something, it\u2019s because I believe it\u2019s right for your system \u2014 not because someone pays me to say it.",
             "Quand je vous dis quelque chose, c\u2019est parce que je crois que c\u2019est juste pour votre syst\u00E8me \u2014 pas parce que quelqu\u2019un me paie pour le dire."
