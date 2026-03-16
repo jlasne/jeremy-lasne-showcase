@@ -1,12 +1,62 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useSpring, useInView, AnimatePresence } from "framer-motion";
+import jlLogo from "../assets/jl-logo.png";
 
 type Lang = "en" | "fr";
 
 const t = (lang: Lang, en: string, fr: string) => (lang === "en" ? en : fr);
 
-/* ─── FAQ Accordion Item ─── */
+/* --- Language Picker Popup --- */
+const LangPopup = ({ onSelect }: { onSelect: (l: Lang) => void }) => (
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 0.3 }}
+    style={{
+      position: "fixed", inset: 0, zIndex: 1000,
+      background: "rgba(0,0,0,0.7)", backdropFilter: "blur(12px)",
+      display: "flex", alignItems: "center", justifyContent: "center",
+    }}
+  >
+    <motion.div
+      initial={{ opacity: 0, scale: 0.92, y: 20 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.92, y: 20 }}
+      transition={{ duration: 0.35, ease: "easeOut" }}
+      style={{
+        background: "#161616", border: "1px solid #2a2a2a", borderRadius: 16,
+        padding: "48px 56px", textAlign: "center", maxWidth: 400,
+      }}
+    >
+      <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 24 }}>
+        Choose your language
+      </div>
+      <div style={{ display: "flex", gap: 16, justifyContent: "center" }}>
+        {([["en", "English"], ["fr", "Fran\u00E7ais"]] as const).map(([code, label]) => (
+          <motion.button
+            key={code}
+            onClick={() => onSelect(code)}
+            whileHover={{ scale: 1.05, borderColor: "rgba(201,168,76,0.5)" }}
+            whileTap={{ scale: 0.97 }}
+            style={{
+              padding: "14px 36px", background: "transparent",
+              border: "1px solid #333", borderRadius: 8,
+              color: "#e8e6e1", fontSize: 15, fontWeight: 500,
+              cursor: "pointer", fontFamily: "inherit", letterSpacing: "0.03em",
+              transition: "border-color 0.2s",
+            }}
+          >
+            {label}
+          </motion.button>
+        ))}
+      </div>
+    </motion.div>
+  </motion.div>
+);
+
+/* --- FAQ Accordion Item --- */
 const FaqItem = ({ q, a, index }: { q: string; a: string; index: number }) => {
   const [open, setOpen] = useState(false);
   return (
@@ -50,7 +100,7 @@ const FaqItem = ({ q, a, index }: { q: string; a: string; index: number }) => {
   );
 };
 
-/* ─── Engagement Card ─── */
+/* --- Engagement Card --- */
 const EngagementCard = ({ children, featured = false }: { children: React.ReactNode; featured?: boolean }) => (
   <motion.div
     whileHover={{ y: -3, boxShadow: featured ? "0 8px 40px rgba(201,168,76,0.15)" : "0 8px 30px rgba(0,0,0,0.3)" }}
@@ -72,7 +122,7 @@ const EngagementCard = ({ children, featured = false }: { children: React.ReactN
   </motion.div>
 );
 
-/* ─── Value Card ─── */
+/* --- Value Card --- */
 const ValueCard = ({ icon, title, desc }: { icon: string; title: string; desc: string }) => (
   <motion.div
     whileHover={{ y: -4, borderColor: "rgba(201,168,76,0.3)" }}
@@ -88,8 +138,8 @@ const ValueCard = ({ icon, title, desc }: { icon: string; title: string; desc: s
   </motion.div>
 );
 
-/* ─── Animated Section ─── */
-const Section = ({ children, className, ...props }: React.HTMLAttributes<HTMLElement> & { children: React.ReactNode }) => {
+/* --- Animated Section --- */
+const Section = ({ children, ...props }: React.HTMLAttributes<HTMLElement> & { children: React.ReactNode }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
   return (
@@ -105,7 +155,7 @@ const Section = ({ children, className, ...props }: React.HTMLAttributes<HTMLEle
   );
 };
 
-/* ─── Shimmer CTA Button ─── */
+/* --- Shimmer CTA Button --- */
 const CtaButton = ({ href, children }: { href: string; children: React.ReactNode }) => (
   <motion.a
     href={href}
@@ -130,7 +180,7 @@ const CtaButton = ({ href, children }: { href: string; children: React.ReactNode
   </motion.a>
 );
 
-/* ─── Price with launch offer ─── */
+/* --- Price with launch offer --- */
 const LaunchPrice = ({ full, offer, lang }: { full: string; offer: string; lang: Lang }) => (
   <span style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
     <span style={{ fontSize: 14, color: "#5a5750", textDecoration: "line-through", fontWeight: 400 }}>{full}</span>
@@ -145,12 +195,13 @@ const LaunchPrice = ({ full, offer, lang }: { full: string; offer: string; lang:
   </span>
 );
 
-/* ═══════════════════════════════════════════ */
+/* =========================================== */
 /*                   MAIN                      */
-/* ═══════════════════════════════════════════ */
+/* =========================================== */
 
 const Wealth = () => {
   const [lang, setLang] = useState<Lang>("en");
+  const [showLangPopup, setShowLangPopup] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
   const heroRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<HTMLDivElement>(null);
@@ -160,17 +211,23 @@ const Wealth = () => {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
-  /* lang init */
+  /* lang init + popup */
   useEffect(() => {
     try {
       const saved = localStorage.getItem("wealth-lang") as Lang;
-      if (saved) setLang(saved);
-      else if (navigator.language?.slice(0, 2) === "fr") setLang("fr");
-    } catch {}
+      if (saved) {
+        setLang(saved);
+      } else {
+        setShowLangPopup(true);
+      }
+    } catch {
+      setShowLangPopup(true);
+    }
   }, []);
 
   const changeLang = (l: Lang) => {
     setLang(l);
+    setShowLangPopup(false);
     try { localStorage.setItem("wealth-lang", l); } catch {}
   };
 
@@ -191,6 +248,11 @@ const Wealth = () => {
       color: "#e8e6e1",
       lineHeight: 1.75,
     }}>
+      {/* LANGUAGE POPUP */}
+      <AnimatePresence>
+        {showLangPopup && <LangPopup onSelect={changeLang} />}
+      </AnimatePresence>
+
       {/* SCROLL PROGRESS BAR */}
       <motion.div style={{
         scaleX,
@@ -206,17 +268,24 @@ const Wealth = () => {
         transition={{ duration: 0.6, ease: "easeOut" }}
         style={{
           position: "fixed", top: 2, left: 0, right: 0, zIndex: 100,
-          display: "flex", alignItems: "center", justifyContent: "space-between",
-          padding: "18px 40px",
+          display: "grid", gridTemplateColumns: "1fr auto 1fr",
+          alignItems: "center",
+          padding: "14px 40px",
           background: "rgba(14,14,14,0.88)",
           backdropFilter: "blur(20px)",
           borderBottom: "1px solid #222",
         }}
       >
+        {/* Left: name */}
         <Link to="/" style={{ fontWeight: 600, fontSize: 13, letterSpacing: "0.14em", textTransform: "uppercase", color: "#e8e6e1", textDecoration: "none" }}>
           Jeremy Lasne
         </Link>
-        <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
+
+        {/* Center: logo */}
+        <img src={jlLogo} alt="JL" style={{ height: 32, borderRadius: 6 }} />
+
+        {/* Right: lang + CTA */}
+        <div style={{ display: "flex", alignItems: "center", gap: 24, justifyContent: "flex-end" }}>
           <div style={{ display: "flex", borderRadius: 6, overflow: "hidden", border: "1px solid #222", fontSize: 12 }}>
             <button onClick={() => changeLang("en")} style={{
               padding: "5px 12px", background: lang === "en" ? "#c9a84c" : "none", border: "none",
@@ -271,7 +340,7 @@ const Wealth = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
           style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 28 }}
         >
-          {t(lang, "Private Wealth Architecture", "Architecture Patrimoniale Privée")}
+          {t(lang, "Private Wealth Architecture", "Architecture Patrimoniale Priv\u00E9e")}
         </motion.div>
 
         <motion.h1
@@ -280,11 +349,11 @@ const Wealth = () => {
           transition={{ duration: 0.7, delay: 0.5 }}
           style={{ fontSize: "clamp(34px, 5.5vw, 52px)", fontWeight: 300, lineHeight: 1.2, marginBottom: 28, letterSpacing: "-0.01em" }}
         >
-          {t(lang, "Your wealth needs a ", "Votre patrimoine a besoin d'un ")}
+          {t(lang, "Your wealth needs a ", "Votre patrimoine a besoin d\u2019un ")}
           <strong style={{ fontWeight: 700, background: "linear-gradient(135deg, #c9a84c, #e8d48a)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-            {t(lang, "system", "système")}
+            {t(lang, "system", "syst\u00E8me")}
           </strong>
-          {t(lang, ". Not scattered accounts.", ". Pas de comptes éparpillés.")}
+          {t(lang, ". Not scattered accounts.", ". Pas de comptes \u00E9parpill\u00E9s.")}
         </motion.h1>
 
         <motion.p
@@ -294,8 +363,8 @@ const Wealth = () => {
           style={{ fontSize: 17, fontWeight: 400, color: "#9a9790", maxWidth: 580, marginBottom: 48 }}
         >
           {t(lang,
-            "I've been investing since 2017. I studied how the wealthiest families protect and grow capital \u2014 then I built a method that brings that thinking to individuals. Shaped around your life, your preferences, your privacy. I built it for myself first. On the call, I'll show you the architecture running on my own capital.",
-            "J'investis depuis 2017. J'ai étudié comment les grandes familles protègent et font croître leur capital \u2014 puis j'ai construit une méthode qui apporte cette réflexion aux particuliers. Façonnée autour de votre vie, vos préférences, votre confidentialité. Je l'ai d'abord construite pour moi. Lors de l'appel, je vous montrerai l'architecture qui tourne sur mon propre capital."
+            "I\u2019ve been investing since 2017. I studied how the wealthiest families protect and grow capital \u2014 then I built a method that brings that thinking to individuals. Shaped around your life, your preferences, your privacy. I built it for myself first. On the call, I\u2019ll show you the architecture running on my own capital.",
+            "J\u2019investis depuis 2017. J\u2019ai \u00E9tudi\u00E9 comment les grandes familles prot\u00E8gent et font cro\u00EEtre leur capital \u2014 puis j\u2019ai construit une m\u00E9thode qui apporte cette r\u00E9flexion aux particuliers. Fa\u00E7onn\u00E9e autour de votre vie, vos pr\u00E9f\u00E9rences, votre confidentialit\u00E9. Je l\u2019ai d\u2019abord construite pour moi. Lors de l\u2019appel, je vous montrerai l\u2019architecture qui tourne sur mon propre capital."
           )}
         </motion.p>
 
@@ -305,7 +374,7 @@ const Wealth = () => {
           transition={{ duration: 0.7, delay: 0.9 }}
         >
           <CtaButton href="#book">
-            {t(lang, "Book your discovery call", "Réservez votre appel découverte")}
+            {t(lang, "Book your discovery call", "R\u00E9servez votre appel d\u00E9couverte")}
           </CtaButton>
         </motion.div>
 
@@ -315,7 +384,7 @@ const Wealth = () => {
           transition={{ duration: 0.7, delay: 1.1 }}
           style={{ display: "block", marginTop: 16, fontSize: 12, color: "#5a5750", letterSpacing: "0.03em" }}
         >
-          {t(lang, "30-min call \u00B7 Free \u00B7 I show you my system before I ask about yours", "Appel de 30 min \u00B7 Gratuit \u00B7 Je vous montre mon système avant de vous poser des questions")}
+          {t(lang, "30-min call \u00B7 Free \u00B7 I show you my system before I ask about yours", "Appel de 30 min \u00B7 Gratuit \u00B7 Je vous montre mon syst\u00E8me avant de vous poser des questions")}
         </motion.span>
 
         {/* Scroll hint */}
@@ -341,15 +410,15 @@ const Wealth = () => {
       {/* SCHEMA SECTION */}
       <Section style={{ padding: "100px 24px", maxWidth: 960, margin: "0 auto", textAlign: "center" }}>
         <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16 }}>
-          {t(lang, "The methodology", "La méthodologie")}
+          {t(lang, "The methodology", "La m\u00E9thodologie")}
         </div>
         <h2 style={{ fontSize: 28, fontWeight: 600, marginBottom: 16 }}>
-          {t(lang, "A complete system. Not a spreadsheet.", "Un système complet. Pas un tableur.")}
+          {t(lang, "A complete system. Not a spreadsheet.", "Un syst\u00E8me complet. Pas un tableur.")}
         </h2>
         <p style={{ color: "#9a9790", fontSize: 16, maxWidth: 560, margin: "0 auto 48px" }}>
           {t(lang,
-            "Every client gets a personalized wealth flow schema. A living blueprint that maps every euro from income to investment to protection. This isn't a pie chart. It's the operating system of your wealth.",
-            "Chaque client reçoit un schéma de flux patrimonial personnalisé. Un blueprint vivant qui cartographie chaque euro du revenu à l'investissement à la protection. Ce n'est pas un camembert. C'est le système d'exploitation de votre patrimoine."
+            "Every client gets a personalized wealth flow schema. A living blueprint that maps every euro from income to investment to protection. This isn\u2019t a pie chart. It\u2019s the operating system of your wealth.",
+            "Chaque client re\u00E7oit un sch\u00E9ma de flux patrimonial personnalis\u00E9. Un blueprint vivant qui cartographie chaque euro du revenu \u00E0 l\u2019investissement \u00E0 la protection. Ce n\u2019est pas un camembert. C\u2019est le syst\u00E8me d\u2019exploitation de votre patrimoine."
           )}
         </p>
 
@@ -471,21 +540,51 @@ const Wealth = () => {
             </svg>
           </div>
 
-          {/* Flow grid */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 16, marginTop: 40, textAlign: "left" }}>
+          {/* Blueprint description - 4 layers */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 0, marginTop: 40, textAlign: "left" }}>
             {[
-              { label: t(lang, "Layer 1", "Couche 1"), title: t(lang, "Cash management", "Gestion de trésorerie"), desc: t(lang, "Income, reserves, thresholds. Money only moves down when your safety net is full.", "Revenus, réserves, seuils. L'argent ne descend que quand votre filet de sécurité est complet.") },
-              { label: t(lang, "Layer 2", "Couche 2"), title: t(lang, "Liquid strategy", "Stratégie liquide"), desc: t(lang, "Conviction bets and diversified positions. Profits rotate up or down based on your architecture.", "Paris de conviction et positions diversifiées. Les profits circulent selon votre architecture.") },
-              { label: t(lang, "Layer 3", "Couche 3"), title: t(lang, "Illiquid + leverage", "Illiquide + levier"), desc: t(lang, "Real estate, businesses, and the bank as leverage engine. Assets create borrowing power that funds more growth.", "Immobilier, entreprises, et la banque comme moteur de levier. Les actifs créent une capacité d'emprunt qui finance la croissance.") },
+              {
+                label: t(lang, "Cash management", "Gestion de tr\u00E9sorerie"),
+                desc: t(lang,
+                  "Activity revenue flows into a Current Account, which handles life\u2019s outflows \u2014 expenses, taxes, and loan reimbursements. The Current Account feeds a Cash Reserve with a minimum cash threshold. Once complete, excess cash gets deployed down into investments. Savings sits as an emergency backstop.",
+                  "Les revenus d\u2019activit\u00E9 alimentent un Compte Courant, qui g\u00E8re les sorties de la vie \u2014 d\u00E9penses, imp\u00F4ts et remboursements. Le Compte Courant alimente une R\u00E9serve de Tr\u00E9sorerie avec un seuil minimum. Une fois atteint, l\u2019exc\u00E9dent est d\u00E9ploy\u00E9 en investissements. L\u2019\u00E9pargne sert de filet de s\u00E9curit\u00E9."
+                ),
+              },
+              {
+                label: t(lang, "Liquid strategy", "Strat\u00E9gie liquide"),
+                desc: t(lang,
+                  "\u201CRisk ON \u2014 bet on the future\u201D is your conviction-driven, high-upside allocation: early-stage tech, crypto, concentrated positions you believe in. \u201CRisk OFF \u2014 diversified across assets\u201D is your broad, all-weather allocation that doesn\u2019t depend on any single thesis. Profits flow back up or rotate into illiquid assets.",
+                  "\u00AB Risk ON \u2014 parier sur le futur \u00BB est votre allocation de conviction \u00E0 fort potentiel : tech early-stage, crypto, positions concentr\u00E9es. \u00AB Risk OFF \u2014 diversifi\u00E9 \u00BB est votre allocation tous temps, ind\u00E9pendante d\u2019une seule th\u00E8se. Les profits remontent ou sont r\u00E9allou\u00E9s en illiquide."
+                ),
+              },
+              {
+                label: t(lang, "Illiquid strategy", "Strat\u00E9gie illiquide"),
+                desc: t(lang,
+                  "Real estate, private equity/businesses, and other holdings. Long-duration, harder to exit, but serve as both wealth builders and collateral for the bank relationship.",
+                  "Immobilier, private equity/entreprises, et autres actifs. Longue dur\u00E9e, moins liquides, mais servent \u00E0 la fois de moteurs de richesse et de garantie pour la relation bancaire."
+                ),
+              },
+              {
+                label: t(lang, "The bank as leverage engine", "La banque comme moteur de levier"),
+                desc: t(lang,
+                  "Your life (income/stability) and your illiquid assets both generate borrowing power. The bank provides loans that enable asset rotation and leverage back into the system. Loan reimbursements flow out from the current account, closing the loop.",
+                  "Votre vie (revenus/stabilit\u00E9) et vos actifs illiquides g\u00E9n\u00E8rent une capacit\u00E9 d\u2019emprunt. La banque fournit des pr\u00EAts qui permettent la rotation d\u2019actifs et le levier. Les remboursements sortent du compte courant, bouclant le syst\u00E8me."
+                ),
+              },
             ].map((item, i) => (
               <motion.div
                 key={i}
-                whileHover={{ y: -3, borderColor: "rgba(201,168,76,0.25)" }}
-                style={{ padding: 20, background: "#1a1a1a", border: "1px solid #222", borderRadius: 10, cursor: "default", transition: "border-color 0.2s" }}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                style={{
+                  padding: "20px 0",
+                  borderBottom: i < 3 ? "1px solid #222" : "none",
+                }}
               >
-                <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 6 }}>{item.label}</div>
-                <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 6, color: "#e8e6e1" }}>{item.title}</div>
-                <div style={{ fontSize: 13, color: "#9a9790", lineHeight: 1.6 }}>{item.desc}</div>
+                <div style={{ fontSize: 13, fontWeight: 600, color: "#c9a84c", marginBottom: 6 }}>{item.label}</div>
+                <div style={{ fontSize: 14, color: "#9a9790", lineHeight: 1.7 }}>{item.desc}</div>
               </motion.div>
             ))}
           </div>
@@ -497,27 +596,27 @@ const Wealth = () => {
       {/* WHO I AM */}
       <Section style={{ padding: "80px 24px", maxWidth: 760, margin: "0 auto" }}>
         <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16 }}>
-          {t(lang, "The architect", "L'architecte")}
+          {t(lang, "The architect", "L\u2019architecte")}
         </div>
         <h2 style={{ fontSize: 28, fontWeight: 600, marginBottom: 20 }}>
-          {t(lang, "I'm not a salesman. I'm an investor who designs systems.", "Je ne suis pas un vendeur. Je suis un investisseur qui conçoit des systèmes.")}
+          {t(lang, "I\u2019m not a salesman. I\u2019m an investor who designs systems.", "Je ne suis pas un vendeur. Je suis un investisseur qui con\u00E7oit des syst\u00E8mes.")}
         </h2>
         <p style={{ color: "#9a9790", fontSize: 16, marginBottom: 16 }}>
           {t(lang,
-            "I've been deep in this world since 2017. I'm strongly inspired by Charles Gave \u2014 I've met him several times and built my entire macro framework around his work and Didier Darcet's econophysics. I worked private equity with Constant Helper. I run crypto and blockchain strategies myself. This isn't theory. I live this system every day.",
-            "Je suis plongé dans cet univers depuis 2017. Je suis profondément inspiré par Charles Gave \u2014 je l'ai rencontré plusieurs fois et j'ai construit tout mon cadre macro autour de son travail et de l'écono-physique de Didier Darcet. J'ai travaillé en private equity avec Constant Helper. Je gère moi-même des stratégies crypto et blockchain. Ce n'est pas de la théorie. Je vis ce système chaque jour."
+            "I\u2019ve been deep in this world since 2017. I\u2019m strongly inspired by Charles Gave \u2014 I\u2019ve met him several times and built my entire macro framework around his work and Didier Darcet\u2019s econophysics. I worked private equity with Constant Helper. I run crypto and blockchain strategies myself. This isn\u2019t theory. I live this system every day.",
+            "Je suis plong\u00E9 dans cet univers depuis 2017. Je suis profond\u00E9ment inspir\u00E9 par Charles Gave \u2014 je l\u2019ai rencontr\u00E9 plusieurs fois et j\u2019ai construit tout mon cadre macro autour de son travail et de l\u2019\u00E9cono-physique de Didier Darcet. J\u2019ai travaill\u00E9 en private equity avec Constant Helper. Je g\u00E8re moi-m\u00EAme des strat\u00E9gies crypto et blockchain. Ce n\u2019est pas de la th\u00E9orie. Je vis ce syst\u00E8me chaque jour."
           )}
         </p>
         <p style={{ color: "#9a9790", fontSize: 16, marginBottom: 16 }}>
           {t(lang,
             "I started my career as a CIF (Conseil en Investissements Financiers) under Euodia. I left because affiliation kills independence. Great people \u2014 but the model is built around selling products, not building systems. I chose freedom. Now I work for my clients and nobody else.",
-            "J'ai commencé ma carrière comme CIF (Conseil en Investissements Financiers) sous Euodia. J'ai quitté parce que l'affiliation tue l'indépendance. Des gens formidables \u2014 mais le modèle est construit autour de la vente de produits, pas de la construction de systèmes. J'ai choisi la liberté. Maintenant je travaille pour mes clients et personne d'autre."
+            "J\u2019ai commenc\u00E9 ma carri\u00E8re comme CIF (Conseil en Investissements Financiers) sous Euodia. J\u2019ai quitt\u00E9 parce que l\u2019affiliation tue l\u2019ind\u00E9pendance. Des gens formidables \u2014 mais le mod\u00E8le est construit autour de la vente de produits, pas de la construction de syst\u00E8mes. J\u2019ai choisi la libert\u00E9. Maintenant je travaille pour mes clients et personne d\u2019autre."
           )}
         </p>
         <p style={{ color: "#9a9790", fontSize: 16 }}>
           {t(lang,
-            "I don't give you a list of ETFs to buy. I don't tell you to put everything in the S&P 500 or the CAC 40. My approach is structured, risk-managed, and diversified worldwide. I think in systems, not products. I manage risk the way it should be managed: simply.",
-            "Je ne vous donne pas une liste d'ETFs à acheter. Je ne vous dis pas de tout mettre dans le S&P 500 ou le CAC 40. Mon approche est structurée, gérée en risque et diversifiée mondialement. Je pense en systèmes, pas en produits. Je gère le risque comme il devrait l'être : simplement."
+            "I don\u2019t give you a list of ETFs to buy. I don\u2019t tell you to put everything in the S&P 500 or the CAC 40. My approach is structured, risk-managed, and diversified worldwide. I think in systems, not products. I manage risk the way it should be managed: simply.",
+            "Je ne vous donne pas une liste d\u2019ETFs \u00E0 acheter. Je ne vous dis pas de tout mettre dans le S&P 500 ou le CAC 40. Mon approche est structur\u00E9e, g\u00E9r\u00E9e en risque et diversifi\u00E9e mondialement. Je pense en syst\u00E8mes, pas en produits. Je g\u00E8re le risque comme il devrait l\u2019\u00EAtre : simplement."
           )}
         </p>
       </Section>
@@ -530,44 +629,26 @@ const Wealth = () => {
           {t(lang, "Your terms", "Vos conditions")}
         </div>
         <h2 style={{ fontSize: 28, fontWeight: 600, marginBottom: 20 }}>
-          {t(lang, "Private by design. Personal by nature.", "Privé par conception. Personnel par nature.")}
+          {t(lang, "Private by design. Personal by nature.", "Priv\u00E9 par conception. Personnel par nature.")}
         </h2>
         <p style={{ color: "#9a9790", fontSize: 16, marginBottom: 16 }}>
           {t(lang,
             "Your wealth is intimate. It reflects your choices, your family, your ambitions. So every architecture starts with understanding you \u2014 not just your balance sheet. Your preferences, your constraints, what you want your money to actually do for your life.",
-            "Votre patrimoine est intime. Il reflète vos choix, votre famille, vos ambitions. Donc chaque architecture commence par vous comprendre \u2014 pas juste votre bilan. Vos préférences, vos contraintes, ce que vous voulez que votre argent fasse vraiment pour votre vie."
+            "Votre patrimoine est intime. Il refl\u00E8te vos choix, votre famille, vos ambitions. Donc chaque architecture commence par vous comprendre \u2014 pas juste votre bilan. Vos pr\u00E9f\u00E9rences, vos contraintes, ce que vous voulez que votre argent fasse vraiment pour votre vie."
           )}
         </p>
         <p style={{ color: "#9a9790", fontSize: 16, marginBottom: 16 }}>
           {t(lang,
             "No data leaves the conversation. No third parties. No platform storing your numbers. Everything stays between us. Confidential. Under NDA. Entirely on your terms.",
-            "Aucune donnée ne sort de la conversation. Pas de tiers. Pas de plateforme qui stocke vos chiffres. Tout reste entre nous. Confidentiel. Sous NDA. Entièrement à vos conditions."
+            "Aucune donn\u00E9e ne sort de la conversation. Pas de tiers. Pas de plateforme qui stocke vos chiffres. Tout reste entre nous. Confidentiel. Sous NDA. Enti\u00E8rement \u00E0 vos conditions."
           )}
         </p>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 20, marginTop: 36 }}>
-          <ValueCard icon={"\u2697"} title={t(lang, "Preserve wealth", "Préserver le patrimoine")} desc={t(lang, "Protect what you've built. Structure before speculation.", "Protéger ce que vous avez construit. La structure avant la spéculation.")} />
-          <ValueCard icon={"\u21E7"} title={t(lang, "Grow purchasing power", "Gagner en pouvoir d'achat")} desc={t(lang, "Beat inflation, compound quietly. Real wealth is measured in what you can do.", "Battre l'inflation, composer en silence. La vraie richesse se mesure à ce que vous pouvez faire.")} />
-          <ValueCard icon={"\u25C6"} title={t(lang, "Respect your identity", "Respecter votre identité")} desc={t(lang, "Your values, preferences, and privacy shape the architecture. Not the other way around.", "Vos valeurs, préférences et votre vie privée façonnent l'architecture. Pas l'inverse.")} />
+          <ValueCard icon={"\u2697"} title={t(lang, "Preserve wealth", "Pr\u00E9server le patrimoine")} desc={t(lang, "Protect what you\u2019ve built. Structure before speculation.", "Prot\u00E9ger ce que vous avez construit. La structure avant la sp\u00E9culation.")} />
+          <ValueCard icon={"\u21E7"} title={t(lang, "Grow purchasing power", "Gagner en pouvoir d\u2019achat")} desc={t(lang, "Beat inflation, compound quietly. Real wealth is measured in what you can do.", "Battre l\u2019inflation, composer en silence. La vraie richesse se mesure \u00E0 ce que vous pouvez faire.")} />
+          <ValueCard icon={"\u25C6"} title={t(lang, "Respect your identity", "Respecter votre identit\u00E9")} desc={t(lang, "Your values, preferences, and privacy shape the architecture. Not the other way around.", "Vos valeurs, pr\u00E9f\u00E9rences et votre vie priv\u00E9e fa\u00E7onnent l\u2019architecture. Pas l\u2019inverse.")} />
         </div>
-      </Section>
-
-      <hr style={{ maxWidth: 760, margin: "0 auto", border: "none", borderTop: "1px solid #222" }} />
-
-      {/* THE GAP */}
-      <Section style={{ padding: "80px 24px", maxWidth: 760, margin: "0 auto" }}>
-        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16 }}>
-          {t(lang, "The gap", "Le vide")}
-        </div>
-        <h2 style={{ fontSize: 28, fontWeight: 600, marginBottom: 20 }}>
-          {t(lang, "Too sophisticated for advisors. Too early for a family office.", "Trop sophistiqué pour un conseiller. Trop tôt pour un family office.")}
-        </h2>
-        <p style={{ color: "#9a9790", fontSize: 16 }}>
-          {t(lang,
-            "Budgeting apps? You're past that. Generic financial advice? Useless at your level. Private banks only care about \u20AC10M+ clients. Wealth managers want to sell you their products. Nobody sits with you to actually design the system. How every euro flows. Where the leverage points are. Which structural moves unlock the next level.",
-            "Les apps de budget ? Vous avez dépassé ça. Les conseils financiers génériques ? Inutiles à votre niveau. Les banques privées ne s'intéressent qu'aux \u20AC10M+. Les conseillers veulent vous vendre leurs produits. Personne ne s'assoit avec vous pour concevoir le système. Comment chaque euro circule. Où sont les points de levier. Quels mouvements structurels débloquent le niveau suivant."
-          )}
-        </p>
       </Section>
 
       <hr style={{ maxWidth: 760, margin: "0 auto", border: "none", borderTop: "1px solid #222" }} />
@@ -575,15 +656,15 @@ const Wealth = () => {
       {/* THE ENGAGEMENT */}
       <Section style={{ padding: "80px 24px", maxWidth: 760, margin: "0 auto" }}>
         <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16 }}>
-          {t(lang, "The engagement", "L'accompagnement")}
+          {t(lang, "The engagement", "L\u2019accompagnement")}
         </div>
-        <h2 style={{ fontSize: 28, fontWeight: 600, marginBottom: 16 }}>
-          {t(lang, "One year. One system. Built around you.", "Un an. Un système. Construit autour de vous.")}
+        <h2 style={{ fontSize: 28, fontWeight: 600, marginBottom: 8 }}>
+          {t(lang, "Your rhythm. My expertise.", "Votre rythme. Mon expertise.")}
         </h2>
         <p style={{ color: "#9a9790", fontSize: 16, marginBottom: 36 }}>
           {t(lang,
-            "This isn't a one-off consultation. It's a year-long engagement designed to build, implement, and refine your wealth architecture. Here's what each phase looks like.",
-            "Ce n'est pas une consultation ponctuelle. C'est un accompagnement d'un an conçu pour construire, mettre en œuvre et affiner votre architecture patrimoniale. Voici à quoi ressemble chaque phase."
+            "This isn\u2019t a one-off consultation. It\u2019s a year-long engagement designed to build, implement, and refine your wealth architecture. Here\u2019s what each phase looks like.",
+            "Ce n\u2019est pas une consultation ponctuelle. C\u2019est un accompagnement d\u2019un an con\u00E7u pour construire, mettre en \u0153uvre et affiner votre architecture patrimoniale. Voici \u00E0 quoi ressemble chaque phase."
           )}
         </p>
 
@@ -591,18 +672,18 @@ const Wealth = () => {
           {/* Phase 01 */}
           <EngagementCard>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 10, flexWrap: "wrap", gap: 8 }}>
-              <div><span style={{ fontSize: 11, fontWeight: 600, color: "#c9a84c", letterSpacing: "0.06em", marginRight: 8 }}>01</span><span style={{ fontSize: 17, fontWeight: 600 }}>{t(lang, "Discovery call", "Appel découverte")}</span></div>
+              <div><span style={{ fontSize: 11, fontWeight: 600, color: "#c9a84c", letterSpacing: "0.06em", marginRight: 8 }}>01</span><span style={{ fontSize: 17, fontWeight: 600 }}>{t(lang, "Discovery call", "Appel d\u00E9couverte")}</span></div>
               <span style={{ fontSize: 13, color: "#5a5750" }}>{t(lang, "30 min \u00B7 Free", "30 min \u00B7 Gratuit")}</span>
             </div>
             <div style={{ color: "#9a9790", fontSize: 14, lineHeight: 1.75 }}>
-              {t(lang, "I tell you who I am and show you my own system running on my own capital. You tell me about your situation. We both decide if there's a fit. No commitment \u2014 I'll be honest if I can't help.", "Je vous dis qui je suis et vous montre mon propre système qui tourne sur mon capital. Vous me parlez de votre situation. On décide ensemble s'il y a un fit. Sans engagement \u2014 je serai honnête si je ne peux pas vous aider.")}
+              {t(lang, "I tell you who I am and show you my own system running on my own capital. You tell me about your situation. We both decide if there\u2019s a fit. No commitment \u2014 I\u2019ll be honest if I can\u2019t help.", "Je vous dis qui je suis et vous montre mon propre syst\u00E8me qui tourne sur mon capital. Vous me parlez de votre situation. On d\u00E9cide ensemble s\u2019il y a un fit. Sans engagement \u2014 je serai honn\u00EAte si je ne peux pas vous aider.")}
             </div>
           </EngagementCard>
 
           {/* Phase 02 - Featured */}
           <EngagementCard featured>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 10, flexWrap: "wrap", gap: 8 }}>
-              <div><span style={{ fontSize: 11, fontWeight: 600, color: "#c9a84c", letterSpacing: "0.06em", marginRight: 8 }}>02</span><span style={{ fontSize: 17, fontWeight: 600 }}>{t(lang, "Wealth Architecture Audit", "Audit d'Architecture Patrimoniale")}</span></div>
+              <div><span style={{ fontSize: 11, fontWeight: 600, color: "#c9a84c", letterSpacing: "0.06em", marginRight: 8 }}>02</span><span style={{ fontSize: 17, fontWeight: 600 }}>{t(lang, "Wealth Architecture Audit", "Audit d\u2019Architecture Patrimoniale")}</span></div>
               <LaunchPrice
                 full={t(lang, "\u20AC2,500", "2 500 \u20AC")}
                 offer={t(lang, "\u20AC1,500", "1 500 \u20AC")}
@@ -610,13 +691,13 @@ const Wealth = () => {
               />
             </div>
             <div style={{ color: "#9a9790", fontSize: 14, lineHeight: 1.75 }}>
-              {t(lang, "Your full personalized wealth blueprint. Delivered in two weeks.", "Votre blueprint patrimonial complet et personnalisé. Livré en deux semaines.")}
+              {t(lang, "Your full personalized wealth blueprint. Delivered in two weeks.", "Votre blueprint patrimonial complet et personnalis\u00E9. Livr\u00E9 en deux semaines.")}
               <ul style={{ listStyle: "none", padding: 0, marginTop: 10 }}>
                 {[
-                  t(lang, "Deep intake session (1h30). Full cartography of your financial life.", "Session d'intake approfondie (1h30). Cartographie complète de votre vie financière."),
-                  t(lang, "Custom wealth flow schema designed around your situation.", "Schéma de flux patrimonial sur mesure conçu autour de votre situation."),
-                  t(lang, "Visual blueprint + roadmap of 5 to 10 structural moves, ordered by impact.", "Blueprint visuel + feuille de route de 5 à 10 actions structurelles, classées par impact."),
-                  t(lang, "Delivery session (1h). Private walkthrough of your architecture.", "Session de restitution (1h). Présentation privée de votre architecture."),
+                  t(lang, "Deep intake session (1h30). Full cartography of your financial life.", "Session d\u2019intake approfondie (1h30). Cartographie compl\u00E8te de votre vie financi\u00E8re."),
+                  t(lang, "Custom wealth flow schema designed around your situation.", "Sch\u00E9ma de flux patrimonial sur mesure con\u00E7u autour de votre situation."),
+                  t(lang, "Visual blueprint + roadmap of 5 to 10 structural moves, ordered by impact.", "Blueprint visuel + feuille de route de 5 \u00E0 10 actions structurelles, class\u00E9es par impact."),
+                  t(lang, "Delivery session (1h). Private walkthrough of your architecture.", "Session de restitution (1h). Pr\u00E9sentation priv\u00E9e de votre architecture."),
                 ].map((item, i) => (
                   <li key={i} style={{ padding: "5px 0 5px 22px", position: "relative" }}>
                     <span style={{ position: "absolute", left: 0, color: "#c9a84c" }}>{"\u2192"}</span>
@@ -638,7 +719,7 @@ const Wealth = () => {
               />
             </div>
             <div style={{ color: "#9a9790", fontSize: 14, lineHeight: 1.75 }}>
-              {t(lang, "45-min private session each quarter. We update your schema, track execution, adjust priorities. I bring macro context \u2014 where we are in the cycle and what it means for your architecture. Includes a private client newsletter so you always know what's going on.", "Session privée de 45 min chaque trimestre. On met à jour votre schéma, on suit l'exécution, on ajuste les priorités. J'apporte le contexte macro \u2014 où on en est dans le cycle et ce que ça signifie pour votre architecture. Inclus : newsletter client privée pour que vous sachiez toujours ce qui se passe.")}
+              {t(lang, "45-min private session each quarter. We update your schema, track execution, adjust priorities. I bring macro context \u2014 where we are in the cycle and what it means for your architecture. Includes a private client newsletter so you always know what\u2019s going on.", "Session priv\u00E9e de 45 min chaque trimestre. On met \u00E0 jour votre sch\u00E9ma, on suit l\u2019ex\u00E9cution, on ajuste les priorit\u00E9s. J\u2019apporte le contexte macro \u2014 o\u00F9 on en est dans le cycle et ce que \u00E7a signifie pour votre architecture. Inclus : newsletter client priv\u00E9e pour que vous sachiez toujours ce qui se passe.")}
             </div>
           </EngagementCard>
 
@@ -649,30 +730,10 @@ const Wealth = () => {
               <span style={{ fontSize: 13, color: "#5a5750" }}>{t(lang, "Included for all active clients", "Inclus pour tous les clients actifs")}</span>
             </div>
             <div style={{ color: "#9a9790", fontSize: 14, lineHeight: 1.75 }}>
-              {t(lang, "You have direct access to me between sessions. No assistant, no ticketing system. You message me, I respond personally.", "Vous avez un accès direct à moi entre les sessions. Pas d'assistant, pas de système de tickets. Vous m'écrivez, je réponds personnellement.")}
+              {t(lang, "You have direct access to me between sessions. No assistant, no ticketing system. You message me, I respond personally.", "Vous avez un acc\u00E8s direct \u00E0 moi entre les sessions. Pas d\u2019assistant, pas de syst\u00E8me de tickets. Vous m\u2019\u00E9crivez, je r\u00E9ponds personnellement.")}
             </div>
           </EngagementCard>
         </div>
-
-        {/* Annual total */}
-        <motion.div
-          whileHover={{ borderColor: "rgba(201,168,76,0.3)" }}
-          style={{ marginTop: 28, padding: "20px 32px", background: "rgba(201,168,76,0.05)", border: "1px solid rgba(201,168,76,0.15)", borderRadius: 10, textAlign: "center", transition: "border-color 0.2s" }}
-        >
-          <p style={{ color: "#e8e6e1", fontSize: 15, fontWeight: 500, margin: 0 }}>
-            {t(lang,
-              "Your first year: ",
-              "Votre première année : "
-            )}
-            <span style={{ textDecoration: "line-through", color: "#5a5750" }}>{t(lang, "\u20AC4,500", "4 500 \u20AC")}</span>
-            {" "}
-            <span style={{ color: "#c9a84c", fontWeight: 700 }}>{t(lang, "\u20AC2,700", "2 700 \u20AC")}</span>
-            {t(lang,
-              " \u2014 audit + four quarterly reviews. Less than 6 hours of sessions for a system that manages your entire financial life.",
-              " \u2014 audit + quatre revues trimestrielles. Moins de 6 heures de sessions pour un système qui gère toute votre vie financière."
-            )}
-          </p>
-        </motion.div>
       </Section>
 
       <hr style={{ maxWidth: 760, margin: "0 auto", border: "none", borderTop: "1px solid #222" }} />
@@ -680,47 +741,47 @@ const Wealth = () => {
       {/* OBJECTION HANDLING */}
       <Section style={{ padding: "80px 24px", maxWidth: 760, margin: "0 auto" }}>
         <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16 }}>
-          {t(lang, "Common questions", "Questions fréquentes")}
+          {t(lang, "Common questions", "Questions fr\u00E9quentes")}
         </div>
         <h2 style={{ fontSize: 28, fontWeight: 600, marginBottom: 32 }}>
-          {t(lang, "You're thinking about it. Here's what I'd say.", "Vous y réfléchissez. Voici ce que je répondrais.")}
+          {t(lang, "You\u2019re thinking about it. Here\u2019s what I\u2019d say.", "Vous y r\u00E9fl\u00E9chissez. Voici ce que je r\u00E9pondrais.")}
         </h2>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           {[
             {
-              q: t(lang, "\u201CI already have a financial advisor.\u201D", "\u00AB J'ai déjà un conseiller financier. \u00BB"),
+              q: t(lang, "\u201CI already have a financial advisor.\u201D", "\u00AB J\u2019ai d\u00E9j\u00E0 un conseiller financier. \u00BB"),
               a: t(lang,
-                "Your advisor picks products. I design the system those products fit into. We don't compete \u2014 I make their work more effective. Most of my clients keep their existing advisors and bankers. They just finally have an architecture connecting everything.",
-                "Votre conseiller choisit des produits. Je conçois le système dans lequel ces produits s'intègrent. On n'est pas en compétition \u2014 je rends leur travail plus efficace. La plupart de mes clients gardent leurs conseillers et banquiers. Ils ont juste enfin une architecture qui connecte tout."
+                "Your advisor picks products. I design the system those products fit into. We don\u2019t compete \u2014 I make their work more effective. Most of my clients keep their existing advisors and bankers. They just finally have an architecture connecting everything.",
+                "Votre conseiller choisit des produits. Je con\u00E7ois le syst\u00E8me dans lequel ces produits s\u2019int\u00E8grent. On n\u2019est pas en comp\u00E9tition \u2014 je rends leur travail plus efficace. La plupart de mes clients gardent leurs conseillers et banquiers. Ils ont juste enfin une architecture qui connecte tout."
               ),
             },
             {
-              q: t(lang, "\u201CMy bank handles my wealth.\u201D", "\u00AB Ma banque gère mon patrimoine. \u00BB"),
+              q: t(lang, "\u201CMy bank handles my wealth.\u201D", "\u00AB Ma banque g\u00E8re mon patrimoine. \u00BB"),
               a: t(lang,
-                "Your bank sees one slice. I see the full board \u2014 across all your banks, assets, structures, and flows. I design the system. They execute the pieces they handle. An architect doesn't replace your builders. He tells them what to build.",
-                "Votre banque voit une tranche. Moi je vois le tableau complet \u2014 toutes vos banques, actifs, structures et flux. Je conçois le système. Ils exécutent les parties qu'ils gèrent. Un architecte ne remplace pas vos maçons. Il leur dit quoi construire."
+                "Your bank sees one slice. I see the full board \u2014 across all your banks, assets, structures, and flows. I design the system. They execute the pieces they handle. An architect doesn\u2019t replace your builders. He tells them what to build.",
+                "Votre banque voit une tranche. Moi je vois le tableau complet \u2014 toutes vos banques, actifs, structures et flux. Je con\u00E7ois le syst\u00E8me. Ils ex\u00E9cutent les parties qu\u2019ils g\u00E8rent. Un architecte ne remplace pas vos ma\u00E7ons. Il leur dit quoi construire."
               ),
             },
             {
-              q: t(lang, "\u201CI don't have time for this.\u201D", "\u00AB Je n'ai pas le temps pour ça. \u00BB"),
+              q: t(lang, "\u201CI don\u2019t have time for this.\u201D", "\u00AB Je n\u2019ai pas le temps pour \u00E7a. \u00BB"),
               a: t(lang,
-                "One 90-minute intake. One 60-minute delivery. Then 45 minutes per quarter. That's less than 6 hours a year to have a system managing your entire financial life. You spend more time than that choosing a car.",
-                "Un intake de 90 minutes. Une restitution de 60 minutes. Puis 45 minutes par trimestre. C'est moins de 6 heures par an pour avoir un système qui gère toute votre vie financière. Vous passez plus de temps que ça à choisir une voiture."
+                "One 90-minute intake. One 60-minute delivery. Then 45 minutes per quarter. That\u2019s less than 6 hours a year to have a system managing your entire financial life. You spend more time than that choosing a car.",
+                "Un intake de 90 minutes. Une restitution de 60 minutes. Puis 45 minutes par trimestre. C\u2019est moins de 6 heures par an pour avoir un syst\u00E8me qui g\u00E8re toute votre vie financi\u00E8re. Vous passez plus de temps que \u00E7a \u00E0 choisir une voiture."
               ),
             },
             {
-              q: t(lang, "\u201CThat's expensive for advice.\u201D", "\u00AB C'est cher pour du conseil. \u00BB"),
+              q: t(lang, "\u201CThat\u2019s expensive for advice.\u201D", "\u00AB C\u2019est cher pour du conseil. \u00BB"),
               a: t(lang,
-                "One structural gap \u2014 money sitting idle, a tax wrapper you didn't know about, borrowing power you're not using \u2014 typically costs more in a single year than the entire engagement. This isn't an expense. It's the highest-leverage investment you'll make.",
-                "Un seul trou structurel \u2014 de l'argent qui dort, une enveloppe fiscale que vous ne connaissiez pas, un pouvoir d'emprunt que vous n'utilisez pas \u2014 coûte généralement plus en une seule année que tout l'accompagnement. Ce n'est pas une dépense. C'est l'investissement le plus levier que vous ferez."
+                "One structural gap \u2014 money sitting idle, a tax wrapper you didn\u2019t know about, borrowing power you\u2019re not using \u2014 typically costs more in a single year than the entire engagement. This isn\u2019t an expense. It\u2019s the highest-leverage investment you\u2019ll make.",
+                "Un seul trou structurel \u2014 de l\u2019argent qui dort, une enveloppe fiscale que vous ne connaissiez pas, un pouvoir d\u2019emprunt que vous n\u2019utilisez pas \u2014 co\u00FBte g\u00E9n\u00E9ralement plus en une seule ann\u00E9e que tout l\u2019accompagnement. Ce n\u2019est pas une d\u00E9pense. C\u2019est l\u2019investissement le plus levier que vous ferez."
               ),
             },
             {
               q: t(lang, "\u201CI can figure this out myself.\u201D", "\u00AB Je peux le faire tout seul. \u00BB"),
               a: t(lang,
-                "You probably can learn every piece individually. But nobody teaches you how they connect. That's the architecture \u2014 the system that turns scattered knowledge into compounding wealth. You don't need more information. You need a blueprint.",
-                "Vous pouvez probablement apprendre chaque pièce individuellement. Mais personne ne vous apprend comment elles se connectent. C'est ça l'architecture \u2014 le système qui transforme des connaissances éparses en richesse composée. Vous n'avez pas besoin de plus d'information. Vous avez besoin d'un blueprint."
+                "You probably can learn every piece individually. But nobody teaches you how they connect. That\u2019s the architecture \u2014 the system that turns scattered knowledge into compounding wealth. You don\u2019t need more information. You need a blueprint.",
+                "Vous pouvez probablement apprendre chaque pi\u00E8ce individuellement. Mais personne ne vous apprend comment elles se connectent. C\u2019est \u00E7a l\u2019architecture \u2014 le syst\u00E8me qui transforme des connaissances \u00E9parses en richesse compos\u00E9e. Vous n\u2019avez pas besoin de plus d\u2019information. Vous avez besoin d\u2019un blueprint."
               ),
             },
           ].map((item, i) => (
@@ -734,16 +795,16 @@ const Wealth = () => {
       {/* INDEPENDENCE */}
       <Section style={{ padding: "80px 24px", maxWidth: 760, margin: "0 auto" }}>
         <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16 }}>
-          {t(lang, "Independence", "Indépendance")}
+          {t(lang, "Independence", "Ind\u00E9pendance")}
         </div>
         <h2 style={{ fontSize: 28, fontWeight: 600, marginBottom: 20 }}>
-          {t(lang, "Fully independent. Here's what that means.", "Totalement indépendant. Voici ce que ça veut dire.")}
+          {t(lang, "Fully independent. Here\u2019s what that means.", "Totalement ind\u00E9pendant. Voici ce que \u00E7a veut dire.")}
         </h2>
         <div style={{ marginTop: 28 }}>
           {[
-            t(lang, "Zero commissions. I don't earn a cent from any product you buy.", "Zéro commission. Je ne gagne pas un centime sur aucun produit que vous achetez."),
-            t(lang, "Zero affiliations. No bank, insurer, or platform has any tie to me.", "Zéro affiliation. Aucune banque, assureur ou plateforme n'a de lien avec moi."),
-            t(lang, "Zero % on your capital. I never manage your money. You stay in full control.", "Zéro % sur votre capital. Je ne gère jamais votre argent. Vous gardez le contrôle total."),
+            t(lang, "Zero commissions. I don\u2019t earn a cent from any product you buy.", "Z\u00E9ro commission. Je ne gagne pas un centime sur aucun produit que vous achetez."),
+            t(lang, "Zero affiliations. No bank, insurer, or platform has any tie to me.", "Z\u00E9ro affiliation. Aucune banque, assureur ou plateforme n\u2019a de lien avec moi."),
+            t(lang, "Zero % on your capital. I never manage your money. You stay in full control.", "Z\u00E9ro % sur votre capital. Je ne g\u00E8re jamais votre argent. Vous gardez le contr\u00F4le total."),
           ].map((item, i) => (
             <motion.div
               key={i}
@@ -760,8 +821,8 @@ const Wealth = () => {
         </div>
         <p style={{ color: "#9a9790", fontSize: 15, marginTop: 24, fontStyle: "italic" }}>
           {t(lang,
-            "When I tell you something, it's because I believe it's right for your system \u2014 not because someone pays me to say it.",
-            "Quand je vous dis quelque chose, c'est parce que je crois que c'est juste pour votre système \u2014 pas parce que quelqu'un me paie pour le dire."
+            "When I tell you something, it\u2019s because I believe it\u2019s right for your system \u2014 not because someone pays me to say it.",
+            "Quand je vous dis quelque chose, c\u2019est parce que je crois que c\u2019est juste pour votre syst\u00E8me \u2014 pas parce que quelqu\u2019un me paie pour le dire."
           )}
         </p>
       </Section>
@@ -772,13 +833,13 @@ const Wealth = () => {
       <Section id="book" style={{ textAlign: "center", padding: "100px 24px 140px", maxWidth: 760, margin: "0 auto", position: "relative" }}>
         <div style={{ position: "absolute", top: "40%", left: "50%", transform: "translate(-50%,-50%)", width: 500, height: 500, background: "radial-gradient(circle, rgba(201,168,76,0.04) 0%, transparent 70%)", pointerEvents: "none" }} />
         <h2 style={{ fontSize: 32, fontWeight: 600, marginBottom: 16 }}>
-          {t(lang, "Ready to architect your wealth?", "Prêt à structurer votre patrimoine ?")}
+          {t(lang, "Ready to architect your wealth?", "Pr\u00EAt \u00E0 structurer votre patrimoine ?")}
         </h2>
         <p style={{ color: "#9a9790", marginBottom: 36, fontSize: 16 }}>
-          {t(lang, "30-minute discovery call. Free. I'll show you my system and tell you honestly if I can help.", "Appel découverte de 30 minutes. Gratuit. Je vous montre mon système et vous dis honnêtement si je peux vous aider.")}
+          {t(lang, "30-minute discovery call. Free. I\u2019ll show you my system and tell you honestly if I can help.", "Appel d\u00E9couverte de 30 minutes. Gratuit. Je vous montre mon syst\u00E8me et vous dis honn\u00EAtement si je peux vous aider.")}
         </p>
         <CtaButton href="#">
-          {t(lang, "Book your discovery call", "Réservez votre appel découverte")}
+          {t(lang, "Book your discovery call", "R\u00E9servez votre appel d\u00E9couverte")}
         </CtaButton>
       </Section>
 
@@ -788,7 +849,7 @@ const Wealth = () => {
         display: "flex", justifyContent: "space-between", alignItems: "center",
         fontSize: 12, color: "#5a5750", letterSpacing: "0.02em", flexWrap: "wrap", gap: 8,
       }}>
-        <span>{t(lang, "Private & confidential \u00B7 Your preferences, your architecture", "Privé & confidentiel \u00B7 Vos préférences, votre architecture")}</span>
+        <span>{t(lang, "Private & confidential \u00B7 Your preferences, your architecture", "Priv\u00E9 & confidentiel \u00B7 Vos pr\u00E9f\u00E9rences, votre architecture")}</span>
         <Link to="/" style={{ color: "#9a9790", textDecoration: "none" }}>jeremylasne.com</Link>
       </footer>
     </div>
