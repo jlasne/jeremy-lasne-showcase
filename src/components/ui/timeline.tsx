@@ -1,6 +1,5 @@
 import * as React from "react";
 import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
 
 export type TimelineEntry = {
   date: string;
@@ -38,13 +37,11 @@ export default function Timeline({ entries }: TimelineProps) {
 
             <div className="text-xs text-muted-foreground mb-2">{entry.date}</div>
 
-            <Card className="border-border/50 shadow-none">
-              <CardContent className="p-3">
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {entry.content}
-                </p>
-              </CardContent>
-            </Card>
+            <div className="rounded-lg border border-border/50 bg-card text-card-foreground p-3">
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {entry.content}
+              </p>
+            </div>
           </motion.div>
         ))}
       </div>

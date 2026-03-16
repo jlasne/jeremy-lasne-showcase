@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import NavBar from "@/components/NavBar";
 
 type Lang = "en" | "fr";
 
@@ -45,8 +44,6 @@ const Wealth = () => {
   };
 
   return (
-    <>
-    <NavBar />
     <div className="min-h-screen" style={{
       fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
       background: "#0e0e0e",
@@ -478,7 +475,6 @@ const Wealth = () => {
         <Link to="/" style={{ color: "#9a9790", textDecoration: "none" }}>jeremylasne.com</Link>
       </footer>
     </div>
-    </>
   );
 };
 
