@@ -96,20 +96,20 @@ const Wealth = () => {
           <strong style={{ fontWeight: 700 }}>{t(lang, "system", "système")}</strong>
           {t(lang, ". Not scattered accounts.", ". Pas de comptes éparpillés.")}
         </h1>
-        <p style={{ fontSize: 17, fontWeight: 400, color: "#9a9790", maxWidth: 540, marginBottom: 48 }}>
+        <p style={{ fontSize: 17, fontWeight: 400, color: "#9a9790", maxWidth: 580, marginBottom: 48 }}>
           {t(lang,
-            "I studied how the wealthiest families actually protect and grow capital. Then I built a method that brings that thinking to individuals. Shaped around your life, your preferences, your privacy.",
-            "J'ai étudié comment les grandes familles protègent et font croître leur capital. Puis j'ai construit une méthode qui apporte cette réflexion aux particuliers. Façonnée autour de votre vie, vos préférences, votre confidentialité."
+            "I've been investing since 2017. I studied how the wealthiest families protect and grow capital — then I built a method that brings that thinking to individuals. Shaped around your life, your preferences, your privacy. I built it for myself first. On the call, I'll show you the architecture running on my own capital.",
+            "J'investis depuis 2017. J'ai étudié comment les grandes familles protègent et font croître leur capital — puis j'ai construit une méthode qui apporte cette réflexion aux particuliers. Façonnée autour de votre vie, vos préférences, votre confidentialité. Je l'ai d'abord construite pour moi. Lors de l'appel, je vous montrerai l'architecture qui tourne sur mon propre capital."
           )}
         </p>
         <a href="#book" style={{
           display: "inline-block", padding: "15px 40px", background: "#c9a84c", color: "#0e0e0e",
           textDecoration: "none", borderRadius: 8, fontSize: 14, fontWeight: 600, letterSpacing: "0.03em",
         }}>
-          {t(lang, "Request a private consultation", "Demander une consultation privée")}
+          {t(lang, "Book your discovery call", "Réservez votre appel découverte")}
         </a>
         <span style={{ display: "block", marginTop: 16, fontSize: 12, color: "#5a5750", letterSpacing: "0.03em" }}>
-          {t(lang, "15-minute call · By invitation · I select who I work with", "Appel de 15 minutes · Sur invitation · Je choisis avec qui je travaille")}
+          {t(lang, "30-min call · Free · I show you my system before I ask about yours", "Appel de 30 min · Gratuit · Je vous montre mon système avant de vous poser des questions")}
         </span>
       </div>
 
@@ -235,50 +235,37 @@ const Wealth = () => {
 
       <div style={{ width: 60, height: 1, background: "rgba(201,168,76,0.2)", margin: "0 auto" }} />
 
-      {/* PHILOSOPHY */}
+      {/* WHO I AM */}
       <section ref={addFadeRef} style={{ padding: "80px 24px", maxWidth: 760, margin: "0 auto", opacity: 0, transform: "translateY(20px)", transition: "opacity 0.7s ease, transform 0.7s ease" }}>
         <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16 }}>
-          {t(lang, "The philosophy", "La philosophie")}
+          {t(lang, "The architect", "L'architecte")}
         </div>
         <h2 style={{ fontSize: 28, fontWeight: 600, marginBottom: 20 }}>
-          {t(lang, "Inspired by the greatest. Adapted to you.", "Inspiré des plus grands. Adapté à vous.")}
+          {t(lang, "I'm not a salesman. I'm an investor who designs systems.", "Je ne suis pas un vendeur. Je suis un investisseur qui conçoit des systèmes.")}
         </h2>
         <p style={{ color: "#9a9790", fontSize: 16, marginBottom: 16 }}>
           {t(lang,
-            "I spent years studying macro strategists and wealth preservers. The people who understand how capital actually moves across generations, currencies, and cycles. Their principles work. But they were built for dynasties. Not for you and me.",
-            "J'ai passé des années à étudier les stratèges macro et les préservateurs de patrimoine. Ceux qui comprennent comment le capital circule réellement entre les générations, les devises et les cycles. Leurs principes fonctionnent. Mais ils ont été conçus pour des dynasties. Pas pour vous et moi."
+            "I've been deep in this world since 2017. I'm strongly inspired by Charles Gave — I've met him several times and built my entire macro framework around his work and Didier Darcet's econophysics. I worked private equity with Constant Helper. I run crypto and blockchain strategies myself. This isn't theory. I live this system every day.",
+            "Je suis plongé dans cet univers depuis 2017. Je suis profondément inspiré par Charles Gave — je l'ai rencontré plusieurs fois et j'ai construit tout mon cadre macro autour de son travail et de l'écono-physique de Didier Darcet. J'ai travaillé en private equity avec Constant Helper. Je gère moi-même des stratégies crypto et blockchain. Ce n'est pas de la théorie. Je vis ce système chaque jour."
           )}
         </p>
         <p style={{ color: "#9a9790", fontSize: 16, marginBottom: 16 }}>
           {t(lang,
-            "So I built a method that translates those big movements into a personal system. One that adapts to your life, your risk appetite, your values, your timeline. Same structural rigor. Shaped around who you are.",
-            "Alors j'ai construit une méthode qui traduit ces grands mouvements en un système personnel. Un qui s'adapte à votre vie, votre appétit pour le risque, vos valeurs, votre horizon. Même rigueur structurelle. Façonnée autour de qui vous êtes."
+            "I started my career as a CIF (Conseil en Investissements Financiers) under Euodia. I left because affiliation kills independence. Great people — but the model is built around selling products, not building systems. I chose freedom. Now I work for my clients and nobody else.",
+            "J'ai commencé ma carrière comme CIF (Conseil en Investissements Financiers) sous Euodia. J'ai quitté parce que l'affiliation tue l'indépendance. Des gens formidables — mais le modèle est construit autour de la vente de produits, pas de la construction de systèmes. J'ai choisi la liberté. Maintenant je travaille pour mes clients et personne d'autre."
           )}
         </p>
         <p style={{ color: "#9a9790", fontSize: 16 }}>
           {t(lang,
-            "I also use AI daily to track macro shifts, policy changes, and market signals before they hit the news. Most advisors read last week's report. I read tomorrow's.",
-            "J'utilise aussi l'IA au quotidien pour suivre les mouvements macro, les changements de politique et les signaux de marché avant qu'ils ne fassent la une. La plupart des conseillers lisent le rapport de la semaine dernière. Moi, je lis celui de demain."
+            "I don't give you a list of ETFs to buy. I don't tell you to put everything in the S&P 500 or the CAC 40. My approach is structured, risk-managed, and diversified worldwide. I think in systems, not products. I manage risk the way it should be managed: simply.",
+            "Je ne vous donne pas une liste d'ETFs à acheter. Je ne vous dis pas de tout mettre dans le S&P 500 ou le CAC 40. Mon approche est structurée, gérée en risque et diversifiée mondialement. Je pense en systèmes, pas en produits. Je gère le risque comme il devrait l'être : simplement."
           )}
         </p>
       </section>
 
       <div style={{ width: 60, height: 1, background: "rgba(201,168,76,0.2)", margin: "0 auto" }} />
 
-      {/* QUOTE */}
-      <div ref={addFadeRef} style={{ padding: "64px 24px", maxWidth: 760, margin: "0 auto", textAlign: "center", opacity: 0, transform: "translateY(20px)", transition: "opacity 0.7s ease, transform 0.7s ease" }}>
-        <blockquote style={{ fontSize: 20, fontWeight: 300, fontStyle: "italic", color: "#e8e6e1", lineHeight: 1.6 }}>
-          <div style={{ width: 40, height: 1, background: "#c9a84c", margin: "0 auto 24px" }} />
-          {t(lang,
-            "Wealth management isn't picking stocks. It's preserving purchasing power, compounding quietly, and respecting who you are in the process.",
-            "Gérer son patrimoine, ce n'est pas choisir des actions. C'est préserver son pouvoir d'achat, composer en silence, et respecter qui vous êtes dans le processus."
-          )}
-        </blockquote>
-      </div>
-
-      <div style={{ width: 60, height: 1, background: "rgba(201,168,76,0.2)", margin: "0 auto" }} />
-
-      {/* PRIVACY */}
+      {/* YOUR TERMS */}
       <section ref={addFadeRef} style={{ padding: "80px 24px", maxWidth: 760, margin: "0 auto", opacity: 0, transform: "translateY(20px)", transition: "opacity 0.7s ease, transform 0.7s ease" }}>
         <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16 }}>
           {t(lang, "Your terms", "Vos conditions")}
@@ -288,22 +275,22 @@ const Wealth = () => {
         </h2>
         <p style={{ color: "#9a9790", fontSize: 16, marginBottom: 16 }}>
           {t(lang,
-            "Your wealth is intimate. It reflects your choices, your family, your ambitions. So every architecture starts with understanding you. Not just your balance sheet. Your preferences. Your constraints. What you want your money to actually do for your life.",
-            "Votre patrimoine est intime. Il reflète vos choix, votre famille, vos ambitions. Donc chaque architecture commence par vous comprendre. Pas juste votre bilan. Vos préférences. Vos contraintes. Ce que vous voulez que votre argent fasse vraiment pour votre vie."
+            "Your wealth is intimate. It reflects your choices, your family, your ambitions. So every architecture starts with understanding you — not just your balance sheet. Your preferences, your constraints, what you want your money to actually do for your life.",
+            "Votre patrimoine est intime. Il reflète vos choix, votre famille, vos ambitions. Donc chaque architecture commence par vous comprendre — pas juste votre bilan. Vos préférences, vos contraintes, ce que vous voulez que votre argent fasse vraiment pour votre vie."
           )}
         </p>
         <p style={{ color: "#9a9790", fontSize: 16, marginBottom: 16 }}>
           {t(lang,
-            "No data leaves the conversation. No third parties. No platform storing your numbers. Everything stays between us. Confidential. Under NDA if you want. Entirely on your terms.",
-            "Aucune donnée ne sort de la conversation. Pas de tiers. Pas de plateforme qui stocke vos chiffres. Tout reste entre nous. Confidentiel. Sous NDA si vous le souhaitez. Entièrement à vos conditions."
+            "No data leaves the conversation. No third parties. No platform storing your numbers. Everything stays between us. Confidential. Under NDA. Entirely on your terms.",
+            "Aucune donnée ne sort de la conversation. Pas de tiers. Pas de plateforme qui stocke vos chiffres. Tout reste entre nous. Confidentiel. Sous NDA. Entièrement à vos conditions."
           )}
         </p>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 20, marginTop: 36 }}>
           {[
-            { icon: "⚗", title: t(lang, "Preserve wealth", "Préserver le patrimoine"), desc: t(lang, "Protect what you've built. Structure before speculation.", "Protéger ce que vous avez construit. La structure avant la spéculation.") },
-            { icon: "⇧", title: t(lang, "Grow purchasing power", "Gagner en pouvoir d'achat"), desc: t(lang, "Beat inflation, compound quietly. Real wealth is measured in what you can do.", "Battre l'inflation, composer en silence. La vraie richesse se mesure à ce que vous pouvez faire.") },
-            { icon: "◆", title: t(lang, "Respect your identity", "Respecter votre identité"), desc: t(lang, "Your values, preferences, and privacy shape the architecture. Not the other way around.", "Vos valeurs, préférences et votre vie privée façonnent l'architecture. Pas l'inverse.") },
+            { icon: "\u2697", title: t(lang, "Preserve wealth", "Préserver le patrimoine"), desc: t(lang, "Protect what you've built. Structure before speculation.", "Protéger ce que vous avez construit. La structure avant la spéculation.") },
+            { icon: "\u21E7", title: t(lang, "Grow purchasing power", "Gagner en pouvoir d'achat"), desc: t(lang, "Beat inflation, compound quietly. Real wealth is measured in what you can do.", "Battre l'inflation, composer en silence. La vraie richesse se mesure à ce que vous pouvez faire.") },
+            { icon: "\u25C6", title: t(lang, "Respect your identity", "Respecter votre identité"), desc: t(lang, "Your values, preferences, and privacy shape the architecture. Not the other way around.", "Vos valeurs, préférences et votre vie privée façonnent l'architecture. Pas l'inverse.") },
           ].map((p, i) => (
             <div key={i} style={{ textAlign: "center", padding: "28px 16px", background: "#1a1a1a", border: "1px solid #222", borderRadius: 10 }}>
               <div style={{ fontSize: 24, marginBottom: 12, opacity: 0.7 }}>{p.icon}</div>
@@ -316,7 +303,7 @@ const Wealth = () => {
 
       <hr style={{ maxWidth: 760, margin: "0 auto", border: "none", borderTop: "1px solid #222" }} />
 
-      {/* PROBLEM */}
+      {/* THE GAP */}
       <section ref={addFadeRef} style={{ padding: "80px 24px", maxWidth: 760, margin: "0 auto", opacity: 0, transform: "translateY(20px)", transition: "opacity 0.7s ease, transform 0.7s ease" }}>
         <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16 }}>
           {t(lang, "The gap", "Le vide")}
@@ -326,71 +313,59 @@ const Wealth = () => {
         </h2>
         <p style={{ color: "#9a9790", fontSize: 16 }}>
           {t(lang,
-            "Budgeting apps? You're past that. Generic financial advice? Useless at your level. Private banks only care about €10M+ clients. Wealth managers want to sell you their products. Nobody sits with you to actually design the system. How every euro flows. Where the leverage points are. Which structural moves unlock the next level.",
-            "Les apps de budget ? Vous avez dépassé ça. Les conseils financiers génériques ? Inutiles à votre niveau. Les banques privées ne s'intéressent qu'aux €10M+. Les conseillers veulent vous vendre leurs produits. Personne ne s'assoit avec vous pour concevoir le système. Comment chaque euro circule. Où sont les points de levier. Quels mouvements structurels débloquent le niveau suivant."
+            "Budgeting apps? You're past that. Generic financial advice? Useless at your level. Private banks only care about \u20AC10M+ clients. Wealth managers want to sell you their products. Nobody sits with you to actually design the system. How every euro flows. Where the leverage points are. Which structural moves unlock the next level.",
+            "Les apps de budget ? Vous avez dépassé ça. Les conseils financiers génériques ? Inutiles à votre niveau. Les banques privées ne s'intéressent qu'aux \u20AC10M+. Les conseillers veulent vous vendre leurs produits. Personne ne s'assoit avec vous pour concevoir le système. Comment chaque euro circule. Où sont les points de levier. Quels mouvements structurels débloquent le niveau suivant."
           )}
         </p>
       </section>
 
       <hr style={{ maxWidth: 760, margin: "0 auto", border: "none", borderTop: "1px solid #222" }} />
 
-      {/* SOLUTION */}
-      <section ref={addFadeRef} style={{ padding: "80px 24px", maxWidth: 760, margin: "0 auto", opacity: 0, transform: "translateY(20px)", transition: "opacity 0.7s ease, transform 0.7s ease" }}>
-        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16 }}>
-          {t(lang, "The approach", "L'approche")}
-        </div>
-        <h2 style={{ fontSize: 28, fontWeight: 600, marginBottom: 20 }}>
-          {t(lang, "An architect, not a salesman.", "Un architecte, pas un vendeur.")}
-        </h2>
-        <p style={{ color: "#9a9790", fontSize: 16 }}>
-          {t(lang,
-            "I map your full financial landscape. Income, assets, debts, bank relationships, family structure, goals. Then I design a wealth flow schema shaped around your life and preferences. Not a generic template. A living architecture that reflects who you are. You execute with your own bankers and advisors. I design the system. They build it.",
-            "Je cartographie votre paysage financier complet. Revenus, actifs, dettes, relations bancaires, structure familiale, objectifs. Puis je conçois un schéma de flux patrimonial façonné autour de votre vie et vos préférences. Pas un template générique. Une architecture vivante qui reflète qui vous êtes. Vous exécutez avec vos propres banquiers et conseillers. Je conçois le système. Ils le construisent."
-          )}
-        </p>
-      </section>
-
-      <hr style={{ maxWidth: 760, margin: "0 auto", border: "none", borderTop: "1px solid #222" }} />
-
-      {/* OFFER */}
+      {/* THE ENGAGEMENT */}
       <section ref={addFadeRef} style={{ padding: "80px 24px", maxWidth: 760, margin: "0 auto", opacity: 0, transform: "translateY(20px)", transition: "opacity 0.7s ease, transform 0.7s ease" }}>
         <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16 }}>
           {t(lang, "The engagement", "L'accompagnement")}
         </div>
-        <h2 style={{ fontSize: 28, fontWeight: 600, marginBottom: 20 }}>
-          {t(lang, "How we work together", "Comment nous travaillons ensemble")}
+        <h2 style={{ fontSize: 28, fontWeight: 600, marginBottom: 16 }}>
+          {t(lang, "One year. One system. Built around you.", "Un an. Un système. Construit autour de vous.")}
         </h2>
+        <p style={{ color: "#9a9790", fontSize: 16, marginBottom: 36 }}>
+          {t(lang,
+            "This isn't a one-off consultation. It's a year-long engagement designed to build, implement, and refine your wealth architecture. Here's what each phase looks like.",
+            "Ce n'est pas une consultation ponctuelle. C'est un accompagnement d'un an conçu pour construire, mettre en œuvre et affiner votre architecture patrimoniale. Voici à quoi ressemble chaque phase."
+          )}
+        </p>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 14, marginTop: 36 }}>
-          {/* Card 1 */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+          {/* Phase 01 */}
           <div style={{ background: "#1a1a1a", border: "1px solid #222", borderRadius: 12, padding: "28px 32px" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 10, flexWrap: "wrap", gap: 8 }}>
-              <div><span style={{ fontSize: 11, fontWeight: 600, color: "#c9a84c", letterSpacing: "0.06em", marginRight: 8 }}>01</span><span style={{ fontSize: 17, fontWeight: 600 }}>{t(lang, "Private consultation", "Consultation privée")}</span></div>
-              <span style={{ fontSize: 13, color: "#5a5750" }}>{t(lang, "15 min · By invitation", "15 min · Sur invitation")}</span>
+              <div><span style={{ fontSize: 11, fontWeight: 600, color: "#c9a84c", letterSpacing: "0.06em", marginRight: 8 }}>01</span><span style={{ fontSize: 17, fontWeight: 600 }}>{t(lang, "Discovery call", "Appel découverte")}</span></div>
+              <span style={{ fontSize: 13, color: "#5a5750" }}>{t(lang, "30 min · Free", "30 min · Gratuit")}</span>
             </div>
             <div style={{ color: "#9a9790", fontSize: 14, lineHeight: 1.75 }}>
-              {t(lang, "Quick call to understand your situation. I need to know if my method fits before we commit. I only take on clients where I can create real structural impact.", "Appel rapide pour comprendre votre situation. J'ai besoin de savoir si ma méthode correspond avant de s'engager. Je n'accepte que les clients où je peux créer un vrai impact structurel.")}
+              {t(lang, "I tell you who I am and show you my own system running on my own capital. You tell me about your situation. We both decide if there's a fit. No commitment \u2014 I'll be honest if I can't help.", "Je vous dis qui je suis et vous montre mon propre système qui tourne sur mon capital. Vous me parlez de votre situation. On décide ensemble s'il y a un fit. Sans engagement \u2014 je serai honnête si je ne peux pas vous aider.")}
             </div>
           </div>
 
-          {/* Card 2 - Featured */}
+          {/* Phase 02 - Featured */}
           <div style={{ background: "rgba(201,168,76,0.08)", border: "1px solid rgba(201,168,76,0.2)", borderRadius: 12, padding: "28px 32px", position: "relative", overflow: "hidden" }}>
             <div style={{ position: "absolute", top: 0, left: 24, right: 24, height: 1, background: "linear-gradient(90deg, transparent, rgba(201,168,76,0.2), transparent)" }} />
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 10, flexWrap: "wrap", gap: 8 }}>
-              <div><span style={{ fontSize: 11, fontWeight: 600, color: "#c9a84c", letterSpacing: "0.06em", marginRight: 8 }}>02</span><span style={{ fontSize: 17, fontWeight: 600 }}>{t(lang, "Wealth Architecture", "Architecture Patrimoniale")}</span></div>
-              <span style={{ fontSize: 17, fontWeight: 700, color: "#c9a84c" }}>{t(lang, "€1,500", "1 500 €")}</span>
+              <div><span style={{ fontSize: 11, fontWeight: 600, color: "#c9a84c", letterSpacing: "0.06em", marginRight: 8 }}>02</span><span style={{ fontSize: 17, fontWeight: 600 }}>{t(lang, "Wealth Architecture Audit", "Audit d'Architecture Patrimoniale")}</span></div>
+              <span style={{ fontSize: 17, fontWeight: 700, color: "#c9a84c" }}>{t(lang, "\u20AC1,500", "1 500 \u20AC")}</span>
             </div>
             <div style={{ color: "#9a9790", fontSize: 14, lineHeight: 1.75 }}>
-              {t(lang, "Your full personalized wealth blueprint. Delivered in one week.", "Votre blueprint patrimonial complet et personnalisé. Livré en une semaine.")}
+              {t(lang, "Your full personalized wealth blueprint. Delivered in two weeks.", "Votre blueprint patrimonial complet et personnalisé. Livré en deux semaines.")}
               <ul style={{ listStyle: "none", padding: 0, marginTop: 10 }}>
                 {[
-                  t(lang, "Deep intake session (1h30). Full cartography of your financial life", "Session d'intake approfondie (1h30). Cartographie complète de votre vie financière"),
-                  t(lang, "Custom wealth flow schema built around your situation", "Schéma de flux patrimonial sur mesure conçu autour de votre situation"),
-                  t(lang, "Visual blueprint + roadmap of 5 to 10 structural moves", "Blueprint visuel + feuille de route de 5 à 10 actions structurelles"),
-                  t(lang, "Delivery session (1h). Private walkthrough of your architecture", "Session de restitution (1h). Présentation privée de votre architecture"),
+                  t(lang, "Deep intake session (1h30). Full cartography of your financial life.", "Session d'intake approfondie (1h30). Cartographie complète de votre vie financière."),
+                  t(lang, "Custom wealth flow schema designed around your situation.", "Schéma de flux patrimonial sur mesure conçu autour de votre situation."),
+                  t(lang, "Visual blueprint + roadmap of 5 to 10 structural moves, ordered by impact.", "Blueprint visuel + feuille de route de 5 à 10 actions structurelles, classées par impact."),
+                  t(lang, "Delivery session (1h). Private walkthrough of your architecture.", "Session de restitution (1h). Présentation privée de votre architecture."),
                 ].map((item, i) => (
                   <li key={i} style={{ padding: "5px 0 5px 22px", position: "relative" }}>
-                    <span style={{ position: "absolute", left: 0, color: "#c9a84c" }}>→</span>
+                    <span style={{ position: "absolute", left: 0, color: "#c9a84c" }}>{"\u2192"}</span>
                     {item}
                   </li>
                 ))}
@@ -398,49 +373,92 @@ const Wealth = () => {
             </div>
           </div>
 
-          {/* Card 3 */}
+          {/* Phase 03 */}
           <div style={{ background: "#1a1a1a", border: "1px solid #222", borderRadius: 12, padding: "28px 32px" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 10, flexWrap: "wrap", gap: 8 }}>
-              <div><span style={{ fontSize: 11, fontWeight: 600, color: "#c9a84c", letterSpacing: "0.06em", marginRight: 8 }}>03</span><span style={{ fontSize: 17, fontWeight: 600 }}>{t(lang, "Quarterly review", "Revue trimestrielle")}</span></div>
-              <span style={{ fontSize: 17, fontWeight: 700, color: "#c9a84c" }}>{t(lang, "€300 / quarter", "300 € / trimestre")}</span>
+              <div><span style={{ fontSize: 11, fontWeight: 600, color: "#c9a84c", letterSpacing: "0.06em", marginRight: 8 }}>03</span><span style={{ fontSize: 17, fontWeight: 600 }}>{t(lang, "4 Quarterly Reviews", "4 Revues Trimestrielles")}</span></div>
+              <span style={{ fontSize: 17, fontWeight: 700, color: "#c9a84c" }}>{t(lang, "\u20AC300 / quarter", "300 \u20AC / trimestre")}</span>
             </div>
             <div style={{ color: "#9a9790", fontSize: 14, lineHeight: 1.75 }}>
-              {t(lang, "45-min private session each quarter. We update your schema, track execution, adjust priorities. Includes a private newsletter breaking down macro news and what it means for your architecture.", "Session privée de 45 min chaque trimestre. On met à jour votre schéma, on suit l'exécution, on ajuste les priorités. Inclus : newsletter privée décryptant l'actualité macro et son impact sur votre architecture.")}
+              {t(lang, "45-min private session each quarter. We update your schema, track execution, adjust priorities. I bring macro context \u2014 where we are in the cycle and what it means for your architecture. Includes a private client newsletter so you always know what's going on.", "Session privée de 45 min chaque trimestre. On met à jour votre schéma, on suit l'exécution, on ajuste les priorités. J'apporte le contexte macro \u2014 où on en est dans le cycle et ce que ça signifie pour votre architecture. Inclus : newsletter client privée pour que vous sachiez toujours ce qui se passe.")}
             </div>
           </div>
 
-          {/* Card 4 */}
+          {/* Phase 04 */}
           <div style={{ background: "#1a1a1a", border: "1px solid #222", borderRadius: 12, padding: "28px 32px" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 10, flexWrap: "wrap", gap: 8 }}>
               <div><span style={{ fontSize: 11, fontWeight: 600, color: "#c9a84c", letterSpacing: "0.06em", marginRight: 8 }}>04</span><span style={{ fontSize: 17, fontWeight: 600 }}>{t(lang, "Direct line", "Ligne directe")}</span></div>
-              <span style={{ fontSize: 13, color: "#5a5750" }}>{t(lang, "Included", "Inclus")}</span>
+              <span style={{ fontSize: 13, color: "#5a5750" }}>{t(lang, "Included for all active clients", "Inclus pour tous les clients actifs")}</span>
             </div>
             <div style={{ color: "#9a9790", fontSize: 14, lineHeight: 1.75 }}>
-              {t(lang, "Active clients have direct access to me between sessions. No assistant, no ticketing system. You message me, I respond personally.", "Les clients actifs ont un accès direct à moi entre les sessions. Pas d'assistant, pas de système de tickets. Vous m'écrivez, je réponds personnellement.")}
+              {t(lang, "You have direct access to me between sessions. No assistant, no ticketing system. You message me, I respond personally.", "Vous avez un accès direct à moi entre les sessions. Pas d'assistant, pas de système de tickets. Vous m'écrivez, je réponds personnellement.")}
             </div>
           </div>
+        </div>
+
+        {/* Annual total */}
+        <div style={{ marginTop: 28, padding: "20px 32px", background: "rgba(201,168,76,0.05)", border: "1px solid rgba(201,168,76,0.15)", borderRadius: 10, textAlign: "center" }}>
+          <p style={{ color: "#e8e6e1", fontSize: 15, fontWeight: 500 }}>
+            {t(lang,
+              "Your first year: \u20AC2,700 \u2014 audit + four quarterly reviews. Less than 6 hours of sessions for a system that manages your entire financial life.",
+              "Votre première année : 2 700 \u20AC \u2014 audit + quatre revues trimestrielles. Moins de 6 heures de sessions pour un système qui gère toute votre vie financière."
+            )}
+          </p>
         </div>
       </section>
 
       <hr style={{ maxWidth: 760, margin: "0 auto", border: "none", borderTop: "1px solid #222" }} />
 
-      {/* BOUNDARIES */}
+      {/* OBJECTION HANDLING */}
       <section ref={addFadeRef} style={{ padding: "80px 24px", maxWidth: 760, margin: "0 auto", opacity: 0, transform: "translateY(20px)", transition: "opacity 0.7s ease, transform 0.7s ease" }}>
         <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16 }}>
-          {t(lang, "Independence", "Indépendance")}
+          {t(lang, "Common questions", "Questions fréquentes")}
         </div>
-        <h2 style={{ fontSize: 28, fontWeight: 600, marginBottom: 20 }}>
-          {t(lang, "What I don't do", "Ce que je ne fais pas")}
+        <h2 style={{ fontSize: 28, fontWeight: 600, marginBottom: 32 }}>
+          {t(lang, "You're thinking about it. Here's what I'd say.", "Vous y réfléchissez. Voici ce que je répondrais.")}
         </h2>
-        <div style={{ marginTop: 28 }}>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
           {[
-            t(lang, "No financial product recommendations. Ever.", "Aucune recommandation de produits financiers. Jamais."),
-            t(lang, "No portfolio management or transaction execution", "Aucune gestion de portefeuille ou exécution de transactions"),
-            t(lang, "No ties with any bank, insurer, or platform. Fully independent.", "Aucun lien avec aucune banque, assureur ou plateforme. Totalement indépendant."),
+            {
+              q: t(lang, "\u201CI already have a financial advisor.\u201D", "\u00AB J'ai déjà un conseiller financier. \u00BB"),
+              a: t(lang,
+                "Your advisor picks products. I design the system those products fit into. We don't compete \u2014 I make their work more effective. Most of my clients keep their existing advisors and bankers. They just finally have an architecture connecting everything.",
+                "Votre conseiller choisit des produits. Je conçois le système dans lequel ces produits s'intègrent. On n'est pas en compétition \u2014 je rends leur travail plus efficace. La plupart de mes clients gardent leurs conseillers et banquiers. Ils ont juste enfin une architecture qui connecte tout."
+              ),
+            },
+            {
+              q: t(lang, "\u201CMy bank handles my wealth.\u201D", "\u00AB Ma banque gère mon patrimoine. \u00BB"),
+              a: t(lang,
+                "Your bank sees one slice. I see the full board \u2014 across all your banks, assets, structures, and flows. I design the system. They execute the pieces they handle. An architect doesn't replace your builders. He tells them what to build.",
+                "Votre banque voit une tranche. Moi je vois le tableau complet \u2014 toutes vos banques, actifs, structures et flux. Je conçois le système. Ils exécutent les parties qu'ils gèrent. Un architecte ne remplace pas vos maçons. Il leur dit quoi construire."
+              ),
+            },
+            {
+              q: t(lang, "\u201CI don't have time for this.\u201D", "\u00AB Je n'ai pas le temps pour ça. \u00BB"),
+              a: t(lang,
+                "One 90-minute intake. One 60-minute delivery. Then 45 minutes per quarter. That's less than 6 hours a year to have a system managing your entire financial life. You spend more time than that choosing a car.",
+                "Un intake de 90 minutes. Une restitution de 60 minutes. Puis 45 minutes par trimestre. C'est moins de 6 heures par an pour avoir un système qui gère toute votre vie financière. Vous passez plus de temps que ça à choisir une voiture."
+              ),
+            },
+            {
+              q: t(lang, "\u201C\u20AC1,500 is expensive for advice.\u201D", "\u00AB 1 500 \u20AC c'est cher pour du conseil. \u00BB"),
+              a: t(lang,
+                "One structural gap \u2014 money sitting idle, a tax wrapper you didn't know about, borrowing power you're not using \u2014 typically costs more in a single year than the entire engagement. This isn't an expense. It's the highest-leverage investment you'll make.",
+                "Un seul trou structurel \u2014 de l'argent qui dort, une enveloppe fiscale que vous ne connaissiez pas, un pouvoir d'emprunt que vous n'utilisez pas \u2014 coûte généralement plus en une seule année que tout l'accompagnement. Ce n'est pas une dépense. C'est l'investissement le plus levier que vous ferez."
+              ),
+            },
+            {
+              q: t(lang, "\u201CI can figure this out myself.\u201D", "\u00AB Je peux le faire tout seul. \u00BB"),
+              a: t(lang,
+                "You probably can learn every piece individually. But nobody teaches you how they connect. That's the architecture \u2014 the system that turns scattered knowledge into compounding wealth. You don't need more information. You need a blueprint.",
+                "Vous pouvez probablement apprendre chaque pièce individuellement. Mais personne ne vous apprend comment elles se connectent. C'est ça l'architecture \u2014 le système qui transforme des connaissances éparses en richesse composée. Vous n'avez pas besoin de plus d'information. Vous avez besoin d'un blueprint."
+              ),
+            },
           ].map((item, i) => (
-            <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 14, padding: "10px 0", color: "#9a9790", fontSize: 15 }}>
-              <span style={{ color: "#5a5750", fontWeight: 500, flexShrink: 0, marginTop: 1 }}>✗</span>
-              <span>{item}</span>
+            <div key={i}>
+              <div style={{ fontSize: 16, fontWeight: 600, color: "#e8e6e1", marginBottom: 8 }}>{item.q}</div>
+              <p style={{ color: "#9a9790", fontSize: 15, lineHeight: 1.7, margin: 0 }}>{item.a}</p>
             </div>
           ))}
         </div>
@@ -448,20 +466,50 @@ const Wealth = () => {
 
       <hr style={{ maxWidth: 760, margin: "0 auto", border: "none", borderTop: "1px solid #222" }} />
 
-      {/* CTA */}
+      {/* INDEPENDENCE */}
+      <section ref={addFadeRef} style={{ padding: "80px 24px", maxWidth: 760, margin: "0 auto", opacity: 0, transform: "translateY(20px)", transition: "opacity 0.7s ease, transform 0.7s ease" }}>
+        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16 }}>
+          {t(lang, "Independence", "Indépendance")}
+        </div>
+        <h2 style={{ fontSize: 28, fontWeight: 600, marginBottom: 20 }}>
+          {t(lang, "Fully independent. Here's what that means.", "Totalement indépendant. Voici ce que ça veut dire.")}
+        </h2>
+        <div style={{ marginTop: 28 }}>
+          {[
+            t(lang, "Zero commissions. I don't earn a cent from any product you buy.", "Zéro commission. Je ne gagne pas un centime sur aucun produit que vous achetez."),
+            t(lang, "Zero affiliations. No bank, insurer, or platform has any tie to me.", "Zéro affiliation. Aucune banque, assureur ou plateforme n'a de lien avec moi."),
+            t(lang, "Zero % on your capital. I never manage your money. You stay in full control.", "Zéro % sur votre capital. Je ne gère jamais votre argent. Vous gardez le contrôle total."),
+          ].map((item, i) => (
+            <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 14, padding: "10px 0", color: "#9a9790", fontSize: 15 }}>
+              <span style={{ color: "#5a5750", fontWeight: 500, flexShrink: 0, marginTop: 1 }}>{"\u2717"}</span>
+              <span>{item}</span>
+            </div>
+          ))}
+        </div>
+        <p style={{ color: "#9a9790", fontSize: 15, marginTop: 24, fontStyle: "italic" }}>
+          {t(lang,
+            "When I tell you something, it's because I believe it's right for your system \u2014 not because someone pays me to say it.",
+            "Quand je vous dis quelque chose, c'est parce que je crois que c'est juste pour votre système \u2014 pas parce que quelqu'un me paie pour le dire."
+          )}
+        </p>
+      </section>
+
+      <hr style={{ maxWidth: 760, margin: "0 auto", border: "none", borderTop: "1px solid #222" }} />
+
+      {/* FINAL CTA */}
       <div ref={addFadeRef} id="book" style={{ textAlign: "center", padding: "100px 24px 140px", maxWidth: 760, margin: "0 auto", position: "relative", opacity: 0, transform: "translateY(20px)", transition: "opacity 0.7s ease, transform 0.7s ease" }}>
         <div style={{ position: "absolute", top: "40%", left: "50%", transform: "translate(-50%,-50%)", width: 500, height: 500, background: "radial-gradient(circle, rgba(201,168,76,0.03) 0%, transparent 70%)", pointerEvents: "none" }} />
         <h2 style={{ fontSize: 32, fontWeight: 600, marginBottom: 16 }}>
           {t(lang, "Ready to architect your wealth?", "Prêt à structurer votre patrimoine ?")}
         </h2>
         <p style={{ color: "#9a9790", marginBottom: 36, fontSize: 16 }}>
-          {t(lang, "15-minute private call. No commitment. I'll tell you honestly if I can help.", "Appel privé de 15 minutes. Sans engagement. Je vous dirai honnêtement si je peux vous aider.")}
+          {t(lang, "30-minute discovery call. Free. I'll show you my system and tell you honestly if I can help.", "Appel découverte de 30 minutes. Gratuit. Je vous montre mon système et vous dis honnêtement si je peux vous aider.")}
         </p>
         <a href="#" style={{
           display: "inline-block", padding: "16px 44px", background: "#c9a84c", color: "#0e0e0e",
           textDecoration: "none", borderRadius: 8, fontSize: 14, fontWeight: 600, letterSpacing: "0.03em",
         }}>
-          {t(lang, "Request your consultation", "Demander votre consultation")}
+          {t(lang, "Book your discovery call", "Réservez votre appel découverte")}
         </a>
       </div>
 
@@ -471,7 +519,7 @@ const Wealth = () => {
         display: "flex", justifyContent: "space-between", alignItems: "center",
         fontSize: 12, color: "#5a5750", letterSpacing: "0.02em", flexWrap: "wrap", gap: 8,
       }}>
-        <span>{t(lang, "Peer engagement · Private & confidential · Your preferences, your architecture", "Engagement entre pairs · Privé & confidentiel · Vos préférences, votre architecture")}</span>
+        <span>{t(lang, "Private & confidential \u00B7 Your preferences, your architecture", "Privé & confidentiel \u00B7 Vos préférences, votre architecture")}</span>
         <Link to="/" style={{ color: "#9a9790", textDecoration: "none" }}>jeremylasne.com</Link>
       </footer>
     </div>
