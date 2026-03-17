@@ -67,7 +67,7 @@ const LangPopup = ({ onSelect }: { onSelect: (l: Lang) => void }) => (
 );
 
 /* --- FAQ Item with expand/collapse --- */
-const FaqItem = ({ q, a, index }: { q: string; a: string; index: number }) => {
+const FaqItem = ({ q, a, index }: { q: string; a: React.ReactNode; index: number }) => {
   const [open, setOpen] = useState(false);
   return (
     <motion.div
@@ -460,8 +460,8 @@ export default function WealthPage() {
           style={{ fontSize: 17, fontWeight: 400, color: "#9a9790", maxWidth: 580, marginBottom: 48 }}
         >
           {t(lang,
-            "I studied how the wealthiest families protect and grow capital \u2014 then built a method for individuals. I designed it for myself first. On the call, I\u2019ll show you.",
-            "J\u2019ai \u00E9tudi\u00E9 comment les grandes familles prot\u00E8gent et font cro\u00EEtre leur capital \u2014 puis j\u2019ai construit une m\u00E9thode pour les particuliers. Je l\u2019ai d\u2019abord con\u00E7ue pour moi. Lors de l\u2019appel, je vous la montre."
+            "A clear architecture to protect your capital, grow your purchasing power, and make confident decisions \u2014 instead of guessing.",
+            "Une architecture claire pour prot\u00E9ger votre capital, gagner en pouvoir d\u2019achat et prendre des d\u00E9cisions en toute confiance \u2014 au lieu de naviguer \u00E0 vue."
           )}
         </motion.p>
 
@@ -513,8 +513,8 @@ export default function WealthPage() {
         </h2>
         <p style={{ color: "#9a9790", fontSize: 16, marginBottom: 48, textAlign: "center", maxWidth: 640, marginLeft: "auto", marginRight: "auto" }}>
           {t(lang,
-            "This isn\u2019t a one-off consultation. It\u2019s an engagement with a minimum duration so we have time to build, implement, and see real results. You get expertise, accountability, and answers to your questions \u2014 whenever you need them.",
-            "Ce n\u2019est pas une consultation ponctuelle. C\u2019est un accompagnement avec une dur\u00E9e minimum pour avoir le temps de construire, mettre en \u0153uvre et voir de vrais r\u00E9sultats. Vous b\u00E9n\u00E9ficiez d\u2019expertise, d\u2019accountability et de r\u00E9ponses \u00E0 vos questions \u2014 quand vous en avez besoin."
+            "Expertise, accountability, and answers \u2014 with enough time to see real results.",
+            "Expertise, accountability et r\u00E9ponses \u2014 avec le temps n\u00E9cessaire pour voir de vrais r\u00E9sultats."
           )}
         </p>
 
@@ -612,13 +612,6 @@ export default function WealthPage() {
           ))}
         </div>
 
-        <p style={{ color: "#9a9790", fontSize: 14, textAlign: "center", fontStyle: "italic", marginBottom: 28 }}>
-          {t(lang,
-            "Pricing is discussed during the discovery call \u2014 it depends on your situation and the scope of work.",
-            "Les tarifs sont discut\u00E9s lors de l\u2019appel d\u00E9couverte \u2014 ils d\u00E9pendent de votre situation et du p\u00E9rim\u00E8tre."
-          )}
-        </p>
-
         <div style={{ textAlign: "center" }}>
           <CtaButton href={bookingUrl(lang)}>
             {t(lang, "Book your free discovery call", "R\u00E9servez votre appel d\u00E9couverte gratuit")}
@@ -707,8 +700,8 @@ export default function WealthPage() {
         </h2>
         <p style={{ color: "#9a9790", fontSize: 14, textAlign: "center", maxWidth: 560, margin: "0 auto 32px", fontStyle: "italic" }}>
           {t(lang,
-            "This is just one part of the system \u2014 equities. The full architecture includes real estate, crypto, fixed income, and more, adapted to your situation.",
-            "Ceci n\u2019est qu\u2019une partie du syst\u00E8me \u2014 les actions. L\u2019architecture compl\u00E8te inclut immobilier, crypto, obligations et plus, adapt\u00E9e \u00E0 votre situation."
+            "This is just the equities portion \u2014 not the full system. But people like to compare portfolio performance, so here you go.",
+            "Ceci ne repr\u00E9sente que la poche actions \u2014 pas le syst\u00E8me complet. Mais les gens aiment comparer les performances, alors voil\u00E0."
           )}
         </p>
 
@@ -846,38 +839,23 @@ export default function WealthPage() {
           {[
             {
               q: t(lang, "\u201CI already have a financial advisor.\u201D", "\u00AB J\u2019ai d\u00E9j\u00E0 un conseiller financier. \u00BB"),
-              a: t(lang,
-                "Your advisor is a salesman, not an investor. Their revenue comes from the products they sell you \u2014 that\u2019s how the model works. If they don\u2019t charge you directly for the service, ask yourself: who\u2019s paying them? Being a CIF doesn\u2019t mean competent \u2014 it\u2019s a regulatory label, not an expertise badge. I design the system those products should fit into. Most of my clients keep their advisors. They just finally understand what they\u2019re being sold and why.",
-                "Votre conseiller est un commercial, pas un investisseur. Son revenu vient des produits qu\u2019il vous vend \u2014 c\u2019est comme \u00E7a que le mod\u00E8le fonctionne. S\u2019il ne vous facture pas directement le service, demandez-vous : qui le paie ? \u00CAtre CIF ne veut pas dire comp\u00E9tent \u2014 c\u2019est un label r\u00E9glementaire, pas un badge d\u2019expertise. Je con\u00E7ois le syst\u00E8me dans lequel ces produits devraient s\u2019int\u00E9grer. La plupart de mes clients gardent leurs conseillers. Ils comprennent juste enfin ce qu\u2019on leur vend et pourquoi."
-              ),
+              a: lang === "en" ? (<>Your advisor is a salesman, not an investor. <strong style={{ color: "#e8e6e1" }}>Their revenue comes from the products they sell you</strong> \u2014 that\u2019s how the model works. If they don\u2019t charge you directly, ask yourself: <strong style={{ color: "#e8e6e1" }}>who\u2019s paying them?</strong> Being a CIF doesn\u2019t mean competent \u2014 it\u2019s a regulatory label, not an expertise badge. I design <strong style={{ color: "#e8e6e1" }}>the system those products should fit into</strong>. Most of my clients keep their advisors. They just finally understand what they\u2019re being sold and why.</>) : (<>Votre conseiller est un commercial, pas un investisseur. <strong style={{ color: "#e8e6e1" }}>Son revenu vient des produits qu\u2019il vous vend</strong> \u2014 c\u2019est comme \u00E7a que le mod\u00E8le fonctionne. S\u2019il ne vous facture pas directement, demandez-vous : <strong style={{ color: "#e8e6e1" }}>qui le paie ?</strong> \u00CAtre CIF ne veut pas dire comp\u00E9tent \u2014 c\u2019est un label r\u00E9glementaire, pas un badge d\u2019expertise. Je con\u00E7ois <strong style={{ color: "#e8e6e1" }}>le syst\u00E8me dans lequel ces produits devraient s\u2019int\u00E9grer</strong>. La plupart de mes clients gardent leurs conseillers. Ils comprennent juste enfin ce qu\u2019on leur vend et pourquoi.</>),
             },
             {
               q: t(lang, "\u201CMy bank handles my wealth.\u201D", "\u00AB Ma banque g\u00E8re mon patrimoine. \u00BB"),
-              a: t(lang,
-                "Your banker is a salesperson with quarterly targets. Their interests are not aligned with yours \u2014 they\u2019re aligned with the bank\u2019s. They see one slice of your assets. I see the full board \u2014 across all your banks, structures, and flows. I design the system. They execute the pieces they handle. An architect doesn\u2019t replace your builders. He tells them what to build.",
-                "Votre banquier est un commercial avec des objectifs trimestriels. Ses int\u00E9r\u00EAts ne sont pas align\u00E9s avec les v\u00F4tres \u2014 ils sont align\u00E9s avec ceux de la banque. Il voit une tranche de vos actifs. Moi je vois le tableau complet \u2014 toutes vos banques, structures et flux. Je con\u00E7ois le syst\u00E8me. Ils ex\u00E9cutent les parties qu\u2019ils g\u00E8rent. Un architecte ne remplace pas vos ma\u00E7ons. Il leur dit quoi construire."
-              ),
+              a: lang === "en" ? (<>Your banker is a salesperson with quarterly targets. <strong style={{ color: "#e8e6e1" }}>Their interests are aligned with the bank\u2019s, not yours.</strong> They see one slice of your assets. I see the full board \u2014 across all your banks, structures, and flows. <strong style={{ color: "#e8e6e1" }}>An architect doesn\u2019t replace your builders. He tells them what to build.</strong></>) : (<>Votre banquier est un commercial avec des objectifs trimestriels. <strong style={{ color: "#e8e6e1" }}>Ses int\u00E9r\u00EAts sont align\u00E9s avec ceux de la banque, pas les v\u00F4tres.</strong> Il voit une tranche de vos actifs. Moi je vois le tableau complet \u2014 toutes vos banques, structures et flux. <strong style={{ color: "#e8e6e1" }}>Un architecte ne remplace pas vos ma\u00E7ons. Il leur dit quoi construire.</strong></>),
             },
             {
               q: t(lang, "\u201CI don\u2019t have time for this.\u201D", "\u00AB Je n\u2019ai pas le temps pour \u00E7a. \u00BB"),
-              a: t(lang,
-                "One 90-minute intake. One 60-minute delivery. Then 45 minutes per quarter. That\u2019s less than 6 hours a year to have a system managing your entire financial life. You spend more time than that choosing a car.",
-                "Un intake de 90 minutes. Une restitution de 60 minutes. Puis 45 minutes par trimestre. C\u2019est moins de 6 heures par an pour avoir un syst\u00E8me qui g\u00E8re toute votre vie financi\u00E8re. Vous passez plus de temps que \u00E7a \u00E0 choisir une voiture."
-              ),
+              a: lang === "en" ? (<>One 90-minute intake. One 60-minute delivery. Then 45 minutes per quarter. <strong style={{ color: "#e8e6e1" }}>Less than 6 hours a year</strong> to have a system managing your entire financial life. You spend more time than that choosing a car.</>) : (<>Un intake de 90 minutes. Une restitution de 60 minutes. Puis 45 minutes par trimestre. <strong style={{ color: "#e8e6e1" }}>Moins de 6 heures par an</strong> pour avoir un syst\u00E8me qui g\u00E8re toute votre vie financi\u00E8re. Vous passez plus de temps que \u00E7a \u00E0 choisir une voiture.</>),
             },
             {
               q: t(lang, "\u201CThat\u2019s expensive for advice.\u201D", "\u00AB C\u2019est cher pour du conseil. \u00BB"),
-              a: t(lang,
-                "That\u2019s why we talk first. The discovery call is free, and I\u2019ll be transparent about pricing during it. But consider this: the cost of missed opportunities and uninformed decisions is far higher. Money sitting idle, a tax wrapper you didn\u2019t know about, borrowing power you\u2019re not using. The majority of even aware investors end up losing money by following trends and making emotional decisions. One structural adjustment typically saves more than the entire engagement. This isn\u2019t an expense \u2014 it\u2019s the highest-leverage investment you\u2019ll make.",
-                "C\u2019est pour \u00E7a qu\u2019on en parle d\u2019abord. L\u2019appel d\u00E9couverte est gratuit et je serai transparent sur les tarifs pendant l\u2019appel. Mais r\u00E9fl\u00E9chissez : le co\u00FBt des opportunit\u00E9s manqu\u00E9es et des d\u00E9cisions non \u00E9clair\u00E9es est bien plus \u00E9lev\u00E9. De l\u2019argent qui dort, une enveloppe fiscale que vous ne connaissiez pas, un pouvoir d\u2019emprunt que vous n\u2019utilisez pas. La majorit\u00E9 des investisseurs, m\u00EAme avertis, finissent par perdre en suivant les tendances et en prenant des d\u00E9cisions \u00E9motionnelles. Un seul ajustement structurel \u00E9conomise g\u00E9n\u00E9ralement plus que tout l\u2019accompagnement. Ce n\u2019est pas une d\u00E9pense \u2014 c\u2019est l\u2019investissement le plus levier que vous ferez."
-              ),
+              a: lang === "en" ? (<>That\u2019s why we talk first \u2014 the discovery call is free. But consider: <strong style={{ color: "#e8e6e1" }}>the cost of missed opportunities is far higher.</strong> Money sitting idle, a tax wrapper you didn\u2019t know about, borrowing power you\u2019re not using. The majority of investors \u2014 even aware ones \u2014 <strong style={{ color: "#e8e6e1" }}>end up losing money by following trends and making emotional decisions.</strong> One structural adjustment typically saves more than the entire engagement. This isn\u2019t an expense \u2014 <strong style={{ color: "#e8e6e1" }}>it\u2019s the highest-leverage investment you\u2019ll make.</strong></>) : (<>C\u2019est pour \u00E7a qu\u2019on en parle d\u2019abord \u2014 l\u2019appel d\u00E9couverte est gratuit. Mais r\u00E9fl\u00E9chissez : <strong style={{ color: "#e8e6e1" }}>le co\u00FBt des opportunit\u00E9s manqu\u00E9es est bien plus \u00E9lev\u00E9.</strong> De l\u2019argent qui dort, une enveloppe fiscale que vous ne connaissiez pas, un pouvoir d\u2019emprunt inutilis\u00E9. La majorit\u00E9 des investisseurs, m\u00EAme avertis, <strong style={{ color: "#e8e6e1" }}>finissent par perdre en suivant les tendances et en prenant des d\u00E9cisions \u00E9motionnelles.</strong> Un seul ajustement structurel \u00E9conomise plus que tout l\u2019accompagnement. Ce n\u2019est pas une d\u00E9pense \u2014 <strong style={{ color: "#e8e6e1" }}>c\u2019est l\u2019investissement le plus levier que vous ferez.</strong></>),
             },
             {
               q: t(lang, "\u201CI can figure this out myself.\u201D", "\u00AB Je peux le faire tout seul. \u00BB"),
-              a: t(lang,
-                "People always say that \u2014 and always postpone. Meanwhile they listen to the news, follow influencers, and rely on information that\u2019s often wrong or months behind reality. Markets move on data most people never see. I offer precision where you have approximation. Understanding where you have confusion. Simplicity where you have complexity. And accountability \u2014 someone who makes sure you actually execute, not just plan. You don\u2019t need more information. You need a system and someone holding the blueprint.",
-                "Tout le monde dit \u00E7a \u2014 et repousse toujours. Entre-temps on \u00E9coute les infos, on suit des influenceurs, et on se fie \u00E0 des informations souvent fausses ou en retard de mois sur la r\u00E9alit\u00E9. Les march\u00E9s bougent sur des donn\u00E9es que la plupart ne voient jamais. J\u2019offre de la pr\u00E9cision l\u00E0 o\u00F9 vous avez de l\u2019approximation. De la compr\u00E9hension l\u00E0 o\u00F9 vous avez de la confusion. De la simplicit\u00E9 l\u00E0 o\u00F9 vous avez de la complexit\u00E9. Et de l\u2019accountability \u2014 quelqu\u2019un qui s\u2019assure que vous ex\u00E9cutez vraiment, pas seulement que vous planifiez. Vous n\u2019avez pas besoin de plus d\u2019information. Vous avez besoin d\u2019un syst\u00E8me et de quelqu\u2019un qui tient le blueprint."
-              ),
+              a: lang === "en" ? (<>People always say that \u2014 <strong style={{ color: "#e8e6e1" }}>and always postpone.</strong> Meanwhile they listen to the news, follow influencers, and rely on information that\u2019s often wrong or months behind reality. I offer <strong style={{ color: "#e8e6e1" }}>precision</strong> where you have approximation. <strong style={{ color: "#e8e6e1" }}>Understanding</strong> where you have confusion. <strong style={{ color: "#e8e6e1" }}>Simplicity</strong> where you have complexity. And <strong style={{ color: "#e8e6e1" }}>accountability</strong> \u2014 someone who makes sure you actually execute, not just plan. You don\u2019t need more information. <strong style={{ color: "#e8e6e1" }}>You need a system and someone holding the blueprint.</strong></>) : (<>Tout le monde dit \u00E7a \u2014 <strong style={{ color: "#e8e6e1" }}>et repousse toujours.</strong> Entre-temps on \u00E9coute les infos, on suit des influenceurs, et on se fie \u00E0 des informations souvent fausses ou en retard de mois. J\u2019offre de la <strong style={{ color: "#e8e6e1" }}>pr\u00E9cision</strong> l\u00E0 o\u00F9 vous avez de l\u2019approximation. De la <strong style={{ color: "#e8e6e1" }}>compr\u00E9hension</strong> l\u00E0 o\u00F9 vous avez de la confusion. De la <strong style={{ color: "#e8e6e1" }}>simplicit\u00E9</strong> l\u00E0 o\u00F9 vous avez de la complexit\u00E9. Et de l\u2019<strong style={{ color: "#e8e6e1" }}>accountability</strong> \u2014 quelqu\u2019un qui s\u2019assure que vous ex\u00E9cutez vraiment. <strong style={{ color: "#e8e6e1" }}>Vous n\u2019avez pas besoin de plus d\u2019information. Vous avez besoin d\u2019un syst\u00E8me.</strong></>),
             },
           ].map((item, i) => (
             <FaqItem key={i} q={item.q} a={item.a} index={i} />
