@@ -30,6 +30,7 @@ export const create = mutation({
     clientId: v.id("users"),
     title: v.string(),
     description: v.optional(v.string()),
+    markdownContent: v.optional(v.string()),
     pdfStorageId: v.optional(v.id("_storage")),
   },
   handler: async (ctx, args) => {
@@ -38,6 +39,7 @@ export const create = mutation({
       clientId: args.clientId,
       title: args.title,
       description: args.description,
+      markdownContent: args.markdownContent,
       pdfStorageId: args.pdfStorageId,
       status: "draft",
       createdAt: now,

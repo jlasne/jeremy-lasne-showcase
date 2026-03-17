@@ -29,6 +29,7 @@ export const upload = mutation({
     clientId: v.id("users"),
     title: v.string(),
     description: v.optional(v.string()),
+    markdownContent: v.optional(v.string()),
     category: v.union(
       v.literal("contract"),
       v.literal("report"),
