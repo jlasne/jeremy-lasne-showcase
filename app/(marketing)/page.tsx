@@ -14,7 +14,9 @@ type Lang = "en" | "fr";
 
 const t = (lang: Lang, en: string, fr: string) => (lang === "en" ? en : fr);
 
-const BOOKING_URL = "https://calendar.google.com/calendar/appointments/schedules/AcZssZ0_MU-Gfx-g23X2gjFqYSVON8UCyGeX9sDcaT22Z2vFGw0bVL84M9gAz3S5K3bOUmZDP_C9Kmwc?gv=true";
+const bookingUrl = (lang: Lang) => lang === "en"
+  ? "https://cal.com/jeremy-lasne/discovery"
+  : "https://cal.com/jeremy-lasne/decouverte";
 
 /* --- Language Picker Popup --- */
 const LangPopup = ({ onSelect }: { onSelect: (l: Lang) => void }) => (
@@ -393,7 +395,7 @@ export default function WealthPage() {
             }}>FR</button>
           </div>
           <motion.a
-            href={BOOKING_URL}
+            href={bookingUrl(lang)}
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ borderColor: "rgba(201,168,76,0.5)", background: "rgba(201,168,76,0.08)" }}
@@ -468,7 +470,7 @@ export default function WealthPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.9 }}
         >
-          <CtaButton href={BOOKING_URL}>
+          <CtaButton href={bookingUrl(lang)}>
             {t(lang, "Book your discovery call", "R\u00E9servez votre appel d\u00E9couverte")}
           </CtaButton>
         </motion.div>
@@ -618,7 +620,7 @@ export default function WealthPage() {
         </p>
 
         <div style={{ textAlign: "center" }}>
-          <CtaButton href={BOOKING_URL}>
+          <CtaButton href={bookingUrl(lang)}>
             {t(lang, "Book your free discovery call", "R\u00E9servez votre appel d\u00E9couverte gratuit")}
           </CtaButton>
         </div>
@@ -823,7 +825,7 @@ export default function WealthPage() {
 
         {/* Mid-page CTA */}
         <div style={{ textAlign: "center", marginTop: 48 }}>
-          <SecondaryCtaButton href={BOOKING_URL}>
+          <SecondaryCtaButton href={bookingUrl(lang)}>
             {t(lang, "Let\u2019s talk about your situation", "Parlons de votre situation")}
           </SecondaryCtaButton>
         </div>
@@ -894,7 +896,7 @@ export default function WealthPage() {
         <p style={{ color: "#9a9790", marginBottom: 36, fontSize: 16 }}>
           {t(lang, "20-minute discovery call. Free. No commitment. Let\u2019s see if we can work together.", "Appel d\u00E9couverte de 20 minutes. Gratuit. Sans engagement. Voyons si on peut travailler ensemble.")}
         </p>
-        <CtaButton href={BOOKING_URL}>
+        <CtaButton href={bookingUrl(lang)}>
           {t(lang, "Book your discovery call", "R\u00E9servez votre appel d\u00E9couverte")}
         </CtaButton>
         <div style={{ marginTop: 20, fontSize: 13, color: "#5a5750" }}>
