@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import Link from "next/link";
 import { motion, useScroll, useSpring, useInView, AnimatePresence } from "framer-motion";
 
@@ -293,6 +293,19 @@ const PerformanceBar = ({ label, value, color, maxVal, delay }: { label: string;
   );
 };
 
+/* --- useMediaQuery hook --- */
+const useMediaQuery = (query: string) => {
+  const [matches, setMatches] = useState(false);
+  useEffect(() => {
+    const mql = window.matchMedia(query);
+    setMatches(mql.matches);
+    const handler = (e: MediaQueryListEvent) => setMatches(e.matches);
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
+  }, [query]);
+  return matches;
+};
+
 /* =========================================== */
 /*                   MAIN                      */
 /* =========================================== */
@@ -301,6 +314,8 @@ export default function WealthPage() {
   const [lang, setLang] = useState<Lang>("en");
   const [showLangPopup, setShowLangPopup] = useState(false);
   const [lightboxImg, setLightboxImg] = useState<{ src: string; alt: string } | null>(null);
+  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isTablet = useMediaQuery("(max-width: 1024px)");
 
   /* scroll progress */
   const { scrollYProgress } = useScroll();
@@ -358,19 +373,21 @@ export default function WealthPage() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         style={{
           position: "fixed", top: 2, left: 0, right: 0, zIndex: 100,
-          display: "grid", gridTemplateColumns: "1fr auto 1fr",
+          display: "flex", justifyContent: "space-between",
           alignItems: "center",
-          padding: "14px 40px",
+          padding: isMobile ? "10px 16px" : "14px 40px",
           background: "rgba(14,14,14,0.88)",
           backdropFilter: "blur(20px)",
           borderBottom: "1px solid #222",
         }}
       >
-        <Link href="/" style={{ fontWeight: 600, fontSize: 13, letterSpacing: "0.14em", textTransform: "uppercase", color: "#e8e6e1", textDecoration: "none" }}>
-          Jeremy Lasne
-        </Link>
-        <img src={jlLogo} alt="JL" style={{ height: 32, borderRadius: 6 }} />
-        <div style={{ display: "flex", alignItems: "center", gap: 24, justifyContent: "flex-end" }}>
+        {!isMobile && (
+          <Link href="/" style={{ fontWeight: 600, fontSize: 13, letterSpacing: "0.14em", textTransform: "uppercase", color: "#e8e6e1", textDecoration: "none" }}>
+            Jeremy Lasne
+          </Link>
+        )}
+        <img src={jlLogo} alt="JL" style={{ height: isMobile ? 28 : 32, borderRadius: 6 }} />
+        <div style={{ display: "flex", alignItems: "center", gap: isMobile ? 10 : 24 }}>
           <div style={{ display: "flex", borderRadius: 6, overflow: "hidden", border: "1px solid #222", fontSize: 12 }}>
             <button onClick={() => changeLang("en")} style={{
               padding: "5px 12px", background: lang === "en" ? "#c9a84c" : "none", border: "none",
@@ -389,12 +406,12 @@ export default function WealthPage() {
             rel="noopener noreferrer"
             whileHover={{ borderColor: "rgba(201,168,76,0.5)", background: "rgba(201,168,76,0.08)" }}
             style={{
-              padding: "8px 22px", background: "transparent", border: "1px solid rgba(201,168,76,0.2)",
-              color: "#c9a84c", textDecoration: "none", borderRadius: 6, fontSize: 12, fontWeight: 500, letterSpacing: "0.04em",
+              padding: isMobile ? "6px 14px" : "8px 22px", background: "transparent", border: "1px solid rgba(201,168,76,0.2)",
+              color: "#c9a84c", textDecoration: "none", borderRadius: 6, fontSize: isMobile ? 11 : 12, fontWeight: 500, letterSpacing: "0.04em",
               transition: "all 0.2s",
             }}
           >
-            {t(lang, "Book a call", "Prendre rendez-vous")}
+            {t(lang, "Book a call", "RDV")}
           </motion.a>
         </div>
       </motion.nav>
@@ -403,7 +420,7 @@ export default function WealthPage() {
       <div
         style={{
           minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center",
-          textAlign: "center", padding: "140px 24px 100px", maxWidth: 900, margin: "0 auto", position: "relative",
+          textAlign: "center", padding: isMobile ? "120px 20px 80px" : "140px 24px 100px", maxWidth: 900, margin: "0 auto", position: "relative",
         }}
       >
 
@@ -480,7 +497,7 @@ export default function WealthPage() {
       <div style={{ width: 60, height: 1, background: "rgba(201,168,76,0.2)", margin: "0 auto" }} />
 
       {/* THE ENGAGEMENT — merged "L'accompagnement" + "Comment ça marche" */}
-      <Section style={{ padding: "80px 24px", maxWidth: 860, margin: "0 auto" }}>
+      <Section style={{ padding: isMobile ? "60px 16px" : "80px 24px", maxWidth: 860, margin: "0 auto" }}>
         <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16, textAlign: "center" }}>
           {t(lang, "The engagement", "L\u2019accompagnement")}
         </div>
@@ -498,7 +515,7 @@ export default function WealthPage() {
         <div style={{ position: "relative", marginBottom: 48 }}>
           {/* Vertical line */}
           <div style={{
-            position: "absolute", left: 24, top: 0, bottom: 0, width: 1,
+            position: "absolute", left: isMobile ? 12 : 24, top: 0, bottom: 0, width: 1,
             background: "linear-gradient(to bottom, transparent, rgba(201,168,76,0.3) 10%, rgba(201,168,76,0.3) 90%, transparent)",
           }} />
 
@@ -550,7 +567,7 @@ export default function WealthPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.12 }}
-              style={{ display: "flex", gap: 24, marginBottom: 40, paddingLeft: 56, position: "relative" }}
+              style={{ display: "flex", gap: isMobile ? 16 : 24, marginBottom: isMobile ? 28 : 40, paddingLeft: isMobile ? 36 : 56, position: "relative" }}
             >
               {/* Dot on timeline */}
               <motion.div
@@ -558,7 +575,7 @@ export default function WealthPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.12 + 0.2 }}
                 style={{
-                  position: "absolute", left: 16, top: 4, width: 17, height: 17,
+                  position: "absolute", left: isMobile ? 4 : 16, top: 4, width: 17, height: 17,
                   borderRadius: "50%", background: "#0e0e0e", border: "2px solid #c9a84c",
                   display: "flex", alignItems: "center", justifyContent: "center",
                   fontSize: 8, color: "#c9a84c",
@@ -598,7 +615,7 @@ export default function WealthPage() {
       <div style={{ width: 60, height: 1, background: "rgba(201,168,76,0.2)", margin: "0 auto" }} />
 
       {/* THE ARCHITECT — merged with "Indépendance" + profile pic + LinkedIn */}
-      <Section style={{ padding: "80px 24px", maxWidth: 860, margin: "0 auto" }}>
+      <Section style={{ padding: isMobile ? "60px 16px" : "80px 24px", maxWidth: 860, margin: "0 auto" }}>
         <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16, textAlign: "center" }}>
           {t(lang, "The architect", "L\u2019architecte")}
         </div>
@@ -606,7 +623,7 @@ export default function WealthPage() {
           {t(lang, "I\u2019m not a salesman. I\u2019m an investor who designs systems.", "Je ne suis pas un vendeur. Je suis un investisseur qui con\u00E7oit des syst\u00E8mes.")}
         </h2>
 
-        <div style={{ display: "grid", gridTemplateColumns: "200px 1fr", gap: 40, alignItems: "start" }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "200px 1fr", gap: isMobile ? 24 : 40, alignItems: "start" }}>
           {/* Profile card */}
           <div style={{ textAlign: "center" }}>
             <div style={{
@@ -667,27 +684,21 @@ export default function WealthPage() {
       <div style={{ width: 60, height: 1, background: "rgba(201,168,76,0.2)", margin: "0 auto" }} />
 
       {/* TRACK RECORD & CREDENTIALS — 2025 */}
-      <Section style={{ padding: "60px 24px", maxWidth: 960, margin: "0 auto" }}>
+      <Section style={{ padding: isMobile ? "40px 16px" : "60px 24px", maxWidth: 960, margin: "0 auto" }}>
         <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 12, textAlign: "center" }}>
           {t(lang, "2025 Results & Credentials", "R\u00E9sultats 2025 & Certifications")}
         </div>
-        <h2 style={{ fontSize: 24, fontWeight: 600, marginBottom: 12, textAlign: "center" }}>
-          {t(lang, "Understand the world economy. See my results.", "Comprendre l\u2019\u00E9conomie mondiale. Voir mes r\u00E9sultats.")}
+        <h2 style={{ fontSize: 24, fontWeight: 600, marginBottom: 32, textAlign: "center" }}>
+          {t(lang, "Not the full system. But people like to compare portfolio performance, so here you go.", "Pas le syst\u00E8me complet. Mais les gens aiment comparer les performances, alors voil\u00E0.")}
         </h2>
-        <p style={{ color: "#9a9790", fontSize: 14, textAlign: "center", maxWidth: 560, margin: "0 auto 32px", fontStyle: "italic" }}>
-          {t(lang,
-            "This is just the equities portion \u2014 not the full system. But people like to compare portfolio performance, so here you go.",
-            "Ceci ne repr\u00E9sente que la poche actions \u2014 pas le syst\u00E8me complet. Mais les gens aiment comparer les performances, alors voil\u00E0."
-          )}
-        </p>
 
         {/* Performance bars — inline compact */}
-        <div style={{ background: "#161616", border: "1px solid #2a2a2a", borderRadius: 14, padding: "24px", marginBottom: 20, position: "relative", overflow: "hidden" }}>
+        <div style={{ background: "#161616", border: "1px solid #2a2a2a", borderRadius: 14, padding: isMobile ? "16px" : "24px", marginBottom: 20, position: "relative", overflow: "hidden" }}>
           <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent)" }} />
           <div style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "#5a5750", marginBottom: 16, textAlign: "center" }}>
             {t(lang, "Year-to-date performance \u2014 2025", "Performance depuis le d\u00E9but d\u2019ann\u00E9e \u2014 2025")}
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 20 }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr", gap: isMobile ? 12 : 20 }}>
             <PerformanceBar label={t(lang, "My Portfolio", "Mon Portfolio")} value={32} color="#c9a84c" maxVal={35} delay={0} />
             <PerformanceBar label={t(lang, "S&P 500 (USA)", "S&P 500 (USA)")} value={18} color="#4a90d9" maxVal={35} delay={0.12} />
             <PerformanceBar label={t(lang, "CAC 40 (France)", "CAC 40 (France)")} value={-1} color="#e74c3c" maxVal={35} delay={0.24} />
@@ -695,7 +706,7 @@ export default function WealthPage() {
         </div>
 
         {/* Proof thumbnails — 3 columns, click to enlarge */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16 }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr", gap: 16 }}>
           {/* Brokerage screenshot */}
           <motion.div
             whileHover={{ scale: 1.03 }}
@@ -743,7 +754,7 @@ export default function WealthPage() {
         </div>
 
         {/* Credentials row — compact badges */}
-        <div style={{ display: "flex", justifyContent: "center", gap: 16, marginTop: 20, flexWrap: "wrap" }}>
+        <div style={{ display: "flex", justifyContent: "center", gap: isMobile ? 10 : 16, marginTop: 20, flexWrap: "wrap" }}>
           {[
             { icon: "\uD83C\uDF93", label: t(lang, "Master\u2019s in Engineering", "Master Ing\u00E9nieur"), sub: t(lang, "IT, Blockchain & Finance", "IT, Blockchain & Finance") },
             { icon: "\u2713", label: t(lang, "AMF Certified", "Certifi\u00E9 AMF"), sub: "94/100 & 98/100" },
@@ -766,30 +777,19 @@ export default function WealthPage() {
       <div style={{ width: 60, height: 1, background: "rgba(201,168,76,0.2)", margin: "0 auto" }} />
 
       {/* YOUR TERMS */}
-      <Section style={{ padding: "80px 24px", maxWidth: 760, margin: "0 auto" }}>
+      <Section style={{ padding: isMobile ? "60px 16px" : "80px 24px", maxWidth: 760, margin: "0 auto" }}>
         <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16 }}>
           {t(lang, "Your terms", "Vos conditions")}
         </div>
-        <h2 style={{ fontSize: 28, fontWeight: 600, marginBottom: 20 }}>
+        <h2 style={{ fontSize: 28, fontWeight: 600, marginBottom: 32 }}>
           {t(lang, "Private by design. Personal by nature.", "Priv\u00E9 par conception. Personnel par nature.")}
         </h2>
-        <p style={{ color: "#9a9790", fontSize: 16, marginBottom: 16 }}>
-          {t(lang,
-            "Your wealth is intimate. It reflects your choices, your family, your ambitions. So every architecture starts with understanding you \u2014 not just your balance sheet. Your preferences, your constraints, what you want your money to actually do for your life.",
-            "Votre patrimoine est intime. Il refl\u00E8te vos choix, votre famille, vos ambitions. Donc chaque architecture commence par vous comprendre \u2014 pas juste votre bilan. Vos pr\u00E9f\u00E9rences, vos contraintes, ce que vous voulez que votre argent fasse vraiment pour votre vie."
-          )}
-        </p>
-        <p style={{ color: "#9a9790", fontSize: 16, marginBottom: 16 }}>
-          {t(lang,
-            "No data leaves the conversation. No third parties. No platform storing your numbers. Everything stays between us. Confidential. Under NDA. Entirely on your terms.",
-            "Aucune donn\u00E9e ne sort de la conversation. Pas de tiers. Pas de plateforme qui stocke vos chiffres. Tout reste entre nous. Confidentiel. Sous NDA. Enti\u00E8rement \u00E0 vos conditions."
-          )}
-        </p>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 20, marginTop: 36 }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(auto-fit, minmax(180px, 1fr))", gap: isMobile ? 12 : 20 }}>
           <ValueCard icon={"\u2697"} title={t(lang, "Preserve wealth", "Pr\u00E9server le patrimoine")} desc={t(lang, "Protect what you\u2019ve built. Structure before speculation.", "Prot\u00E9ger ce que vous avez construit. La structure avant la sp\u00E9culation.")} />
           <ValueCard icon={"\u21E7"} title={t(lang, "Grow purchasing power", "Gagner en pouvoir d\u2019achat")} desc={t(lang, "Beat inflation, compound quietly. Real wealth is measured in what you can do.", "Battre l\u2019inflation, composer en silence. La vraie richesse se mesure \u00E0 ce que vous pouvez faire.")} />
           <ValueCard icon={"\u25C6"} title={t(lang, "Respect your identity", "Respecter votre identit\u00E9")} desc={t(lang, "Your values, preferences, and privacy shape the architecture. Not the other way around.", "Vos valeurs, pr\u00E9f\u00E9rences et votre vie priv\u00E9e fa\u00E7onnent l\u2019architecture. Pas l\u2019inverse.")} />
+          <ValueCard icon={"\uD83D\uDD12"} title={t(lang, "Privacy & security", "Confidentialit\u00E9 & s\u00E9curit\u00E9")} desc={t(lang, "Everything under NDA. No third parties, no platforms storing your data. Cybersecurity-certified engineer.", "Tout sous NDA. Pas de tiers, pas de plateforme stockant vos donn\u00E9es. Ing\u00E9nieur certifi\u00E9 en cybers\u00E9curit\u00E9.")} />
         </div>
 
         {/* Mid-page CTA */}
@@ -803,7 +803,7 @@ export default function WealthPage() {
       <hr style={{ maxWidth: 760, margin: "0 auto", border: "none", borderTop: "1px solid #222" }} />
 
       {/* OBJECTION HANDLING */}
-      <Section style={{ padding: "80px 24px", maxWidth: 760, margin: "0 auto" }}>
+      <Section style={{ padding: isMobile ? "60px 16px" : "80px 24px", maxWidth: 760, margin: "0 auto" }}>
         <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16 }}>
           {t(lang, "Common questions", "Questions fr\u00E9quentes")}
         </div>
@@ -842,7 +842,7 @@ export default function WealthPage() {
       <hr style={{ maxWidth: 760, margin: "0 auto", border: "none", borderTop: "1px solid #222" }} />
 
       {/* FINAL CTA */}
-      <Section id="book" style={{ textAlign: "center", padding: "100px 24px 140px", maxWidth: 760, margin: "0 auto", position: "relative" }}>
+      <Section id="book" style={{ textAlign: "center", padding: isMobile ? "60px 16px 80px" : "100px 24px 140px", maxWidth: 760, margin: "0 auto", position: "relative" }}>
         <div style={{ position: "absolute", top: "40%", left: "50%", transform: "translate(-50%,-50%)", width: 500, height: 500, background: "radial-gradient(circle, rgba(201,168,76,0.04) 0%, transparent 70%)", pointerEvents: "none" }} />
         <h2 style={{ fontSize: 32, fontWeight: 600, marginBottom: 16 }}>
           {t(lang, "Ready to architect your wealth?", "Pr\u00EAt \u00E0 structurer votre patrimoine ?")}
@@ -861,9 +861,10 @@ export default function WealthPage() {
 
       {/* FOOTER */}
       <footer style={{
-        padding: "28px 40px", borderTop: "1px solid #222",
+        padding: isMobile ? "20px 16px" : "28px 40px", borderTop: "1px solid #222",
         display: "flex", justifyContent: "space-between", alignItems: "center",
-        fontSize: 12, color: "#5a5750", letterSpacing: "0.02em", flexWrap: "wrap", gap: 8,
+        fontSize: isMobile ? 11 : 12, color: "#5a5750", letterSpacing: "0.02em", flexWrap: "wrap", gap: 8,
+        flexDirection: isMobile ? "column" : "row", textAlign: isMobile ? "center" : undefined,
       }}>
         <span>{t(lang, "Private & confidential \u00B7 Your preferences, your architecture", "Priv\u00E9 & confidentiel \u00B7 Vos pr\u00E9f\u00E9rences, votre architecture")}</span>
         <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
