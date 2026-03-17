@@ -18,6 +18,8 @@ export default defineSchema({
     role: v.optional(v.union(v.literal("admin"), v.literal("client"))),
     phone: v.optional(v.string()),
     notes: v.optional(v.string()),
+    nextMeeting: v.optional(v.number()),
+    nextMeetingNote: v.optional(v.string()),
     createdAt: v.optional(v.number()),
     updatedAt: v.optional(v.number()),
   })
@@ -28,14 +30,15 @@ export default defineSchema({
     clientId: v.id("users"),
     title: v.string(),
     description: v.optional(v.string()),
+    pdfStorageId: v.optional(v.id("_storage")),
     status: v.union(
       v.literal("draft"),
       v.literal("sent"),
       v.literal("signed"),
       v.literal("cancelled")
     ),
-    signatureRequestId: v.optional(v.string()),
-    signedPdfStorageId: v.optional(v.id("_storage")),
+    signatureStorageId: v.optional(v.id("_storage")),
+    signedByName: v.optional(v.string()),
     sentAt: v.optional(v.number()),
     signedAt: v.optional(v.number()),
     createdAt: v.number(),
@@ -48,11 +51,29 @@ export default defineSchema({
     clientId: v.id("users"),
     title: v.string(),
     description: v.optional(v.string()),
+    category: v.union(
+      v.literal("contract"),
+      v.literal("report"),
+      v.literal("invoice"),
+      v.literal("document"),
+      v.literal("other")
+    ),
+    status: v.union(
+      v.literal("draft"),
+      v.literal("sent"),
+      v.literal("signed"),
+      v.literal("ongoing"),
+      v.literal("cancelled")
+    ),
     storageId: v.id("_storage"),
     fileType: v.string(),
+    date: v.optional(v.number()),
     uploadedBy: v.id("users"),
     createdAt: v.number(),
-  }).index("by_clientId", ["clientId"]),
+  })
+    .index("by_clientId", ["clientId"])
+    .index("by_category", ["category"])
+    .index("by_status", ["status"]),
 
   payments: defineTable({
     clientId: v.id("users"),

@@ -11,8 +11,10 @@ export default function AdminDashboard() {
   const allPayments = useQuery(api.payments.listAll);
 
   const pendingContracts = allContracts?.filter((c) => c.status === "sent") ?? [];
+  const signedContracts = allContracts?.filter((c) => c.status === "signed") ?? [];
   const completedPayments = allPayments?.filter((p) => p.status === "completed") ?? [];
   const totalRevenue = completedPayments.reduce((sum, p) => sum + p.amount, 0);
+  const upcomingMeetings = clients?.filter((c) => c.nextMeeting && c.nextMeeting > Date.now()).sort((a, b) => (a.nextMeeting || 0) - (b.nextMeeting || 0)) ?? [];
 
   return (
     <div>
@@ -44,6 +46,47 @@ export default function AdminDashboard() {
         ))}
       </div>
 
+      {/* Upcoming Meetings */}
+      {upcomingMeetings.length > 0 && (
+        <>
+          <h2 style={{ fontSize: 16, fontWeight: 600, marginBottom: 16 }}>Upcoming Meetings</h2>
+          <div style={{ background: "#1a1a1a", border: "1px solid #222", borderRadius: 12, overflow: "hidden", marginBottom: 32 }}>
+            {upcomingMeetings.map((client) => (
+              <Link key={client._id} href={`/admin/clients/${client._id}`} style={{ textDecoration: "none", color: "inherit" }}>
+                <div style={{ padding: "12px 20px", borderBottom: "1px solid #222", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <div>
+                    <div style={{ fontSize: 14, fontWeight: 500 }}>
+                      {client.firstName || client.lastName ? `${client.firstName || ""} ${client.lastName || ""}`.trim() : client.email}
+                    </div>
+                    {client.nextMeetingNote && <div style={{ fontSize: 12, color: "#5a5750" }}>{client.nextMeetingNote}</div>}
+                  </div>
+                  <div style={{ fontSize: 13, fontWeight: 600, color: "#c9a84c" }}>
+                    {new Date(client.nextMeeting!).toLocaleDateString("fr-FR", { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })}
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </>
+      )}
+
+      {/* Pending Contracts */}
+      {pendingContracts.length > 0 && (
+        <>
+          <h2 style={{ fontSize: 16, fontWeight: 600, marginBottom: 16 }}>Contracts Awaiting Signature</h2>
+          <div style={{ background: "#1a1a1a", border: "1px solid #222", borderRadius: 12, overflow: "hidden", marginBottom: 32 }}>
+            {pendingContracts.map((c) => (
+              <div key={c._id} style={{ padding: "12px 20px", borderBottom: "1px solid #222", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <div style={{ fontSize: 14, fontWeight: 500 }}>{c.title}</div>
+                <span style={{ padding: "4px 10px", borderRadius: 20, fontSize: 11, fontWeight: 600, textTransform: "uppercase", color: "#c9a84c", background: "rgba(201,168,76,0.1)" }}>
+                  sent
+                </span>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+
       {/* Recent Activity */}
       <h2 style={{ fontSize: 16, fontWeight: 600, marginBottom: 16 }}>Recent Activity</h2>
       <div style={{ background: "#1a1a1a", border: "1px solid #222", borderRadius: 12, overflow: "hidden" }}>
@@ -74,11 +117,11 @@ export default function AdminDashboard() {
         }}>
           View Clients
         </Link>
-        <Link href="/admin/contracts/new" style={{
+        <Link href="/admin/new" style={{
           padding: "10px 20px", background: "linear-gradient(135deg, #c9a84c, #d4b85a)",
           border: "none", borderRadius: 8, color: "#0e0e0e", fontSize: 13, fontWeight: 600, textDecoration: "none",
         }}>
-          + New Contract
+          + New Document
         </Link>
       </div>
     </div>

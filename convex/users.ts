@@ -17,12 +17,11 @@ export const getById = query({
   },
 });
 
+// List all users who are not admin (clients + users who signed up but have no role yet)
 export const listClients = query({
   handler: async (ctx) => {
-    return await ctx.db
-      .query("users")
-      .withIndex("by_role", (q) => q.eq("role", "client"))
-      .collect();
+    const allUsers = await ctx.db.query("users").collect();
+    return allUsers.filter((u) => u.role !== "admin" && u.email);
   },
 });
 
@@ -40,10 +39,33 @@ export const updateUser = mutation({
     phone: v.optional(v.string()),
     notes: v.optional(v.string()),
     role: v.optional(v.union(v.literal("admin"), v.literal("client"))),
+    nextMeeting: v.optional(v.number()),
+    nextMeetingNote: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
     const { id, ...updates } = args;
     await ctx.db.patch(id, { ...updates, updatedAt: Date.now() });
+  },
+});
+
+export const clearMeeting = mutation({
+  args: { id: v.id("users") },
+  handler: async (ctx, args) => {
+    await ctx.db.patch(args.id, {
+      nextMeeting: undefined,
+      nextMeetingNote: undefined,
+      updatedAt: Date.now(),
+    });
+  },
+});
+
+export const getAdmin = query({
+  handler: async (ctx) => {
+    const admins = await ctx.db
+      .query("users")
+      .withIndex("by_role", (q) => q.eq("role", "admin"))
+      .collect();
+    return admins[0] ?? null;
   },
 });
 

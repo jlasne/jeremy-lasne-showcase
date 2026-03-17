@@ -12,6 +12,7 @@ import type * as activityLog from "../activityLog.js";
 import type * as auth from "../auth.js";
 import type * as contracts from "../contracts.js";
 import type * as documents from "../documents.js";
+import type * as emails from "../emails.js";
 import type * as http from "../http.js";
 import type * as payments from "../payments.js";
 import type * as users from "../users.js";
@@ -27,6 +28,7 @@ declare const fullApi: ApiFromModules<{
   auth: typeof auth;
   contracts: typeof contracts;
   documents: typeof documents;
+  emails: typeof emails;
   http: typeof http;
   payments: typeof payments;
   users: typeof users;

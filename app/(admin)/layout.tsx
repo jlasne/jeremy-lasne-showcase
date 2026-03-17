@@ -9,7 +9,7 @@ import { api } from "@/convex/_generated/api";
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: "~" },
   { href: "/admin/clients", label: "Clients", icon: "~" },
-  { href: "/admin/contracts/new", label: "New Contract", icon: "+" },
+  { href: "/admin/new", label: "New Document", icon: "+" },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
