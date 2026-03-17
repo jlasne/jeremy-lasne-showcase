@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { UserButton } from "@clerk/nextjs";
+// Auth UI will be added when Convex Auth is set up
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: "~" },
@@ -47,7 +47,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
         <div style={{ marginTop: "auto", paddingTop: 24, borderTop: "1px solid #222" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "8px 12px" }}>
-            <UserButton />
+            {/* Auth button placeholder */}
             <span style={{ fontSize: 13, color: "#9a9790" }}>Jeremy</span>
           </div>
           <Link href="/" style={{ display: "block", padding: "8px 12px", fontSize: 13, color: "#5a5750", textDecoration: "none" }}>
