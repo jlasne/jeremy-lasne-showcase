@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion, useScroll, useSpring, useInView, AnimatePresence } from "framer-motion";
 
@@ -300,9 +300,7 @@ const PerformanceBar = ({ label, value, color, maxVal, delay }: { label: string;
 export default function WealthPage() {
   const [lang, setLang] = useState<Lang>("en");
   const [showLangPopup, setShowLangPopup] = useState(false);
-  const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
   const [lightboxImg, setLightboxImg] = useState<{ src: string; alt: string } | null>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
 
   /* scroll progress */
   const { scrollYProgress } = useScroll();
@@ -328,15 +326,6 @@ export default function WealthPage() {
     try { localStorage.setItem("wealth-lang", l); } catch {}
   };
 
-  /* hero mouse-follow glow */
-  const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    if (!heroRef.current) return;
-    const rect = heroRef.current.getBoundingClientRect();
-    setMousePos({
-      x: (e.clientX - rect.left) / rect.width,
-      y: (e.clientY - rect.top) / rect.height,
-    });
-  }, []);
 
   return (
     <div className="min-h-screen" style={{
@@ -412,24 +401,11 @@ export default function WealthPage() {
 
       {/* HERO */}
       <div
-        ref={heroRef}
-        onMouseMove={handleMouseMove}
         style={{
           minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center",
           textAlign: "center", padding: "140px 24px 100px", maxWidth: 900, margin: "0 auto", position: "relative",
-          overflow: "hidden",
         }}
       >
-        <div style={{
-          position: "absolute",
-          left: `${mousePos.x * 100}%`,
-          top: `${mousePos.y * 100}%`,
-          transform: "translate(-50%, -50%)",
-          width: 500, height: 500,
-          background: "radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 60%)",
-          pointerEvents: "none",
-          transition: "left 0.3s ease-out, top 0.3s ease-out",
-        }} />
 
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -839,23 +815,23 @@ export default function WealthPage() {
           {[
             {
               q: t(lang, "\u201CI already have a financial advisor.\u201D", "\u00AB J\u2019ai d\u00E9j\u00E0 un conseiller financier. \u00BB"),
-              a: lang === "en" ? (<>Good. Keep them. But understand what they are: <strong style={{ color: "#e8e6e1" }}>a distribution channel, not a strategist.</strong> If they don\u2019t charge you directly, ask yourself: <strong style={{ color: "#e8e6e1" }}>who\u2019s paying them?</strong> Their revenue comes from the products they place \u2014 that\u2019s the model. Being a CIF is a regulatory label, not an expertise badge. I don\u2019t replace your advisor. I design <strong style={{ color: "#e8e6e1" }}>the architecture those products should fit into.</strong> Most of my clients keep their advisors. They just finally understand what they\u2019re being sold and why.</>) : (<>Tr\u00E8s bien. Gardez-le. Mais comprenez ce qu\u2019il est : <strong style={{ color: "#e8e6e1" }}>un canal de distribution, pas un strat\u00E8ge.</strong> S\u2019il ne vous facture pas directement, demandez-vous : <strong style={{ color: "#e8e6e1" }}>qui le paie ?</strong> Son revenu vient des produits qu\u2019il place \u2014 c\u2019est le mod\u00E8le. \u00CAtre CIF est un label r\u00E9glementaire, pas un badge d\u2019expertise. Je ne remplace pas votre conseiller. Je con\u00E7ois <strong style={{ color: "#e8e6e1" }}>l\u2019architecture dans laquelle ces produits devraient s\u2019int\u00E9grer.</strong> La plupart de mes clients gardent leurs conseillers. Ils comprennent juste enfin ce qu\u2019on leur vend et pourquoi.</>),
+              a: lang === "en" ? (<>Good. Keep them. But understand what they are: <strong style={{ color: "#e8e6e1" }}>a distribution channel, not a strategist.</strong> If they don’t charge you directly, ask yourself: <strong style={{ color: "#e8e6e1" }}>who’s paying them?</strong> Their revenue comes from the products they place — that’s the model. Being a CIF is a regulatory label, not an expertise badge. I don’t replace your advisor. I design <strong style={{ color: "#e8e6e1" }}>the architecture those products should fit into.</strong> Most of my clients keep their advisors. They just finally understand what they’re being sold and why.</>) : (<>Très bien. Gardez-le. Mais comprenez ce qu’il est : <strong style={{ color: "#e8e6e1" }}>un canal de distribution, pas un stratège.</strong> S’il ne vous facture pas directement, demandez-vous : <strong style={{ color: "#e8e6e1" }}>qui le paie ?</strong> Son revenu vient des produits qu’il place — c’est le modèle. Être CIF est un label réglementaire, pas un badge d’expertise. Je ne remplace pas votre conseiller. Je conçois <strong style={{ color: "#e8e6e1" }}>l’architecture dans laquelle ces produits devraient s’intégrer.</strong> La plupart de mes clients gardent leurs conseillers. Ils comprennent juste enfin ce qu’on leur vend et pourquoi.</>),
             },
             {
               q: t(lang, "\u201CMy bank handles my wealth.\u201D", "\u00AB Ma banque g\u00E8re mon patrimoine. \u00BB"),
-              a: lang === "en" ? (<>Your bank sees <strong style={{ color: "#e8e6e1" }}>one slice of your assets</strong> \u2014 the slice they hold. They don\u2019t know what\u2019s at your other bank, in your company, or in your real estate. They optimize for their products, not your situation. I see <strong style={{ color: "#e8e6e1" }}>the full board</strong> \u2014 across all your banks, structures, tax wrappers, and cash flows. That\u2019s the difference between managing accounts and <strong style={{ color: "#e8e6e1" }}>designing a system.</strong></>) : (<>Votre banque voit <strong style={{ color: "#e8e6e1" }}>une tranche de vos actifs</strong> \u2014 celle qu\u2019elle d\u00E9tient. Elle ne sait pas ce qu\u2019il y a dans votre autre banque, dans votre soci\u00E9t\u00E9, ou dans votre immobilier. Elle optimise pour ses produits, pas pour votre situation. Moi je vois <strong style={{ color: "#e8e6e1" }}>le tableau complet</strong> \u2014 toutes vos banques, structures, enveloppes fiscales et flux. C\u2019est la diff\u00E9rence entre g\u00E9rer des comptes et <strong style={{ color: "#e8e6e1" }}>concevoir un syst\u00E8me.</strong></>),
+              a: lang === "en" ? (<>Your bank sees <strong style={{ color: "#e8e6e1" }}>one slice of your assets</strong> — the slice they hold. They don’t know what’s at your other bank, in your company, or in your real estate. They optimize for their products, not your situation. I see <strong style={{ color: "#e8e6e1" }}>the full board</strong> — across all your banks, structures, tax wrappers, and cash flows. That’s the difference between managing accounts and <strong style={{ color: "#e8e6e1" }}>designing a system.</strong></>) : (<>Votre banque voit <strong style={{ color: "#e8e6e1" }}>une tranche de vos actifs</strong> — celle qu’elle détient. Elle ne sait pas ce qu’il y a dans votre autre banque, dans votre société, ou dans votre immobilier. Elle optimise pour ses produits, pas pour votre situation. Moi je vois <strong style={{ color: "#e8e6e1" }}>le tableau complet</strong> — toutes vos banques, structures, enveloppes fiscales et flux. C’est la différence entre gérer des comptes et <strong style={{ color: "#e8e6e1" }}>concevoir un système.</strong></>),
             },
             {
               q: t(lang, "\u201CI don\u2019t have time for this.\u201D", "\u00AB Je n\u2019ai pas le temps pour \u00E7a. \u00BB"),
-              a: lang === "en" ? (<>One 90-minute intake. One 60-minute delivery. Then 45 minutes per quarter. <strong style={{ color: "#e8e6e1" }}>Less than 6 hours a year</strong> to have a system managing your entire financial life. You spend more time than that choosing a car.</>) : (<>Un intake de 90 minutes. Une restitution de 60 minutes. Puis 45 minutes par trimestre. <strong style={{ color: "#e8e6e1" }}>Moins de 6 heures par an</strong> pour avoir un syst\u00E8me qui g\u00E8re toute votre vie financi\u00E8re. Vous passez plus de temps que \u00E7a \u00E0 choisir une voiture.</>),
+              a: lang === "en" ? (<>One 90-minute intake. One 60-minute delivery. Then 45 minutes per quarter. <strong style={{ color: "#e8e6e1" }}>Less than 6 hours a year</strong> to have a system managing your entire financial life. You spend more time than that choosing a car.</>) : (<>Un intake de 90 minutes. Une restitution de 60 minutes. Puis 45 minutes par trimestre. <strong style={{ color: "#e8e6e1" }}>Moins de 6 heures par an</strong> pour avoir un système qui gère toute votre vie financière. Vous passez plus de temps que ça à choisir une voiture.</>),
             },
             {
               q: t(lang, "\u201CThat\u2019s expensive for advice.\u201D", "\u00AB C\u2019est cher pour du conseil. \u00BB"),
-              a: lang === "en" ? (<>That\u2019s why we talk first \u2014 the discovery call is free. But consider: <strong style={{ color: "#e8e6e1" }}>the cost of missed opportunities is far higher.</strong> Money sitting idle, a tax wrapper you didn\u2019t know about, borrowing power you\u2019re not using. The majority of investors \u2014 even aware ones \u2014 <strong style={{ color: "#e8e6e1" }}>end up losing money by following trends and making emotional decisions.</strong> One structural adjustment typically saves more than the entire engagement. This isn\u2019t an expense \u2014 <strong style={{ color: "#e8e6e1" }}>it\u2019s the highest-leverage investment you\u2019ll make.</strong></>) : (<>C\u2019est pour \u00E7a qu\u2019on en parle d\u2019abord \u2014 l\u2019appel d\u00E9couverte est gratuit. Mais r\u00E9fl\u00E9chissez : <strong style={{ color: "#e8e6e1" }}>le co\u00FBt des opportunit\u00E9s manqu\u00E9es est bien plus \u00E9lev\u00E9.</strong> De l\u2019argent qui dort, une enveloppe fiscale que vous ne connaissiez pas, un pouvoir d\u2019emprunt inutilis\u00E9. La majorit\u00E9 des investisseurs, m\u00EAme avertis, <strong style={{ color: "#e8e6e1" }}>finissent par perdre en suivant les tendances et en prenant des d\u00E9cisions \u00E9motionnelles.</strong> Un seul ajustement structurel \u00E9conomise plus que tout l\u2019accompagnement. Ce n\u2019est pas une d\u00E9pense \u2014 <strong style={{ color: "#e8e6e1" }}>c\u2019est l\u2019investissement le plus levier que vous ferez.</strong></>),
+              a: lang === "en" ? (<>That’s why we talk first — the discovery call is free. But consider: <strong style={{ color: "#e8e6e1" }}>the cost of missed opportunities is far higher.</strong> Money sitting idle, a tax wrapper you didn’t know about, borrowing power you’re not using. The majority of investors — even aware ones — <strong style={{ color: "#e8e6e1" }}>end up losing money by following trends and making emotional decisions.</strong> One structural adjustment typically saves more than the entire engagement. This isn’t an expense — <strong style={{ color: "#e8e6e1" }}>it’s the highest-leverage investment you’ll make.</strong></>) : (<>C’est pour ça qu’on en parle d’abord — l’appel découverte est gratuit. Mais réfléchissez : <strong style={{ color: "#e8e6e1" }}>le coût des opportunités manquées est bien plus élevé.</strong> De l’argent qui dort, une enveloppe fiscale que vous ne connaissiez pas, un pouvoir d’emprunt inutilisé. La majorité des investisseurs, même avertis, <strong style={{ color: "#e8e6e1" }}>finissent par perdre en suivant les tendances et en prenant des décisions émotionnelles.</strong> Un seul ajustement structurel économise plus que tout l’accompagnement. Ce n’est pas une dépense — <strong style={{ color: "#e8e6e1" }}>c’est l’investissement le plus levier que vous ferez.</strong></>),
             },
             {
               q: t(lang, "\u201CI can figure this out myself.\u201D", "\u00AB Je peux le faire tout seul. \u00BB"),
-              a: lang === "en" ? (<>People always say that \u2014 <strong style={{ color: "#e8e6e1" }}>and always postpone.</strong> Meanwhile they listen to the news, follow influencers, and rely on information that\u2019s often wrong or months behind reality. I offer <strong style={{ color: "#e8e6e1" }}>precision</strong> where you have approximation. <strong style={{ color: "#e8e6e1" }}>Understanding</strong> where you have confusion. <strong style={{ color: "#e8e6e1" }}>Simplicity</strong> where you have complexity. And <strong style={{ color: "#e8e6e1" }}>accountability</strong> \u2014 someone who makes sure you actually execute, not just plan. You don\u2019t need more information. <strong style={{ color: "#e8e6e1" }}>You need a system and someone holding the blueprint.</strong></>) : (<>Tout le monde dit \u00E7a \u2014 <strong style={{ color: "#e8e6e1" }}>et repousse toujours.</strong> Entre-temps on \u00E9coute les infos, on suit des influenceurs, et on se fie \u00E0 des informations souvent fausses ou en retard de mois. J\u2019offre de la <strong style={{ color: "#e8e6e1" }}>pr\u00E9cision</strong> l\u00E0 o\u00F9 vous avez de l\u2019approximation. De la <strong style={{ color: "#e8e6e1" }}>compr\u00E9hension</strong> l\u00E0 o\u00F9 vous avez de la confusion. De la <strong style={{ color: "#e8e6e1" }}>simplicit\u00E9</strong> l\u00E0 o\u00F9 vous avez de la complexit\u00E9. Et de l\u2019<strong style={{ color: "#e8e6e1" }}>accountability</strong> \u2014 quelqu\u2019un qui s\u2019assure que vous ex\u00E9cutez vraiment. <strong style={{ color: "#e8e6e1" }}>Vous n\u2019avez pas besoin de plus d\u2019information. Vous avez besoin d\u2019un syst\u00E8me.</strong></>),
+              a: lang === "en" ? (<>People always say that — <strong style={{ color: "#e8e6e1" }}>and always postpone.</strong> Meanwhile they listen to the news, follow influencers, and rely on information that’s often wrong or months behind reality. I offer <strong style={{ color: "#e8e6e1" }}>precision</strong> where you have approximation. <strong style={{ color: "#e8e6e1" }}>Understanding</strong> where you have confusion. <strong style={{ color: "#e8e6e1" }}>Simplicity</strong> where you have complexity. And <strong style={{ color: "#e8e6e1" }}>accountability</strong> — someone who makes sure you actually execute, not just plan. You don’t need more information. <strong style={{ color: "#e8e6e1" }}>You need a system and someone holding the blueprint.</strong></>) : (<>Tout le monde dit ça — <strong style={{ color: "#e8e6e1" }}>et repousse toujours.</strong> Entre-temps on écoute les infos, on suit des influenceurs, et on se fie à des informations souvent fausses ou en retard de mois. J’offre de la <strong style={{ color: "#e8e6e1" }}>précision</strong> là où vous avez de l’approximation. De la <strong style={{ color: "#e8e6e1" }}>compréhension</strong> là où vous avez de la confusion. De la <strong style={{ color: "#e8e6e1" }}>simplicité</strong> là où vous avez de la complexité. Et de l’<strong style={{ color: "#e8e6e1" }}>accountability</strong> — quelqu’un qui s’assure que vous exécutez vraiment. <strong style={{ color: "#e8e6e1" }}>Vous n’avez pas besoin de plus d’information. Vous avez besoin d’un système.</strong></>),
             },
           ].map((item, i) => (
             <FaqItem key={i} q={item.q} a={item.a} index={i} />

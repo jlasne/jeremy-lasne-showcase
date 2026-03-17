@@ -31,7 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body className={`${inter.className} relative`}>
-        <BGPattern variant="dots" mask="fade-edges" size={28} fill="rgba(201,168,76,0.07)" />
+        <BGPattern variant="dots" mask="fade-edges" size={28} fill="rgba(201,168,76,0.18)" />
         <div style={{ position: "relative", zIndex: 1 }}>
           <ConvexClientProvider>
             {children}
