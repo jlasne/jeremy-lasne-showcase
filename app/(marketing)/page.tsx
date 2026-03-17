@@ -663,180 +663,91 @@ export default function WealthPage() {
 
       <div style={{ width: 60, height: 1, background: "rgba(201,168,76,0.2)", margin: "0 auto" }} />
 
-      {/* TRACK RECORD & CREDENTIALS */}
-      <Section style={{ padding: "80px 24px", maxWidth: 960, margin: "0 auto" }}>
-        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16, textAlign: "center" }}>
-          {t(lang, "Track record", "R\u00E9sultats")}
+      {/* TRACK RECORD & CREDENTIALS — compact */}
+      <Section style={{ padding: "60px 24px", maxWidth: 960, margin: "0 auto" }}>
+        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 12, textAlign: "center" }}>
+          {t(lang, "Track record & Credentials", "R\u00E9sultats & Certifications")}
         </div>
-        <h2 style={{ fontSize: 28, fontWeight: 600, marginBottom: 12, textAlign: "center" }}>
+        <h2 style={{ fontSize: 24, fontWeight: 600, marginBottom: 32, textAlign: "center" }}>
           {t(lang, "Understand the world economy. See my results.", "Comprendre l\u2019\u00E9conomie mondiale. Voir mes r\u00E9sultats.")}
         </h2>
-        <p style={{ color: "#9a9790", fontSize: 16, maxWidth: 620, margin: "0 auto 48px", textAlign: "center" }}>
-          {t(lang,
-            "2025 performance compared to major indices. My system focuses on global diversification and macro timing \u2014 not predictions, structure.",
-            "Performance 2025 compar\u00E9e aux principaux indices. Mon syst\u00E8me repose sur la diversification mondiale et le timing macro \u2014 pas de pr\u00E9dictions, de la structure."
-          )}
-        </p>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, alignItems: "start" }}>
-          {/* Left: Performance comparison */}
-          <div style={{
-            background: "#161616", border: "1px solid #2a2a2a", borderRadius: 16, padding: "32px 28px",
-            position: "relative", overflow: "hidden",
-          }}>
-            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent)" }} />
-            <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 28 }}>
-              {t(lang, "2025 Performance", "Performance 2025")}
+        {/* Performance bars — inline compact */}
+        <div style={{ background: "#161616", border: "1px solid #2a2a2a", borderRadius: 14, padding: "24px", marginBottom: 20, position: "relative", overflow: "hidden" }}>
+          <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent)" }} />
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 20 }}>
+            <PerformanceBar label={t(lang, "My Portfolio", "Mon Portfolio")} value={32} color="#c9a84c" maxVal={35} delay={0} />
+            <PerformanceBar label={t(lang, "S&P 500 (USA)", "S&P 500 (USA)")} value={18} color="#4a90d9" maxVal={35} delay={0.12} />
+            <PerformanceBar label={t(lang, "CAC 40 (France)", "CAC 40 (France)")} value={-1} color="#e74c3c" maxVal={35} delay={0.24} />
+          </div>
+        </div>
+
+        {/* Proof thumbnails — 3 columns, click to enlarge */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16 }}>
+          {/* Brokerage screenshot */}
+          <motion.div
+            whileHover={{ scale: 1.03 }}
+            onClick={() => setLightboxImg({ src: performanceImg, alt: "Portfolio performance 2025" })}
+            style={{ cursor: "zoom-in", borderRadius: 12, overflow: "hidden", border: "1px solid #2a2a2a", position: "relative", background: "#161616" }}
+          >
+            <img src={performanceImg} alt="Portfolio performance 2025" style={{ width: "100%", height: 140, objectFit: "cover", display: "block" }} />
+            <div style={{ padding: "10px 12px", textAlign: "center" }}>
+              <div style={{ fontSize: 12, fontWeight: 600, color: "#e8e6e1", marginBottom: 2 }}>
+                {t(lang, "Brokerage Proof", "Preuve Courtier")}
+              </div>
+              <div style={{ fontSize: 10, color: "#5a5750" }}>{t(lang, "Click to enlarge", "Cliquez pour agrandir")}</div>
             </div>
+          </motion.div>
 
-            <PerformanceBar
-              label={t(lang, "My Portfolio", "Mon Portfolio")}
-              value={32}
-              color="#c9a84c"
-              maxVal={35}
-              delay={0}
-            />
-            <PerformanceBar
-              label={t(lang, "S&P 500 (USA)", "S&P 500 (USA)")}
-              value={18}
-              color="#4a90d9"
-              maxVal={35}
-              delay={0.12}
-            />
-            <PerformanceBar
-              label={t(lang, "CAC 40 (France)", "CAC 40 (France)")}
-              value={-1}
-              color="#e74c3c"
-              maxVal={35}
-              delay={0.24}
-            />
+          {/* AMF Certificate */}
+          <motion.div
+            whileHover={{ scale: 1.03 }}
+            onClick={() => setLightboxImg({ src: amfCertImg, alt: "AMF Certification" })}
+            style={{ cursor: "zoom-in", borderRadius: 12, overflow: "hidden", border: "1px solid #2a2a2a", position: "relative", background: "#161616" }}
+          >
+            <img src={amfCertImg} alt="AMF Certification" style={{ width: "100%", height: 140, objectFit: "cover", display: "block" }} />
+            <div style={{ padding: "10px 12px", textAlign: "center" }}>
+              <div style={{ fontSize: 12, fontWeight: 600, color: "#e8e6e1", marginBottom: 2 }}>
+                {t(lang, "AMF Exam \u2014 94 & 98/100", "Examen AMF \u2014 94 & 98/100")}
+              </div>
+              <div style={{ fontSize: 10, color: "#5a5750" }}>{t(lang, "Click to enlarge", "Cliquez pour agrandir")}</div>
+            </div>
+          </motion.div>
 
-            {/* Proof screenshot */}
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              onClick={() => setLightboxImg({ src: performanceImg, alt: "Portfolio performance 2025" })}
-              style={{
-                marginTop: 24, cursor: "zoom-in", borderRadius: 12, overflow: "hidden",
-                border: "1px solid #2a2a2a", position: "relative",
-              }}
-            >
-              <img
-                src={performanceImg}
-                alt="Portfolio performance 2025"
-                style={{ width: "100%", display: "block", borderRadius: 12 }}
-              />
-              <div style={{
-                position: "absolute", bottom: 0, left: 0, right: 0,
-                background: "linear-gradient(transparent, rgba(0,0,0,0.8))",
-                padding: "24px 16px 12px", textAlign: "center",
-              }}>
-                <span style={{ fontSize: 11, color: "#9a9790", letterSpacing: "0.05em" }}>
-                  {t(lang, "Click to enlarge \u00B7 Real brokerage screenshot", "Cliquez pour agrandir \u00B7 Capture d\u2019\u00E9cran r\u00E9elle")}
-                </span>
+          {/* CIF Certificate */}
+          <motion.div
+            whileHover={{ scale: 1.03 }}
+            onClick={() => setLightboxImg({ src: cifFormationImg, alt: "CIF Formation Certificate" })}
+            style={{ cursor: "zoom-in", borderRadius: 12, overflow: "hidden", border: "1px solid #2a2a2a", position: "relative", background: "#161616" }}
+          >
+            <img src={cifFormationImg} alt="CIF Formation Certificate" style={{ width: "100%", height: 140, objectFit: "cover", display: "block" }} />
+            <div style={{ padding: "10px 12px", textAlign: "center" }}>
+              <div style={{ fontSize: 12, fontWeight: 600, color: "#e8e6e1", marginBottom: 2 }}>
+                {t(lang, "CIF Formation \u2014 150h", "Formation CIF \u2014 150h")}
               </div>
-            </motion.div>
-          </div>
+              <div style={{ fontSize: 10, color: "#5a5750" }}>Yooper / Orica \u00B7 2024</div>
+            </div>
+          </motion.div>
+        </div>
 
-          {/* Right: Credentials */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-            {/* AMF Certification */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              style={{
-                background: "#161616", border: "1px solid #2a2a2a", borderRadius: 16, padding: "24px",
-                position: "relative", overflow: "hidden",
-              }}
-            >
-              <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, rgba(201,168,76,0.2), transparent)" }} />
-              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
-                <div style={{
-                  width: 36, height: 36, borderRadius: "50%",
-                  background: "rgba(201,168,76,0.1)", border: "1px solid rgba(201,168,76,0.2)",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  fontSize: 16,
-                }}>
-                  {"\u2713"}
-                </div>
-                <div>
-                  <div style={{ fontSize: 15, fontWeight: 600, color: "#e8e6e1" }}>
-                    {t(lang, "AMF Exam \u2014 Passed", "Examen AMF \u2014 R\u00E9ussi")}
-                  </div>
-                  <div style={{ fontSize: 12, color: "#9a9790" }}>
-                    {t(lang, "Score: 94/100 & 98/100", "Score : 94/100 & 98/100")}
-                  </div>
-                </div>
+        {/* Credentials row — compact badges */}
+        <div style={{ display: "flex", justifyContent: "center", gap: 16, marginTop: 20, flexWrap: "wrap" }}>
+          {[
+            { icon: "\uD83C\uDF93", label: t(lang, "Master\u2019s in Engineering", "Master Ing\u00E9nieur"), sub: t(lang, "IT, Blockchain & Finance", "IT, Blockchain & Finance") },
+            { icon: "\u2713", label: t(lang, "AMF Certified", "Certifi\u00E9 AMF"), sub: "94/100 & 98/100" },
+            { icon: "\u2713", label: t(lang, "CIF Trained", "Form\u00E9 CIF"), sub: "150h \u00B7 Orica 2024" },
+          ].map((badge) => (
+            <div key={badge.label} style={{
+              display: "flex", alignItems: "center", gap: 10, padding: "10px 16px",
+              background: "#161616", border: "1px solid #2a2a2a", borderRadius: 10,
+            }}>
+              <span style={{ fontSize: 18 }}>{badge.icon}</span>
+              <div>
+                <div style={{ fontSize: 13, fontWeight: 600, color: "#e8e6e1" }}>{badge.label}</div>
+                <div style={{ fontSize: 11, color: "#5a5750" }}>{badge.sub}</div>
               </div>
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                onClick={() => setLightboxImg({ src: amfCertImg, alt: "AMF Certification" })}
-                style={{
-                  cursor: "zoom-in", borderRadius: 10, overflow: "hidden",
-                  border: "1px solid #2a2a2a",
-                }}
-              >
-                <img
-                  src={amfCertImg}
-                  alt="AMF Certification"
-                  style={{ width: "100%", display: "block", borderRadius: 10 }}
-                />
-              </motion.div>
-              <div style={{ fontSize: 11, color: "#5a5750", marginTop: 10, textAlign: "center" }}>
-                {t(lang, "Click to view full certificate", "Cliquez pour voir le certificat complet")}
-              </div>
-            </motion.div>
-
-            {/* CIF Formation */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.15 }}
-              style={{
-                background: "#161616", border: "1px solid #2a2a2a", borderRadius: 16, padding: "24px",
-                position: "relative", overflow: "hidden",
-              }}
-            >
-              <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, rgba(201,168,76,0.2), transparent)" }} />
-              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
-                <div style={{
-                  width: 36, height: 36, borderRadius: "50%",
-                  background: "rgba(201,168,76,0.1)", border: "1px solid rgba(201,168,76,0.2)",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  fontSize: 16,
-                }}>
-                  {"\u2713"}
-                </div>
-                <div>
-                  <div style={{ fontSize: 15, fontWeight: 600, color: "#e8e6e1" }}>
-                    {t(lang, "CIF Formation \u2014 150 hours", "Formation CIF \u2014 150 heures")}
-                  </div>
-                  <div style={{ fontSize: 12, color: "#9a9790" }}>
-                    Yooper / Orica SAS \u00B7 2024
-                  </div>
-                </div>
-              </div>
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                onClick={() => setLightboxImg({ src: cifFormationImg, alt: "CIF Formation Certificate" })}
-                style={{
-                  cursor: "zoom-in", borderRadius: 10, overflow: "hidden",
-                  border: "1px solid #2a2a2a",
-                }}
-              >
-                <img
-                  src={cifFormationImg}
-                  alt="CIF Formation Certificate"
-                  style={{ width: "100%", display: "block", borderRadius: 10 }}
-                />
-              </motion.div>
-              <div style={{ fontSize: 11, color: "#5a5750", marginTop: 10, textAlign: "center" }}>
-                {t(lang, "Click to view full certificate", "Cliquez pour voir le certificat complet")}
-              </div>
-            </motion.div>
-          </div>
+            </div>
+          ))}
         </div>
       </Section>
 
