@@ -1,8 +1,11 @@
 "use client";
 
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
+
 export default function PaymentsPage() {
-  // TODO: useQuery(api.payments.listByClient, { clientId }) when Convex is connected
-  const payments: Array<{ _id: string; amount: number; currency: string; type: string; status: string; description?: string; paidAt?: number; createdAt: number }> = [];
+  const user = useQuery(api.users.currentUser);
+  const payments = useQuery(api.payments.listByClient, user?._id ? { clientId: user._id } : "skip");
 
   const statusColor: Record<string, string> = {
     pending: "#c9a84c",
@@ -16,11 +19,12 @@ export default function PaymentsPage() {
       <h1 style={{ fontSize: 24, fontWeight: 600, marginBottom: 8 }}>Payments</h1>
       <p style={{ color: "#9a9790", fontSize: 14, marginBottom: 32 }}>Your payment history.</p>
 
-      {payments.length === 0 ? (
-        <div style={{
-          textAlign: "center", padding: "60px 20px",
-          background: "#1a1a1a", border: "1px solid #222", borderRadius: 12,
-        }}>
+      {payments === undefined ? (
+        <div style={{ textAlign: "center", padding: "60px 20px", background: "#1a1a1a", border: "1px solid #222", borderRadius: 12 }}>
+          <div style={{ fontSize: 14, color: "#5a5750" }}>Loading payments...</div>
+        </div>
+      ) : payments.length === 0 ? (
+        <div style={{ textAlign: "center", padding: "60px 20px", background: "#1a1a1a", border: "1px solid #222", borderRadius: 12 }}>
           <div style={{ fontSize: 14, color: "#5a5750" }}>No payments recorded yet.</div>
         </div>
       ) : (
@@ -39,8 +43,8 @@ export default function PaymentsPage() {
                   {payment.description && ` — ${payment.description}`}
                 </div>
                 <div style={{ fontSize: 12, color: "#5a5750" }}>
-                  {new Date(payment.createdAt).toLocaleDateString()}
-                  {payment.paidAt && ` · Paid ${new Date(payment.paidAt).toLocaleDateString()}`}
+                  {new Date(payment.createdAt).toLocaleDateString("fr-FR")}
+                  {payment.paidAt && ` · Paid ${new Date(payment.paidAt).toLocaleDateString("fr-FR")}`}
                 </div>
               </div>
               <div style={{ textAlign: "right" }}>

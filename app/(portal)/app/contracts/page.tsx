@@ -1,8 +1,11 @@
 "use client";
 
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
+
 export default function ContractsPage() {
-  // TODO: useQuery(api.contracts.listByClient, { clientId }) when Convex is connected
-  const contracts: Array<{ _id: string; title: string; status: string; createdAt: number; signedAt?: number }> = [];
+  const user = useQuery(api.users.currentUser);
+  const contracts = useQuery(api.contracts.listByClient, user?._id ? { clientId: user._id } : "skip");
 
   const statusColor: Record<string, string> = {
     draft: "#5a5750",
@@ -16,11 +19,12 @@ export default function ContractsPage() {
       <h1 style={{ fontSize: 24, fontWeight: 600, marginBottom: 8 }}>Contracts</h1>
       <p style={{ color: "#9a9790", fontSize: 14, marginBottom: 32 }}>Your contracts and their signing status.</p>
 
-      {contracts.length === 0 ? (
-        <div style={{
-          textAlign: "center", padding: "60px 20px",
-          background: "#1a1a1a", border: "1px solid #222", borderRadius: 12,
-        }}>
+      {contracts === undefined ? (
+        <div style={{ textAlign: "center", padding: "60px 20px", background: "#1a1a1a", border: "1px solid #222", borderRadius: 12 }}>
+          <div style={{ fontSize: 14, color: "#5a5750" }}>Loading contracts...</div>
+        </div>
+      ) : contracts.length === 0 ? (
+        <div style={{ textAlign: "center", padding: "60px 20px", background: "#1a1a1a", border: "1px solid #222", borderRadius: 12 }}>
           <div style={{ fontSize: 14, color: "#5a5750" }}>No contracts yet.</div>
         </div>
       ) : (
@@ -36,8 +40,8 @@ export default function ContractsPage() {
               <div>
                 <div style={{ fontSize: 15, fontWeight: 500 }}>{contract.title}</div>
                 <div style={{ fontSize: 12, color: "#5a5750" }}>
-                  Created {new Date(contract.createdAt).toLocaleDateString()}
-                  {contract.signedAt && ` · Signed ${new Date(contract.signedAt).toLocaleDateString()}`}
+                  Created {new Date(contract.createdAt).toLocaleDateString("fr-FR")}
+                  {contract.signedAt && ` · Signed ${new Date(contract.signedAt).toLocaleDateString("fr-FR")}`}
                 </div>
               </div>
               <span style={{

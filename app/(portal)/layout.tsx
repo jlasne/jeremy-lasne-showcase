@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-// Auth UI will be added when Convex Auth is set up
+import { usePathname, useRouter } from "next/navigation";
+import { useConvexAuth, useQuery } from "convex/react";
+import { useAuthActions } from "@convex-dev/auth/react";
+import { api } from "@/convex/_generated/api";
 
 const navItems = [
   { href: "/app", label: "Dashboard" },
@@ -13,10 +15,26 @@ const navItems = [
 
 export default function PortalLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const router = useRouter();
+  const { signOut } = useAuthActions();
+  const { isAuthenticated, isLoading } = useConvexAuth();
+  const user = useQuery(api.users.currentUser);
+
+  if (isLoading) {
+    return (
+      <div style={{ minHeight: "100vh", background: "#0e0e0e", display: "flex", alignItems: "center", justifyContent: "center", color: "#5a5750" }}>
+        Loading...
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    router.push("/sign-in");
+    return null;
+  }
 
   return (
     <div style={{ minHeight: "100vh", background: "#0e0e0e", color: "#e8e6e1" }}>
-      {/* Top nav */}
       <nav style={{
         display: "flex", alignItems: "center", justifyContent: "space-between",
         padding: "12px 32px", borderBottom: "1px solid #222",
@@ -48,7 +66,20 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
             })}
           </div>
         </div>
-        {/* Auth button placeholder */}
+        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+          {user?.role === "admin" && (
+            <Link href="/admin" style={{ fontSize: 12, color: "#c9a84c", textDecoration: "none", padding: "4px 10px", border: "1px solid rgba(201,168,76,0.3)", borderRadius: 4 }}>
+              Admin
+            </Link>
+          )}
+          <span style={{ fontSize: 13, color: "#9a9790" }}>{user?.firstName || user?.email || "..."}</span>
+          <button
+            onClick={() => signOut()}
+            style={{ fontSize: 12, color: "#5a5750", background: "none", border: "none", cursor: "pointer" }}
+          >
+            Sign out
+          </button>
+        </div>
       </nav>
 
       <main style={{ maxWidth: 960, margin: "0 auto", padding: "32px 24px" }}>

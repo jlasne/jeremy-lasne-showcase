@@ -28,12 +28,14 @@ export const create = mutation({
   args: {
     clientId: v.id("users"),
     title: v.string(),
+    description: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
     const now = Date.now();
     return await ctx.db.insert("contracts", {
       clientId: args.clientId,
       title: args.title,
+      description: args.description,
       status: "draft",
       createdAt: now,
       updatedAt: now,
@@ -50,7 +52,7 @@ export const updateStatus = mutation({
       v.literal("signed"),
       v.literal("cancelled")
     ),
-    yousignRequestId: v.optional(v.string()),
+    signatureRequestId: v.optional(v.string()),
     signedPdfStorageId: v.optional(v.id("_storage")),
   },
   handler: async (ctx, args) => {

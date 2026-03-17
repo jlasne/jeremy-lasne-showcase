@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-// Auth UI will be added when Convex Auth is set up
+import { usePathname, useRouter } from "next/navigation";
+import { useConvexAuth, useQuery } from "convex/react";
+import { useAuthActions } from "@convex-dev/auth/react";
+import { api } from "@/convex/_generated/api";
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: "~" },
@@ -12,10 +14,31 @@ const navItems = [
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const router = useRouter();
+  const { signOut } = useAuthActions();
+  const { isAuthenticated, isLoading } = useConvexAuth();
+  const user = useQuery(api.users.currentUser);
+
+  if (isLoading) {
+    return (
+      <div style={{ minHeight: "100vh", background: "#0e0e0e", display: "flex", alignItems: "center", justifyContent: "center", color: "#5a5750" }}>
+        Loading...
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    router.push("/sign-in");
+    return null;
+  }
+
+  if (user !== undefined && user !== null && user.role !== "admin") {
+    router.push("/app");
+    return null;
+  }
 
   return (
     <div style={{ display: "flex", minHeight: "100vh", background: "#0e0e0e", color: "#e8e6e1" }}>
-      {/* Sidebar */}
       <aside style={{
         width: 240, borderRight: "1px solid #222", padding: "24px 16px",
         display: "flex", flexDirection: "column", gap: 4, flexShrink: 0,
@@ -47,16 +70,23 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
         <div style={{ marginTop: "auto", paddingTop: 24, borderTop: "1px solid #222" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "8px 12px" }}>
-            {/* Auth button placeholder */}
-            <span style={{ fontSize: 13, color: "#9a9790" }}>Jeremy</span>
+            <div style={{ width: 32, height: 32, borderRadius: "50%", background: "linear-gradient(135deg, #c9a84c, #d4b85a)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 700, color: "#0e0e0e" }}>
+              {user?.firstName?.[0] || user?.email?.[0]?.toUpperCase() || "?"}
+            </div>
+            <span style={{ fontSize: 13, color: "#9a9790" }}>{user?.firstName || user?.email || "..."}</span>
           </div>
+          <button
+            onClick={() => signOut()}
+            style={{ display: "block", width: "100%", textAlign: "left", padding: "8px 12px", fontSize: 13, color: "#5a5750", background: "none", border: "none", cursor: "pointer" }}
+          >
+            Sign out
+          </button>
           <Link href="/" style={{ display: "block", padding: "8px 12px", fontSize: 13, color: "#5a5750", textDecoration: "none" }}>
             Back to site
           </Link>
         </div>
       </aside>
 
-      {/* Main content */}
       <main style={{ flex: 1, padding: "32px 40px", overflow: "auto" }}>
         {children}
       </main>
