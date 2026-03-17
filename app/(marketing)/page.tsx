@@ -406,12 +406,12 @@ export default function WealthPage() {
             rel="noopener noreferrer"
             whileHover={{ borderColor: "rgba(201,168,76,0.5)", background: "rgba(201,168,76,0.08)" }}
             style={{
-              padding: isMobile ? "6px 14px" : "8px 22px", background: "transparent", border: "1px solid rgba(201,168,76,0.2)",
+              padding: isMobile ? "6px 12px" : "8px 22px", background: "transparent", border: "1px solid rgba(201,168,76,0.2)",
               color: "#c9a84c", textDecoration: "none", borderRadius: 6, fontSize: isMobile ? 11 : 12, fontWeight: 500, letterSpacing: "0.04em",
-              transition: "all 0.2s",
+              transition: "all 0.2s", whiteSpace: "nowrap", flexShrink: 0,
             }}
           >
-            {t(lang, "Book a call", "RDV")}
+            {isMobile ? t(lang, "Book", "RDV") : t(lang, "Book a call", "Prendre RDV")}
           </motion.a>
         </div>
       </motion.nav>
