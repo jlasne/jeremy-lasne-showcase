@@ -623,46 +623,82 @@ export default function WealthPage() {
           {t(lang, "I'm not a salesman. I'm an investor who designs systems.", "Je ne suis pas un vendeur. Je suis un investisseur qui conçoit des systèmes.")}
         </h2>
 
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "200px 1fr", gap: isMobile ? 24 : 40, alignItems: "start" }}>
-          {/* Profile card */}
-          <div style={{ textAlign: "center" }}>
-            <div style={{
-              width: 160, height: 160, borderRadius: "50%", overflow: "hidden",
-              border: "3px solid rgba(201,168,76,0.3)", margin: "0 auto 16px",
-              background: "linear-gradient(135deg, #c9a84c22, #1a1a1a)",
-            }}>
-              <img
-                src={profileImg}
-                alt="Jeremy Lasne"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "220px 1fr", gap: isMobile ? 24 : 40, alignItems: "start" }}>
+          {/* Left column: Profile + Inspirations */}
+          <div>
+            <div style={{ textAlign: "center", marginBottom: 32 }}>
+              <div style={{
+                width: 160, height: 160, borderRadius: "50%", overflow: "hidden",
+                border: "3px solid rgba(201,168,76,0.3)", margin: "0 auto 16px",
+                background: "linear-gradient(135deg, #c9a84c22, #1a1a1a)",
+              }}>
+                <img
+                  src={profileImg}
+                  alt="Jeremy Lasne"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              </div>
+              <div style={{ fontSize: 16, fontWeight: 600, color: "#e8e6e1", marginBottom: 4 }}>Jeremy Lasne</div>
+              <div style={{ fontSize: 12, color: "#9a9790", marginBottom: 12 }}>{t(lang, "Wealth Architect", "Architecte Patrimonial")}</div>
+              <a
+                href="https://www.linkedin.com/in/j%C3%A9r%C3%A9my-lasne-88148b223/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex", alignItems: "center", gap: 6,
+                  padding: "8px 16px", background: "rgba(10,102,194,0.1)", border: "1px solid rgba(10,102,194,0.3)",
+                  borderRadius: 6, color: "#0a66c2", fontSize: 12, fontWeight: 500,
+                  textDecoration: "none", transition: "all 0.2s",
+                }}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+                LinkedIn
+              </a>
             </div>
-            <div style={{ fontSize: 16, fontWeight: 600, color: "#e8e6e1", marginBottom: 4 }}>Jeremy Lasne</div>
-            <div style={{ fontSize: 12, color: "#9a9790", marginBottom: 12 }}>{t(lang, "Wealth Architect", "Architecte Patrimonial")}</div>
-            <a
-              href="https://www.linkedin.com/in/j%C3%A9r%C3%A9my-lasne-88148b223/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "inline-flex", alignItems: "center", gap: 6,
-                padding: "8px 16px", background: "rgba(10,102,194,0.1)", border: "1px solid rgba(10,102,194,0.3)",
-                borderRadius: 6, color: "#0a66c2", fontSize: 12, fontWeight: 500,
-                textDecoration: "none", transition: "all 0.2s",
-              }}
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-              </svg>
-              LinkedIn
-            </a>
+
+            {/* Inspirations */}
+            <div>
+              <div style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase", color: "#5a5750", marginBottom: 16, textAlign: "center" }}>
+                {t(lang, "Inspired by", "Inspir\u00e9 par")}
+              </div>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+                {[
+                  { name: "Charles Gave", initials: "CG", img: "/images/charles-gave.png", sub: t(lang, "Economy", "\u00c9conomie") },
+                  { name: "Didier Darcet", initials: "DD", img: "/images/didier-darcet.png", sub: t(lang, "Economy", "\u00c9conomie") },
+                  { name: "Constant Elper", initials: "CE", img: "/images/constant-elper.png", sub: t(lang, "Private Equity", "Private Equity") },
+                  { name: "Leo (Picsou)", initials: "LP", img: null, sub: "Crypto" },
+                  { name: "Timoth\u00e9e Moiroux", initials: "TM", img: "/images/timothee-moiroux.png", sub: t(lang, "Real Estate", "Immobilier") },
+                ].map((person) => (
+                  <div key={person.name} style={{ textAlign: "center" }}>
+                    <div style={{
+                      width: 44, height: 44, borderRadius: "50%",
+                      background: "linear-gradient(135deg, rgba(201,168,76,0.15), #1a1a1a)",
+                      border: "1px solid rgba(201,168,76,0.2)",
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      margin: "0 auto 6px", fontSize: 12, fontWeight: 600,
+                      color: "#c9a84c", letterSpacing: "0.05em",
+                      overflow: "hidden",
+                    }}>
+                      {person.img ? (
+                        <img src={person.img} alt={person.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; (e.target as HTMLImageElement).parentElement!.textContent = person.initials; }} />
+                      ) : person.initials}
+                    </div>
+                    <div style={{ fontSize: 10, color: "#e8e6e1", lineHeight: 1.3, fontWeight: 500 }}>{person.name}</div>
+                    <div style={{ fontSize: 9, color: "#5a5750", marginTop: 1 }}>{person.sub}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
-          {/* Bio text */}
+          {/* Right column: Bio + Quote + CTA */}
           <div>
             <p style={{ color: "#9a9790", fontSize: 15, marginBottom: 20, fontStyle: "italic" }}>
               {t(lang,
                 "Former CIF advisor. I left because affiliation kills independence. Now I work for my clients and nobody else.",
-                "Ancien conseiller CIF. J'ai quitté parce que l'affiliation tue l'indépendance. Maintenant je travaille pour mes clients et personne d'autre."
+                "Ancien conseiller CIF. J'ai quitt\u00e9 parce que l'affiliation tue l'ind\u00e9pendance. Maintenant je travaille pour mes clients et personne d'autre."
               )}
             </p>
 
@@ -691,37 +727,6 @@ export default function WealthPage() {
                 )}
               </p>
             </div>
-          </div>
-        </div>
-
-        {/* Inspirations */}
-        <div style={{ marginTop: 48 }}>
-          <div style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase", color: "#5a5750", marginBottom: 20, textAlign: "center" }}>
-            {t(lang, "Inspired by", "Inspir\u00e9 par")}
-          </div>
-          <div style={{ display: "flex", justifyContent: "center", gap: isMobile ? 16 : 28, flexWrap: "wrap" }}>
-            {[
-              { name: "Charles Gave", initials: "CG" },
-              { name: "Didier Darcet", initials: "DD" },
-              { name: "Constant Elper", initials: "CE" },
-              { name: "Crypto Picsou", initials: "CP" },
-              { name: "Timoth\u00e9e Moiroux", initials: "TM" },
-            ].map((person) => (
-              <div key={person.name} style={{ textAlign: "center", width: isMobile ? 56 : 72 }}>
-                <div style={{
-                  width: isMobile ? 48 : 56, height: isMobile ? 48 : 56, borderRadius: "50%",
-                  background: "linear-gradient(135deg, rgba(201,168,76,0.15), #1a1a1a)",
-                  border: "1px solid rgba(201,168,76,0.2)",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  margin: "0 auto 8px", fontSize: isMobile ? 13 : 15, fontWeight: 600,
-                  color: "#c9a84c", letterSpacing: "0.05em",
-                  overflow: "hidden",
-                }}>
-                  {person.initials}
-                </div>
-                <div style={{ fontSize: 10, color: "#9a9790", lineHeight: 1.3 }}>{person.name}</div>
-              </div>
-            ))}
           </div>
         </div>
       </Section>
