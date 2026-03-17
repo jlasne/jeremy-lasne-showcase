@@ -659,24 +659,69 @@ export default function WealthPage() {
 
           {/* Bio text */}
           <div>
-            <p style={{ color: "#9a9790", fontSize: 16, marginBottom: 16 }}>
+            <p style={{ color: "#9a9790", fontSize: 15, marginBottom: 20, fontStyle: "italic" }}>
               {t(lang,
-                "I've been deep in this world since 2017. I'm strongly inspired by Charles Gave — I've met him several times and built my entire macro framework around his work and Didier Darcet's econophysics. I worked private equity with Constant Helper. I run crypto and blockchain strategies myself.",
-                "Je suis plongé dans cet univers depuis 2017. Je suis profondément inspiré par Charles Gave — je l'ai rencontré plusieurs fois et j'ai construit tout mon cadre macro autour de son travail et de l'écono-physique de Didier Darcet. J'ai travaillé en private equity avec Constant Helper. Je gère moi-même des stratégies crypto et blockchain."
+                "Former CIF advisor. I left because affiliation kills independence. Now I work for my clients and nobody else.",
+                "Ancien conseiller CIF. J'ai quitté parce que l'affiliation tue l'indépendance. Maintenant je travaille pour mes clients et personne d'autre."
               )}
             </p>
-            <p style={{ color: "#9a9790", fontSize: 16, marginBottom: 16 }}>
-              {t(lang,
-                "I started my career as a CIF (Conseil en Investissements Financiers) under Euodia. I left because affiliation kills independence. Great people — but the model is built around selling products, not building systems. I chose freedom. Now I work for my clients and nobody else.",
-                "J'ai commencé ma carrière comme CIF (Conseil en Investissements Financiers) sous Euodia. J'ai quitté parce que l'affiliation tue l'indépendance. Des gens formidables — mais le modèle est construit autour de la vente de produits, pas de la construction de systèmes. J'ai choisi la liberté. Maintenant je travaille pour mes clients et personne d'autre."
-              )}
-            </p>
-            <p style={{ color: "#9a9790", fontSize: 16, marginBottom: 0 }}>
-              {t(lang,
-                "My approach is structured, risk-managed, and diversified worldwide. I think in systems, not products. I manage risk the way it should be managed: simply.",
-                "Mon approche est structurée, gérée en risque et diversifiée mondialement. Je pense en systèmes, pas en produits. Je gère le risque comme il devrait l'être : simplement."
-              )}
-            </p>
+
+            <a
+              href="#faq"
+              style={{
+                display: "inline-flex", alignItems: "center", gap: 8,
+                padding: "10px 20px", background: "rgba(201,168,76,0.06)", border: "1px solid rgba(201,168,76,0.2)",
+                borderRadius: 8, color: "#c9a84c", fontSize: 13, fontWeight: 500,
+                textDecoration: "none", transition: "all 0.2s", marginBottom: 28,
+              }}
+            >
+              {t(lang, "Already have a bank or advisor? Read this \u2192", "Vous avez d\u00e9j\u00e0 une banque ou un conseiller ? Lisez ceci \u2192")}
+            </a>
+
+            {/* Philosophy quote */}
+            <div style={{
+              borderLeft: "3px solid rgba(201,168,76,0.4)",
+              paddingLeft: 20,
+              marginTop: 8,
+            }}>
+              <p style={{ color: "#e8e6e1", fontSize: 16, fontWeight: 500, fontStyle: "italic", lineHeight: 1.7, margin: 0 }}>
+                {t(lang,
+                  "\u201CI think in systems, not products. I manage risk the way it should be managed: simply.\u201D",
+                  "\u00AB Je pense en syst\u00e8mes, pas en produits. Je g\u00e8re le risque comme il devrait l'\u00eatre : simplement. \u00BB"
+                )}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Inspirations */}
+        <div style={{ marginTop: 48 }}>
+          <div style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase", color: "#5a5750", marginBottom: 20, textAlign: "center" }}>
+            {t(lang, "Inspired by", "Inspir\u00e9 par")}
+          </div>
+          <div style={{ display: "flex", justifyContent: "center", gap: isMobile ? 16 : 28, flexWrap: "wrap" }}>
+            {[
+              { name: "Charles Gave", initials: "CG" },
+              { name: "Didier Darcet", initials: "DD" },
+              { name: "Constant Elper", initials: "CE" },
+              { name: "Crypto Picsou", initials: "CP" },
+              { name: "Timoth\u00e9e Moiroux", initials: "TM" },
+            ].map((person) => (
+              <div key={person.name} style={{ textAlign: "center", width: isMobile ? 56 : 72 }}>
+                <div style={{
+                  width: isMobile ? 48 : 56, height: isMobile ? 48 : 56, borderRadius: "50%",
+                  background: "linear-gradient(135deg, rgba(201,168,76,0.15), #1a1a1a)",
+                  border: "1px solid rgba(201,168,76,0.2)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  margin: "0 auto 8px", fontSize: isMobile ? 13 : 15, fontWeight: 600,
+                  color: "#c9a84c", letterSpacing: "0.05em",
+                  overflow: "hidden",
+                }}>
+                  {person.initials}
+                </div>
+                <div style={{ fontSize: 10, color: "#9a9790", lineHeight: 1.3 }}>{person.name}</div>
+              </div>
+            ))}
           </div>
         </div>
       </Section>
@@ -785,11 +830,10 @@ export default function WealthPage() {
           {t(lang, "Private by design. Personal by nature.", "Privé par conception. Personnel par nature.")}
         </h2>
 
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(auto-fit, minmax(180px, 1fr))", gap: isMobile ? 12 : 20 }}>
-          <ValueCard icon={"\u2697"} title={t(lang, "Preserve wealth", "Préserver le patrimoine")} desc={t(lang, "Protect what you've built. Structure before speculation.", "Protéger ce que vous avez construit. La structure avant la spéculation.")} />
-          <ValueCard icon={"\u21E7"} title={t(lang, "Grow purchasing power", "Gagner en pouvoir d'achat")} desc={t(lang, "Beat inflation, compound quietly. Real wealth is measured in what you can do.", "Battre l'inflation, composer en silence. La vraie richesse se mesure à ce que vous pouvez faire.")} />
-          <ValueCard icon={"\u25C6"} title={t(lang, "Respect your identity", "Respecter votre identité")} desc={t(lang, "Your values, preferences, and privacy shape the architecture. Not the other way around.", "Vos valeurs, préférences et votre vie privée façonnent l'architecture. Pas l'inverse.")} />
-          <ValueCard icon={"\uD83D\uDD12"} title={t(lang, "Privacy & security", "Confidentialité & sécurité")} desc={t(lang, "Everything under NDA. No third parties, no platforms storing your data. Cybersecurity-certified engineer.", "Tout sous NDA. Pas de tiers, pas de plateforme stockant vos données. Ingénieur certifié en cybersécurité.")} />
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: isMobile ? 12 : 20 }}>
+          <ValueCard icon={"\u2697"} title={t(lang, "Preserve wealth", "Pr\u00e9server le patrimoine")} desc={t(lang, "Protect what you've built. Structure before speculation.", "Prot\u00e9ger ce que vous avez construit. La structure avant la sp\u00e9culation.")} />
+          <ValueCard icon={"\u21E7"} title={t(lang, "Grow purchasing power", "Gagner en pouvoir d'achat")} desc={t(lang, "Beat inflation, compound quietly. Real wealth is measured in what you can do.", "Battre l'inflation, composer en silence. La vraie richesse se mesure \u00e0 ce que vous pouvez faire.")} />
+          <ValueCard icon={"\u25C6"} title={t(lang, "Respect your identity", "Respecter votre identit\u00e9")} desc={t(lang, "Your values, your privacy, your rules. Everything under NDA. No third parties. Cybersecurity-certified.", "Vos valeurs, votre vie priv\u00e9e, vos r\u00e8gles. Tout sous NDA. Pas de tiers. Certifi\u00e9 en cybers\u00e9curit\u00e9.")} />
         </div>
 
         {/* Mid-page CTA */}
@@ -803,7 +847,7 @@ export default function WealthPage() {
       <hr style={{ maxWidth: 760, margin: "0 auto", border: "none", borderTop: "1px solid #222" }} />
 
       {/* OBJECTION HANDLING */}
-      <Section style={{ padding: isMobile ? "60px 16px" : "80px 24px", maxWidth: 760, margin: "0 auto" }}>
+      <Section id="faq" style={{ padding: isMobile ? "60px 16px" : "80px 24px", maxWidth: 760, margin: "0 auto" }}>
         <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16 }}>
           {t(lang, "Common questions", "Questions fréquentes")}
         </div>
