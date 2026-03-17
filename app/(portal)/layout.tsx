@@ -22,7 +22,7 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
 
   if (isLoading) {
     return (
-      <div style={{ minHeight: "100vh", background: "#0e0e0e", display: "flex", alignItems: "center", justifyContent: "center", color: "#5a5750" }}>
+      <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", color: "#5a5750" }}>
         Loading...
       </div>
     );
@@ -34,7 +34,7 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
   }
 
   return (
-    <div style={{ minHeight: "100vh", background: "#0e0e0e", color: "#e8e6e1" }}>
+    <div style={{ minHeight: "100vh", color: "#e8e6e1" }}>
       <nav style={{
         display: "flex", alignItems: "center", justifyContent: "space-between",
         padding: "12px 32px", borderBottom: "1px solid #222",

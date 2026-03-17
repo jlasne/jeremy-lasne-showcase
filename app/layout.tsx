@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
 import ConvexClientProvider from "@/components/providers/ConvexProvider";
+import { BGPattern } from "@/components/ui/bg-pattern";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
@@ -28,8 +29,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <body className={`${inter.className} relative`}>
+        <BGPattern variant="dots" mask="fade-edges" size={28} fill="rgba(201,168,76,0.07)" />
         <ConvexClientProvider>
           {children}
         </ConvexClientProvider>
