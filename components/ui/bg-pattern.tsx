@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn } from '@/lib/utils';
+
 type BGVariantType = 'dots' | 'diagonal-stripes' | 'grid' | 'horizontal-lines' | 'vertical-lines' | 'checkerboard';
 type BGMaskType =
 	| 'fade-center'
@@ -17,17 +17,19 @@ type BGPatternProps = React.ComponentProps<'div'> & {
 	size?: number;
 	fill?: string;
 };
-const maskClasses: Record<BGMaskType, string> = {
-	'fade-edges': '[mask-image:radial-gradient(ellipse_at_center,black,transparent)]',
-	'fade-center': '[mask-image:radial-gradient(ellipse_at_center,transparent,black)]',
-	'fade-top': '[mask-image:linear-gradient(to_bottom,transparent,black)]',
-	'fade-bottom': '[mask-image:linear-gradient(to_bottom,black,transparent)]',
-	'fade-left': '[mask-image:linear-gradient(to_right,transparent,black)]',
-	'fade-right': '[mask-image:linear-gradient(to_right,black,transparent)]',
-	'fade-x': '[mask-image:linear-gradient(to_right,transparent,black,transparent)]',
-	'fade-y': '[mask-image:linear-gradient(to_bottom,transparent,black,transparent)]',
-	none: '',
+
+const maskStyles: Record<BGMaskType, string | undefined> = {
+	'fade-edges': 'radial-gradient(ellipse at center, black, transparent)',
+	'fade-center': 'radial-gradient(ellipse at center, transparent, black)',
+	'fade-top': 'linear-gradient(to bottom, transparent, black)',
+	'fade-bottom': 'linear-gradient(to bottom, black, transparent)',
+	'fade-left': 'linear-gradient(to right, transparent, black)',
+	'fade-right': 'linear-gradient(to right, black, transparent)',
+	'fade-x': 'linear-gradient(to right, transparent, black, transparent)',
+	'fade-y': 'linear-gradient(to bottom, transparent, black, transparent)',
+	none: undefined,
 };
+
 function geBgImage(variant: BGVariantType, fill: string, size: number) {
 	switch (variant) {
 		case 'dots':
@@ -46,6 +48,7 @@ function geBgImage(variant: BGVariantType, fill: string, size: number) {
 			return undefined;
 	}
 }
+
 const BGPattern = ({
 	variant = 'grid',
 	mask = 'none',
@@ -57,12 +60,19 @@ const BGPattern = ({
 }: BGPatternProps) => {
 	const bgSize = `${size}px ${size}px`;
 	const backgroundImage = geBgImage(variant, fill, size);
+	const maskImage = maskStyles[mask];
 	return (
 		<div
-			className={cn('absolute inset-0 z-[-10] size-full', maskClasses[mask], className)}
 			style={{
+				position: 'fixed',
+				inset: 0,
+				width: '100%',
+				height: '100%',
+				zIndex: 0,
+				pointerEvents: 'none',
 				backgroundImage,
 				backgroundSize: bgSize,
+				...(maskImage ? { WebkitMaskImage: maskImage, maskImage } : {}),
 				...style,
 			}}
 			{...props}

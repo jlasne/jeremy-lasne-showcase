@@ -82,8 +82,13 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    @apply bg-background;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: transparent;
   }
 }
