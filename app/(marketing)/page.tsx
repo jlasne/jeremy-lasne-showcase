@@ -13,6 +13,8 @@ type Lang = "en" | "fr";
 
 const t = (lang: Lang, en: string, fr: string) => (lang === "en" ? en : fr);
 
+const BOOKING_URL = "https://calendar.google.com/calendar/appointments/schedules/AcZssZ0_MU-Gfx-g23X2gjFqYSVON8UCyGeX9sDcaT22Z2vFGw0bVL84M9gAz3S5K3bOUmZDP_C9Kmwc?gv=true";
+
 /* --- Language Picker Popup --- */
 const LangPopup = ({ onSelect }: { onSelect: (l: Lang) => void }) => (
   <motion.div
@@ -44,13 +46,12 @@ const LangPopup = ({ onSelect }: { onSelect: (l: Lang) => void }) => (
           <motion.button
             key={code}
             onClick={() => onSelect(code)}
-            whileHover={{ scale: 1.05, borderColor: "rgba(201,168,76,0.5)" }}
+            whileHover={{ scale: 1.06, borderColor: "rgba(201,168,76,0.4)" }}
             whileTap={{ scale: 0.97 }}
             style={{
-              padding: "14px 36px", background: "transparent",
-              border: "1px solid #333", borderRadius: 8,
-              color: "#e8e6e1", fontSize: 15, fontWeight: 500,
-              cursor: "pointer", fontFamily: "inherit", letterSpacing: "0.03em",
+              padding: "16px 36px", background: "#1a1a1a", border: "1px solid #2a2a2a",
+              borderRadius: 10, color: "#e8e6e1", fontSize: 15, fontWeight: 500,
+              cursor: "pointer", fontFamily: "inherit", letterSpacing: "0.04em",
               transition: "border-color 0.2s",
             }}
           >
@@ -62,7 +63,7 @@ const LangPopup = ({ onSelect }: { onSelect: (l: Lang) => void }) => (
   </motion.div>
 );
 
-/* --- FAQ Accordion Item --- */
+/* --- FAQ Item with expand/collapse --- */
 const FaqItem = ({ q, a, index }: { q: string; a: string; index: number }) => {
   const [open, setOpen] = useState(false);
   return (
@@ -73,20 +74,15 @@ const FaqItem = ({ q, a, index }: { q: string; a: string; index: number }) => {
       transition={{ duration: 0.4, delay: index * 0.08 }}
       onClick={() => setOpen(!open)}
       style={{
-        cursor: "pointer",
-        padding: "24px 28px",
-        background: open ? "rgba(201,168,76,0.06)" : "#1a1a1a",
-        border: `1px solid ${open ? "rgba(201,168,76,0.2)" : "#222"}`,
-        borderRadius: 12,
-        transition: "background 0.3s, border-color 0.3s",
+        padding: "16px 20px", background: "#1a1a1a", border: "1px solid #222",
+        borderRadius: 10, cursor: "pointer", transition: "border-color 0.2s",
       }}
     >
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 16 }}>
-        <div style={{ fontSize: 16, fontWeight: 600, color: "#e8e6e1" }}>{q}</div>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <div style={{ fontSize: 15, fontWeight: 600, color: "#e8e6e1" }}>{q}</div>
         <motion.span
           animate={{ rotate: open ? 45 : 0 }}
-          transition={{ duration: 0.2 }}
-          style={{ color: "#c9a84c", fontSize: 22, fontWeight: 300, flexShrink: 0, lineHeight: 1 }}
+          style={{ color: "#c9a84c", fontSize: 18, fontWeight: 300, flexShrink: 0, marginLeft: 16 }}
         >+</motion.span>
       </div>
       <AnimatePresence>
@@ -95,8 +91,7 @@ const FaqItem = ({ q, a, index }: { q: string; a: string; index: number }) => {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            style={{ overflow: "hidden" }}
+            transition={{ duration: 0.3 }}
           >
             <p style={{ color: "#9a9790", fontSize: 15, lineHeight: 1.7, margin: 0, paddingTop: 14 }}>{a}</p>
           </motion.div>
@@ -167,6 +162,8 @@ const Section = ({ children, style, className, id }: { children: React.ReactNode
 const CtaButton = ({ href, children }: { href: string; children: React.ReactNode }) => (
   <motion.a
     href={href}
+    target={href.startsWith("http") ? "_blank" : undefined}
+    rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
     whileHover={{ scale: 1.04, boxShadow: "0 8px 35px rgba(201,168,76,0.4)" }}
     whileTap={{ scale: 0.98 }}
     style={{
@@ -188,19 +185,29 @@ const CtaButton = ({ href, children }: { href: string; children: React.ReactNode
   </motion.a>
 );
 
-/* --- Price with launch offer --- */
-const LaunchPrice = ({ full, offer, lang }: { full: string; offer: string; lang: Lang }) => (
-  <span style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
-    <span style={{ fontSize: 14, color: "#5a5750", textDecoration: "line-through", fontWeight: 400 }}>{full}</span>
-    <span style={{ fontSize: 17, fontWeight: 700, color: "#c9a84c" }}>{offer}</span>
-    <span style={{
-      fontSize: 9, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase",
-      padding: "3px 8px", background: "rgba(201,168,76,0.15)", border: "1px solid rgba(201,168,76,0.3)",
-      borderRadius: 4, color: "#c9a84c", whiteSpace: "nowrap",
-    }}>
-      {t(lang, "First 10 clients", "10 premiers clients")}
-    </span>
-  </span>
+/* --- Secondary CTA --- */
+const SecondaryCtaButton = ({ href, children }: { href: string; children: React.ReactNode }) => (
+  <motion.a
+    href={href}
+    target={href.startsWith("http") ? "_blank" : undefined}
+    rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+    whileHover={{ borderColor: "rgba(201,168,76,0.5)", background: "rgba(201,168,76,0.08)" }}
+    style={{
+      display: "inline-block",
+      padding: "12px 28px",
+      background: "transparent",
+      border: "1px solid rgba(201,168,76,0.25)",
+      color: "#c9a84c",
+      textDecoration: "none",
+      borderRadius: 8,
+      fontSize: 13,
+      fontWeight: 500,
+      letterSpacing: "0.03em",
+      transition: "all 0.2s",
+    }}
+  >
+    {children}
+  </motion.a>
 );
 
 /* --- Animated Counter --- */
@@ -406,7 +413,9 @@ export default function WealthPage() {
             }}>FR</button>
           </div>
           <motion.a
-            href="#book"
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{ borderColor: "rgba(201,168,76,0.5)", background: "rgba(201,168,76,0.08)" }}
             style={{
               padding: "8px 22px", background: "transparent", border: "1px solid rgba(201,168,76,0.2)",
@@ -479,7 +488,7 @@ export default function WealthPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.9 }}
         >
-          <CtaButton href="#book">
+          <CtaButton href={BOOKING_URL}>
             {t(lang, "Book your discovery call", "R\u00E9servez votre appel d\u00E9couverte")}
           </CtaButton>
         </motion.div>
@@ -512,18 +521,18 @@ export default function WealthPage() {
 
       <div style={{ width: 60, height: 1, background: "rgba(201,168,76,0.2)", margin: "0 auto" }} />
 
-      {/* METHODOLOGY - text only, no blueprint */}
-      <Section style={{ padding: "100px 24px", maxWidth: 960, margin: "0 auto", textAlign: "center" }}>
-        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16 }}>
-          {t(lang, "The methodology", "La m\u00E9thodologie")}
+      {/* THE ENGAGEMENT — merged "L'accompagnement" + "Comment ça marche" */}
+      <Section style={{ padding: "80px 24px", maxWidth: 860, margin: "0 auto" }}>
+        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16, textAlign: "center" }}>
+          {t(lang, "The engagement", "L\u2019accompagnement")}
         </div>
-        <h2 style={{ fontSize: 28, fontWeight: 600, marginBottom: 16 }}>
-          {t(lang, "A complete system. Not a spreadsheet.", "Un syst\u00E8me complet. Pas un tableur.")}
+        <h2 style={{ fontSize: 28, fontWeight: 600, marginBottom: 8, textAlign: "center" }}>
+          {t(lang, "From scattered to structured. Your rhythm, my expertise.", "Du d\u00E9sordre \u00E0 la structure. Votre rythme, mon expertise.")}
         </h2>
-        <p style={{ color: "#9a9790", fontSize: 16, maxWidth: 560, margin: "0 auto 48px" }}>
+        <p style={{ color: "#9a9790", fontSize: 16, marginBottom: 48, textAlign: "center", maxWidth: 640, marginLeft: "auto", marginRight: "auto" }}>
           {t(lang,
-            "Every client gets a personalized wealth flow schema. A living blueprint that maps every euro from income to investment to protection. This isn\u2019t a pie chart. It\u2019s the operating system of your wealth.",
-            "Chaque client re\u00E7oit un sch\u00E9ma de flux patrimonial personnalis\u00E9. Un blueprint vivant qui cartographie chaque euro du revenu \u00E0 l\u2019investissement \u00E0 la protection. Ce n\u2019est pas un camembert. C\u2019est le syst\u00E8me d\u2019exploitation de votre patrimoine."
+            "This isn\u2019t a one-off consultation. It\u2019s a year-long engagement designed to build, implement, and refine your wealth architecture.",
+            "Ce n\u2019est pas une consultation ponctuelle. C\u2019est un accompagnement d\u2019un an con\u00E7u pour construire, mettre en \u0153uvre et affiner votre architecture patrimoniale."
           )}
         </p>
 
@@ -531,7 +540,7 @@ export default function WealthPage() {
         <div style={{
           display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: 8,
           background: "#161616", border: "1px solid #2a2a2a", borderRadius: 16, padding: "32px 16px",
-          position: "relative", overflow: "hidden",
+          position: "relative", overflow: "hidden", marginBottom: 40,
         }}>
           <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, rgba(201,168,76,0.2), transparent)" }} />
           <AnimatedStat value="<6" suffix="h" label={t(lang, "of sessions per year", "de sessions par an")} />
@@ -539,20 +548,9 @@ export default function WealthPage() {
           <AnimatedStat value="4" label={t(lang, "quarterly reviews", "revues trimestrielles")} />
           <AnimatedStat value="0" suffix="%" label={t(lang, "commission on products", "de commission sur les produits")} />
         </div>
-      </Section>
 
-      <div style={{ width: 60, height: 1, background: "rgba(201,168,76,0.2)", margin: "0 auto" }} />
-
-      {/* HOW IT WORKS - visual process */}
-      <Section style={{ padding: "80px 24px", maxWidth: 860, margin: "0 auto" }}>
-        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16, textAlign: "center" }}>
-          {t(lang, "How it works", "Comment \u00E7a marche")}
-        </div>
-        <h2 style={{ fontSize: 28, fontWeight: 600, marginBottom: 48, textAlign: "center" }}>
-          {t(lang, "From scattered to structured", "Du d\u00E9sordre \u00E0 la structure")}
-        </h2>
-
-        <div style={{ position: "relative" }}>
+        {/* Process steps as timeline */}
+        <div style={{ position: "relative", marginBottom: 48 }}>
           {/* Vertical line */}
           <div style={{
             position: "absolute", left: 24, top: 0, bottom: 0, width: 1,
@@ -562,39 +560,43 @@ export default function WealthPage() {
           {[
             {
               step: "01",
-              title: t(lang, "We talk", "On \u00E9change"),
+              title: t(lang, "Discovery call", "Appel d\u00E9couverte"),
               desc: t(lang,
-                "30-min discovery call. I show you my own system running on my capital. You tell me your situation. We both decide if there\u2019s a fit.",
-                "Appel d\u00E9couverte de 30 min. Je vous montre mon syst\u00E8me qui tourne sur mon capital. Vous me parlez de votre situation. On d\u00E9cide ensemble."
+                "30-min free call. I show you my own system running on my capital. You tell me your situation. We both decide if there\u2019s a fit. No commitment.",
+                "Appel gratuit de 30 min. Je vous montre mon propre syst\u00E8me qui tourne sur mon capital. Vous me parlez de votre situation. On d\u00E9cide ensemble. Sans engagement."
               ),
               icon: "\u260E",
+              badge: t(lang, "Free", "Gratuit"),
             },
             {
               step: "02",
-              title: t(lang, "I map everything", "Je cartographie tout"),
+              title: t(lang, "Wealth Architecture Audit", "Audit d\u2019Architecture Patrimoniale"),
               desc: t(lang,
-                "Deep intake session. I map your entire financial life \u2014 income, assets, structures, flows, goals. Nothing left in the dark.",
-                "Session d\u2019intake approfondie. Je cartographie toute votre vie financi\u00E8re \u2014 revenus, actifs, structures, flux, objectifs. Rien n\u2019est laiss\u00E9 dans l\u2019ombre."
+                "Deep intake session (1h30). I map your entire financial life. You receive a personalized wealth blueprint with 5\u201310 structural moves ordered by impact. Delivered in a private walkthrough session (1h).",
+                "Session d\u2019intake approfondie (1h30). Je cartographie toute votre vie financi\u00E8re. Vous recevez un blueprint patrimonial personnalis\u00E9 avec 5 \u00E0 10 actions structurelles class\u00E9es par impact. Livr\u00E9 lors d\u2019une session de restitution priv\u00E9e (1h)."
               ),
               icon: "\u2727",
+              badge: null,
             },
             {
               step: "03",
-              title: t(lang, "You get your blueprint", "Vous recevez votre blueprint"),
+              title: t(lang, "Quarterly Reviews", "Revues Trimestrielles"),
               desc: t(lang,
-                "A personalized wealth architecture. Visual. Actionable. 5 to 10 structural moves ordered by impact. Your roadmap for the year.",
-                "Une architecture patrimoniale personnalis\u00E9e. Visuelle. Actionnable. 5 \u00E0 10 actions structurelles class\u00E9es par impact. Votre feuille de route."
+                "45-min private session each quarter. We update your schema, track execution, adjust priorities. I bring macro context \u2014 where we are in the cycle and what it means for your architecture.",
+                "Session priv\u00E9e de 45 min chaque trimestre. On met \u00E0 jour votre sch\u00E9ma, on suit l\u2019ex\u00E9cution, on ajuste les priorit\u00E9s. J\u2019apporte le contexte macro \u2014 o\u00F9 on en est dans le cycle et ce que \u00E7a signifie pour votre architecture."
               ),
-              icon: "\u25A0",
+              icon: "\u21BB",
+              badge: null,
             },
             {
               step: "04",
-              title: t(lang, "We refine together", "On affine ensemble"),
+              title: t(lang, "Direct contact + Newsletter", "Contact direct + Newsletter"),
               desc: t(lang,
-                "Every quarter we review, adjust, and evolve your system. I bring macro context. You stay in control.",
-                "Chaque trimestre on r\u00E9vise, ajuste et fait \u00E9voluer votre syst\u00E8me. J\u2019apporte le contexte macro. Vous gardez le contr\u00F4le."
+                "You have direct access to me between sessions. No assistant, no ticketing system. Plus a private client newsletter a few times per month \u2014 macro updates, cycle positioning, and what it means for your architecture.",
+                "Vous avez un acc\u00E8s direct \u00E0 moi entre les sessions. Pas d\u2019assistant, pas de syst\u00E8me de tickets. Plus une newsletter client priv\u00E9e quelques fois par mois \u2014 mises \u00E0 jour macro, positionnement de cycle, et ce que \u00E7a signifie pour votre architecture."
               ),
-              icon: "\u21BB",
+              icon: "\u2709",
+              badge: t(lang, "Included", "Inclus"),
             },
           ].map((item, i) => (
             <motion.div
@@ -620,8 +622,19 @@ export default function WealthPage() {
                 {item.icon}
               </motion.div>
               <div>
-                <div style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.1em", color: "#c9a84c", marginBottom: 4, textTransform: "uppercase" }}>
-                  {t(lang, "Step", "\u00C9tape")} {item.step}
+                <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 4 }}>
+                  <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.1em", color: "#c9a84c", textTransform: "uppercase" }}>
+                    {t(lang, "Step", "\u00C9tape")} {item.step}
+                  </span>
+                  {item.badge && (
+                    <span style={{
+                      fontSize: 9, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase",
+                      padding: "2px 8px", background: "rgba(201,168,76,0.15)", border: "1px solid rgba(201,168,76,0.3)",
+                      borderRadius: 4, color: "#c9a84c",
+                    }}>
+                      {item.badge}
+                    </span>
+                  )}
                 </div>
                 <div style={{ fontSize: 17, fontWeight: 600, marginBottom: 6, color: "#e8e6e1" }}>{item.title}</div>
                 <div style={{ fontSize: 14, color: "#9a9790", lineHeight: 1.7 }}>{item.desc}</div>
@@ -629,44 +642,133 @@ export default function WealthPage() {
             </motion.div>
           ))}
         </div>
+
+        <p style={{ color: "#9a9790", fontSize: 14, textAlign: "center", fontStyle: "italic", marginBottom: 28 }}>
+          {t(lang,
+            "Pricing is discussed during the discovery call \u2014 it depends on your situation and the scope of work.",
+            "Les tarifs sont discut\u00E9s lors de l\u2019appel d\u00E9couverte \u2014 ils d\u00E9pendent de votre situation et du p\u00E9rim\u00E8tre."
+          )}
+        </p>
+
+        <div style={{ textAlign: "center" }}>
+          <CtaButton href={BOOKING_URL}>
+            {t(lang, "Book your free discovery call", "R\u00E9servez votre appel d\u00E9couverte gratuit")}
+          </CtaButton>
+        </div>
       </Section>
 
       <div style={{ width: 60, height: 1, background: "rgba(201,168,76,0.2)", margin: "0 auto" }} />
 
-      {/* WHO I AM */}
-      <Section style={{ padding: "80px 24px", maxWidth: 760, margin: "0 auto" }}>
-        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16 }}>
+      {/* THE ARCHITECT — merged with "Indépendance" + profile pic + LinkedIn */}
+      <Section style={{ padding: "80px 24px", maxWidth: 860, margin: "0 auto" }}>
+        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16, textAlign: "center" }}>
           {t(lang, "The architect", "L\u2019architecte")}
         </div>
-        <h2 style={{ fontSize: 28, fontWeight: 600, marginBottom: 20 }}>
+        <h2 style={{ fontSize: 28, fontWeight: 600, marginBottom: 32, textAlign: "center" }}>
           {t(lang, "I\u2019m not a salesman. I\u2019m an investor who designs systems.", "Je ne suis pas un vendeur. Je suis un investisseur qui con\u00E7oit des syst\u00E8mes.")}
         </h2>
-        <p style={{ color: "#9a9790", fontSize: 16, marginBottom: 16 }}>
-          {t(lang,
-            "I\u2019ve been deep in this world since 2017. I\u2019m strongly inspired by Charles Gave \u2014 I\u2019ve met him several times and built my entire macro framework around his work and Didier Darcet\u2019s econophysics. I worked private equity with Constant Helper. I run crypto and blockchain strategies myself.",
-            "Je suis plong\u00E9 dans cet univers depuis 2017. Je suis profond\u00E9ment inspir\u00E9 par Charles Gave \u2014 je l\u2019ai rencontr\u00E9 plusieurs fois et j\u2019ai construit tout mon cadre macro autour de son travail et de l\u2019\u00E9cono-physique de Didier Darcet. J\u2019ai travaill\u00E9 en private equity avec Constant Helper. Je g\u00E8re moi-m\u00EAme des strat\u00E9gies crypto et blockchain."
-          )}
-        </p>
-        <p style={{ color: "#9a9790", fontSize: 16, marginBottom: 16 }}>
-          {t(lang,
-            "I started my career as a CIF (Conseil en Investissements Financiers) under Euodia. I left because affiliation kills independence. Great people \u2014 but the model is built around selling products, not building systems. I chose freedom. Now I work for my clients and nobody else.",
-            "J\u2019ai commenc\u00E9 ma carri\u00E8re comme CIF (Conseil en Investissements Financiers) sous Euodia. J\u2019ai quitt\u00E9 parce que l\u2019affiliation tue l\u2019ind\u00E9pendance. Des gens formidables \u2014 mais le mod\u00E8le est construit autour de la vente de produits, pas de la construction de syst\u00E8mes. J\u2019ai choisi la libert\u00E9. Maintenant je travaille pour mes clients et personne d\u2019autre."
-          )}
-        </p>
-        <p style={{ color: "#9a9790", fontSize: 16 }}>
-          {t(lang,
-            "My approach is structured, risk-managed, and diversified worldwide. I think in systems, not products. I manage risk the way it should be managed: simply.",
-            "Mon approche est structur\u00E9e, g\u00E9r\u00E9e en risque et diversifi\u00E9e mondialement. Je pense en syst\u00E8mes, pas en produits. Je g\u00E8re le risque comme il devrait l\u2019\u00EAtre : simplement."
-          )}
-        </p>
+
+        <div style={{ display: "grid", gridTemplateColumns: "200px 1fr", gap: 40, alignItems: "start" }}>
+          {/* Profile card */}
+          <div style={{ textAlign: "center" }}>
+            <div style={{
+              width: 160, height: 160, borderRadius: "50%", overflow: "hidden",
+              border: "3px solid rgba(201,168,76,0.3)", margin: "0 auto 16px",
+              background: "linear-gradient(135deg, #c9a84c22, #1a1a1a)",
+            }}>
+              <img
+                src={jlLogo}
+                alt="Jeremy Lasne"
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            </div>
+            <div style={{ fontSize: 16, fontWeight: 600, color: "#e8e6e1", marginBottom: 4 }}>Jeremy Lasne</div>
+            <div style={{ fontSize: 12, color: "#9a9790", marginBottom: 12 }}>{t(lang, "Wealth Architect", "Architecte Patrimonial")}</div>
+            <a
+              href="https://www.linkedin.com/in/j%C3%A9r%C3%A9my-lasne-88148b223/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-flex", alignItems: "center", gap: 6,
+                padding: "8px 16px", background: "rgba(10,102,194,0.1)", border: "1px solid rgba(10,102,194,0.3)",
+                borderRadius: 6, color: "#0a66c2", fontSize: 12, fontWeight: 500,
+                textDecoration: "none", transition: "all 0.2s",
+              }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+              LinkedIn
+            </a>
+          </div>
+
+          {/* Bio text */}
+          <div>
+            <p style={{ color: "#9a9790", fontSize: 16, marginBottom: 16 }}>
+              {t(lang,
+                "I\u2019ve been deep in this world since 2017. I\u2019m strongly inspired by Charles Gave \u2014 I\u2019ve met him several times and built my entire macro framework around his work and Didier Darcet\u2019s econophysics. I worked private equity with Constant Helper. I run crypto and blockchain strategies myself.",
+                "Je suis plong\u00E9 dans cet univers depuis 2017. Je suis profond\u00E9ment inspir\u00E9 par Charles Gave \u2014 je l\u2019ai rencontr\u00E9 plusieurs fois et j\u2019ai construit tout mon cadre macro autour de son travail et de l\u2019\u00E9cono-physique de Didier Darcet. J\u2019ai travaill\u00E9 en private equity avec Constant Helper. Je g\u00E8re moi-m\u00EAme des strat\u00E9gies crypto et blockchain."
+              )}
+            </p>
+            <p style={{ color: "#9a9790", fontSize: 16, marginBottom: 16 }}>
+              {t(lang,
+                "I started my career as a CIF (Conseil en Investissements Financiers) under Euodia. I left because affiliation kills independence. Great people \u2014 but the model is built around selling products, not building systems. I chose freedom. Now I work for my clients and nobody else.",
+                "J\u2019ai commenc\u00E9 ma carri\u00E8re comme CIF (Conseil en Investissements Financiers) sous Euodia. J\u2019ai quitt\u00E9 parce que l\u2019affiliation tue l\u2019ind\u00E9pendance. Des gens formidables \u2014 mais le mod\u00E8le est construit autour de la vente de produits, pas de la construction de syst\u00E8mes. J\u2019ai choisi la libert\u00E9. Maintenant je travaille pour mes clients et personne d\u2019autre."
+              )}
+            </p>
+            <p style={{ color: "#9a9790", fontSize: 16, marginBottom: 0 }}>
+              {t(lang,
+                "My approach is structured, risk-managed, and diversified worldwide. I think in systems, not products. I manage risk the way it should be managed: simply.",
+                "Mon approche est structur\u00E9e, g\u00E9r\u00E9e en risque et diversifi\u00E9e mondialement. Je pense en syst\u00E8mes, pas en produits. Je g\u00E8re le risque comme il devrait l\u2019\u00EAtre : simplement."
+              )}
+            </p>
+
+            {/* Independence comparison - compact */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginTop: 28 }}>
+              <div style={{ background: "#161616", border: "1px solid #2a2a2a", borderRadius: 10, padding: "20px 18px" }}>
+                <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "#5a5750", marginBottom: 14 }}>
+                  {t(lang, "Typical advisors", "Conseillers classiques")}
+                </div>
+                {[
+                  t(lang, "Earn commissions on products", "Commissions sur les produits"),
+                  t(lang, "Affiliated to banks", "Affili\u00E9s aux banques"),
+                  t(lang, "Manage your money for a %", "G\u00E8rent votre argent contre %"),
+                  t(lang, "Interests aligned with sellers", "Int\u00E9r\u00EAts align\u00E9s vendeurs"),
+                ].map((item, i) => (
+                  <div key={i} style={{ display: "flex", gap: 8, padding: "4px 0", fontSize: 13, color: "#9a9790" }}>
+                    <span style={{ color: "#5a5750", flexShrink: 0 }}>{"\u2717"}</span>
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+              <div style={{ background: "rgba(201,168,76,0.05)", border: "1px solid rgba(201,168,76,0.2)", borderRadius: 10, padding: "20px 18px", position: "relative", overflow: "hidden" }}>
+                <div style={{ position: "absolute", top: 0, left: 16, right: 16, height: 1, background: "linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent)" }} />
+                <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 14 }}>
+                  {t(lang, "My model", "Mon mod\u00E8le")}
+                </div>
+                {[
+                  t(lang, "Zero commissions. Ever.", "Z\u00E9ro commission. Jamais."),
+                  t(lang, "Zero affiliations.", "Z\u00E9ro affiliation."),
+                  t(lang, "Zero % on your capital.", "Z\u00E9ro % sur votre capital."),
+                  t(lang, "Interests aligned with yours.", "Int\u00E9r\u00EAts align\u00E9s avec vous."),
+                ].map((item, i) => (
+                  <div key={i} style={{ display: "flex", gap: 8, padding: "4px 0", fontSize: 13, color: "#e8e6e1" }}>
+                    <span style={{ color: "#c9a84c", flexShrink: 0 }}>{"\u2713"}</span>
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
       </Section>
 
       <div style={{ width: 60, height: 1, background: "rgba(201,168,76,0.2)", margin: "0 auto" }} />
 
-      {/* TRACK RECORD & CREDENTIALS — compact */}
+      {/* TRACK RECORD & CREDENTIALS — 2025 */}
       <Section style={{ padding: "60px 24px", maxWidth: 960, margin: "0 auto" }}>
         <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 12, textAlign: "center" }}>
-          {t(lang, "Track record & Credentials", "R\u00E9sultats & Certifications")}
+          {t(lang, "2025 Results & Credentials", "R\u00E9sultats 2025 & Certifications")}
         </div>
         <h2 style={{ fontSize: 24, fontWeight: 600, marginBottom: 32, textAlign: "center" }}>
           {t(lang, "Understand the world economy. See my results.", "Comprendre l\u2019\u00E9conomie mondiale. Voir mes r\u00E9sultats.")}
@@ -675,6 +777,9 @@ export default function WealthPage() {
         {/* Performance bars — inline compact */}
         <div style={{ background: "#161616", border: "1px solid #2a2a2a", borderRadius: 14, padding: "24px", marginBottom: 20, position: "relative", overflow: "hidden" }}>
           <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent)" }} />
+          <div style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "#5a5750", marginBottom: 16, textAlign: "center" }}>
+            {t(lang, "Year-to-date performance \u2014 2025", "Performance depuis le d\u00E9but d\u2019ann\u00E9e \u2014 2025")}
+          </div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 20 }}>
             <PerformanceBar label={t(lang, "My Portfolio", "Mon Portfolio")} value={32} color="#c9a84c" maxVal={35} delay={0} />
             <PerformanceBar label={t(lang, "S&P 500 (USA)", "S&P 500 (USA)")} value={18} color="#4a90d9" maxVal={35} delay={0.12} />
@@ -725,7 +830,7 @@ export default function WealthPage() {
               <div style={{ fontSize: 12, fontWeight: 600, color: "#e8e6e1", marginBottom: 2 }}>
                 {t(lang, "CIF Formation \u2014 150h", "Formation CIF \u2014 150h")}
               </div>
-              <div style={{ fontSize: 10, color: "#5a5750" }}>Yooper / Orica \u00B7 2024</div>
+              <div style={{ fontSize: 10, color: "#5a5750" }}>Yooper / Orica {"\u00B7"} 2024</div>
             </div>
           </motion.div>
         </div>
@@ -735,7 +840,7 @@ export default function WealthPage() {
           {[
             { icon: "\uD83C\uDF93", label: t(lang, "Master\u2019s in Engineering", "Master Ing\u00E9nieur"), sub: t(lang, "IT, Blockchain & Finance", "IT, Blockchain & Finance") },
             { icon: "\u2713", label: t(lang, "AMF Certified", "Certifi\u00E9 AMF"), sub: "94/100 & 98/100" },
-            { icon: "\u2713", label: t(lang, "CIF Trained", "Form\u00E9 CIF"), sub: "150h \u00B7 Orica 2024" },
+            { icon: "\u2713", label: t(lang, "CIF Trained", "Form\u00E9 CIF"), sub: "150h {\"\\u00B7\"} Orica 2024" },
           ].map((badge) => (
             <div key={badge.label} style={{
               display: "flex", alignItems: "center", gap: 10, padding: "10px 16px",
@@ -779,93 +884,12 @@ export default function WealthPage() {
           <ValueCard icon={"\u21E7"} title={t(lang, "Grow purchasing power", "Gagner en pouvoir d\u2019achat")} desc={t(lang, "Beat inflation, compound quietly. Real wealth is measured in what you can do.", "Battre l\u2019inflation, composer en silence. La vraie richesse se mesure \u00E0 ce que vous pouvez faire.")} />
           <ValueCard icon={"\u25C6"} title={t(lang, "Respect your identity", "Respecter votre identit\u00E9")} desc={t(lang, "Your values, preferences, and privacy shape the architecture. Not the other way around.", "Vos valeurs, pr\u00E9f\u00E9rences et votre vie priv\u00E9e fa\u00E7onnent l\u2019architecture. Pas l\u2019inverse.")} />
         </div>
-      </Section>
 
-      <hr style={{ maxWidth: 760, margin: "0 auto", border: "none", borderTop: "1px solid #222" }} />
-
-      {/* THE ENGAGEMENT */}
-      <Section style={{ padding: "80px 24px", maxWidth: 760, margin: "0 auto" }}>
-        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16 }}>
-          {t(lang, "The engagement", "L\u2019accompagnement")}
-        </div>
-        <h2 style={{ fontSize: 28, fontWeight: 600, marginBottom: 8 }}>
-          {t(lang, "Your rhythm. My expertise.", "Votre rythme. Mon expertise.")}
-        </h2>
-        <p style={{ color: "#9a9790", fontSize: 16, marginBottom: 36 }}>
-          {t(lang,
-            "This isn\u2019t a one-off consultation. It\u2019s a year-long engagement designed to build, implement, and refine your wealth architecture.",
-            "Ce n\u2019est pas une consultation ponctuelle. C\u2019est un accompagnement d\u2019un an con\u00E7u pour construire, mettre en \u0153uvre et affiner votre architecture patrimoniale."
-          )}
-        </p>
-
-        <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-          {/* Phase 01 */}
-          <EngagementCard>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 10, flexWrap: "wrap", gap: 8 }}>
-              <div><span style={{ fontSize: 11, fontWeight: 600, color: "#c9a84c", letterSpacing: "0.06em", marginRight: 8 }}>01</span><span style={{ fontSize: 17, fontWeight: 600 }}>{t(lang, "Discovery call", "Appel d\u00E9couverte")}</span></div>
-              <span style={{ fontSize: 13, color: "#5a5750" }}>{t(lang, "30 min \u00B7 Free", "30 min \u00B7 Gratuit")}</span>
-            </div>
-            <div style={{ color: "#9a9790", fontSize: 14, lineHeight: 1.75 }}>
-              {t(lang, "I tell you who I am and show you my own system running on my own capital. You tell me about your situation. We both decide if there\u2019s a fit. No commitment \u2014 I\u2019ll be honest if I can\u2019t help.", "Je vous dis qui je suis et vous montre mon propre syst\u00E8me qui tourne sur mon capital. Vous me parlez de votre situation. On d\u00E9cide ensemble s\u2019il y a un fit. Sans engagement \u2014 je serai honn\u00EAte si je ne peux pas vous aider.")}
-            </div>
-          </EngagementCard>
-
-          {/* Phase 02 - Featured */}
-          <EngagementCard featured>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 10, flexWrap: "wrap", gap: 8 }}>
-              <div><span style={{ fontSize: 11, fontWeight: 600, color: "#c9a84c", letterSpacing: "0.06em", marginRight: 8 }}>02</span><span style={{ fontSize: 17, fontWeight: 600 }}>{t(lang, "Wealth Architecture Audit", "Audit d\u2019Architecture Patrimoniale")}</span></div>
-              <LaunchPrice
-                full={t(lang, "\u20AC2,500", "2 500 \u20AC")}
-                offer={t(lang, "\u20AC1,500", "1 500 \u20AC")}
-                lang={lang}
-              />
-            </div>
-            <div style={{ color: "#9a9790", fontSize: 14, lineHeight: 1.75 }}>
-              {t(lang, "Your full personalized wealth blueprint. Delivered in two weeks.", "Votre blueprint patrimonial complet et personnalis\u00E9. Livr\u00E9 en deux semaines.")}
-              <ul style={{ listStyle: "none", padding: 0, marginTop: 10 }}>
-                {[
-                  t(lang, "Deep intake session (1h30). Full cartography of your financial life.", "Session d\u2019intake approfondie (1h30). Cartographie compl\u00E8te de votre vie financi\u00E8re."),
-                  t(lang, "Custom wealth flow schema designed around your situation.", "Sch\u00E9ma de flux patrimonial sur mesure con\u00E7u autour de votre situation."),
-                  t(lang, "Visual blueprint + roadmap of 5 to 10 structural moves, ordered by impact.", "Blueprint visuel + feuille de route de 5 \u00E0 10 actions structurelles, class\u00E9es par impact."),
-                  t(lang, "Delivery session (1h). Private walkthrough of your architecture.", "Session de restitution (1h). Pr\u00E9sentation priv\u00E9e de votre architecture."),
-                ].map((item, i) => (
-                  <li key={i} style={{ padding: "5px 0 5px 22px", position: "relative" }}>
-                    <span style={{ position: "absolute", left: 0, color: "#c9a84c" }}>{"\u2192"}</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </EngagementCard>
-
-          {/* Phase 03 */}
-          <EngagementCard>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 10, flexWrap: "wrap", gap: 8 }}>
-              <div><span style={{ fontSize: 11, fontWeight: 600, color: "#c9a84c", letterSpacing: "0.06em", marginRight: 8 }}>03</span><span style={{ fontSize: 17, fontWeight: 600 }}>{t(lang, "Quarterly Reviews", "Revues Trimestrielles")}</span></div>
-              <LaunchPrice
-                full={t(lang, "\u20AC500 / quarter", "500 \u20AC / trimestre")}
-                offer={t(lang, "\u20AC300 / quarter", "300 \u20AC / trimestre")}
-                lang={lang}
-              />
-            </div>
-            <div style={{ color: "#9a9790", fontSize: 14, lineHeight: 1.75 }}>
-              {t(lang, "45-min private session each quarter. We update your schema, track execution, adjust priorities. I bring macro context \u2014 where we are in the cycle and what it means for your architecture.", "Session priv\u00E9e de 45 min chaque trimestre. On met \u00E0 jour votre sch\u00E9ma, on suit l\u2019ex\u00E9cution, on ajuste les priorit\u00E9s. J\u2019apporte le contexte macro \u2014 o\u00F9 on en est dans le cycle et ce que \u00E7a signifie pour votre architecture.")}
-            </div>
-          </EngagementCard>
-
-          {/* Phase 04 */}
-          <EngagementCard>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 10, flexWrap: "wrap", gap: 8 }}>
-              <div><span style={{ fontSize: 11, fontWeight: 600, color: "#c9a84c", letterSpacing: "0.06em", marginRight: 8 }}>04</span><span style={{ fontSize: 17, fontWeight: 600 }}>{t(lang, "Direct contact + Newsletter", "Contact direct + Newsletter")}</span></div>
-              <span style={{ fontSize: 13, color: "#5a5750" }}>{t(lang, "Included for all active clients", "Inclus pour tous les clients actifs")}</span>
-            </div>
-            <div style={{ color: "#9a9790", fontSize: 14, lineHeight: 1.75 }}>
-              {t(lang,
-                "You have direct access to me between sessions. No assistant, no ticketing system. You message me, I respond personally. Plus a private client newsletter a few times per month \u2014 macro updates, cycle positioning, and what it means for your architecture. So you always know what\u2019s going on.",
-                "Vous avez un acc\u00E8s direct \u00E0 moi entre les sessions. Pas d\u2019assistant, pas de syst\u00E8me de tickets. Vous m\u2019\u00E9crivez, je r\u00E9ponds personnellement. Plus une newsletter client priv\u00E9e quelques fois par mois \u2014 mises \u00E0 jour macro, positionnement de cycle, et ce que \u00E7a signifie pour votre architecture. Pour que vous sachiez toujours ce qui se passe."
-              )}
-            </div>
-          </EngagementCard>
+        {/* Mid-page CTA */}
+        <div style={{ textAlign: "center", marginTop: 48 }}>
+          <SecondaryCtaButton href={BOOKING_URL}>
+            {t(lang, "Let\u2019s talk about your situation", "Parlons de votre situation")}
+          </SecondaryCtaButton>
         </div>
       </Section>
 
@@ -906,109 +930,21 @@ export default function WealthPage() {
             {
               q: t(lang, "\u201CThat\u2019s expensive for advice.\u201D", "\u00AB C\u2019est cher pour du conseil. \u00BB"),
               a: t(lang,
-                "The cost of missed opportunities and uninformed moves is far higher. Money sitting idle, a tax wrapper you didn\u2019t know about, borrowing power you\u2019re not using. The majority of even aware investors end up losing money by following trends and making emotional decisions. One structural adjustment typically saves more than the entire engagement in a single year. This isn\u2019t an expense \u2014 it\u2019s the highest-leverage investment you\u2019ll make.",
-                "Le co\u00FBt des opportunit\u00E9s manqu\u00E9es et des d\u00E9cisions non \u00E9clair\u00E9es est bien plus \u00E9lev\u00E9. De l\u2019argent qui dort, une enveloppe fiscale que vous ne connaissiez pas, un pouvoir d\u2019emprunt que vous n\u2019utilisez pas. La majorit\u00E9 des investisseurs, m\u00EAme avertis, finissent par perdre de l\u2019argent en suivant les tendances et en prenant des d\u00E9cisions \u00E9motionnelles. Un seul ajustement structurel \u00E9conomise g\u00E9n\u00E9ralement plus que tout l\u2019accompagnement en une seule ann\u00E9e. Ce n\u2019est pas une d\u00E9pense \u2014 c\u2019est l\u2019investissement le plus levier que vous ferez."
+                "That\u2019s why we talk first. The discovery call is free, and I\u2019ll be transparent about pricing during it. But consider this: the cost of missed opportunities and uninformed decisions is far higher. Money sitting idle, a tax wrapper you didn\u2019t know about, borrowing power you\u2019re not using. The majority of even aware investors end up losing money by following trends and making emotional decisions. One structural adjustment typically saves more than the entire engagement. This isn\u2019t an expense \u2014 it\u2019s the highest-leverage investment you\u2019ll make.",
+                "C\u2019est pour \u00E7a qu\u2019on en parle d\u2019abord. L\u2019appel d\u00E9couverte est gratuit et je serai transparent sur les tarifs pendant l\u2019appel. Mais r\u00E9fl\u00E9chissez : le co\u00FBt des opportunit\u00E9s manqu\u00E9es et des d\u00E9cisions non \u00E9clair\u00E9es est bien plus \u00E9lev\u00E9. De l\u2019argent qui dort, une enveloppe fiscale que vous ne connaissiez pas, un pouvoir d\u2019emprunt que vous n\u2019utilisez pas. La majorit\u00E9 des investisseurs, m\u00EAme avertis, finissent par perdre en suivant les tendances et en prenant des d\u00E9cisions \u00E9motionnelles. Un seul ajustement structurel \u00E9conomise g\u00E9n\u00E9ralement plus que tout l\u2019accompagnement. Ce n\u2019est pas une d\u00E9pense \u2014 c\u2019est l\u2019investissement le plus levier que vous ferez."
               ),
             },
             {
               q: t(lang, "\u201CI can figure this out myself.\u201D", "\u00AB Je peux le faire tout seul. \u00BB"),
               a: t(lang,
-                "You probably can learn every piece individually. But nobody teaches you how they connect. That\u2019s the architecture \u2014 the system that turns scattered knowledge into compounding wealth. You don\u2019t need more information. You need a blueprint.",
-                "Vous pouvez probablement apprendre chaque pi\u00E8ce individuellement. Mais personne ne vous apprend comment elles se connectent. C\u2019est \u00E7a l\u2019architecture \u2014 le syst\u00E8me qui transforme des connaissances \u00E9parses en richesse compos\u00E9e. Vous n\u2019avez pas besoin de plus d\u2019information. Vous avez besoin d\u2019un blueprint."
+                "People always say that \u2014 and always postpone. Meanwhile they listen to the news, follow influencers, and rely on information that\u2019s often wrong or months behind reality. Markets move on data most people never see. I offer precision where you have approximation. Understanding where you have confusion. Simplicity where you have complexity. And accountability \u2014 someone who makes sure you actually execute, not just plan. You don\u2019t need more information. You need a system and someone holding the blueprint.",
+                "Tout le monde dit \u00E7a \u2014 et repousse toujours. Entre-temps on \u00E9coute les infos, on suit des influenceurs, et on se fie \u00E0 des informations souvent fausses ou en retard de mois sur la r\u00E9alit\u00E9. Les march\u00E9s bougent sur des donn\u00E9es que la plupart ne voient jamais. J\u2019offre de la pr\u00E9cision l\u00E0 o\u00F9 vous avez de l\u2019approximation. De la compr\u00E9hension l\u00E0 o\u00F9 vous avez de la confusion. De la simplicit\u00E9 l\u00E0 o\u00F9 vous avez de la complexit\u00E9. Et de l\u2019accountability \u2014 quelqu\u2019un qui s\u2019assure que vous ex\u00E9cutez vraiment, pas seulement que vous planifiez. Vous n\u2019avez pas besoin de plus d\u2019information. Vous avez besoin d\u2019un syst\u00E8me et de quelqu\u2019un qui tient le blueprint."
               ),
             },
           ].map((item, i) => (
             <FaqItem key={i} q={item.q} a={item.a} index={i} />
           ))}
         </div>
-      </Section>
-
-      <hr style={{ maxWidth: 760, margin: "0 auto", border: "none", borderTop: "1px solid #222" }} />
-
-      {/* INDEPENDENCE - visual comparison */}
-      <Section style={{ padding: "80px 24px", maxWidth: 860, margin: "0 auto" }}>
-        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16, textAlign: "center" }}>
-          {t(lang, "Independence", "Ind\u00E9pendance")}
-        </div>
-        <h2 style={{ fontSize: 28, fontWeight: 600, marginBottom: 36, textAlign: "center" }}>
-          {t(lang, "Fully independent. Here\u2019s what that means.", "Totalement ind\u00E9pendant. Voici ce que \u00E7a veut dire.")}
-        </h2>
-
-        {/* Comparison grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 36 }}>
-          {/* Them column */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            style={{
-              background: "#161616", border: "1px solid #2a2a2a", borderRadius: 12, padding: "28px 24px",
-            }}
-          >
-            <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "#5a5750", marginBottom: 20 }}>
-              {t(lang, "Typical advisors", "Conseillers classiques")}
-            </div>
-            {[
-              t(lang, "Earn commissions on products", "Gagnent des commissions sur les produits"),
-              t(lang, "Affiliated to banks or platforms", "Affili\u00E9s \u00E0 des banques ou plateformes"),
-              t(lang, "Manage your money for a %", "G\u00E8rent votre argent contre un %"),
-              t(lang, "Interests aligned with the seller", "Int\u00E9r\u00EAts align\u00E9s avec le vendeur"),
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                style={{ display: "flex", gap: 10, padding: "8px 0", fontSize: 14, color: "#9a9790" }}
-              >
-                <span style={{ color: "#5a5750", flexShrink: 0 }}>{"\u2717"}</span>
-                <span>{item}</span>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Me column */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            style={{
-              background: "rgba(201,168,76,0.05)", border: "1px solid rgba(201,168,76,0.2)", borderRadius: 12, padding: "28px 24px",
-              position: "relative", overflow: "hidden",
-            }}
-          >
-            <div style={{ position: "absolute", top: 0, left: 20, right: 20, height: 1, background: "linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent)" }} />
-            <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 20 }}>
-              {t(lang, "My model", "Mon mod\u00E8le")}
-            </div>
-            {[
-              t(lang, "Zero commissions. Ever.", "Z\u00E9ro commission. Jamais."),
-              t(lang, "Zero affiliations. No ties.", "Z\u00E9ro affiliation. Aucun lien."),
-              t(lang, "Zero % on your capital.", "Z\u00E9ro % sur votre capital."),
-              t(lang, "Interests aligned with yours.", "Int\u00E9r\u00EAts align\u00E9s avec les v\u00F4tres."),
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 + 0.2 }}
-                style={{ display: "flex", gap: 10, padding: "8px 0", fontSize: 14, color: "#e8e6e1" }}
-              >
-                <span style={{ color: "#c9a84c", flexShrink: 0 }}>{"\u2713"}</span>
-                <span>{item}</span>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-
-        <p style={{ color: "#9a9790", fontSize: 15, textAlign: "center", fontStyle: "italic", maxWidth: 600, margin: "0 auto" }}>
-          {t(lang,
-            "When I tell you something, it\u2019s because I believe it\u2019s right for your system \u2014 not because someone pays me to say it.",
-            "Quand je vous dis quelque chose, c\u2019est parce que je crois que c\u2019est juste pour votre syst\u00E8me \u2014 pas parce que quelqu\u2019un me paie pour le dire."
-          )}
-        </p>
       </Section>
 
       <hr style={{ maxWidth: 760, margin: "0 auto", border: "none", borderTop: "1px solid #222" }} />
@@ -1022,9 +958,13 @@ export default function WealthPage() {
         <p style={{ color: "#9a9790", marginBottom: 36, fontSize: 16 }}>
           {t(lang, "30-minute discovery call. Free. I\u2019ll show you my system and tell you honestly if I can help.", "Appel d\u00E9couverte de 30 minutes. Gratuit. Je vous montre mon syst\u00E8me et vous dis honn\u00EAtement si je peux vous aider.")}
         </p>
-        <CtaButton href="#">
+        <CtaButton href={BOOKING_URL}>
           {t(lang, "Book your discovery call", "R\u00E9servez votre appel d\u00E9couverte")}
         </CtaButton>
+        <div style={{ marginTop: 20, fontSize: 13, color: "#5a5750" }}>
+          {t(lang, "or email me directly at ", "ou \u00E9crivez-moi directement \u00E0 ")}
+          <a href="mailto:hey@jeremylasne.com" style={{ color: "#c9a84c", textDecoration: "none" }}>hey@jeremylasne.com</a>
+        </div>
       </Section>
 
       {/* FOOTER */}
@@ -1034,7 +974,17 @@ export default function WealthPage() {
         fontSize: 12, color: "#5a5750", letterSpacing: "0.02em", flexWrap: "wrap", gap: 8,
       }}>
         <span>{t(lang, "Private & confidential \u00B7 Your preferences, your architecture", "Priv\u00E9 & confidentiel \u00B7 Vos pr\u00E9f\u00E9rences, votre architecture")}</span>
-        <Link href="/" style={{ color: "#9a9790", textDecoration: "none" }}>jeremylasne.com</Link>
+        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+          <a
+            href="https://www.linkedin.com/in/j%C3%A9r%C3%A9my-lasne-88148b223/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "#5a5750", textDecoration: "none", transition: "color 0.2s" }}
+          >
+            LinkedIn
+          </a>
+          <Link href="/" style={{ color: "#9a9790", textDecoration: "none" }}>jeremylasne.com</Link>
+        </div>
       </footer>
     </div>
   );
