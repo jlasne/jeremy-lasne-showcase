@@ -54,7 +54,7 @@ export default function SignUpPage() {
     setError("");
     setGoogleLoading(true);
     try {
-      const result = await signIn("google", { redirectTo: "/app" });
+      const result = await signIn("google", { redirectTo: "https://jeremylasne.com/app" });
       if (result && typeof result === "object" && "redirect" in result) {
         window.location.href = (result as { redirect: string | URL }).redirect.toString();
         return;
