@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useConvexAuth, useQuery } from "convex/react";
@@ -36,7 +36,25 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
     try { localStorage.setItem("portal-lang", l); } catch {}
   };
 
-  if (isLoading) {
+  // Wait for auth to settle — OAuth code exchange may still be in progress
+  const [authSettled, setAuthSettled] = useState(false);
+  const settleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    if (isLoading) {
+      setAuthSettled(false);
+      return;
+    }
+    if (isAuthenticated) {
+      setAuthSettled(true);
+      return;
+    }
+    // Give OAuth code exchange 2s to complete before redirecting
+    settleTimer.current = setTimeout(() => setAuthSettled(true), 2000);
+    return () => { if (settleTimer.current) clearTimeout(settleTimer.current); };
+  }, [isLoading, isAuthenticated]);
+
+  if (isLoading || (!isAuthenticated && !authSettled)) {
     return (
       <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", color: "#5a5750" }}>
         Loading...
