@@ -30,6 +30,7 @@ export default function ClientProfilePage() {
   const [meetingDate, setMeetingDate] = useState("");
   const [meetingTime, setMeetingTime] = useState("");
   const [meetingNote, setMeetingNote] = useState("");
+  const [meetingLink, setMeetingLink] = useState("");
   const [savingMeeting, setSavingMeeting] = useState(false);
 
   const startEditing = () => {
@@ -52,7 +53,7 @@ export default function ClientProfilePage() {
     setSavingMeeting(true);
     const dateStr = meetingTime ? `${meetingDate}T${meetingTime}` : `${meetingDate}T09:00`;
     const ts = new Date(dateStr).getTime();
-    await updateUser({ id, nextMeeting: ts, nextMeetingNote: meetingNote || undefined });
+    await updateUser({ id, nextMeeting: ts, nextMeetingNote: meetingNote || undefined, nextMeetingLink: meetingLink || undefined });
     setSavingMeeting(false);
   };
 
@@ -197,8 +198,12 @@ export default function ClientProfilePage() {
               </div>
             </div>
             <div>
-              <label style={{ display: "block", fontSize: 13, color: "#9a9790", marginBottom: 6 }}>Note (optional)</label>
+              <label style={{ display: "block", fontSize: 13, color: "#9a9790", marginBottom: 6 }}>Title / Note (optional)</label>
               <input value={meetingNote} onChange={(e) => setMeetingNote(e.target.value)} placeholder="e.g., Quarterly review call" style={inputStyle} />
+            </div>
+            <div>
+              <label style={{ display: "block", fontSize: 13, color: "#9a9790", marginBottom: 6 }}>Meeting Link (optional)</label>
+              <input value={meetingLink} onChange={(e) => setMeetingLink(e.target.value)} placeholder="e.g., https://cal.com/jeremy-lasne/..." style={inputStyle} />
             </div>
             <button onClick={handleSaveMeeting} disabled={!meetingDate || savingMeeting} style={{
               padding: "10px 24px", width: "fit-content",

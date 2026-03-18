@@ -41,6 +41,7 @@ export const updateUser = mutation({
     role: v.optional(v.union(v.literal("admin"), v.literal("client"))),
     nextMeeting: v.optional(v.number()),
     nextMeetingNote: v.optional(v.string()),
+    nextMeetingLink: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
     const { id, ...updates } = args;
@@ -54,6 +55,7 @@ export const clearMeeting = mutation({
     await ctx.db.patch(args.id, {
       nextMeeting: undefined,
       nextMeetingNote: undefined,
+      nextMeetingLink: undefined,
       updatedAt: Date.now(),
     });
   },

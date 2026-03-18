@@ -20,6 +20,7 @@ export default defineSchema({
     notes: v.optional(v.string()),
     nextMeeting: v.optional(v.number()),
     nextMeetingNote: v.optional(v.string()),
+    nextMeetingLink: v.optional(v.string()),
     createdAt: v.optional(v.number()),
     updatedAt: v.optional(v.number()),
   })

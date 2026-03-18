@@ -40,6 +40,15 @@ export default function MeetingsPage() {
             {user.nextMeetingNote && (
               <div style={{ fontSize: 13, color: "#5a5750", marginTop: 8 }}>{user.nextMeetingNote}</div>
             )}
+            {(user as any).nextMeetingLink && (
+              <a href={(user as any).nextMeetingLink} target="_blank" rel="noopener noreferrer" style={{
+                display: "inline-block", marginTop: 12, padding: "8px 20px",
+                background: "linear-gradient(135deg, #c9a84c, #d4b85a)", color: "#0e0e0e",
+                textDecoration: "none", borderRadius: 8, fontSize: 13, fontWeight: 600,
+              }}>
+                {t(lang, "Join meeting", "Rejoindre le rendez-vous")}
+              </a>
+            )}
           </div>
         ) : (
           <div style={{ fontSize: 14, color: "#5a5750" }}>
