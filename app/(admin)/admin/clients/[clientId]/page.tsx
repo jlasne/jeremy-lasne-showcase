@@ -19,7 +19,7 @@ export default function ClientProfilePage() {
   const updateContractStatus = useMutation(api.contracts.updateStatus);
   const updateDocStatus = useMutation(api.documents.updateStatus);
 
-  const [activeTab, setActiveTab] = useState<"info" | "contracts" | "documents" | "payments" | "meeting">("info");
+  const [activeTab, setActiveTab] = useState<"info" | "documents" | "payments" | "meeting">("info");
   const [editing, setEditing] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -62,12 +62,15 @@ export default function ClientProfilePage() {
     setMeetingDate("");
     setMeetingTime("");
     setMeetingNote("");
+    setMeetingLink("");
   };
 
   const statusColor: Record<string, string> = { draft: "#5a5750", sent: "#c9a84c", signed: "#4ade80", cancelled: "#ef4444", ongoing: "#3b82f6" };
   const payStatusColor: Record<string, string> = { pending: "#c9a84c", completed: "#4ade80", failed: "#ef4444", refunded: "#5a5750" };
 
   const inputStyle: React.CSSProperties = { width: "100%", padding: "10px 14px", background: "#0e0e0e", border: "1px solid #333", borderRadius: 8, color: "#e8e6e1", fontSize: 14, boxSizing: "border-box" };
+
+  const totalDocs = (contracts?.length ?? 0) + (documents?.length ?? 0);
 
   if (!client) {
     return <div style={{ color: "#5a5750", fontSize: 14 }}>Loading client...</div>;
@@ -99,19 +102,24 @@ export default function ClientProfilePage() {
 
       {/* Tabs */}
       <div style={{ display: "flex", gap: 4, borderBottom: "1px solid #222", marginBottom: 24, overflowX: "auto" }}>
-        {(["info", "meeting", "contracts", "documents", "payments"] as const).map((tab) => (
+        {([
+          { key: "info" as const, label: "Info" },
+          { key: "meeting" as const, label: "Meeting" },
+          { key: "documents" as const, label: `Documents (${totalDocs})` },
+          { key: "payments" as const, label: `Payments (${payments?.length ?? 0})` },
+        ]).map((tab) => (
           <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
+            key={tab.key}
+            onClick={() => setActiveTab(tab.key)}
             style={{
               padding: "10px 20px", background: "none", border: "none",
-              borderBottom: activeTab === tab ? "2px solid #c9a84c" : "2px solid transparent",
-              color: activeTab === tab ? "#c9a84c" : "#5a5750",
-              fontSize: 14, fontWeight: 500, cursor: "pointer", textTransform: "capitalize",
+              borderBottom: activeTab === tab.key ? "2px solid #c9a84c" : "2px solid transparent",
+              color: activeTab === tab.key ? "#c9a84c" : "#5a5750",
+              fontSize: 14, fontWeight: 500, cursor: "pointer",
               whiteSpace: "nowrap",
             }}
           >
-            {tab === "meeting" ? "Meeting" : tab} {tab === "contracts" ? `(${contracts?.length ?? 0})` : tab === "documents" ? `(${documents?.length ?? 0})` : tab === "payments" ? `(${payments?.length ?? 0})` : ""}
+            {tab.label}
           </button>
         ))}
       </div>
@@ -180,6 +188,7 @@ export default function ClientProfilePage() {
                 {new Date(client.nextMeeting).toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" })}
               </div>
               {client.nextMeetingNote && <div style={{ fontSize: 13, color: "#9a9790" }}>{client.nextMeetingNote}</div>}
+              {(client as any).nextMeetingLink && <div style={{ fontSize: 12, color: "#5a5750", marginTop: 4 }}><a href={(client as any).nextMeetingLink} target="_blank" rel="noopener noreferrer" style={{ color: "#c9a84c", textDecoration: "none" }}>{(client as any).nextMeetingLink}</a></div>}
               <button onClick={handleClearMeeting} style={{ marginTop: 12, padding: "6px 16px", background: "transparent", border: "1px solid #333", borderRadius: 6, color: "#ef4444", fontSize: 12, cursor: "pointer" }}>
                 Clear Meeting
               </button>
@@ -217,101 +226,90 @@ export default function ClientProfilePage() {
         </div>
       )}
 
-      {/* Contracts Tab */}
-      {activeTab === "contracts" && (
-        <div>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
-            <div style={{ fontSize: 14, color: "#5a5750" }}>{contracts?.length ?? 0} contracts</div>
-            <Link href="/admin/new" style={{ padding: "6px 16px", background: "rgba(201,168,76,0.08)", border: "1px solid rgba(201,168,76,0.2)", borderRadius: 6, color: "#c9a84c", fontSize: 13, textDecoration: "none" }}>+ New</Link>
-          </div>
-          {!contracts || contracts.length === 0 ? (
-            <div style={{ textAlign: "center", padding: "40px 20px", background: "#1a1a1a", border: "1px solid #222", borderRadius: 12, color: "#5a5750", fontSize: 14 }}>
-              No contracts for this client.
-            </div>
-          ) : (
-            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              {contracts.map((c) => (
-                <div key={c._id} style={{ padding: "16px 20px", background: "#1a1a1a", border: "1px solid #222", borderRadius: 10 }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
-                    <div>
-                      <div style={{ fontSize: 15, fontWeight: 500 }}>{c.title}</div>
-                      <div style={{ fontSize: 12, color: "#5a5750" }}>Created {new Date(c.createdAt).toLocaleDateString("fr-FR")}</div>
-                    </div>
-                    <span style={{ padding: "4px 12px", borderRadius: 20, fontSize: 12, fontWeight: 600, textTransform: "uppercase", color: statusColor[c.status], background: `${statusColor[c.status]}15` }}>{c.status}</span>
-                  </div>
-                  <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                    {c.status === "draft" && (
-                      <button onClick={() => updateContractStatus({ id: c._id, status: "sent" })} style={{ padding: "4px 12px", background: "rgba(201,168,76,0.1)", border: "1px solid rgba(201,168,76,0.2)", borderRadius: 6, color: "#c9a84c", fontSize: 12, cursor: "pointer" }}>
-                        Mark as Sent
-                      </button>
-                    )}
-                    {c.status === "sent" && (
-                      <button onClick={() => updateContractStatus({ id: c._id, status: "signed" })} style={{ padding: "4px 12px", background: "rgba(74,222,128,0.1)", border: "1px solid rgba(74,222,128,0.2)", borderRadius: 6, color: "#4ade80", fontSize: 12, cursor: "pointer" }}>
-                        Mark as Signed
-                      </button>
-                    )}
-                    {(c.status === "draft" || c.status === "sent") && (
-                      <button onClick={() => updateContractStatus({ id: c._id, status: "cancelled" })} style={{ padding: "4px 12px", background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.2)", borderRadius: 6, color: "#ef4444", fontSize: 12, cursor: "pointer" }}>
-                        Cancel
-                      </button>
-                    )}
-                    {c.pdfStorageId && (
-                      <PdfDownloadButton storageId={c.pdfStorageId} label="View PDF" />
-                    )}
-                    {c.signatureStorageId && (
-                      <PdfDownloadButton storageId={c.signatureStorageId} label="View Signature" />
-                    )}
-                    {c.signedByName && c.status === "signed" && (
-                      <span style={{ fontSize: 12, color: "#4ade80" }}>Signed by {c.signedByName}</span>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* Documents Tab */}
+      {/* Documents Tab (merged contracts + documents) */}
       {activeTab === "documents" && (
         <div>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
-            <div style={{ fontSize: 14, color: "#5a5750" }}>{documents?.length ?? 0} documents</div>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
+            <div style={{ fontSize: 14, color: "#5a5750" }}>{totalDocs} items</div>
             <Link href="/admin/new" style={{ padding: "6px 16px", background: "rgba(201,168,76,0.08)", border: "1px solid rgba(201,168,76,0.2)", borderRadius: 6, color: "#c9a84c", fontSize: 13, textDecoration: "none" }}>+ New</Link>
           </div>
-          {!documents || documents.length === 0 ? (
-            <div style={{ textAlign: "center", padding: "40px 20px", background: "#1a1a1a", border: "1px solid #222", borderRadius: 12, color: "#5a5750", fontSize: 14 }}>
-              No documents for this client.
-            </div>
-          ) : (
-            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              {documents.map((d) => (
-                <div key={d._id} style={{ padding: "16px 20px", background: "#1a1a1a", border: "1px solid #222", borderRadius: 10 }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
-                    <div>
-                      <div style={{ fontSize: 15, fontWeight: 500 }}>{d.title}</div>
-                      <div style={{ fontSize: 12, color: "#5a5750" }}>
-                        <span style={{ textTransform: "capitalize" }}>{d.category}</span> &middot; {new Date(d.createdAt).toLocaleDateString("fr-FR")}
-                        {d.date ? ` · Date: ${new Date(d.date).toLocaleDateString("fr-FR")}` : ""}
+
+          {/* Contracts section */}
+          {contracts && contracts.length > 0 && (
+            <div style={{ marginBottom: 20 }}>
+              <div style={{ fontSize: 12, fontWeight: 600, color: "#5a5750", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 8 }}>Contracts</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {contracts.map((c) => (
+                  <div key={c._id} style={{ padding: "16px 20px", background: "#1a1a1a", border: "1px solid #222", borderRadius: 10 }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+                      <div>
+                        <div style={{ fontSize: 15, fontWeight: 500 }}>{c.title}</div>
+                        <div style={{ fontSize: 12, color: "#5a5750" }}>
+                          Created {new Date(c.createdAt).toLocaleDateString("fr-FR")}
+                          {c.signedAt && ` · Signed ${new Date(c.signedAt).toLocaleDateString("fr-FR")}`}
+                        </div>
                       </div>
+                      <span style={{ padding: "4px 12px", borderRadius: 20, fontSize: 12, fontWeight: 600, textTransform: "uppercase", color: statusColor[c.status], background: `${statusColor[c.status]}15` }}>{c.status}</span>
                     </div>
-                    <span style={{ padding: "4px 12px", borderRadius: 20, fontSize: 12, fontWeight: 600, textTransform: "uppercase", color: statusColor[d.status] || "#5a5750", background: `${statusColor[d.status] || "#5a5750"}15` }}>{d.status}</span>
+                    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                      {c.status === "draft" && (
+                        <button onClick={() => updateContractStatus({ id: c._id, status: "sent" })} style={{ padding: "4px 12px", background: "rgba(201,168,76,0.1)", border: "1px solid rgba(201,168,76,0.2)", borderRadius: 6, color: "#c9a84c", fontSize: 12, cursor: "pointer" }}>
+                          Mark as Sent
+                        </button>
+                      )}
+                      {c.status === "sent" && (
+                        <button onClick={() => updateContractStatus({ id: c._id, status: "signed" })} style={{ padding: "4px 12px", background: "rgba(74,222,128,0.1)", border: "1px solid rgba(74,222,128,0.2)", borderRadius: 6, color: "#4ade80", fontSize: 12, cursor: "pointer" }}>
+                          Mark as Signed
+                        </button>
+                      )}
+                      {(c.status === "draft" || c.status === "sent") && (
+                        <button onClick={() => updateContractStatus({ id: c._id, status: "cancelled" })} style={{ padding: "4px 12px", background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.2)", borderRadius: 6, color: "#ef4444", fontSize: 12, cursor: "pointer" }}>
+                          Cancel
+                        </button>
+                      )}
+                      {c.pdfStorageId && <PdfDownloadButton storageId={c.pdfStorageId} label="View PDF" />}
+                      {c.signatureStorageId && <PdfDownloadButton storageId={c.signatureStorageId} label="View Signature" />}
+                      {c.signedByName && c.status === "signed" && <span style={{ fontSize: 12, color: "#4ade80" }}>Signed by {c.signedByName}</span>}
+                    </div>
                   </div>
-                  <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                    {d.status === "draft" && (
-                      <button onClick={() => updateDocStatus({ id: d._id, status: "sent" })} style={{ padding: "4px 12px", background: "rgba(201,168,76,0.1)", border: "1px solid rgba(201,168,76,0.2)", borderRadius: 6, color: "#c9a84c", fontSize: 12, cursor: "pointer" }}>
-                        Mark as Sent
-                      </button>
-                    )}
-                    {d.status === "sent" && d.category === "contract" && (
-                      <button onClick={() => updateDocStatus({ id: d._id, status: "signed" })} style={{ padding: "4px 12px", background: "rgba(74,222,128,0.1)", border: "1px solid rgba(74,222,128,0.2)", borderRadius: 6, color: "#4ade80", fontSize: 12, cursor: "pointer" }}>
-                        Mark as Signed
-                      </button>
-                    )}
-                    <PdfDownloadButton storageId={d.storageId} label="Download" />
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Documents section */}
+          {documents && documents.length > 0 && (
+            <div>
+              <div style={{ fontSize: 12, fontWeight: 600, color: "#5a5750", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 8 }}>Documents</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {documents.map((d) => (
+                  <div key={d._id} style={{ padding: "16px 20px", background: "#1a1a1a", border: "1px solid #222", borderRadius: 10 }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+                      <div>
+                        <div style={{ fontSize: 15, fontWeight: 500 }}>{d.title}</div>
+                        <div style={{ fontSize: 12, color: "#5a5750" }}>
+                          <span style={{ textTransform: "capitalize" }}>{d.category}</span> · {new Date(d.createdAt).toLocaleDateString("fr-FR")}
+                        </div>
+                      </div>
+                      <span style={{ padding: "4px 12px", borderRadius: 20, fontSize: 12, fontWeight: 600, textTransform: "uppercase", color: statusColor[d.status] || "#5a5750", background: `${statusColor[d.status] || "#5a5750"}15` }}>{d.status}</span>
+                    </div>
+                    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                      {d.status === "draft" && (
+                        <button onClick={() => updateDocStatus({ id: d._id, status: "sent" })} style={{ padding: "4px 12px", background: "rgba(201,168,76,0.1)", border: "1px solid rgba(201,168,76,0.2)", borderRadius: 6, color: "#c9a84c", fontSize: 12, cursor: "pointer" }}>
+                          Mark as Sent
+                        </button>
+                      )}
+                      <PdfDownloadButton storageId={d.storageId} label="Download" />
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+            </div>
+          )}
+
+          {totalDocs === 0 && (
+            <div style={{ textAlign: "center", padding: "40px 20px", background: "#1a1a1a", border: "1px solid #222", borderRadius: 12, color: "#5a5750", fontSize: 14 }}>
+              No documents or contracts for this client.
             </div>
           )}
         </div>
@@ -320,6 +318,9 @@ export default function ClientProfilePage() {
       {/* Payments Tab */}
       {activeTab === "payments" && (
         <div>
+          <div style={{ fontSize: 12, fontWeight: 600, color: "#5a5750", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 12 }}>
+            Payment History · Total: {new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" }).format((payments?.filter(p => p.status === "completed").reduce((s, p) => s + p.amount, 0) ?? 0) / 100)}
+          </div>
           {!payments || payments.length === 0 ? (
             <div style={{ textAlign: "center", padding: "40px 20px", background: "#1a1a1a", border: "1px solid #222", borderRadius: 12, color: "#5a5750", fontSize: 14 }}>
               No payments for this client.
