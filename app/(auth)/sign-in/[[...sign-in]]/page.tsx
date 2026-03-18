@@ -59,7 +59,7 @@ export default function SignInPage() {
     setError("");
     setGoogleLoading(true);
     try {
-      const result = await signIn("google", { redirectTo: "/app" });
+      const result = await signIn("google", { redirectTo: `${window.location.origin}/app` });
       if (result && typeof result === "object" && "redirect" in result) {
         window.location.href = (result as { redirect: string | URL }).redirect.toString();
         return;
