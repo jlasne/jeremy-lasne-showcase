@@ -45,8 +45,14 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
   }
 
   if (!isAuthenticated) {
-    router.push("/sign-in");
-    return null;
+    if (typeof window !== "undefined") {
+      router.replace("/sign-in");
+    }
+    return (
+      <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", color: "#5a5750" }}>
+        Redirecting...
+      </div>
+    );
   }
 
   return (

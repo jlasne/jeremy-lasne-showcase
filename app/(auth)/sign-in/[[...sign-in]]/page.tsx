@@ -47,7 +47,7 @@ export default function SignInPage() {
     setLoading(true);
     try {
       await signIn("password", { email, password, flow: "signIn" });
-      router.push("/app");
+      window.location.href = "/app";
     } catch {
       setError("Invalid email or password.");
     } finally {

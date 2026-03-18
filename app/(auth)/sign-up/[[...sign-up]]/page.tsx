@@ -42,7 +42,7 @@ export default function SignUpPage() {
     setLoading(true);
     try {
       await signIn("password", { email, password, flow: "signUp", name: `${firstName} ${lastName}`.trim() });
-      router.push("/app");
+      window.location.href = "/app";
     } catch {
       setError("Could not create account. Email may already be in use.");
     } finally {
