@@ -11,6 +11,7 @@ export default function ClientsPage() {
   const [showInvite, setShowInvite] = useState(false);
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
+  const [lang, setLang] = useState<"en" | "fr">("fr");
   const [sending, setSending] = useState(false);
   const [successMsg, setSuccessMsg] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
@@ -22,7 +23,7 @@ export default function ClientsPage() {
     setErrorMsg("");
     try {
       const siteUrl = window.location.origin;
-      await sendInvitation({ email, firstName: firstName || undefined, siteUrl });
+      await sendInvitation({ email, firstName: firstName || undefined, siteUrl, lang });
       setSuccessMsg(`Invitation sent to ${email}! They can now create their account.`);
       setShowInvite(false);
       setEmail("");
@@ -85,7 +86,7 @@ export default function ClientsPage() {
           <p style={{ fontSize: 13, color: "#9a9790", margin: 0 }}>
             Send an invitation email so your client can create their own account. They will appear here after signing up.
           </p>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 120px", gap: 12 }}>
             <div>
               <label style={{ display: "block", fontSize: 13, color: "#9a9790", marginBottom: 6 }}>First Name (optional)</label>
               <input value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="Their first name" style={{ width: "100%", padding: "10px 14px", background: "#0e0e0e", border: "1px solid #333", borderRadius: 8, color: "#e8e6e1", fontSize: 14, boxSizing: "border-box" }} />
@@ -93,6 +94,13 @@ export default function ClientsPage() {
             <div>
               <label style={{ display: "block", fontSize: 13, color: "#9a9790", marginBottom: 6 }}>Email *</label>
               <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="client@example.com" style={{ width: "100%", padding: "10px 14px", background: "#0e0e0e", border: "1px solid #333", borderRadius: 8, color: "#e8e6e1", fontSize: 14, boxSizing: "border-box" }} />
+            </div>
+            <div>
+              <label style={{ display: "block", fontSize: 13, color: "#9a9790", marginBottom: 6 }}>Language</label>
+              <select value={lang} onChange={(e) => setLang(e.target.value as "en" | "fr")} style={{ width: "100%", padding: "10px 14px", background: "#0e0e0e", border: "1px solid #333", borderRadius: 8, color: "#e8e6e1", fontSize: 14, boxSizing: "border-box" }}>
+                <option value="fr">Français</option>
+                <option value="en">English</option>
+              </select>
             </div>
           </div>
 

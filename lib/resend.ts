@@ -1,7 +1,8 @@
 import { Resend } from "resend";
 
 const resendApiKey = process.env.RESEND_API_KEY;
-const fromEmail = process.env.RESEND_FROM_EMAIL || "jeremy@jeremylasne.com";
+const rawEmail = process.env.RESEND_FROM_EMAIL || "jeremy@jeremylasne.com";
+const fromEmail = `Jérémy Lasne <${rawEmail}>`;
 
 export const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
