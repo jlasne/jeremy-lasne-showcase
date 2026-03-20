@@ -15,7 +15,7 @@ export default function CGVPage() {
       <Section title="Article 1 — Objet">
         <p>
           Les présentes Conditions Générales de Vente (CGV) régissent les relations contractuelles
-          entre Jérémy Lasne, exerçant sous le statut de [À COMPLÉTER], et tout client (ci-après
+          entre Jérémy Lasne, exerçant sous le statut de micro-entrepreneur (SIRET : 93371057600010), et tout client (ci-après
           « le Client ») souscrivant à ses prestations de conseil en architecture patrimoniale.
         </p>
       </Section>
@@ -34,7 +34,8 @@ export default function CGVPage() {
       <Section title="Article 3 — Tarifs et modalités de paiement">
         <p>Les tarifs sont communiqués au Client avant toute engagement et figurent dans le contrat de mission.</p>
         <p>Moyens de paiement acceptés : virement bancaire, carte bancaire (via Stripe).</p>
-        <p>Conditions de paiement : [À COMPLÉTER — ex : paiement à la signature / mensuel / trimestriel].</p>
+        <p>Conditions de paiement : premier paiement à la signature du contrat : 1 500 € (audit 1 200 € + première revue trimestrielle 300 €). Les revues trimestrielles suivantes sont facturées à 300 € chacune, en début de trimestre.</p>
+        <p>Les prestations sont exonérées de TVA en vertu de l'article 293 B du CGI.</p>
         <p>
           En cas de retard de paiement, des pénalités de retard seront appliquées au taux
           légal en vigueur, conformément à l'article L. 441-10 du Code de commerce.
@@ -44,7 +45,7 @@ export default function CGVPage() {
       <Section title="Article 4 — Durée et résiliation">
         <p>
           La durée de la mission est définie dans le contrat. Chaque partie peut résilier
-          le contrat moyennant un préavis de [À COMPLÉTER — ex : 30 jours] par courrier
+          le contrat moyennant un préavis de 30 jours par courrier
           ou email à <a href="mailto:hey@jeremylasne.com" style={{ color: "#c9a84c", textDecoration: "none" }}>hey@jeremylasne.com</a>.
         </p>
         <p>
@@ -103,15 +104,15 @@ export default function CGVPage() {
         <p>
           En cas de litige, le Client peut recourir gratuitement au médiateur de la consommation :
         </p>
-        <p>Nom du médiateur : [À COMPLÉTER]</p>
-        <p>Adresse : [À COMPLÉTER]</p>
-        <p>Site : [À COMPLÉTER]</p>
+        <p>Nom du médiateur : CM2C — Centre de la Médiation de la Consommation de Conciliateurs de Justice</p>
+        <p>Adresse : 49 rue de Ponthieu, 75008 Paris</p>
+        <p>Site : www.cm2c.net</p>
       </Section>
 
       <Section title="Article 11 — Droit applicable">
         <p>
           Les présentes CGV sont soumises au droit français. Tout litige sera soumis
-          aux tribunaux compétents du ressort de [À COMPLÉTER — ex : Paris].
+          aux tribunaux compétents du ressort du domicile du consommateur.
         </p>
       </Section>
     </div>

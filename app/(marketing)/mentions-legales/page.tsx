@@ -14,11 +14,11 @@ export default function MentionsLegalesPage() {
 
       <Section title="1. Éditeur du site">
         <p>Nom : Jérémy Lasne</p>
-        <p>Statut : [À COMPLÉTER — ex : Entrepreneur individuel / SASU / etc.]</p>
-        <p>SIRET : [À COMPLÉTER]</p>
-        <p>Adresse : [À COMPLÉTER]</p>
+        <p>Statut : Micro-entrepreneur</p>
+        <p>SIRET : 93371057600010</p>
+        <p>Adresse : Mercurol-Veaunes, France</p>
         <p>Email : <a href="mailto:hey@jeremylasne.com" style={{ color: "#c9a84c", textDecoration: "none" }}>hey@jeremylasne.com</a></p>
-        <p>Téléphone : [À COMPLÉTER]</p>
+        <p>Téléphone : +33 6 73 83 55 29</p>
       </Section>
 
       <Section title="2. Hébergement">
@@ -35,7 +35,6 @@ export default function MentionsLegalesPage() {
           au sens de l'article L. 541-1 du Code monétaire et financier, sauf mention
           contraire explicite et enregistrement auprès de l'ORIAS.
         </p>
-        <p>[À COMPLÉTER si enregistrement CIF / ORIAS]</p>
       </Section>
 
       <Section title="4. Propriété intellectuelle">
@@ -56,7 +55,7 @@ export default function MentionsLegalesPage() {
         <p>Responsable du traitement : Jérémy Lasne</p>
         <p>Finalités : gestion de la relation client, envoi de documents, suivi des rendez-vous et paiements.</p>
         <p>Base légale : exécution contractuelle et consentement.</p>
-        <p>Durée de conservation : [À COMPLÉTER — ex : 3 ans après la fin de la relation contractuelle].</p>
+        <p>Durée de conservation : 3 ans après la fin de la relation contractuelle.</p>
         <p>
           Conformément à la loi « Informatique et Libertés » et au RGPD, vous disposez d'un
           droit d'accès, de rectification, de suppression et de portabilité de vos données.
@@ -70,7 +69,6 @@ export default function MentionsLegalesPage() {
           (authentification, préférences de langue). Aucun cookie publicitaire ou de tracking
           tiers n'est utilisé.
         </p>
-        <p>[À COMPLÉTER si ajout d'analytics — ex : Tinybird Web Analytics]</p>
       </Section>
 
       <Section title="7. Responsabilité">
@@ -85,9 +83,9 @@ export default function MentionsLegalesPage() {
         <p>
           En cas de litige, le client peut recourir gratuitement au médiateur de la consommation :
         </p>
-        <p>Nom du médiateur : [À COMPLÉTER]</p>
-        <p>Adresse : [À COMPLÉTER]</p>
-        <p>Site : [À COMPLÉTER]</p>
+        <p>Nom du médiateur : CM2C — Centre de la Médiation de la Consommation de Conciliateurs de Justice</p>
+        <p>Adresse : 49 rue de Ponthieu, 75008 Paris</p>
+        <p>Site : www.cm2c.net</p>
         <p style={{ marginTop: 8, fontSize: 13, color: "#5a5750" }}>
           Conformément à l'article L. 612-1 du Code de la consommation.
         </p>
@@ -96,7 +94,7 @@ export default function MentionsLegalesPage() {
       <Section title="9. Droit applicable">
         <p>
           Les présentes mentions légales sont soumises au droit français. En cas de litige,
-          les tribunaux français seront seuls compétents.
+          le tribunal compétent sera celui du domicile du consommateur.
         </p>
       </Section>
     </div>
