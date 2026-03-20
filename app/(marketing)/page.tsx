@@ -910,21 +910,38 @@ export default function WealthPage() {
       {/* FOOTER */}
       <footer style={{
         padding: isMobile ? "20px 16px" : "28px 40px", borderTop: "1px solid #222",
-        display: "flex", justifyContent: "space-between", alignItems: "center",
-        fontSize: isMobile ? 11 : 12, color: "#5a5750", letterSpacing: "0.02em", flexWrap: "wrap", gap: 8,
-        flexDirection: isMobile ? "column" : "row", textAlign: isMobile ? "center" : undefined,
+        fontSize: isMobile ? 11 : 12, color: "#5a5750", letterSpacing: "0.02em",
+        display: "flex", flexDirection: "column", gap: 12, textAlign: isMobile ? "center" : undefined,
       }}>
-        <span>{t(lang, "Private & confidential · Your preferences, your architecture", "Privé & confidentiel · Vos préférences, votre architecture")}</span>
-        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <a
-            href="https://www.linkedin.com/in/j%C3%A9r%C3%A9my-lasne-88148b223/"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: "#5a5750", textDecoration: "none", transition: "color 0.2s" }}
-          >
-            LinkedIn
-          </a>
-          <Link href="/" style={{ color: "#9a9790", textDecoration: "none" }}>jeremylasne.com</Link>
+        <div style={{
+          display: "flex", justifyContent: "space-between", alignItems: "center",
+          flexWrap: "wrap", gap: 8, flexDirection: isMobile ? "column" : "row",
+        }}>
+          <span>{t(lang, "Private & confidential · Your preferences, your architecture", "Privé & confidentiel · Vos préférences, votre architecture")}</span>
+          <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+            <a
+              href="https://www.linkedin.com/in/j%C3%A9r%C3%A9my-lasne-88148b223/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "#5a5750", textDecoration: "none", transition: "color 0.2s" }}
+            >
+              LinkedIn
+            </a>
+            <Link href="/" style={{ color: "#9a9790", textDecoration: "none" }}>jeremylasne.com</Link>
+          </div>
+        </div>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: isMobile ? "center" : "flex-start", gap: 6, flexWrap: "wrap", fontSize: isMobile ? 10 : 11, color: "#444" }}>
+          <span>© 2026 Jeremy Lasne</span>
+          <span>·</span>
+          <Link href="/mentions-legales" style={{ color: "#5a5750", textDecoration: "none" }}>
+            {t(lang, "Legal notice", "Mentions légales")}
+          </Link>
+          <span>·</span>
+          <Link href="/cgv" style={{ color: "#5a5750", textDecoration: "none" }}>
+            {t(lang, "Terms", "CGV")}
+          </Link>
+          <span>·</span>
+          <a href="mailto:hey@jeremylasne.com" style={{ color: "#5a5750", textDecoration: "none" }}>hey@jeremylasne.com</a>
         </div>
       </footer>
     </div>
