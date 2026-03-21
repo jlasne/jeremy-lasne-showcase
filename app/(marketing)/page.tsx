@@ -668,7 +668,7 @@ export default function WealthPage() {
                 t(lang, "No system, no visibility, no compounding", "Pas de syst\u00e8me, pas de visibilit\u00e9, pas de composition"),
               ].map((item, i) => (
                 <li key={i} style={{ fontSize: 14, color: "#9a9790", lineHeight: 1.6, paddingLeft: 16, position: "relative" }}>
-                  <span style={{ position: "absolute", left: 0, color: "#e74c3c" }}>\u2022</span>
+                  <span style={{ position: "absolute", left: 0, color: "#e74c3c" }}>{"\u2022"}</span>
                   {item}
                 </li>
               ))}
@@ -691,7 +691,7 @@ export default function WealthPage() {
                 t(lang, "Learned practical money management \u2014 simple, actionable, sustainable", "Apprentissage de la gestion concr\u00e8te \u2014 simple, actionnable, durable"),
               ].map((item, i) => (
                 <li key={i} style={{ fontSize: 14, color: "#9a9790", lineHeight: 1.6, paddingLeft: 16, position: "relative" }}>
-                  <span style={{ position: "absolute", left: 0, color: "#c9a84c" }}>\u2022</span>
+                  <span style={{ position: "absolute", left: 0, color: "#c9a84c" }}>{"\u2022"}</span>
                   {item}
                 </li>
               ))}
