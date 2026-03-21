@@ -534,8 +534,8 @@ export default function WealthPage() {
               step: "02",
               title: t(lang, "Wealth Architecture Audit", "Audit d'Architecture Patrimoniale"),
               desc: t(lang,
-                "Deep intake session (1h30). I map your entire financial life. You receive a personalized wealth blueprint with 5–10 structural moves ordered by impact. Delivered in a private walkthrough session (1h).",
-                "Session d'intake approfondie (1h30). Je cartographie toute votre vie financière. Vous recevez un blueprint patrimonial personnalisé avec 5 à 10 actions structurelles classées par impact. Livré lors d'une session de restitution privée (1h)."
+                "Deep intake session (1h). I map your entire financial life. You receive a personalized wealth blueprint with 5\u201310 structural moves ordered by impact. Delivered in a private walkthrough session (1h).",
+                "Session d'intake approfondie (1h). Je cartographie toute votre vie financi\u00e8re. Vous recevez un blueprint patrimonial personnalis\u00e9 avec 5 \u00e0 10 actions structurelles class\u00e9es par impact. Livr\u00e9 lors d'une session de restitution priv\u00e9e (1h)."
               ),
               icon: "\u2727",
               badge: null,
@@ -605,11 +605,106 @@ export default function WealthPage() {
           ))}
         </div>
 
+        {/* "Then what?" callout */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          style={{
+            background: "rgba(201,168,76,0.06)", border: "1px solid rgba(201,168,76,0.15)",
+            borderRadius: 12, padding: isMobile ? "20px 16px" : "24px 28px", marginBottom: 40,
+          }}
+        >
+          <div style={{ fontSize: 16, fontWeight: 700, color: "#c9a84c", marginBottom: 10 }}>
+            {t(lang, "Then what?", "Et ensuite ?")}
+          </div>
+          <p style={{ color: "#9a9790", fontSize: 14, lineHeight: 1.7, margin: 0 }}>
+            {t(lang,
+              "You receive your complete architecture: a visual blueprint showing how your money enters, flows, and compounds across your life, plus a ranked list of structural moves to execute.",
+              "Vous recevez votre architecture compl\u00e8te : un blueprint visuel montrant comment votre argent entre, circule et se compose tout au long de votre vie, plus une liste class\u00e9e d'actions structurelles \u00e0 ex\u00e9cuter."
+            )}
+          </p>
+          <p style={{ color: "#9a9790", fontSize: 14, lineHeight: 1.7, margin: "12px 0 0" }}>
+            {t(lang,
+              "You execute at your own pace, with your own accounts. I don't manage your money and I don't push products. You stay in full control. The quarterly reviews keep you on track \u2014 we adjust the plan as your life and the markets evolve.",
+              "Vous ex\u00e9cutez \u00e0 votre rythme, avec vos propres comptes. Je ne g\u00e8re pas votre argent et je ne pousse pas de produits. Vous gardez le contr\u00f4le total. Les revues trimestrielles vous maintiennent sur la bonne voie \u2014 on ajuste le plan au fil de votre vie et des march\u00e9s."
+            )}
+          </p>
+        </motion.div>
+
         <div style={{ textAlign: "center" }}>
           <CtaButton href={bookingUrl(lang)}>
-            {t(lang, "Book your free discovery call", "Réservez votre appel découverte gratuit")}
+            {t(lang, "Book your free discovery call", "R\u00e9servez votre appel d\u00e9couverte gratuit")}
           </CtaButton>
         </div>
+      </Section>
+
+      <div style={{ width: 60, height: 1, background: "rgba(201,168,76,0.2)", margin: "0 auto" }} />
+
+      {/* REAL EXAMPLE — Before / After */}
+      <Section style={{ padding: isMobile ? "60px 16px" : "80px 24px", maxWidth: 860, margin: "0 auto" }}>
+        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16, textAlign: "center" }}>
+          {t(lang, "Real example", "Exemple concret")}
+        </div>
+        <h2 style={{ fontSize: 24, fontWeight: 600, marginBottom: 32, textAlign: "center" }}>
+          {t(lang, "From scattered to structured. A real transformation.", "Du d\u00e9sordre \u00e0 la structure. Une vraie transformation.")}
+        </h2>
+
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 16 : 24 }}>
+          {/* Before */}
+          <div style={{ background: "#1a1a1a", border: "1px solid #222", borderRadius: 12, padding: isMobile ? "20px 16px" : "24px 28px" }}>
+            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#e74c3c", marginBottom: 16 }}>
+              {t(lang, "Before", "Avant")}
+            </div>
+            <div style={{ fontSize: 12, fontWeight: 600, color: "#5a5750", marginBottom: 12 }}>
+              {t(lang, "Scattered, passive, underperforming", "Dispers\u00e9, passif, sous-performant")}
+            </div>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 10 }}>
+              {[
+                t(lang, "Money sitting in the bank earning nothing", "Argent dormant en banque ne rapportant rien"),
+                t(lang, "Life insurance contract barely gaining", "Assurance-vie \u00e0 peine rentable"),
+                t(lang, "Only real estate in France with ~5% gross annual yield", "Uniquement de l'immobilier en France \u00e0 ~5% brut annuel"),
+                t(lang, "No system, no visibility, no compounding", "Pas de syst\u00e8me, pas de visibilit\u00e9, pas de composition"),
+              ].map((item, i) => (
+                <li key={i} style={{ fontSize: 14, color: "#9a9790", lineHeight: 1.6, paddingLeft: 16, position: "relative" }}>
+                  <span style={{ position: "absolute", left: 0, color: "#e74c3c" }}>\u2022</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* After */}
+          <div style={{ background: "rgba(201,168,76,0.06)", border: "1px solid rgba(201,168,76,0.2)", borderRadius: 12, padding: isMobile ? "20px 16px" : "24px 28px" }}>
+            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#c9a84c", marginBottom: 16 }}>
+              {t(lang, "After", "Apr\u00e8s")}
+            </div>
+            <div style={{ fontSize: 12, fontWeight: 600, color: "#5a5750", marginBottom: 12 }}>
+              {t(lang, "Structured, active, compounding", "Structur\u00e9, actif, en composition")}
+            </div>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 10 }}>
+              {[
+                t(lang, "\u20ac100K+ invested with +33% growth in one year", "100K\u20ac+ investis avec +33% de croissance en un an"),
+                t(lang, "Acquired a company as investor: 20% stable growing dividends annually, plus valuation gains", "Acquisition d'une entreprise en tant qu'investisseur : 20% de dividendes stables croissants par an, plus gains en valorisation"),
+                t(lang, "Sold a property to reduce overexposure to French real estate", "Vente d'un bien pour r\u00e9duire la surexposition \u00e0 l'immobilier fran\u00e7ais"),
+                t(lang, "Learned practical money management \u2014 simple, actionable, sustainable", "Apprentissage de la gestion concr\u00e8te \u2014 simple, actionnable, durable"),
+              ].map((item, i) => (
+                <li key={i} style={{ fontSize: 14, color: "#9a9790", lineHeight: 1.6, paddingLeft: 16, position: "relative" }}>
+                  <span style={{ position: "absolute", left: 0, color: "#c9a84c" }}>\u2022</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <p style={{ color: "#5a5750", fontSize: 13, textAlign: "center", marginTop: 20, fontStyle: "italic" }}>
+          {t(lang,
+            "This is a simplified snapshot. The real architecture covers more. But the shift is clear: from scattered and passive to structured and compounding.",
+            "Ceci est un aper\u00e7u simplifi\u00e9. L'architecture r\u00e9elle couvre davantage. Mais le changement est clair : du d\u00e9sordre et de la passivit\u00e9 \u00e0 la structure et la composition."
+          )}
+        </p>
       </Section>
 
       <div style={{ width: 60, height: 1, background: "rgba(201,168,76,0.2)", margin: "0 auto" }} />
@@ -666,29 +761,38 @@ export default function WealthPage() {
               )}
             </p>
 
-            <a
-              href="#faq"
-              style={{
-                display: "inline-flex", alignItems: "center", gap: 8,
-                padding: "10px 20px", background: "rgba(201,168,76,0.06)", border: "1px solid rgba(201,168,76,0.2)",
-                borderRadius: 8, color: "#c9a84c", fontSize: 13, fontWeight: 500,
-                textDecoration: "none", transition: "all 0.2s", marginBottom: 28,
-              }}
-            >
-              {t(lang, "Already have a bank or advisor? Read this \u2192", "Vous avez d\u00e9j\u00e0 une banque ou un conseiller ? Lisez ceci \u2192")}
-            </a>
+            {/* Why I left CIF advisory */}
+            <div style={{
+              background: "rgba(201,168,76,0.04)", border: "1px solid rgba(201,168,76,0.12)",
+              borderRadius: 10, padding: isMobile ? "16px" : "20px 24px", marginBottom: 24,
+            }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: "#c9a84c", marginBottom: 8 }}>
+                {t(lang, "Why I left the advisory industry", "Pourquoi j'ai quitt\u00e9 le conseil financier")}
+              </div>
+              <p style={{ color: "#9a9790", fontSize: 14, lineHeight: 1.7, margin: 0 }}>
+                {t(lang,
+                  "I started as a CIF (Conseil en Investissements Financiers) under one of France's largest networks. Great people. But the model is broken: advisors earn commissions on the products they sell, not on the quality of their advice. That's a conflict of interest I couldn't live with.",
+                  "J'ai commenc\u00e9 comme CIF (Conseil en Investissements Financiers) dans l'un des plus grands r\u00e9seaux de France. Des gens bien. Mais le mod\u00e8le est cass\u00e9 : les conseillers gagnent des commissions sur les produits qu'ils vendent, pas sur la qualit\u00e9 de leurs conseils. C'est un conflit d'int\u00e9r\u00eats avec lequel je ne pouvais pas vivre."
+                )}
+              </p>
+              <p style={{ color: "#9a9790", fontSize: 14, lineHeight: 1.7, margin: "10px 0 0" }}>
+                {t(lang,
+                  "So I left. I built my own methodology. Now I charge a fixed fee, I don't sell anything, and I work for my clients \u2014 nobody else.",
+                  "Alors j'ai quitt\u00e9. J'ai construit ma propre m\u00e9thodologie. Maintenant je facture un honoraire fixe, je ne vends rien, et je travaille pour mes clients \u2014 personne d'autre."
+                )}
+              </p>
+            </div>
 
-            {/* Philosophy quote */}
+            {/* Philosophy quote + intellectual substance */}
             <div style={{
               borderLeft: "3px solid rgba(201,168,76,0.4)",
               paddingLeft: 20,
-              marginTop: 8,
               marginBottom: 32,
             }}>
-              <p style={{ color: "#e8e6e1", fontSize: 16, fontWeight: 500, fontStyle: "italic", lineHeight: 1.7, margin: 0 }}>
+              <p style={{ color: "#e8e6e1", fontSize: 15, lineHeight: 1.8, margin: 0 }}>
                 {t(lang,
-                  "\u201CI think in systems, not products. I manage risk the way it should be managed: simply.\u201D",
-                  "\u00AB Je pense en syst\u00e8mes, pas en produits. Je g\u00e8re le risque comme il devrait l'\u00eatre : simplement. \u00BB"
+                  "My framework is rooted in Charles Gave's Wicksellian analysis \u2014 understanding whether the natural rate of interest sits above or below the market rate tells you which assets will thrive and which will collapse. I combine that with Didier Darcet's econophysics: fragility indicators, predator-prey portfolio dynamics, and cycle positioning. This isn't stock picking. It's understanding the macro regime you're in and structuring your wealth to compound in that regime. When the regime shifts, the architecture adapts.",
+                  "Mon cadre repose sur l'analyse wicksellienne de Charles Gave \u2014 comprendre si le taux d'int\u00e9r\u00eat naturel est au-dessus ou en dessous du taux de march\u00e9 vous dit quels actifs prosp\u00e9reront et lesquels s'effondreront. J'y combine l'\u00e9conophysique de Didier Darcet : indicateurs de fragilit\u00e9, dynamiques pr\u00e9dateur-proie de portefeuille, et positionnement de cycle. Ce n'est pas du stock picking. C'est comprendre le r\u00e9gime macro dans lequel vous \u00eates et structurer votre patrimoine pour composer dans ce r\u00e9gime. Quand le r\u00e9gime change, l'architecture s'adapte."
                 )}
               </p>
             </div>
@@ -748,10 +852,16 @@ export default function WealthPage() {
             {t(lang, "Year-to-date performance — 2025", "Performance depuis le début d'année — 2025")}
           </div>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr", gap: isMobile ? 12 : 20 }}>
-            <PerformanceBar label={t(lang, "My Portfolio", "Mon Portfolio")} value={32} color="#c9a84c" maxVal={35} delay={0} />
+            <PerformanceBar label={t(lang, "My Portfolio", "Mon Portfolio")} value={33} color="#c9a84c" maxVal={35} delay={0} />
             <PerformanceBar label={t(lang, "S&P 500 (USA)", "S&P 500 (USA)")} value={18} color="#4a90d9" maxVal={35} delay={0.12} />
             <PerformanceBar label={t(lang, "CAC 40 (France)", "CAC 40 (France)")} value={-1} color="#e74c3c" maxVal={35} delay={0.24} />
           </div>
+          <p style={{ fontSize: 11, color: "#5a5750", textAlign: "center", margin: "12px 0 0", fontStyle: "italic", lineHeight: 1.5 }}>
+            {t(lang,
+              "My personal portfolio \u2014 I invest my own money using the same framework I design for clients.",
+              "Mon portefeuille personnel \u2014 j'investis mon propre argent avec le m\u00eame cadre que je con\u00e7ois pour mes clients."
+            )}
+          </p>
         </div>
 
         {/* Proof thumbnails — 3 columns, click to enlarge */}
@@ -837,7 +947,7 @@ export default function WealthPage() {
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: isMobile ? 12 : 20 }}>
           <ValueCard icon={"\u2697"} title={t(lang, "Preserve wealth", "Pr\u00e9server le patrimoine")} desc={t(lang, "Protect what you've built. Structure before speculation.", "Prot\u00e9ger ce que vous avez construit. La structure avant la sp\u00e9culation.")} />
           <ValueCard icon={"\u21E7"} title={t(lang, "Grow purchasing power", "Gagner en pouvoir d'achat")} desc={t(lang, "Beat inflation, compound quietly. Real wealth is measured in what you can do.", "Battre l'inflation, composer en silence. La vraie richesse se mesure \u00e0 ce que vous pouvez faire.")} />
-          <ValueCard icon={"\u25C6"} title={t(lang, "Respect your identity", "Respecter votre identit\u00e9")} desc={t(lang, "Your values, your privacy, your rules. Everything under NDA. No third parties. Cybersecurity-certified.", "Vos valeurs, votre vie priv\u00e9e, vos r\u00e8gles. Tout sous NDA. Pas de tiers. Certifi\u00e9 en cybers\u00e9curit\u00e9.")} />
+          <ValueCard icon={"\u25C6"} title={t(lang, "Respect your identity", "Respecter votre identit\u00e9")} desc={t(lang, "Your values, your privacy, your rules. Everything under NDA. All documents encrypted end-to-end. No third parties. Cybersecurity-certified infrastructure. Your data stays between us.", "Vos valeurs, votre vie priv\u00e9e, vos r\u00e8gles. Tout sous NDA. Documents chiffr\u00e9s de bout en bout. Pas de tiers. Infrastructure certifi\u00e9e en cybers\u00e9curit\u00e9. Vos donn\u00e9es restent entre nous.")} />
         </div>
 
         {/* Mid-page CTA */}
@@ -871,7 +981,7 @@ export default function WealthPage() {
             },
             {
               q: t(lang, "\"I don't have time for this.\"", "« Je n'ai pas le temps pour ça. »"),
-              a: lang === "en" ? (<>One 90-minute intake. One 60-minute delivery. Then 45 minutes per quarter. <strong style={{ color: "#e8e6e1" }}>Less than 6 hours a year</strong> to have a system managing your entire financial life. You spend more time than that choosing a car.</>) : (<>Un intake de 90 minutes. Une restitution de 60 minutes. Puis 45 minutes par trimestre. <strong style={{ color: "#e8e6e1" }}>Moins de 6 heures par an</strong> pour avoir un système qui gère toute votre vie financière. Vous passez plus de temps que ça à choisir une voiture.</>),
+              a: lang === "en" ? (<>One 60-minute intake. One 60-minute delivery. Then 45 minutes per quarter. <strong style={{ color: "#e8e6e1" }}>Less than 5 hours a year</strong> to have a system managing your entire financial life. You spend more time than that choosing a car.</>) : (<>Un intake de 60 minutes. Une restitution de 60 minutes. Puis 45 minutes par trimestre. <strong style={{ color: "#e8e6e1" }}>Moins de 5 heures par an</strong> pour avoir un syst\u00e8me qui g\u00e8re toute votre vie financi\u00e8re. Vous passez plus de temps que \u00e7a \u00e0 choisir une voiture.</>),
             },
             {
               q: t(lang, "\"That's expensive for advice.\"", "« C'est cher pour du conseil. »"),
@@ -880,6 +990,14 @@ export default function WealthPage() {
             {
               q: t(lang, "\"I can figure this out myself.\"", "« Je peux le faire tout seul. »"),
               a: lang === "en" ? (<>People always say that — <strong style={{ color: "#e8e6e1" }}>and always postpone.</strong> Meanwhile they listen to the news, follow influencers, and rely on information that’s often wrong or months behind reality. I offer <strong style={{ color: "#e8e6e1" }}>precision</strong> where you have approximation. <strong style={{ color: "#e8e6e1" }}>Understanding</strong> where you have confusion. <strong style={{ color: "#e8e6e1" }}>Simplicity</strong> where you have complexity. And <strong style={{ color: "#e8e6e1" }}>accountability</strong> — someone who makes sure you actually execute, not just plan. You don’t need more information. <strong style={{ color: "#e8e6e1" }}>You need a system and someone holding the blueprint.</strong></>) : (<>Tout le monde dit ça — <strong style={{ color: "#e8e6e1" }}>et repousse toujours.</strong> Entre-temps on écoute les infos, on suit des influenceurs, et on se fie à des informations souvent fausses ou en retard de mois. J’offre de la <strong style={{ color: "#e8e6e1" }}>précision</strong> là où vous avez de l’approximation. De la <strong style={{ color: "#e8e6e1" }}>compréhension</strong> là où vous avez de la confusion. De la <strong style={{ color: "#e8e6e1" }}>simplicité</strong> là où vous avez de la complexité. Et de l’<strong style={{ color: "#e8e6e1" }}>accountability</strong> — quelqu’un qui s’assure que vous exécutez vraiment. <strong style={{ color: "#e8e6e1" }}>Vous n’avez pas besoin de plus d’information. Vous avez besoin d’un système.</strong></>),
+            },
+            {
+              q: t(lang, "\"How much does it cost?\"", "\u00AB Combien \u00e7a co\u00fbte ? \u00BB"),
+              a: lang === "en" ? (<>Fixed fee. No percentage on your capital. No commissions. No hidden costs.<br /><br />Your first payment is <strong style={{ color: "#e8e6e1" }}>\u20ac1,500</strong> and covers the full Wealth Architecture Audit plus your first quarterly review. After that, quarterly reviews are <strong style={{ color: "#e8e6e1" }}>\u20ac300 each</strong>. Total for your first year: <strong style={{ color: "#e8e6e1" }}>\u20ac2,700</strong>.<br /><br />That's it. No surprises. I don't earn more when you invest more. <strong style={{ color: "#e8e6e1" }}>I earn my fee by delivering a system that works.</strong></>) : (<>Honoraires fixes. Pas de pourcentage sur votre capital. Pas de commissions. Pas de frais cach\u00e9s.<br /><br />Votre premier paiement est de <strong style={{ color: "#e8e6e1" }}>1 500 \u20ac</strong> et couvre l'Audit d'Architecture Patrimoniale complet plus votre premi\u00e8re revue trimestrielle. Ensuite, les revues trimestrielles sont \u00e0 <strong style={{ color: "#e8e6e1" }}>300 \u20ac chacune</strong>. Total pour votre premi\u00e8re ann\u00e9e : <strong style={{ color: "#e8e6e1" }}>2 700 \u20ac</strong>.<br /><br />C'est tout. Pas de surprises. Je ne gagne pas plus quand vous investissez plus. <strong style={{ color: "#e8e6e1" }}>Je gagne mes honoraires en d\u00e9livrant un syst\u00e8me qui fonctionne.</strong></>),
+            },
+            {
+              q: t(lang, "\"I don't have an advisor yet.\"", "\u00AB Je n'ai pas encore de conseiller. \u00BB"),
+              a: lang === "en" ? (<><strong style={{ color: "#e8e6e1" }}>Even better.</strong> Most banks and financial advisors aren't investors \u2014 they're salespeople. They earn commissions on the products they sell you, not on your results. Starting from scratch means we build your system with <strong style={{ color: "#e8e6e1" }}>good habits and real investments from day one.</strong> No bad products to unwind. No conflicts to work around.</>) : (<><strong style={{ color: "#e8e6e1" }}>Encore mieux.</strong> La plupart des banques et conseillers financiers ne sont pas des investisseurs \u2014 ce sont des commerciaux. Ils gagnent des commissions sur les produits qu'ils vous vendent, pas sur vos r\u00e9sultats. Partir de z\u00e9ro signifie qu'on construit votre syst\u00e8me avec <strong style={{ color: "#e8e6e1" }}>de bonnes habitudes et de vrais investissements d\u00e8s le d\u00e9part.</strong> Pas de mauvais produits \u00e0 d\u00e9faire. Pas de conflits \u00e0 contourner.</>),
             },
           ].map((item, i) => (
             <FaqItem key={i} q={item.q} a={item.a} index={i} />
