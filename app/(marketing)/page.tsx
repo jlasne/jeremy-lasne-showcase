@@ -293,6 +293,55 @@ const PerformanceBar = ({ label, value, color, maxVal, delay }: { label: string;
   );
 };
 
+/* --- CIF Story (collapsible) --- */
+const CifStory = ({ lang, isMobile }: { lang: Lang; isMobile: boolean }) => {
+  const [open, setOpen] = useState(false);
+  return (
+    <div
+      onClick={() => setOpen(!open)}
+      style={{
+        background: "rgba(201,168,76,0.04)", border: "1px solid rgba(201,168,76,0.12)",
+        borderRadius: 10, padding: isMobile ? "12px 16px" : "14px 20px", marginBottom: 24,
+        cursor: "pointer", transition: "border-color 0.2s",
+      }}
+    >
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <span style={{ fontSize: 13, fontWeight: 600, color: "#c9a84c" }}>
+          {t(lang, "Why I left the advisory industry", "Pourquoi j'ai quitt\u00e9 le conseil financier")}
+        </span>
+        <motion.span
+          animate={{ rotate: open ? 45 : 0 }}
+          style={{ color: "#c9a84c", fontSize: 16, fontWeight: 300, flexShrink: 0, marginLeft: 12 }}
+        >+</motion.span>
+      </div>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            style={{ overflow: "hidden" }}
+          >
+            <p style={{ color: "#9a9790", fontSize: 14, lineHeight: 1.7, margin: "12px 0 0" }}>
+              {t(lang,
+                "I started as a CIF (Conseil en Investissements Financiers) under one of France's largest networks. Great people. But the model is broken: advisors earn commissions on the products they sell, not on the quality of their advice. That's a conflict of interest I couldn't live with.",
+                "J'ai commenc\u00e9 comme CIF dans l'un des plus grands r\u00e9seaux de France. Des gens bien. Mais le mod\u00e8le est cass\u00e9 : les conseillers gagnent des commissions sur les produits qu'ils vendent, pas sur la qualit\u00e9 de leurs conseils. Un conflit d'int\u00e9r\u00eats avec lequel je ne pouvais pas vivre."
+              )}
+            </p>
+            <p style={{ color: "#9a9790", fontSize: 14, lineHeight: 1.7, margin: "8px 0 0" }}>
+              {t(lang,
+                "So I left. I built my own methodology. Now I charge a fixed fee, I don't sell anything, and I work for my clients \u2014 nobody else.",
+                "Alors j'ai quitt\u00e9. J'ai construit ma propre m\u00e9thodologie. Honoraire fixe, pas de vente de produits, et je travaille pour mes clients \u2014 personne d'autre."
+              )}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
 /* --- useMediaQuery hook --- */
 const useMediaQuery = (query: string) => {
   const [matches, setMatches] = useState(false);
@@ -756,34 +805,15 @@ export default function WealthPage() {
           <div>
             <p style={{ color: "#9a9790", fontSize: 15, marginBottom: 20, fontStyle: "italic" }}>
               {t(lang,
-                "Former CIF advisor. I left because affiliation kills independence. Now I work for my clients and nobody else.",
-                "Ancien conseiller CIF. J'ai quitt\u00e9 parce que l'affiliation tue l'ind\u00e9pendance. Maintenant je travaille pour mes clients et personne d'autre."
+                "Former CIF advisor. Independent. Fixed fee only.",
+                "Ancien conseiller CIF. Ind\u00e9pendant. Honoraires fixes uniquement."
               )}
             </p>
 
-            {/* Why I left CIF advisory */}
-            <div style={{
-              background: "rgba(201,168,76,0.04)", border: "1px solid rgba(201,168,76,0.12)",
-              borderRadius: 10, padding: isMobile ? "16px" : "20px 24px", marginBottom: 24,
-            }}>
-              <div style={{ fontSize: 14, fontWeight: 700, color: "#c9a84c", marginBottom: 8 }}>
-                {t(lang, "Why I left the advisory industry", "Pourquoi j'ai quitt\u00e9 le conseil financier")}
-              </div>
-              <p style={{ color: "#9a9790", fontSize: 14, lineHeight: 1.7, margin: 0 }}>
-                {t(lang,
-                  "I started as a CIF (Conseil en Investissements Financiers) under one of France's largest networks. Great people. But the model is broken: advisors earn commissions on the products they sell, not on the quality of their advice. That's a conflict of interest I couldn't live with.",
-                  "J'ai commenc\u00e9 comme CIF (Conseil en Investissements Financiers) dans l'un des plus grands r\u00e9seaux de France. Des gens bien. Mais le mod\u00e8le est cass\u00e9 : les conseillers gagnent des commissions sur les produits qu'ils vendent, pas sur la qualit\u00e9 de leurs conseils. C'est un conflit d'int\u00e9r\u00eats avec lequel je ne pouvais pas vivre."
-                )}
-              </p>
-              <p style={{ color: "#9a9790", fontSize: 14, lineHeight: 1.7, margin: "10px 0 0" }}>
-                {t(lang,
-                  "So I left. I built my own methodology. Now I charge a fixed fee, I don't sell anything, and I work for my clients \u2014 nobody else.",
-                  "Alors j'ai quitt\u00e9. J'ai construit ma propre m\u00e9thodologie. Maintenant je facture un honoraire fixe, je ne vends rien, et je travaille pour mes clients \u2014 personne d'autre."
-                )}
-              </p>
-            </div>
+            {/* Why I left CIF advisory — collapsible */}
+            <CifStory lang={lang} isMobile={isMobile} />
 
-            {/* Philosophy quote + intellectual substance */}
+            {/* Philosophy quote — simplified */}
             <div style={{
               borderLeft: "3px solid rgba(201,168,76,0.4)",
               paddingLeft: 20,
@@ -791,8 +821,8 @@ export default function WealthPage() {
             }}>
               <p style={{ color: "#e8e6e1", fontSize: 15, lineHeight: 1.8, margin: 0 }}>
                 {t(lang,
-                  "My framework is rooted in Charles Gave's Wicksellian analysis \u2014 understanding whether the natural rate of interest sits above or below the market rate tells you which assets will thrive and which will collapse. I combine that with Didier Darcet's econophysics: fragility indicators, predator-prey portfolio dynamics, and cycle positioning. This isn't stock picking. It's understanding the macro regime you're in and structuring your wealth to compound in that regime. When the regime shifts, the architecture adapts.",
-                  "Mon cadre repose sur l'analyse wicksellienne de Charles Gave \u2014 comprendre si le taux d'int\u00e9r\u00eat naturel est au-dessus ou en dessous du taux de march\u00e9 vous dit quels actifs prosp\u00e9reront et lesquels s'effondreront. J'y combine l'\u00e9conophysique de Didier Darcet : indicateurs de fragilit\u00e9, dynamiques pr\u00e9dateur-proie de portefeuille, et positionnement de cycle. Ce n'est pas du stock picking. C'est comprendre le r\u00e9gime macro dans lequel vous \u00eates et structurer votre patrimoine pour composer dans ce r\u00e9gime. Quand le r\u00e9gime change, l'architecture s'adapte."
+                  "I use Charles Gave's framework to read interest rate cycles and identify which asset classes will win or lose. I add Didier Darcet's fragility indicators to know when the regime is about to shift. This isn't stock picking \u2014 it's understanding the macro environment and building your wealth to compound inside it. When the regime changes, the architecture adapts.",
+                  "J'utilise le cadre de Charles Gave pour lire les cycles de taux et identifier quelles classes d'actifs vont gagner ou perdre. J'y ajoute les indicateurs de fragilit\u00e9 de Didier Darcet pour savoir quand le r\u00e9gime va changer. Ce n'est pas du stock picking \u2014 c'est comprendre l'environnement macro et construire votre patrimoine pour composer dedans. Quand le r\u00e9gime change, l'architecture s'adapte."
                 )}
               </p>
             </div>
