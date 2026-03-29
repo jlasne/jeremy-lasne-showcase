@@ -8,22 +8,23 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 
 export const metadata: Metadata = {
-  title: "Jeremy Lasne",
-  description: "Jeremy LASNE's portfolio",
+  title: "Jeremy Lasne | Wealth Architecture",
+  description: "Consulting patrimonial indépendant. Je conçois des architectures de capital personnalisées pour les particuliers qui veulent un système, pas juste des produits.",
   icons: { icon: "/favicon.png" },
   openGraph: {
-    title: "Jeremy Lasne",
-    description: "Jeremy LASNE's portfolio",
-    images: ["/favicon.png"],
+    title: "Jeremy Lasne | Wealth Architecture",
+    description: "Consulting patrimonial indépendant. Je conçois des architectures de capital personnalisées pour les particuliers qui veulent un système, pas juste des produits.",
+    images: ["https://finance.jeremylasne.com/api/og"],
     type: "website",
+    url: "https://finance.jeremylasne.com",
   },
   twitter: {
     card: "summary_large_image",
     site: "@jeremylasne",
     creator: "@jeremylasne",
-    title: "Jeremy Lasne",
-    description: "Jeremy LASNE's portfolio",
-    images: ["/favicon.png"],
+    title: "Jeremy Lasne | Wealth Architecture",
+    description: "Consulting patrimonial indépendant. Un système, pas juste des produits.",
+    images: ["https://finance.jeremylasne.com/api/og"],
   },
 };
 

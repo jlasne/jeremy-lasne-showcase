@@ -57,7 +57,7 @@ export const sendClientInvitation = action({
 
         <p style="font-size: 12px; color: #5a5750; text-align: center;">
           Jérémy Lasne — Wealth Architecture<br/>
-          jeremylasne.com
+          finance.jeremylasne.com
         </p>
       </div>
     `;

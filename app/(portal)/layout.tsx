@@ -159,7 +159,7 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
 
       <footer style={{ padding: "16px 24px", borderTop: "1px solid #1a1a1a", textAlign: "center", display: "flex", flexDirection: "column", gap: 6 }}>
         <Link href="/" style={{ fontSize: 11, color: "#5a5750", textDecoration: "none" }}>
-          {t(lang, "Back to site", "Retour au site")} · jeremylasne.com
+          {t(lang, "Back to site", "Retour au site")} · finance.jeremylasne.com
         </Link>
         <div style={{ fontSize: 10, color: "#444", display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}>
           <span>© 2026 Jeremy Lasne</span>
