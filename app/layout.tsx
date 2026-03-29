@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Jeremy Lasne | Wealth Architecture",
     description: "Consulting patrimonial indépendant. Je conçois des architectures de capital personnalisées pour les particuliers qui veulent un système, pas juste des produits.",
-    images: ["https://finance.jeremylasne.com/api/og"],
+    images: ["https://jeremylasne.com/api/og"],
     type: "website",
     url: "https://finance.jeremylasne.com",
   },
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     creator: "@jeremylasne",
     title: "Jeremy Lasne | Wealth Architecture",
     description: "Consulting patrimonial indépendant. Un système, pas juste des produits.",
-    images: ["https://finance.jeremylasne.com/api/og"],
+    images: ["https://jeremylasne.com/api/og"],
   },
 };
 
