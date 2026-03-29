@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     description: "Consulting patrimonial indépendant. Je conçois des architectures de capital personnalisées pour les particuliers qui veulent un système, pas juste des produits.",
     images: ["https://jeremylasne.com/api/og"],
     type: "website",
-    url: "https://finance.jeremylasne.com",
+    url: "https://jeremylasne.com",
   },
   twitter: {
     card: "summary_large_image",

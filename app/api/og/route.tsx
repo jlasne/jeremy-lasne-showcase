@@ -87,7 +87,7 @@ export async function GET() {
               letterSpacing: 1,
             }}
           >
-            finance.jeremylasne.com
+            jeremylasne.com
           </div>
         </div>
 

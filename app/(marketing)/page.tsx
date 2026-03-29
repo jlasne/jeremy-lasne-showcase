@@ -1075,7 +1075,7 @@ export default function WealthPage() {
             >
               LinkedIn
             </a>
-            <Link href="/" style={{ color: "#9a9790", textDecoration: "none" }}>finance.jeremylasne.com</Link>
+            <Link href="/" style={{ color: "#9a9790", textDecoration: "none" }}>jeremylasne.com</Link>
           </div>
         </div>
         <div style={{ display: "flex", alignItems: "center", justifyContent: isMobile ? "center" : "flex-start", gap: 6, flexWrap: "wrap", fontSize: isMobile ? 10 : 11, color: "#444" }}>

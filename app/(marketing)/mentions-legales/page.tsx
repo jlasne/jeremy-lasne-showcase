@@ -22,7 +22,7 @@ export default function MentionsLegalesPage() {
       </Section>
 
       <Section title="2. Hébergement">
-        <p>Le site finance.jeremylasne.com est hébergé par :</p>
+        <p>Le site jeremylasne.com est hébergé par :</p>
         <p>Vercel Inc.</p>
         <p>440 N Barranca Ave #4133, Covina, CA 91723, États-Unis</p>
         <p>Site : vercel.com</p>
